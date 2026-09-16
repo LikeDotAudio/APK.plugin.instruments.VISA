@@ -1,0 +1,8 @@
+{
+  "model": "MSO5074",
+  "channels": 4,
+  "manufacturer": "Rigol",
+  "type": "Oscilloscope",
+  "notes": "70 MHz 4 Ch Mixed Signal (Touch)",
+  "vocabulary": "none"
+}

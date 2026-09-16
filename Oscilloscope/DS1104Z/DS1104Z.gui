@@ -1,0 +1,14 @@
+{
+  "model": "DS1104Z",
+  "channels": 4,
+  "domains": {
+    "bandwidth": {
+      "units": "Hz",
+      "min": 0,
+      "max": 100000000.0
+    }
+  },
+  "manufacturer": "Rigol",
+  "type": "Oscilloscope",
+  "notes": "100 MHz 4 Ch Digital"
+}

@@ -1,0 +1,8 @@
+{
+  "model": "DSO9064A",
+  "channels": 4,
+  "manufacturer": "HP / Agilent / Keysight",
+  "type": "Oscilloscope",
+  "notes": "600 MHz 4 Ch (Infiniium 9000)",
+  "vocabulary": "none"
+}

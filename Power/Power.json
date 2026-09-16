@@ -1,0 +1,941 @@
+{
+  "Module": {
+    "type": "OcaBin",
+    "id": "50.100.5.1",
+    "geometry": {
+      "anchor": "NSEW"
+    },
+    "behavior": {
+      "overflow_ns": "auto",
+      "overflow_ew": "auto",
+      "fluid_ew": true
+    },
+    "blocks": {
+      "Control": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Output, and what the module is delivering",
+          "Fr": "Output, and what the module is delivering",
+          "De": "Output, and what the module is delivering",
+          "Es": "Output, and what the module is delivering",
+          "show_label": true
+        },
+        "layout_columns": 4,
+        "layout": {
+          "weight": 0,
+          "width": "100%"
+        },
+        "fields": {
+          "Output_State": {
+            "type": "_TrapezoidButton",
+            "AES70": "OcaBooleanActuator",
+            "label": {
+              "text": {
+                "En": "Output",
+                "Fr": "Output",
+                "De": "Output",
+                "Es": "Output"
+              },
+              "active": {
+                "text": {
+                  "En": "ON",
+                  "Fr": "ON",
+                  "De": "ON",
+                  "Es": "ON"
+                },
+                "text_size": 20,
+                "text_color": "#ffffff"
+              },
+              "inactive": {
+                "text": {
+                  "En": "OFF",
+                  "Fr": "OFF",
+                  "De": "OFF",
+                  "Es": "OFF"
+                },
+                "text_size": 20,
+                "text_color": "#111111"
+              }
+            },
+            "value": {
+              "default_value": 0
+            },
+            "latching": true,
+            "width": 220,
+            "height": 208,
+            "slant": 18,
+            "text_size": 22,
+            "color_active": "#C81E1E",
+            "color_inactive": "#F2F2F2",
+            "led_color": "#FF6B6B",
+            "komand_handler": {
+              "enable": true,
+              "komand_type": "set",
+              "sub_path": "Power",
+              "command": "Set_Output",
+              "input_name": "state",
+              "converter": "",
+              "readback": "module_settings"
+            },
+            "komand_listen": "module_settings/output"
+          },
+          "Volts_Meter": {
+            "type": "_NeedleVUMeter",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "Volts out",
+                  "Fr": "Volts out",
+                  "De": "Volts out",
+                  "Es": "Volts out"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "inactive": {
+                "text": {
+                  "En": "Volts out",
+                  "Fr": "Volts out",
+                  "De": "Volts out",
+                  "Es": "Volts out"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              }
+            },
+            "domain": {
+              "min": "0",
+              "max": "60",
+              "units": "V",
+              "primary": {
+                "min": 0,
+                "max": 60
+              }
+            },
+            "value": {
+              "default_value": 0
+            },
+            "layout": {
+              "height": 208,
+              "width": "100%",
+              "padx": 6,
+              "pady": 4
+            },
+            "geometry": {
+              "width": 260,
+              "height": 208
+            },
+            "cosmetics": {
+              "colors": {
+                "primary": "#33A1FD",
+                "background": "#1a1a1a",
+                "text": "#cccccc"
+              },
+              "scale": {
+                "show": true
+              },
+              "style_overrides": {
+                "pointer_style": "line",
+                "scale_numbers": true
+              }
+            },
+            "dynamics": {
+              "attack_ms": 120,
+              "release_ms": 300
+            },
+            "units": "V",
+            "komand_listen": "module_settings/meas_voltage"
+          },
+          "Amps_Meter": {
+            "type": "_NeedleVUMeter",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "Amps out",
+                  "Fr": "Amps out",
+                  "De": "Amps out",
+                  "Es": "Amps out"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "inactive": {
+                "text": {
+                  "En": "Amps out",
+                  "Fr": "Amps out",
+                  "De": "Amps out",
+                  "Es": "Amps out"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              }
+            },
+            "domain": {
+              "min": "0",
+              "max": "16",
+              "units": "A",
+              "primary": {
+                "min": 0,
+                "max": 16
+              }
+            },
+            "value": {
+              "default_value": 0
+            },
+            "layout": {
+              "height": 208,
+              "width": "100%",
+              "padx": 6,
+              "pady": 4
+            },
+            "geometry": {
+              "width": 260,
+              "height": 208
+            },
+            "cosmetics": {
+              "colors": {
+                "primary": "#39D353",
+                "background": "#1a1a1a",
+                "text": "#cccccc"
+              },
+              "scale": {
+                "show": true
+              },
+              "style_overrides": {
+                "pointer_style": "line",
+                "scale_numbers": true
+              }
+            },
+            "dynamics": {
+              "attack_ms": 120,
+              "release_ms": 300
+            },
+            "units": "A",
+            "komand_listen": "module_settings/meas_current"
+          },
+          "Watts_Meter": {
+            "type": "_NeedleVUMeter",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "Watts out",
+                  "Fr": "Watts out",
+                  "De": "Watts out",
+                  "Es": "Watts out"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "inactive": {
+                "text": {
+                  "En": "Watts out",
+                  "Fr": "Watts out",
+                  "De": "Watts out",
+                  "Es": "Watts out"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              }
+            },
+            "domain": {
+              "min": "0",
+              "max": "200",
+              "units": "W",
+              "primary": {
+                "min": 0,
+                "max": 200
+              }
+            },
+            "value": {
+              "default_value": 0
+            },
+            "layout": {
+              "height": 208,
+              "width": "100%",
+              "padx": 6,
+              "pady": 4
+            },
+            "geometry": {
+              "width": 260,
+              "height": 208
+            },
+            "cosmetics": {
+              "colors": {
+                "primary": "#FF902C",
+                "background": "#1a1a1a",
+                "text": "#cccccc"
+              },
+              "scale": {
+                "show": true
+              },
+              "style_overrides": {
+                "pointer_style": "line",
+                "scale_numbers": true
+              }
+            },
+            "dynamics": {
+              "attack_ms": 120,
+              "release_ms": 300
+            },
+            "units": "W",
+            "komand_listen": "module_settings/meas_voltage",
+            "multiply_by": {
+              "komand_listen": "module_settings/meas_current"
+            }
+          }
+        }
+      },
+      "Set": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Dial in, then press SET — nothing here reaches the supply until you do.",
+          "Fr": "Réglez, puis pressez SET — rien n'atteint l'alimentation avant.",
+          "De": "Einstellen, dann SET — vorher erreicht nichts das Netzteil.",
+          "Es": "Ajuste y pulse SET — nada llega a la fuente antes.",
+          "show_label": true
+        },
+        "layout": {
+          "weight": 0,
+          "width": "100%"
+        },
+        "fields": {
+          "Input": {
+            "type": "OcaBlock",
+            "description": {
+              "En": "Setpoints",
+              "Fr": "Consignes",
+              "De": "Sollwerte",
+              "Es": "Consignas",
+              "show_label": false
+            },
+            "layout": {
+              "weight": 0,
+              "width": "100%"
+            },
+            "fields": {
+              "voltage": {
+                "type": "_Horizontal_with_dial_Value",
+                "domain": {
+                  "min": "0",
+                  "max": "60",
+                  "units": "V",
+                  "step_coarse": "1",
+                  "step_fine": "0.001"
+                },
+                "value": {
+                  "default_value": "0"
+                },
+                "step": "0.001",
+                "layout": {
+                  "height": 100,
+                  "width": "100%",
+                  "sticky": "ew",
+                  "font": 12,
+                  "padx": 10,
+                  "pady": 8,
+                  "column_spacing": [
+                    80,
+                    10,
+                    10
+                  ]
+                },
+                "label": {
+                  "En": "Voltage set",
+                  "Fr": "Tension réglée",
+                  "De": "Spannung Sollwert",
+                  "Es": "Tensión ajustada",
+                  "show_label": true
+                },
+                "value_config": {
+                  "height": 30,
+                  "colour": "#ffffff",
+                  "bg_color": "#1a1a1a",
+                  "width": 12,
+                  "font": 14
+                },
+                "fader_config": {
+                  "type": "_GuiFaderHorizontal",
+                  "cosmetics": {
+                    "scale": {
+                      "interval": 10,
+                      "show": true
+                    },
+                    "styling": {
+                      "glow_intensity": 1.5
+                    }
+                  },
+                  "bar_color": "#444444",
+                  "active_color": "#FF9900"
+                },
+                "dial_config": {
+                  "type": "_GuiKnob",
+                  "cosmetics": {
+                    "style_overrides": {
+                      "knob_style": "dial"
+                    },
+                    "colors": {
+                      "active": "#00ffff",
+                      "background": "#2b2b2b"
+                    }
+                  }
+                },
+                "cosmetics": {
+                  "colors": {
+                    "primary": "#FF9900",
+                    "secondary": "#444444",
+                    "background": "#2b2b2b"
+                  }
+                },
+                "units": "V",
+                "show_label": true,
+                "komand_domain": "volt",
+                "komand_listen": "module_settings/set_voltage"
+              },
+              "current": {
+                "type": "_Horizontal_with_dial_Value",
+                "domain": {
+                  "min": "0",
+                  "max": "16",
+                  "units": "A",
+                  "step_coarse": "0.1",
+                  "step_fine": "0.001"
+                },
+                "value": {
+                  "default_value": "0.1"
+                },
+                "step": "0.001",
+                "layout": {
+                  "height": 100,
+                  "width": "100%",
+                  "sticky": "ew",
+                  "font": 12,
+                  "padx": 10,
+                  "pady": 8,
+                  "column_spacing": [
+                    80,
+                    10,
+                    10
+                  ]
+                },
+                "label": {
+                  "En": "Current max",
+                  "Fr": "Courant max",
+                  "De": "Strom max",
+                  "Es": "Corriente máx",
+                  "show_label": true
+                },
+                "value_config": {
+                  "height": 30,
+                  "colour": "#ffffff",
+                  "bg_color": "#1a1a1a",
+                  "width": 12,
+                  "font": 14
+                },
+                "fader_config": {
+                  "type": "_GuiFaderHorizontal",
+                  "cosmetics": {
+                    "scale": {
+                      "interval": 10,
+                      "show": true
+                    },
+                    "styling": {
+                      "glow_intensity": 1.5
+                    }
+                  },
+                  "bar_color": "#444444",
+                  "active_color": "#39D353"
+                },
+                "dial_config": {
+                  "type": "_GuiKnob",
+                  "cosmetics": {
+                    "style_overrides": {
+                      "knob_style": "dial"
+                    },
+                    "colors": {
+                      "active": "#00ffff",
+                      "background": "#2b2b2b"
+                    }
+                  }
+                },
+                "cosmetics": {
+                  "colors": {
+                    "primary": "#39D353",
+                    "secondary": "#444444",
+                    "background": "#2b2b2b"
+                  }
+                },
+                "units": "A",
+                "show_label": true,
+                "komand_domain": "curr",
+                "komand_listen": "module_settings/set_current"
+              }
+            },
+            "layout_columns": 1
+          },
+          "Set_Levels": {
+            "type": "_GuiActuator",
+            "AES70": "OcaBooleanActuator",
+            "label": {
+              "inactive": {
+                "text": {
+                  "En": "SET  ▸  V & I",
+                  "Fr": "RÉGLER  ▸  V & I",
+                  "De": "SETZEN  ▸  V & I",
+                  "Es": "AJUSTAR  ▸  V & I"
+                },
+                "text_size": 12,
+                "text_color": "#39D353"
+              }
+            },
+            "layout": {
+              "height": 40,
+              "width": "100%",
+              "stretch": "width",
+              "font": 12,
+              "padx": 4,
+              "pady": 4
+            },
+            "style": {
+              "active": {
+                "font_style": "bold",
+                "font_size": null,
+                "text_color": "#FF902C",
+                "bg_color": "#000000",
+                "border_color": "#FF9900",
+                "border_thickness": 2,
+                "glow_intensity": 1.944
+              },
+              "inactive": {
+                "font_style": "normal",
+                "font_size": null,
+                "text_color": "#888888",
+                "bg_color": "#2b2b2b",
+                "border_color": "#555555",
+                "border_thickness": 2,
+                "glow_intensity": 0
+              }
+            },
+            "komand_handler": {
+              "enable": true,
+              "komand_type": "rig",
+              "sub_path": "Power",
+              "command": "Set_Levels",
+              "input_name": "",
+              "converter": "",
+              "readback": "module_settings"
+            }
+          },
+          "Read": {
+            "type": "_GuiActuator",
+            "AES70": "OcaBooleanActuator",
+            "label": {
+              "inactive": {
+                "text": {
+                  "En": "READ EVERYTHING",
+                  "Fr": "TOUT LIRE",
+                  "De": "ALLES LESEN",
+                  "Es": "LEER TODO"
+                },
+                "text_size": 12,
+                "text_color": "#33A1FD"
+              }
+            },
+            "layout": {
+              "height": 40,
+              "width": "100%",
+              "stretch": "width",
+              "font": 12,
+              "padx": 4,
+              "pady": 4
+            },
+            "style": {
+              "active": {
+                "font_style": "bold",
+                "font_size": null,
+                "text_color": "#FF902C",
+                "bg_color": "#000000",
+                "border_color": "#FF9900",
+                "border_thickness": 2,
+                "glow_intensity": 1.944
+              },
+              "inactive": {
+                "font_style": "normal",
+                "font_size": null,
+                "text_color": "#888888",
+                "bg_color": "#2b2b2b",
+                "border_color": "#555555",
+                "border_thickness": 2,
+                "glow_intensity": 0
+              }
+            },
+            "komand_handler": {
+              "enable": true,
+              "komand_type": "nab",
+              "sub_path": "Power",
+              "command": "module_settings",
+              "input_name": "",
+              "converter": ""
+            },
+            "komand_nab_on_load": true
+          },
+          "Exclude_From_Link": {
+            "type": "_GuiButtonToggle",
+            "shared_topic": "APK.audio/Gui/Link/${family}/${slug}/exclude",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "EXCLUDED FROM LINK",
+                  "Fr": "EXCLU DU LIEN",
+                  "De": "VOM LINK AUSGENOMMEN",
+                  "Es": "EXCLUIDO DEL ENLACE"
+                },
+                "text_size": 12,
+                "text_color": "#FF6B6B"
+              },
+              "inactive": {
+                "text": {
+                  "En": "FOLLOWS LINK",
+                  "Fr": "SUIT LE LIEN",
+                  "De": "FOLGT DEM LINK",
+                  "Es": "SIGUE EL ENLACE"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "show_label": false
+            },
+            "layout": {
+              "height": 44,
+              "width": 190,
+              "padx": 6,
+              "pady": 6
+            },
+            "style": {
+              "active": {
+                "font_style": "bold",
+                "font_size": null,
+                "text_color": "#FF6B6B",
+                "bg_color": "#000000",
+                "border_color": "#FF3B30",
+                "border_thickness": 2,
+                "glow_intensity": 1.944
+              },
+              "inactive": {
+                "font_style": "normal",
+                "font_size": null,
+                "text_color": "#888888",
+                "bg_color": "#2b2b2b",
+                "border_color": "#555555",
+                "border_thickness": 2,
+                "glow_intensity": 0
+              }
+            },
+            "value": {
+              "default_value": 0
+            },
+            "latching": true
+          }
+        },
+        "layout_columns": 1
+      },
+      "Measured": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "What the module is actually delivering.",
+          "Fr": "Ce que le module délivre réellement.",
+          "De": "Was das Modul tatsächlich liefert.",
+          "Es": "Lo que el módulo entrega realmente.",
+          "show_label": true
+        },
+        "layout": {
+          "weight": 0,
+          "width": "100%"
+        },
+        "fields": {
+          "Volts_Value": {
+            "type": "_Value",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "Volts",
+                  "Fr": "Volts",
+                  "De": "Volts",
+                  "Es": "Volts"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "inactive": {
+                "text": {
+                  "En": "Volts",
+                  "Fr": "Volts",
+                  "De": "Volts",
+                  "Es": "Volts"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              }
+            },
+            "komand_listen": "module_settings/meas_voltage",
+            "layout": {
+              "height": 26
+            },
+            "read_only": true,
+            "value": {
+              "default_value": "—"
+            },
+            "units": "V"
+          },
+          "Amps_Value": {
+            "type": "_Value",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "Amps",
+                  "Fr": "Amps",
+                  "De": "Amps",
+                  "Es": "Amps"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "inactive": {
+                "text": {
+                  "En": "Amps",
+                  "Fr": "Amps",
+                  "De": "Amps",
+                  "Es": "Amps"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              }
+            },
+            "komand_listen": "module_settings/meas_current",
+            "layout": {
+              "height": 26
+            },
+            "read_only": true,
+            "value": {
+              "default_value": "—"
+            },
+            "units": "A"
+          },
+          "Overload": {
+            "type": "_Status_Light",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "CURRENT LIMIT (CC)",
+                  "Fr": "LIMITE DE COURANT (CC)",
+                  "De": "STROMBEGRENZUNG (CC)",
+                  "Es": "LÍMITE DE CORRIENTE (CC)"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "inactive": {
+                "text": {
+                  "En": "CURRENT LIMIT (CC)",
+                  "Fr": "LIMITE DE COURANT (CC)",
+                  "De": "STROMBEGRENZUNG (CC)",
+                  "Es": "LÍMITE DE CORRIENTE (CC)"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              }
+            },
+            "Orientation": "horizontal",
+            "layout": {
+              "height": 40,
+              "pady": 6
+            },
+            "komand_listen": "module_settings/oper_condition",
+            "komand_listen_transform": {
+              "op": "bit",
+              "index": 10,
+              "set": "red",
+              "clear": "green"
+            },
+            "value": {
+              "default_value": "green"
+            }
+          },
+          "Regulation": {
+            "type": "_Value",
+            "label": {
+              "active": {
+                "text": {
+                  "En": "Status register",
+                  "Fr": "Status register",
+                  "De": "Status register",
+                  "Es": "Status register"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              },
+              "inactive": {
+                "text": {
+                  "En": "Status register",
+                  "Fr": "Status register",
+                  "De": "Status register",
+                  "Es": "Status register"
+                },
+                "text_size": 12,
+                "text_color": "#cccccc"
+              }
+            },
+            "komand_listen": "module_settings/oper_condition",
+            "layout": {
+              "height": 26
+            },
+            "read_only": true,
+            "value": {
+              "default_value": "—"
+            }
+          }
+        },
+        "layout_columns": 4
+      }
+    }
+  },
+  "Setup": {
+    "type": "OcaBin",
+    "id": "50.100.5.9",
+    "geometry": {
+      "anchor": "NSEW"
+    },
+    "behavior": {
+      "overflow_ns": "auto",
+      "overflow_ew": "auto",
+      "fluid_ew": true
+    },
+    "blocks": {
+      "Instrument_Setup": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Reset, identity and calibration",
+          "Fr": "Réinitialisation, identité et étalonnage",
+          "De": "Zurücksetzen, Identität und Kalibrierung",
+          "Es": "Reinicio, identidad y calibración"
+        },
+        "fields": {
+          "Reset_Device": {
+            "type": "_GuiActuator",
+            "label": {
+              "inactive": {
+                "text": {
+                  "En": "RESET INSTRUMENT (*RST)",
+                  "Fr": "RÉINITIALISER (*RST)",
+                  "De": "ZURÜCKSETZEN (*RST)",
+                  "Es": "REINICIAR (*RST)"
+                },
+                "text_size": 12,
+                "text_color": "#FF6B6B"
+              }
+            },
+            "AES70": "OcaBooleanActuator",
+            "style": {
+              "active": {
+                "font_style": "bold",
+                "font_size": null,
+                "text_color": "#FF6B6B",
+                "bg_color": "#000000",
+                "border_color": "#FF3B30",
+                "border_thickness": 2,
+                "glow_intensity": 1.944
+              },
+              "inactive": {
+                "font_style": "normal",
+                "font_size": null,
+                "text_color": "#888888",
+                "bg_color": "#2b2b2b",
+                "border_color": "#555555",
+                "border_thickness": 2,
+                "glow_intensity": 0
+              }
+            },
+            "komand_handler": {
+              "enable": true,
+              "komand_type": "do",
+              "sub_path": "Power",
+              "command": "Reset_Device"
+            }
+          },
+          "Setup_Break": {
+            "type": "OcaSeparator",
+            "description": "------------------------------------------------"
+          },
+          "Identity": {
+            "type": "OcaBlock",
+            "description": {
+              "En": "Identity",
+              "Fr": "Identité",
+              "De": "Identität",
+              "Es": "Identidad"
+            },
+            "fields": {
+              "Read_IDN": {
+                "type": "_GuiActuator",
+                "label": {
+                  "inactive": {
+                    "text": {
+                      "En": "READ IDENTITY (*IDN?)",
+                      "Fr": "LIRE L'IDENTITÉ (*IDN?)",
+                      "De": "IDENTITÄT LESEN (*IDN?)",
+                      "Es": "LEER IDENTIDAD (*IDN?)"
+                    },
+                    "text_size": 12,
+                    "text_color": "#cccccc"
+                  }
+                },
+                "AES70": "OcaBooleanActuator",
+                "style": {
+                  "active": {
+                    "font_style": "bold",
+                    "font_size": null,
+                    "text_color": "#FF902C",
+                    "bg_color": "#000000",
+                    "border_color": "#FF9900",
+                    "border_thickness": 2,
+                    "glow_intensity": 1.944
+                  },
+                  "inactive": {
+                    "font_style": "normal",
+                    "font_size": null,
+                    "text_color": "#888888",
+                    "bg_color": "#2b2b2b",
+                    "border_color": "#555555",
+                    "border_thickness": 2,
+                    "glow_intensity": 0
+                  }
+                },
+                "komand_handler": {
+                  "enable": true,
+                  "komand_type": "nab",
+                  "sub_path": "Power",
+                  "command": "Read_IDN"
+                }
+              },
+              "Identity_Readout": {
+                "type": "_TextInput",
+                "label": {
+                  "En": "Identity",
+                  "Fr": "Identité",
+                  "De": "Identität",
+                  "Es": "Identidad"
+                },
+                "value_default": "---",
+                "komand_readout": true,
+                "read_only": true,
+                "layout": {
+                  "width": "100%",
+                  "font": 13
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

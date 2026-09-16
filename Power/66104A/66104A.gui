@@ -1,0 +1,20 @@
+{
+  "model": "66104A",
+  "channels": 1,
+  "watts": 150,
+  "domains": {
+    "volt": {
+      "units": "V",
+      "min": 0,
+      "max": 60
+    },
+    "curr": {
+      "units": "A",
+      "min": 0,
+      "max": 2.5
+    }
+  },
+  "manufacturer": "HP / Agilent / Keysight",
+  "type": "Power",
+  "notes": "Module 60V / 2.5A (150W)"
+}

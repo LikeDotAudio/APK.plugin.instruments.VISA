@@ -1,0 +1,24 @@
+# THE WORKBOOK STAYS TRACKED, AND HERE IS THE RULING SO NOBODY RE-OPENS IT.
+#
+# PLAN-869.01 asked whether `CommandList.xlsx` should be tracked at all, on the
+# ground that "a binary that regenerates with a different byte size on every run
+# cannot be diffed and will conflict between sessions forever". That was true and
+# it was a property of the WRITER, not of the format: `rust_xlsxwriter` stamps
+# the moment of generation into `docProps/core.xml`, so the same 3771 commands
+# produced different bytes every time. `tools/list.rs` now pins that stamp to a
+# constant and two consecutive `build-list` runs produce byte-identical
+# workbooks, measured. The reason to untrack it is gone.
+#
+# AND THERE IS A READER THAT UNTRACKING WOULD BREAK: a person opening the sheet
+# in a spreadsheet tool. Nothing in this repository parses the .xlsx — the .csv
+# beside it is what `build-list --check` gates and what any program should read —
+# but the workbook is the formatted, filtered, frozen-header version a bench
+# engineer actually looks at, and untracking it means only whoever has the Rust
+# toolchain and runs the generator has one. That is the "downstream reader"
+# PLAN-1035.01 asked about, and it is a human.
+#
+# So: BOTH are tracked. The .csv is the record and is gated; the .xlsx is the
+# same report in the shape a person reads, and it is reproducible now, so a
+# regeneration that changes it means the TABLES changed. PLAN-1035.01.
+
+.crawler/

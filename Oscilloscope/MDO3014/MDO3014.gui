@@ -1,0 +1,8 @@
+{
+  "model": "MDO3014",
+  "channels": 4,
+  "manufacturer": "Tektronix",
+  "type": "Oscilloscope",
+  "notes": "Mixed Domain (Scope + Spectrum)",
+  "vocabulary": "none"
+}

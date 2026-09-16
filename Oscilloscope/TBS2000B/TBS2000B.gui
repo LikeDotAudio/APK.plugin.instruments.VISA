@@ -1,0 +1,8 @@
+{
+  "model": "TBS2000B",
+  "channels": 2,
+  "manufacturer": "Tektronix",
+  "type": "Oscilloscope",
+  "notes": "Digital Storage Scope (Modern Basic)",
+  "vocabulary": "none"
+}

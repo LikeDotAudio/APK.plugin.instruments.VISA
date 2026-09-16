@@ -1,0 +1,19 @@
+{
+  "model": "34401A",
+  "channels": 1,
+  "domains": {
+    "volt": {
+      "units": "V",
+      "min": 0,
+      "max": 1000
+    },
+    "curr": {
+      "units": "A",
+      "min": 0,
+      "max": 3
+    }
+  },
+  "manufacturer": "HP / Agilent / Keysight",
+  "type": "DMM",
+  "notes": "6.5 Digit Benchtop Standard (Legacy)"
+}

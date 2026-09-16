@@ -1,0 +1,114 @@
+{
+  "_note": {
+    "_": "This key is not an instrument class. Keys beginning with _ are notes.",
+    "every_class_needs_an_entry": "Every directory under Instruments/ that is not _-prefixed is an instrument class and must appear here. Counter, DAQ, SMU and VNA had a symlink and no entry until 2026-08-30, so they existed to `ls` and not to this file, and nothing reported the gap. `check.sh binding` now fails when they diverge.",
+    "the_short_form_is_deliberate": "A class may carry `tab` alone. `groups` declares a PRE-BUILT panel — a named bank over several devices, with a station and an id — and only four classes have one because only four have a bank worth pre-declaring. The short form means 'this class renders its devices individually', not 'this entry is unfinished'.",
+    "tab_is_an_ordering_prefix": "The digit before the underscore orders the tabs; it is not an id and is not referenced anywhere. 6 was free and the three above 9 are new."
+  },
+  "DMM": {
+    "tab": "4_DMM",
+    "groups": [
+      {
+        "name": "0_Bank_All",
+        "header": "Master_Control",
+        "over": "devices",
+        "by": "type",
+        "size": "all",
+        "columns": 1,
+        "station": "Octo_Monitor_Station",
+        "id": "50.100.4.3",
+        "description": "All meters"
+      }
+    ]
+  },
+  "Oscilloscope": {
+    "tab": "2_Oscilloscope"
+  },
+  "Generator": {
+    "tab": "3_Generator",
+    "groups": [
+      {
+        "name": "0_LINK",
+        "header": "Master_Control",
+        "over": "devices",
+        "by": "type",
+        "size": "all",
+        "columns": 1,
+        "station": "Generator_Link",
+        "id": "50.100.3.9",
+        "description": {
+          "En": "Linked generators",
+          "Fr": "Générateurs liés",
+          "De": "Verbundene Generatoren",
+          "Es": "Generadores enlazados"
+        }
+      }
+    ]
+  },
+  "Power": {
+    "tab": "5_Power",
+    "groups": [
+      {
+        "name": "0_LINK",
+        "header": "Master_Control",
+        "over": "devices",
+        "by": "type",
+        "size": "all",
+        "columns": "units",
+        "station": "PSU_Link",
+        "id": "50.100.5.9",
+        "description": {
+          "En": "Linked supplies",
+          "Fr": "Alimentations liées",
+          "De": "Verbundene Netzteile",
+          "Es": "Fuentes enlazadas"
+        }
+      }
+    ]
+  },
+  "Load": {
+    "tab": "7_Load",
+    "groups": [
+      {
+        "name": "0_Bank_All",
+        "header": "Master_Control",
+        "over": "devices",
+        "by": "type",
+        "size": "all",
+        "columns": 1,
+        "station": "Load_Bank",
+        "id": "50.100.7.9",
+        "description": {
+          "En": "All loads",
+          "Fr": "Toutes les charges",
+          "De": "Alle Lasten",
+          "Es": "Todas las cargas"
+        }
+      }
+    ]
+  },
+  "Spectrum": {
+    "tab": "0_Spectrum"
+  },
+  "Router": {
+    "tab": "1_Router"
+  },
+  "LCR": {
+    "tab": "8_LCR"
+  },
+  "Distortion": {
+    "tab": "9_Distortion"
+  },
+  "Counter": {
+    "tab": "6_Counter"
+  },
+  "DAQ": {
+    "tab": "10_DAQ"
+  },
+  "SMU": {
+    "tab": "11_SMU"
+  },
+  "VNA": {
+    "tab": "12_VNA"
+  }
+}

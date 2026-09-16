@@ -1,0 +1,8 @@
+{
+  "model": "Z204",
+  "channels": 2,
+  "manufacturer": "HP / Agilent / Keysight",
+  "type": "Oscilloscope",
+  "notes": "Generic Z-Series Reference",
+  "vocabulary": "none"
+}
