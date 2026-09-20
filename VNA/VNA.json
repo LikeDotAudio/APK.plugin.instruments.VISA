@@ -1,1 +1,234 @@
-gui/VNA.json
+{
+  "VNA_Instrument": {
+    "type": "OcaBin",
+    "id": "50.100.12.1",
+    "notes": "The VNA class was declared in Instruments:VISA/manifest.json with 8 model(s) on disk and no panel beside them, so instruments/mod.rs printed \"no template for type 'VNA'\" and a discovered one drew nothing at all. This is that panel.",
+    "geometry": {
+      "anchor": "NSEW"
+    },
+    "behavior": {
+      "overflow_ns": "auto",
+      "overflow_ew": "auto",
+      "fluid_ew": true
+    },
+    "description": {
+      "En": "Vector network analyser — ${model}",
+      "Fr": "Vector network analyser — ${model}",
+      "De": "Vector network analyser — ${model}",
+      "Es": "Vector network analyser — ${model}"
+    },
+    "blocks": {
+      "Identity": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Identity",
+          "Fr": "Identity",
+          "De": "Identity",
+          "Es": "Identity",
+          "show_label": true
+        },
+        "layout_columns": 2,
+        "layout": {
+          "pady": 4,
+          "sticky": "nsew"
+        },
+        "fields": {
+          "model": {
+            "type": "_TextInput",
+            "label": {
+              "En": "Model",
+              "Fr": "Model",
+              "De": "Model",
+              "Es": "Model"
+            },
+            "value_default": "---",
+            "device_state": "model",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          },
+          "manufacturer": {
+            "type": "_TextInput",
+            "label": {
+              "En": "Manufacturer",
+              "Fr": "Manufacturer",
+              "De": "Manufacturer",
+              "Es": "Manufacturer"
+            },
+            "value_default": "---",
+            "device_state": "manufacturer",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          },
+          "serial": {
+            "type": "_TextInput",
+            "label": {
+              "En": "Serial",
+              "Fr": "Serial",
+              "De": "Serial",
+              "Es": "Serial"
+            },
+            "value_default": "---",
+            "device_state": "serial",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          },
+          "firmware": {
+            "type": "_TextInput",
+            "label": {
+              "En": "Firmware",
+              "Fr": "Firmware",
+              "De": "Firmware",
+              "Es": "Firmware"
+            },
+            "value_default": "---",
+            "device_state": "firmware",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          }
+        }
+      },
+      "Connection": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Connection",
+          "Fr": "Connection",
+          "De": "Connection",
+          "Es": "Connection",
+          "show_label": true
+        },
+        "layout_columns": 2,
+        "layout": {
+          "pady": 4,
+          "sticky": "nsew"
+        },
+        "fields": {
+          "port": {
+            "type": "_TextInput",
+            "label": {
+              "En": "Port",
+              "Fr": "Port",
+              "De": "Port",
+              "Es": "Port"
+            },
+            "value_default": "---",
+            "device_state": "port",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          },
+          "resource": {
+            "type": "_TextInput",
+            "label": {
+              "En": "VISA resource",
+              "Fr": "VISA resource",
+              "De": "VISA resource",
+              "Es": "VISA resource"
+            },
+            "value_default": "---",
+            "device_state": "resource",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          },
+          "connection_status": {
+            "type": "_SmartLight",
+            "label": {
+              "En": "Reachable",
+              "Fr": "Reachable",
+              "De": "Reachable",
+              "Es": "Reachable"
+            },
+            "value_default": "unknown",
+            "device_state": "status",
+            "notes": "A state, not a string: `status` is the one field here whose value has a colour, and contracts/tokens/state.json is what decides which. Every other field on this panel is a read-only _TextInput because a string is all it is.",
+            "layout": {
+              "width": "100%"
+            }
+          },
+          "last_seen": {
+            "type": "_TextInput",
+            "label": {
+              "En": "Last seen",
+              "Fr": "Last seen",
+              "De": "Last seen",
+              "Es": "Last seen"
+            },
+            "value_default": "---",
+            "device_state": "last_seen",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          }
+        }
+      },
+      "Knowledge_Base": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Knowledge base",
+          "Fr": "Knowledge base",
+          "De": "Knowledge base",
+          "Es": "Knowledge base",
+          "show_label": true
+        },
+        "layout_columns": 2,
+        "layout": {
+          "pady": 4,
+          "sticky": "nsew"
+        },
+        "fields": {
+          "notes": {
+            "type": "_TextInput",
+            "label": {
+              "En": "Notes",
+              "Fr": "Notes",
+              "De": "Notes",
+              "Es": "Notes"
+            },
+            "value_default": "---",
+            "device_state": "notes",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          },
+          "raw_idn": {
+            "type": "_TextInput",
+            "label": {
+              "En": "*IDN? reply",
+              "Fr": "*IDN? reply",
+              "De": "*IDN? reply",
+              "Es": "*IDN? reply"
+            },
+            "value_default": "---",
+            "device_state": "raw_idn",
+            "read_only": true,
+            "layout": {
+              "width": "100%",
+              "font": 13
+            }
+          }
+        },
+        "notes": "READ-ONLY ON PURPOSE, AND SAYS SO. Every model in this class declares \"vocabulary\": \"none\" in its .gui sheet and carries no .komand table, so there is no command for a control here to name — `check.sh binding` would refuse one, and rightly: a knob that cannot reach an instrument is worse than no knob. bind_state is what a console for a device it cannot drive is for. Authoring <Model>.komand beside <Model>.gui is what adds controls."
+      }
+    }
+  }
+}

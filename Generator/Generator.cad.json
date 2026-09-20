@@ -1,0 +1,555 @@
+{
+  "Generator": {
+    "type": "OcaBin",
+    "description": {
+      "En": "The bench as the simulation states it, grouped by category — every box, where its nets leave, and what its card says"
+    },
+    "behavior": {
+      "overflow_ns": "auto"
+    },
+    "blocks": {
+      "Points": {
+        "type": "OcaTable",
+        "description": {
+          "En": "11 point(s) drawn on Generator"
+        },
+        "topic": "APK.audio/Gui/CaptureDrawing/Generator/points",
+        "headers": [
+          "tag",
+          "point",
+          "device",
+          "family",
+          "side",
+          "domain",
+          "signal",
+          "terminal",
+          "x",
+          "y",
+          "status",
+          "topic"
+        ],
+        "data": [
+          {
+            "tag": "P1",
+            "point": "Generator/MY48000299/MAINS_IN",
+            "device": "U2",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "terminal": "MAINS IN",
+            "x": 44.3,
+            "y": 208.7,
+            "status": "identified",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY48000299/MAINS_IN"
+          },
+          {
+            "tag": "P2",
+            "point": "Generator/MY48000299/OUT",
+            "device": "U2",
+            "family": "Lab Instruments",
+            "side": "output",
+            "domain": "signal",
+            "signal": "generated waveform",
+            "terminal": "OUT",
+            "x": 224.7,
+            "y": 208.7,
+            "status": "identified",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY48000299/OUT"
+          },
+          {
+            "tag": "P3",
+            "point": "Generator/MY48000299/TCPIP_44.44.44.160_INSTR",
+            "device": "U2",
+            "family": "Lab Instruments",
+            "side": "connection",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "terminal": "TCPIP::44.44.44.160::INSTR",
+            "x": 74.5,
+            "y": 138.0,
+            "status": "offline",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY48000299/TCPIP_44.44.44.160_INSTR"
+          },
+          {
+            "tag": "P4",
+            "point": "Generator/MY48000299/TCPIP_44.44.44.162_INSTR",
+            "device": "U2",
+            "family": "Lab Instruments",
+            "side": "connection",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "terminal": "TCPIP::44.44.44.162::INSTR",
+            "x": 98.5,
+            "y": 138.0,
+            "status": "identified",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY48000299/TCPIP_44.44.44.162_INSTR"
+          },
+          {
+            "tag": "P5",
+            "point": "Generator/MY48000299/TCPIP_44.44.44.171_INSTR",
+            "device": "U2",
+            "family": "Lab Instruments",
+            "side": "connection",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "terminal": "TCPIP::44.44.44.171::INSTR",
+            "x": 122.5,
+            "y": 138.0,
+            "status": "offline",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY48000299/TCPIP_44.44.44.171_INSTR"
+          },
+          {
+            "tag": "P6",
+            "point": "Generator/MY44044028/MAINS_IN",
+            "device": "U4",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "terminal": "MAINS IN",
+            "x": 44.3,
+            "y": 104.3,
+            "status": "identified",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY44044028/MAINS_IN"
+          },
+          {
+            "tag": "P7",
+            "point": "Generator/MY44044028/OUT",
+            "device": "U4",
+            "family": "Lab Instruments",
+            "side": "output",
+            "domain": "signal",
+            "signal": "generated waveform",
+            "terminal": "OUT",
+            "x": 176.7,
+            "y": 104.3,
+            "status": "identified",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY44044028/OUT"
+          },
+          {
+            "tag": "P8",
+            "point": "Generator/MY44044028/TCPIP_44.44.44.33_INSTR",
+            "device": "U4",
+            "family": "Lab Instruments",
+            "side": "connection",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "terminal": "TCPIP::44.44.44.33::INSTR",
+            "x": 74.5,
+            "y": 33.6,
+            "status": "identified",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY44044028/TCPIP_44.44.44.33_INSTR"
+          },
+          {
+            "tag": "P9",
+            "point": "Generator/MY44005678/MAINS_IN",
+            "device": "U3",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "terminal": "MAINS IN",
+            "x": 267.3,
+            "y": 208.7,
+            "status": "offline",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY44005678/MAINS_IN"
+          },
+          {
+            "tag": "P10",
+            "point": "Generator/MY44005678/OUT",
+            "device": "U3",
+            "family": "Lab Instruments",
+            "side": "output",
+            "domain": "signal",
+            "signal": "generated waveform",
+            "terminal": "OUT",
+            "x": 399.7,
+            "y": 208.7,
+            "status": "offline",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY44005678/OUT"
+          },
+          {
+            "tag": "P11",
+            "point": "Generator/MY44005678/GPIB0_10_INSTR",
+            "device": "U3",
+            "family": "Lab Instruments",
+            "side": "connection",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "terminal": "GPIB0::10::INSTR",
+            "x": 297.5,
+            "y": 138.0,
+            "status": "offline",
+            "topic": "APK.audio/System/CapturePoints/Generator/MY44005678/GPIB0_10_INSTR"
+          }
+        ],
+        "snapshot_at": 1788822895,
+        "refresh": {
+          "source": "/repo/APK:OS/CAD Drawings/1_Lab_Instruments/Generator/Generator.json",
+          "block": "Points"
+        }
+      },
+      "Groups": {
+        "type": "OcaTable",
+        "description": {
+          "En": "Every device on this sheet is in exactly one of these 1 group(s), by category"
+        },
+        "topic": "APK.audio/Gui/CaptureDrawing/Generator/groups",
+        "headers": [
+          "group",
+          "devices",
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "data": [
+          {
+            "group": "Generator",
+            "devices": 3,
+            "x": 24.0,
+            "y": 24.0,
+            "w": 396.0,
+            "h": 220.8
+          }
+        ]
+      },
+      "Portals": {
+        "type": "OcaTable",
+        "description": {
+          "En": "21 portal(s) — where a net leaves its group, and the far end it reaches"
+        },
+        "topic": "APK.audio/Gui/CaptureDrawing/Generator/portals",
+        "headers": [
+          "pin",
+          "device",
+          "group",
+          "side",
+          "domain",
+          "kind",
+          "far",
+          "x",
+          "y"
+        ],
+        "data": [
+          {
+            "pin": "U2:I2",
+            "device": "U2",
+            "group": "Generator",
+            "side": "input",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 42.3,
+            "y": 197.7
+          },
+          {
+            "pin": "U2:I3",
+            "device": "U2",
+            "group": "Generator",
+            "side": "input",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 42.3,
+            "y": 186.7
+          },
+          {
+            "pin": "U2:I4",
+            "device": "U2",
+            "group": "Generator",
+            "side": "input",
+            "domain": "clock",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 42.3,
+            "y": 175.7
+          },
+          {
+            "pin": "U2:O1",
+            "device": "U2",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 226.7,
+            "y": 208.7
+          },
+          {
+            "pin": "U2:O2",
+            "device": "U2",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 226.7,
+            "y": 197.7
+          },
+          {
+            "pin": "U2:O3",
+            "device": "U2",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 226.7,
+            "y": 186.7
+          },
+          {
+            "pin": "U2:O4",
+            "device": "U2",
+            "group": "Generator",
+            "side": "output",
+            "domain": "clock",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 226.7,
+            "y": 175.7
+          },
+          {
+            "pin": "U4:I2",
+            "device": "U4",
+            "group": "Generator",
+            "side": "input",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 42.3,
+            "y": 93.3
+          },
+          {
+            "pin": "U4:I3",
+            "device": "U4",
+            "group": "Generator",
+            "side": "input",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 42.3,
+            "y": 82.3
+          },
+          {
+            "pin": "U4:I4",
+            "device": "U4",
+            "group": "Generator",
+            "side": "input",
+            "domain": "clock",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 42.3,
+            "y": 71.3
+          },
+          {
+            "pin": "U4:O1",
+            "device": "U4",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 178.7,
+            "y": 104.3
+          },
+          {
+            "pin": "U4:O2",
+            "device": "U4",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 178.7,
+            "y": 93.3
+          },
+          {
+            "pin": "U4:O3",
+            "device": "U4",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 178.7,
+            "y": 82.3
+          },
+          {
+            "pin": "U4:O4",
+            "device": "U4",
+            "group": "Generator",
+            "side": "output",
+            "domain": "clock",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 178.7,
+            "y": 71.3
+          },
+          {
+            "pin": "U3:I2",
+            "device": "U3",
+            "group": "Generator",
+            "side": "input",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 265.3,
+            "y": 197.7
+          },
+          {
+            "pin": "U3:I3",
+            "device": "U3",
+            "group": "Generator",
+            "side": "input",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 265.3,
+            "y": 186.7
+          },
+          {
+            "pin": "U3:I4",
+            "device": "U3",
+            "group": "Generator",
+            "side": "input",
+            "domain": "clock",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 265.3,
+            "y": 175.7
+          },
+          {
+            "pin": "U3:O1",
+            "device": "U3",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 401.7,
+            "y": 208.7
+          },
+          {
+            "pin": "U3:O2",
+            "device": "U3",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 401.7,
+            "y": 197.7
+          },
+          {
+            "pin": "U3:O3",
+            "device": "U3",
+            "group": "Generator",
+            "side": "output",
+            "domain": "signal",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 401.7,
+            "y": 186.7
+          },
+          {
+            "pin": "U3:O4",
+            "device": "U3",
+            "group": "Generator",
+            "side": "output",
+            "domain": "clock",
+            "kind": "connector",
+            "far": "BNC",
+            "x": 401.7,
+            "y": 175.7
+          }
+        ]
+      },
+      "Panes": {
+        "type": "OcaTable",
+        "description": {
+          "En": "The card drawn inside each box — 0 line(s) of it"
+        },
+        "topic": "APK.audio/Gui/CaptureDrawing/Generator/panes",
+        "headers": [
+          "device",
+          "group",
+          "kind",
+          "key",
+          "value"
+        ],
+        "data": []
+      },
+      "Sheet": {
+        "type": "OcaTable",
+        "description": {
+          "En": "What this drawing is, and what drew it"
+        },
+        "topic": "APK.audio/Gui/CaptureDrawing/Generator/sheet",
+        "headers": [
+          "property",
+          "value"
+        ],
+        "data": [
+          {
+            "property": "drawing",
+            "value": "Generator.dxf"
+          },
+          {
+            "property": "grouped by",
+            "value": "category"
+          },
+          {
+            "property": "units",
+            "value": "mm"
+          },
+          {
+            "property": "width",
+            "value": 444.0
+          },
+          {
+            "property": "height",
+            "value": 298.8
+          },
+          {
+            "property": "devices",
+            "value": 3
+          },
+          {
+            "property": "groups",
+            "value": 1
+          },
+          {
+            "property": "points",
+            "value": 11
+          },
+          {
+            "property": "portals",
+            "value": 21
+          },
+          {
+            "property": "crosspoints closed",
+            "value": "0 of 108"
+          },
+          {
+            "property": "live state",
+            "value": "none drawn — the monitor says what is alive"
+          },
+          {
+            "property": "drawn by",
+            "value": ".apk.scripts/build_schematic_archive.py"
+          },
+          {
+            "property": "drawn from",
+            "value": "APK:PODS/POD:APK_THIN/APK:web:Frontend-Assets/SRC/APK:OS/Simulation"
+          },
+          {
+            "property": "drawn at",
+            "value": "2026-09-07 19:14:55"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "Spectrum": {
+    "type": "OcaBin",
+    "description": {
+      "En": "Capture points on the discovered Lab Instruments devices"
+    },
+    "behavior": {
+      "overflow_ns": "auto"
+    },
+    "blocks": {
+      "Sweep": {
+        "type": "OcaBlock",
+        "label": {
+          "active": {
+            "text": {
+              "En": "Discovery Sweep"
+            }
+          }
+        },
+        "fields": {
+          "sweep": {
+            "type": "_GuiSweepStatus",
+            "description": {
+              "En": "Discovery Sweep"
+            },
+            "topic": "APK.audio/System/CapturePoints/Sweep",
+            "endpoint": "/api/discovery/sweep",
+            "layout": {
+              "height": 96,
+              "width": "100%"
+            }
+          }
+        }
+      },
+      "Points": {
+        "type": "OcaTable",
+        "description": {
+          "En": "6 point(s) — before every input, after every output"
+        },
+        "topic": "APK.audio/Gui/CapturePoints/Spectrum",
+        "headers": [
+          "point",
+          "device",
+          "family",
+          "side",
+          "domain",
+          "signal",
+          "position",
+          "terminal",
+          "status",
+          "verdict",
+          "checked",
+          "last_seen",
+          "topic"
+        ],
+        "snapshot_at": 1788402381,
+        "refresh": {
+          "source": "/repo/APK:FrontEnd/Gui_Frames/6_Capture_Points/1_Lab_Instruments/Spectrum/Spectrum.json",
+          "block": "Points"
+        },
+        "poke": {
+          "endpoint": "/api/poke",
+          "stream": "APK.audio/System/CapturePoints/Poke",
+          "address_field": "_address",
+          "mac_field": "_mac"
+        },
+        "data": [
+          {
+            "_row_state": "offline",
+            "_address": "44.44.44.66",
+            "_mac": "",
+            "point": "Spectrum/CN03480580/TCPIP_44.44.44.66_INSTR",
+            "device": "N9340B · CN03480580",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at N9340B · CN03480580 · TCPIP::44.44.44.66::INSTR",
+            "terminal": "TCPIP::44.44.44.66::INSTR",
+            "status": "offline",
+            "verdict": "no reply",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-30 12:45:36",
+            "topic": "APK.audio/System/CapturePoints/Spectrum/CN03480580/TCPIP_44.44.44.66_INSTR",
+            "_rtt_ms": null
+          },
+          {
+            "_row_state": "offline",
+            "_address": "44.44.44.66",
+            "_mac": "",
+            "point": "Spectrum/CN03480580/RF_IN",
+            "device": "N9340B · CN03480580",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "signal",
+            "signal": "spectrum under analysis",
+            "position": "before N9340B · CN03480580 · RF IN",
+            "terminal": "RF IN",
+            "status": "offline",
+            "verdict": "no reply",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-30 12:45:36",
+            "topic": "APK.audio/System/CapturePoints/Spectrum/CN03480580/RF_IN",
+            "_rtt_ms": null
+          },
+          {
+            "_row_state": "offline",
+            "_address": "44.44.44.66",
+            "_mac": "",
+            "point": "Spectrum/CN03480580/MAINS_IN",
+            "device": "N9340B · CN03480580",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before N9340B · CN03480580 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "offline",
+            "verdict": "no reply",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-30 12:45:36",
+            "topic": "APK.audio/System/CapturePoints/Spectrum/CN03480580/MAINS_IN",
+            "_rtt_ms": null
+          },
+          {
+            "_row_state": "offline",
+            "_address": "192.168.1.188",
+            "_mac": "",
+            "point": "Spectrum/CN09004321/TCPIP0_192.168.1.188_INSTR",
+            "device": "N9340B · CN09004321",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at N9340B · CN09004321 · TCPIP0::192.168.1.188::INSTR",
+            "terminal": "TCPIP0::192.168.1.188::INSTR",
+            "status": "offline",
+            "verdict": "no reply",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Spectrum/CN09004321/TCPIP0_192.168.1.188_INSTR",
+            "_rtt_ms": null
+          },
+          {
+            "_row_state": "offline",
+            "_address": "192.168.1.188",
+            "_mac": "",
+            "point": "Spectrum/CN09004321/RF_IN",
+            "device": "N9340B · CN09004321",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "signal",
+            "signal": "spectrum under analysis",
+            "position": "before N9340B · CN09004321 · RF IN",
+            "terminal": "RF IN",
+            "status": "offline",
+            "verdict": "no reply",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Spectrum/CN09004321/RF_IN",
+            "_rtt_ms": null
+          },
+          {
+            "_row_state": "offline",
+            "_address": "192.168.1.188",
+            "_mac": "",
+            "point": "Spectrum/CN09004321/MAINS_IN",
+            "device": "N9340B · CN09004321",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before N9340B · CN09004321 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "offline",
+            "verdict": "no reply",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Spectrum/CN09004321/MAINS_IN",
+            "_rtt_ms": null
+          }
+        ]
+      }
+    }
+  }
+}

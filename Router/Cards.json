@@ -1,1 +1,3608 @@
-gui/Cards.json
+{
+  "_generated_by": ".apk.scripts/build_router_cards.py",
+  "_source": "APK:PODS/APK:BareMetal/SRC/Instruments:VISA/Router/HP 3235 - Programming and routing plan.xlsx",
+  "_contract": "Cards, banks and relays nest. Buses do not — see backplane.",
+  "router": {
+    "model": "HP 3235",
+    "description": "HP 3235 Switch/Test Unit",
+    "resources": [
+      "TCPIP::44.44.44.222::gpib7::INSTR",
+      "TCPIP::44.44.44.222::gpib7,10::INSTR"
+    ],
+    "modules": [
+      "HP 03235-66204 Bus Access Module",
+      "HP 34501/2/7 32-channel relay mux",
+      "HP 34506 4×8 coaxial crosspoint matrix"
+    ]
+  },
+  "backplane": {
+    "note": "Nothing in here is a connector. There is no panel entry for a bus and none for a bank tie — they are switched rendezvous inside the frame.",
+    "buses": [
+      {
+        "bus": "AB0",
+        "backplane_relay": 90,
+        "default_bank": 0,
+        "role": "Signal Gen Left · stimulus · LEFT SEND",
+        "scope": "mainframe",
+        "physical": false
+      },
+      {
+        "bus": "AB1",
+        "backplane_relay": 91,
+        "default_bank": 1,
+        "role": "Test Dest Left · measurement · LEFT RETURN",
+        "scope": "mainframe",
+        "physical": false
+      },
+      {
+        "bus": "AB2",
+        "backplane_relay": 92,
+        "default_bank": 2,
+        "role": "Signal Gen Right · stimulus · RIGHT SEND",
+        "scope": "mainframe",
+        "physical": false
+      },
+      {
+        "bus": "AB3",
+        "backplane_relay": 93,
+        "default_bank": 3,
+        "role": "Test Dest Right · measurement · RIGHT RETURN",
+        "scope": "mainframe",
+        "physical": false
+      }
+    ],
+    "bank_ties": {
+      "relays": [
+        70,
+        71,
+        72
+      ],
+      "scope": "card",
+      "physical": false,
+      "note": "Link channel banks locally so channels cascade without occupying a global bus."
+    },
+    "bank_commons": {
+      "codes": [
+        "00",
+        "10",
+        "20",
+        "30"
+      ],
+      "physical": false,
+      "note": "Relay 0 of each bank is that bank's common, not a channel."
+    }
+  },
+  "cards": [
+    {
+      "id": "card_0",
+      "card": 0,
+      "slot": 0,
+      "address_prefix": 0,
+      "module": "HP 34506 4×8 coaxial crosspoint matrix",
+      "kind": "crosspoint",
+      "label": "Coax crosspoint, card 1",
+      "sheet": "000-100 - COAX Xpoint",
+      "rows": [
+        {
+          "row": 10,
+          "function": "Scope Channel 1",
+          "connected": "06:54641D-001"
+        },
+        {
+          "row": 20,
+          "function": "Scope Channel 2",
+          "connected": "06:54641D-002"
+        },
+        {
+          "row": 30,
+          "function": "Scope Channel 3",
+          "connected": "NC"
+        },
+        {
+          "row": 40,
+          "function": "Scope Channel 4",
+          "connected": "NC"
+        }
+      ],
+      "columns": [
+        {
+          "column": "01",
+          "function": "SIGNAL GEN",
+          "connected": "33:33210A"
+        },
+        {
+          "column": "02",
+          "function": "Patch Panel OSC IN",
+          "connected": "353A-001"
+        },
+        {
+          "column": "03",
+          "function": "Patch Panel VM OUT",
+          "connected": "353A-001"
+        },
+        {
+          "column": "04",
+          "function": null,
+          "connected": null
+        },
+        {
+          "column": "05",
+          "function": null,
+          "connected": null
+        },
+        {
+          "column": "06",
+          "function": "To Briding Trnasformers",
+          "connected": "11005A-001"
+        },
+        {
+          "column": "07",
+          "function": null,
+          "connected": null
+        },
+        {
+          "column": "08",
+          "function": null,
+          "connected": null
+        }
+      ],
+      "complete": false,
+      "note": "Partial. The sheet leaves several columns blank on both cards."
+    },
+    {
+      "id": "card_1",
+      "card": 1,
+      "slot": 1,
+      "address_prefix": 100,
+      "module": "HP 34506 4×8 coaxial crosspoint matrix",
+      "kind": "crosspoint",
+      "label": "Coax crosspoint, card 2",
+      "sheet": "000-100 - COAX Xpoint",
+      "rows": [
+        {
+          "row": 10,
+          "function": "Scope Channel 1",
+          "connected": "NC"
+        },
+        {
+          "row": 20,
+          "function": "Scope Channel 2",
+          "connected": "NC"
+        },
+        {
+          "row": 30,
+          "function": "Scope Channel 3",
+          "connected": "16:54641D-003"
+        },
+        {
+          "row": 40,
+          "function": "Scope Channel 4",
+          "connected": "16:54641D-003"
+        }
+      ],
+      "columns": [
+        {
+          "column": "01",
+          "function": "SIGNAL GEN",
+          "connected": "66:33220A"
+        },
+        {
+          "column": "02",
+          "function": "Patch Panel OSC IN",
+          "connected": "353A-002"
+        },
+        {
+          "column": "03",
+          "function": "Patch Panel VM OUT",
+          "connected": "353A-002"
+        },
+        {
+          "column": "04",
+          "function": null,
+          "connected": null
+        },
+        {
+          "column": "05",
+          "function": null,
+          "connected": null
+        },
+        {
+          "column": "06",
+          "function": "To Briding Trnasformers",
+          "connected": "11005A-002"
+        },
+        {
+          "column": "07",
+          "function": null,
+          "connected": null
+        },
+        {
+          "column": "08",
+          "function": null,
+          "connected": null
+        }
+      ],
+      "complete": false,
+      "note": "Partial. The sheet leaves several columns blank on both cards."
+    },
+    {
+      "id": "card_4",
+      "card": 3,
+      "slot": 4,
+      "address_prefix": 400,
+      "module": "HP 34501/2/7 32-channel relay mux",
+      "kind": "relay_mux",
+      "label": "EDAC 1 — snake, console send and return, ch 1–24",
+      "sheet": "400 - EDAC 1",
+      "banks": [
+        {
+          "bank": 0,
+          "common": "00",
+          "bus": "AB0",
+          "bus_relay": 90,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "00",
+              "address": 400,
+              "channel": "Grass OUT",
+              "audio_channel": 3,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "01",
+              "address": 401,
+              "channel": "Left / Odd",
+              "audio_channel": 1,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "02",
+              "address": 402,
+              "channel": "Left / Odd",
+              "audio_channel": 3,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "03",
+              "address": 403,
+              "channel": "Left / Odd",
+              "audio_channel": 5,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "04",
+              "address": 404,
+              "channel": "Left / Odd",
+              "audio_channel": 7,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "05",
+              "address": 405,
+              "channel": "Left / Odd",
+              "audio_channel": 9,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "06",
+              "address": 406,
+              "channel": "Left / Odd",
+              "audio_channel": 11,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "07",
+              "address": 407,
+              "channel": "SUN OUT",
+              "audio_channel": "SUN",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "08",
+              "address": 408,
+              "channel": "EARTH IN",
+              "audio_channel": "EARTH",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        },
+        {
+          "bank": 1,
+          "common": "10",
+          "bus": "AB1",
+          "bus_relay": 91,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "10",
+              "address": 410,
+              "channel": "EARHT OUT",
+              "audio_channel": "EARTH",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "11",
+              "address": 411,
+              "channel": "Left / Odd",
+              "audio_channel": 13,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "12",
+              "address": 412,
+              "channel": "Left / Odd",
+              "audio_channel": 15,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "13",
+              "address": 413,
+              "channel": "Left / Odd",
+              "audio_channel": 17,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "14",
+              "address": 414,
+              "channel": "Left / Odd",
+              "audio_channel": 19,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "15",
+              "address": 415,
+              "channel": "Left / Odd",
+              "audio_channel": 21,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "16",
+              "address": 416,
+              "channel": "Left / Odd",
+              "audio_channel": 23,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "17",
+              "address": 417,
+              "channel": "SKY IN",
+              "audio_channel": "SKY",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "18",
+              "address": 418,
+              "channel": "NC",
+              "audio_channel": "NC",
+              "direction": "NC",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        },
+        {
+          "bank": 2,
+          "common": "20",
+          "bus": "AB2",
+          "bus_relay": 92,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "20",
+              "address": 420,
+              "channel": "NC",
+              "audio_channel": "NC",
+              "direction": "NC",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "21",
+              "address": 421,
+              "channel": "Right / Even",
+              "audio_channel": 2,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "22",
+              "address": 422,
+              "channel": "Right / Even",
+              "audio_channel": 4,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "23",
+              "address": 423,
+              "channel": "Right / Even",
+              "audio_channel": 6,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "24",
+              "address": 424,
+              "channel": "Right / Even",
+              "audio_channel": 8,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "25",
+              "address": 425,
+              "channel": "Right / Even",
+              "audio_channel": 10,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "26",
+              "address": 426,
+              "channel": "Right / Even",
+              "audio_channel": 12,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "27",
+              "address": 427,
+              "channel": "Grass OUT",
+              "audio_channel": "GRASS",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "28",
+              "address": 428,
+              "channel": "SUN IN",
+              "audio_channel": "SUN",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        },
+        {
+          "bank": 3,
+          "common": "30",
+          "bus": "AB3",
+          "bus_relay": 93,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "30",
+              "address": 430,
+              "channel": "SKY OUT",
+              "audio_channel": "SKY",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "31",
+              "address": 431,
+              "channel": "Right / Even",
+              "audio_channel": 14,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "32",
+              "address": 432,
+              "channel": "Right / Even",
+              "audio_channel": 16,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "33",
+              "address": 433,
+              "channel": "Right / Even",
+              "audio_channel": 18,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "34",
+              "address": 434,
+              "channel": "Right / Even",
+              "audio_channel": 20,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "35",
+              "address": 435,
+              "channel": "Right / Even",
+              "audio_channel": 22,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "36",
+              "address": 436,
+              "channel": "Right / Even",
+              "audio_channel": 24,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "37",
+              "address": 437,
+              "channel": "EARTH IN",
+              "audio_channel": "EARTH",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "38",
+              "address": 438,
+              "channel": "SKY OUT",
+              "audio_channel": "SKY",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card_6",
+      "card": 5,
+      "slot": 6,
+      "address_prefix": 600,
+      "module": "HP 34501/2/7 32-channel relay mux",
+      "kind": "relay_mux",
+      "label": "EDAC 3 — snake, direct and EDAC 1 cascade",
+      "sheet": "600 - EDAC 3",
+      "banks": [
+        {
+          "bank": 0,
+          "common": "00",
+          "bus": "AB0",
+          "bus_relay": 90,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "00",
+              "address": 600,
+              "channel": "Direct",
+              "audio_channel": 0,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "01",
+              "address": 601,
+              "channel": "EDAC 1",
+              "audio_channel": 1,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "02",
+              "address": 602,
+              "channel": "EDAC 1",
+              "audio_channel": 3,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "03",
+              "address": 603,
+              "channel": "EDAC 1",
+              "audio_channel": 5,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "04",
+              "address": 604,
+              "channel": "EDAC 1",
+              "audio_channel": 7,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "05",
+              "address": 605,
+              "channel": "EDAC 1",
+              "audio_channel": 9,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "06",
+              "address": 606,
+              "channel": "EDAC 1",
+              "audio_channel": 11,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "07",
+              "address": 607,
+              "channel": "NC",
+              "audio_channel": 13,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 8,
+              "code": "08",
+              "address": 608,
+              "channel": "NC",
+              "audio_channel": 15,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        },
+        {
+          "bank": 1,
+          "common": "10",
+          "bus": "AB1",
+          "bus_relay": 91,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "10",
+              "address": 610,
+              "channel": "Direct",
+              "audio_channel": 0,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "11",
+              "address": 611,
+              "channel": "EDAC 1",
+              "audio_channel": 13,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "12",
+              "address": 612,
+              "channel": "EDAC 1",
+              "audio_channel": 15,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "13",
+              "address": 613,
+              "channel": "EDAC 1",
+              "audio_channel": 17,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "14",
+              "address": 614,
+              "channel": "EDAC 1",
+              "audio_channel": 19,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "15",
+              "address": 615,
+              "channel": "EDAC 1",
+              "audio_channel": 21,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "16",
+              "address": 616,
+              "channel": "EDAC 1",
+              "audio_channel": 23,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "17",
+              "address": 617,
+              "channel": "NC",
+              "audio_channel": 25,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 8,
+              "code": "18",
+              "address": 618,
+              "channel": "NC",
+              "audio_channel": 27,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        },
+        {
+          "bank": 2,
+          "common": "20",
+          "bus": "AB2",
+          "bus_relay": 92,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "20",
+              "address": 620,
+              "channel": "Direct",
+              "audio_channel": 0,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "21",
+              "address": 621,
+              "channel": "EDAC 1",
+              "audio_channel": 2,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "22",
+              "address": 622,
+              "channel": "EDAC 1",
+              "audio_channel": 4,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "23",
+              "address": 623,
+              "channel": "EDAC 1",
+              "audio_channel": 6,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "24",
+              "address": 624,
+              "channel": "EDAC 1",
+              "audio_channel": 8,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "25",
+              "address": 625,
+              "channel": "EDAC 1",
+              "audio_channel": 10,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "26",
+              "address": 626,
+              "channel": "EDAC 1",
+              "audio_channel": 12,
+              "direction": "OUT",
+              "direction_basis": "bus",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "27",
+              "address": 627,
+              "channel": "NC",
+              "audio_channel": 14,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 8,
+              "code": "28",
+              "address": 628,
+              "channel": "NC",
+              "audio_channel": 16,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        },
+        {
+          "bank": 3,
+          "common": "30",
+          "bus": "AB3",
+          "bus_relay": 93,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "30",
+              "address": 630,
+              "channel": "Direct",
+              "audio_channel": 0,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "31",
+              "address": 631,
+              "channel": "EDAC 1",
+              "audio_channel": 14,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "32",
+              "address": 632,
+              "channel": "EDAC 1",
+              "audio_channel": 16,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "33",
+              "address": 633,
+              "channel": "EDAC 1",
+              "audio_channel": 18,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "34",
+              "address": 634,
+              "channel": "EDAC 1",
+              "audio_channel": 20,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "35",
+              "address": 635,
+              "channel": "EDAC 1",
+              "audio_channel": 22,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "36",
+              "address": 636,
+              "channel": "EDAC 1",
+              "audio_channel": 24,
+              "direction": "IN",
+              "direction_basis": "bus",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "37",
+              "address": 637,
+              "channel": "NC",
+              "audio_channel": 26,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 8,
+              "code": "38",
+              "address": 638,
+              "channel": "NC",
+              "audio_channel": 28,
+              "direction": null,
+              "direction_basis": null,
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card_7",
+      "card": 7,
+      "slot": 7,
+      "address_prefix": 700,
+      "module": "HP 34501/2/7 32-channel relay mux",
+      "kind": "relay_mux",
+      "label": "Peripheral and TEST audio — bench I/O gateway, XLR panel",
+      "sheet": "700 - Peripheral and TEST audio",
+      "banks": [
+        {
+          "bank": 0,
+          "common": "00",
+          "bus": "AB0",
+          "bus_relay": 90,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "00",
+              "address": 700,
+              "channel": "NC",
+              "audio_channel": "NC",
+              "direction": "NC",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "01",
+              "address": 701,
+              "channel": "TEST Patch Panel OUT",
+              "audio_channel": 1,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "02",
+              "address": 702,
+              "channel": "LEFT BENCH.AP OUT",
+              "audio_channel": "LEFT",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "03",
+              "address": 703,
+              "channel": "LEFT BENCH.NEUTRIK RM-1 OUT",
+              "audio_channel": "LEFT",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "04",
+              "address": 704,
+              "channel": "BALANCED MUSIC SOURCE",
+              "audio_channel": "LEFT",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "05",
+              "address": 705,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 1,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "06",
+              "address": 706,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 3,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "07",
+              "address": 707,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 5,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "08",
+              "address": 708,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 7,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB0",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        },
+        {
+          "bank": 1,
+          "common": "10",
+          "bus": "AB1",
+          "bus_relay": 91,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "10",
+              "address": 710,
+              "channel": "NC",
+              "audio_channel": "NC",
+              "direction": "NC",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "11",
+              "address": 711,
+              "channel": "TEST Patch Panel IN",
+              "audio_channel": 1,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "12",
+              "address": 712,
+              "channel": "LEFT BENCH.AP IN",
+              "audio_channel": "LEFT",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "13",
+              "address": 713,
+              "channel": "LEFT BENCH.NEUTRIK RM-1 IN",
+              "audio_channel": "LEFT",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "14",
+              "address": 714,
+              "channel": "BANALNCED SPEAKERS",
+              "audio_channel": "LEFT",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "15",
+              "address": 715,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 1,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "16",
+              "address": 716,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 3,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB1",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "17",
+              "address": 717,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 5,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "18",
+              "address": 718,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 7,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        },
+        {
+          "bank": 2,
+          "common": "20",
+          "bus": "AB2",
+          "bus_relay": 92,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "20",
+              "address": 720,
+              "channel": "NC",
+              "audio_channel": "NC",
+              "direction": "NC",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "21",
+              "address": 721,
+              "channel": "TEST Patch Panel OUT",
+              "audio_channel": 2,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "22",
+              "address": 722,
+              "channel": "LEFT BENCH.AP OUT",
+              "audio_channel": "RIGHT",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "23",
+              "address": 723,
+              "channel": "LEFT BENCH.NEUTRIK RM-1 OUT",
+              "audio_channel": "RIGHT",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "24",
+              "address": 724,
+              "channel": "BALANCED MUSIC SOURCE",
+              "audio_channel": "RIGHT",
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "25",
+              "address": 725,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 2,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "26",
+              "address": 726,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 4,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "27",
+              "address": 727,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 6,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "28",
+              "address": 728,
+              "channel": "BALANCED XLR-M OUT",
+              "audio_channel": 8,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB2",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        },
+        {
+          "bank": 3,
+          "common": "30",
+          "bus": "AB3",
+          "bus_relay": 93,
+          "relays": [
+            {
+              "relay": 0,
+              "code": "30",
+              "address": 730,
+              "channel": "NC",
+              "audio_channel": "NC",
+              "direction": "NC",
+              "direction_basis": "stated",
+              "bus": null,
+              "bus_declared": "NC",
+              "bus_relay": null,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "bank common connector"
+            },
+            {
+              "relay": 1,
+              "code": "31",
+              "address": 731,
+              "channel": "TEST Patch Panel IN",
+              "audio_channel": "RIGHT",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "32",
+              "address": 732,
+              "channel": "LEFT BENCH.AP IN",
+              "audio_channel": "RIGHT",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "33",
+              "address": 733,
+              "channel": "LEFT BENCH.NEUTRIK RM-1 IN",
+              "audio_channel": "RIGHT",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "34",
+              "address": 734,
+              "channel": "BANALNCED SPEAKERS",
+              "audio_channel": "RIGHT",
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "35",
+              "address": 735,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 2,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "36",
+              "address": 736,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 4,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 7,
+              "code": "37",
+              "address": 737,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 6,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 8,
+              "code": "38",
+              "address": 738,
+              "channel": "BALANCED XLR-M IN",
+              "audio_channel": 8,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB3",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card_5",
+      "card": null,
+      "slot": 5,
+      "address_prefix": 500,
+      "module": "HP 34501/2/7 32-channel relay mux",
+      "kind": "relay_mux",
+      "label": "Peripheral audio — XLR panel, stereo send and return",
+      "sheet": "500 - Peripheral audio",
+      "banks": [
+        {
+          "bank": 0,
+          "common": "00",
+          "bus": "AB0",
+          "bus_relay": 90,
+          "relays": [
+            {
+              "relay": 1,
+              "code": "01",
+              "address": 501,
+              "channel": "Computer DAC L",
+              "audio_channel": 1,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "02",
+              "address": 502,
+              "channel": "Signal Gen OUT L",
+              "audio_channel": 3,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "03",
+              "address": 503,
+              "channel": "Distortion OUT L",
+              "audio_channel": 5,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "04",
+              "address": 504,
+              "channel": "Aux IN L",
+              "audio_channel": 7,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "05",
+              "address": 505,
+              "channel": "DUT OUT L",
+              "audio_channel": 9,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "06",
+              "address": 506,
+              "channel": null,
+              "audio_channel": 11,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 7,
+              "code": "07",
+              "address": 507,
+              "channel": null,
+              "audio_channel": 13,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 8,
+              "code": "08",
+              "address": 508,
+              "channel": null,
+              "audio_channel": 15,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB0",
+              "bus_declared": "AB-00",
+              "bus_relay": 90,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        },
+        {
+          "bank": 1,
+          "common": "10",
+          "bus": "AB1",
+          "bus_relay": 91,
+          "relays": [
+            {
+              "relay": 1,
+              "code": "11",
+              "address": 511,
+              "channel": "DUT In L",
+              "audio_channel": 17,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB-01",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "12",
+              "address": 512,
+              "channel": "DAC IN L",
+              "audio_channel": 19,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB-01",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "13",
+              "address": 513,
+              "channel": "Monitor 1 L",
+              "audio_channel": 21,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB-01",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "14",
+              "address": 514,
+              "channel": "Monitor 2 L",
+              "audio_channel": 23,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB-01",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "15",
+              "address": 515,
+              "channel": "Monitor 3 L",
+              "audio_channel": 25,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB-01",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "16",
+              "address": 516,
+              "channel": null,
+              "audio_channel": 27,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB1",
+              "bus_declared": "AB-01",
+              "bus_relay": 91,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        },
+        {
+          "bank": 2,
+          "common": "20",
+          "bus": "AB2",
+          "bus_relay": 92,
+          "relays": [
+            {
+              "relay": 1,
+              "code": "21",
+              "address": 521,
+              "channel": "Computer DAC R",
+              "audio_channel": 2,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "22",
+              "address": 522,
+              "channel": "Signal Gen OUT R",
+              "audio_channel": 4,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "23",
+              "address": 523,
+              "channel": "Distortion OUT R",
+              "audio_channel": 6,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "24",
+              "address": 524,
+              "channel": "Aux IN R",
+              "audio_channel": 8,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 5,
+              "code": "25",
+              "address": 525,
+              "channel": "DUT OUT R",
+              "audio_channel": 10,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 6,
+              "code": "26",
+              "address": 526,
+              "channel": null,
+              "audio_channel": 12,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 7,
+              "code": "27",
+              "address": 527,
+              "channel": null,
+              "audio_channel": 14,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            },
+            {
+              "relay": 8,
+              "code": "28",
+              "address": 528,
+              "channel": null,
+              "audio_channel": 16,
+              "direction": "OUT",
+              "direction_basis": "stated",
+              "bus": "AB2",
+              "bus_declared": "AB-02",
+              "bus_relay": 92,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": false,
+              "role": "unassigned"
+            }
+          ]
+        },
+        {
+          "bank": 3,
+          "common": "30",
+          "bus": "AB3",
+          "bus_relay": 93,
+          "relays": [
+            {
+              "relay": 1,
+              "code": "31",
+              "address": 531,
+              "channel": "DUT In L",
+              "audio_channel": 18,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB-03",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 2,
+              "code": "32",
+              "address": 532,
+              "channel": "DAC IN L",
+              "audio_channel": 20,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB-03",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 3,
+              "code": "33",
+              "address": 533,
+              "channel": "Monitor 1 L",
+              "audio_channel": 22,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB-03",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "34",
+              "address": 534,
+              "channel": "Monitor 2 L",
+              "audio_channel": 24,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB3",
+              "bus_declared": "AB-03",
+              "bus_relay": 93,
+              "bus_unknown": false,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            },
+            {
+              "relay": 4,
+              "code": "34",
+              "address": 534,
+              "channel": "Monitor 3 L",
+              "audio_channel": 26,
+              "direction": "IN",
+              "direction_basis": "stated",
+              "bus": "AB4",
+              "bus_declared": "AB-04",
+              "bus_relay": 93,
+              "bus_unknown": true,
+              "terminals": [
+                "HI",
+                "LO"
+              ],
+              "physical": true
+            }
+          ]
+        }
+      ],
+      "note": "The sheet carries no Card column; the slot is inferred from the sheet name only."
+    },
+    {
+      "id": "card_gp_relay",
+      "card": null,
+      "slot": null,
+      "address_prefix": null,
+      "module": "General purpose relay card",
+      "kind": "gp_relay",
+      "label": "GP relay — bench switching and AC",
+      "sheet": "700 - GP relay",
+      "domain": "power",
+      "relays": [
+        {
+          "relay": 1,
+          "channel": "Bench Panel SW 1",
+          "physical": true
+        },
+        {
+          "relay": 2,
+          "channel": "Bench Panel SW 2",
+          "physical": true
+        },
+        {
+          "relay": 3,
+          "channel": "Bench Panel SW 3",
+          "physical": true
+        },
+        {
+          "relay": 4,
+          "channel": "Bench Panel SW 4",
+          "physical": true
+        },
+        {
+          "relay": 5,
+          "channel": null,
+          "physical": false
+        },
+        {
+          "relay": 6,
+          "channel": null,
+          "physical": false
+        },
+        {
+          "relay": 7,
+          "channel": null,
+          "physical": false
+        },
+        {
+          "relay": 8,
+          "channel": "AC Power for DUT",
+          "physical": true
+        },
+        {
+          "relay": 9,
+          "channel": "AC Current for DUT",
+          "physical": true
+        },
+        {
+          "relay": 10,
+          "channel": "Lamp 1 AC",
+          "physical": true
+        },
+        {
+          "relay": 11,
+          "channel": "Lamp 2 AC",
+          "physical": true
+        },
+        {
+          "relay": 12,
+          "channel": "Lamp 3 AC",
+          "physical": true
+        },
+        {
+          "relay": 13,
+          "channel": "Lamp 4 AC",
+          "physical": true
+        },
+        {
+          "relay": 14,
+          "channel": null,
+          "physical": false
+        },
+        {
+          "relay": 15,
+          "channel": "Soldering Iron AC",
+          "physical": true
+        },
+        {
+          "relay": 16,
+          "channel": "Desoldering Iron AC",
+          "physical": true
+        }
+      ]
+    }
+  ],
+  "edac_channel_map": {
+    "channels": [
+      {
+        "direction": "OUT",
+        "pair_channel": 1,
+        "side": "L",
+        "bank": 0,
+        "relay": 1,
+        "code": "01",
+        "parity": "ODD",
+        "channel": 1
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 2,
+        "side": "R",
+        "bank": 2,
+        "relay": 1,
+        "code": "21",
+        "parity": "EVEN",
+        "channel": 2
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 3,
+        "side": "L",
+        "bank": 0,
+        "relay": 2,
+        "code": "02",
+        "parity": "ODD",
+        "channel": 3
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 4,
+        "side": "R",
+        "bank": 2,
+        "relay": 2,
+        "code": "22",
+        "parity": "EVEN",
+        "channel": 4
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 5,
+        "side": "L",
+        "bank": 0,
+        "relay": 3,
+        "code": "03",
+        "parity": "ODD",
+        "channel": 5
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 6,
+        "side": "R",
+        "bank": 2,
+        "relay": 3,
+        "code": "23",
+        "parity": "EVEN",
+        "channel": 6
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 7,
+        "side": "L",
+        "bank": 0,
+        "relay": 4,
+        "code": "04",
+        "parity": "ODD",
+        "channel": 7
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 8,
+        "side": "R",
+        "bank": 2,
+        "relay": 4,
+        "code": "24",
+        "parity": "EVEN",
+        "channel": 8
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 9,
+        "side": "L",
+        "bank": 0,
+        "relay": 5,
+        "code": "05",
+        "parity": "ODD",
+        "channel": 9
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 10,
+        "side": "R",
+        "bank": 2,
+        "relay": 5,
+        "code": "25",
+        "parity": "EVEN",
+        "channel": 10
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 11,
+        "side": "L",
+        "bank": 0,
+        "relay": 6,
+        "code": "06",
+        "parity": "ODD",
+        "channel": 11
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": 12,
+        "side": "R",
+        "bank": 2,
+        "relay": 6,
+        "code": "26",
+        "parity": "EVEN",
+        "channel": 12
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 1,
+        "side": "L",
+        "bank": 1,
+        "relay": 1,
+        "code": "11",
+        "parity": "ODD",
+        "channel": 13
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 2,
+        "side": "R",
+        "bank": 3,
+        "relay": 1,
+        "code": "31",
+        "parity": "EVEN",
+        "channel": 14
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 3,
+        "side": "L",
+        "bank": 1,
+        "relay": 2,
+        "code": "12",
+        "parity": "ODD",
+        "channel": 15
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 4,
+        "side": "R",
+        "bank": 3,
+        "relay": 2,
+        "code": "32",
+        "parity": "EVEN",
+        "channel": 16
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 5,
+        "side": "L",
+        "bank": 1,
+        "relay": 3,
+        "code": "13",
+        "parity": "ODD",
+        "channel": 17
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 6,
+        "side": "R",
+        "bank": 3,
+        "relay": 3,
+        "code": "33",
+        "parity": "EVEN",
+        "channel": 18
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 7,
+        "side": "L",
+        "bank": 1,
+        "relay": 4,
+        "code": "14",
+        "parity": "ODD",
+        "channel": 19
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 8,
+        "side": "R",
+        "bank": 3,
+        "relay": 4,
+        "code": "34",
+        "parity": "EVEN",
+        "channel": 20
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 9,
+        "side": "L",
+        "bank": 1,
+        "relay": 5,
+        "code": "15",
+        "parity": "ODD",
+        "channel": 21
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 10,
+        "side": "R",
+        "bank": 3,
+        "relay": 5,
+        "code": "35",
+        "parity": "EVEN",
+        "channel": 22
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 11,
+        "side": "L",
+        "bank": 1,
+        "relay": 6,
+        "code": "16",
+        "parity": "ODD",
+        "channel": 23
+      },
+      {
+        "direction": "IN",
+        "pair_channel": 12,
+        "side": "R",
+        "bank": 3,
+        "relay": 6,
+        "code": "36",
+        "parity": "EVEN",
+        "channel": 24
+      }
+    ],
+    "special": [
+      {
+        "direction": "OUT",
+        "pair_channel": null,
+        "side": "EARTH OUT",
+        "bank": 0,
+        "relay": 7,
+        "code": "07",
+        "parity": null,
+        "name": "EARTH",
+        "channel": null
+      },
+      {
+        "direction": "IN",
+        "pair_channel": null,
+        "side": "EARTH IN",
+        "bank": 2,
+        "relay": 0,
+        "code": "20",
+        "parity": null,
+        "name": "EARTH",
+        "channel": null
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": null,
+        "side": "EARTH OUT",
+        "bank": 3,
+        "relay": 8,
+        "code": "38",
+        "parity": null,
+        "name": "EARTH",
+        "channel": null
+      },
+      {
+        "direction": "IN",
+        "pair_channel": null,
+        "side": "GRASS IN",
+        "bank": 1,
+        "relay": 7,
+        "code": "17",
+        "parity": null,
+        "name": "GRASS",
+        "channel": null
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": null,
+        "side": "GRASS OUT",
+        "bank": 3,
+        "relay": 0,
+        "code": "30",
+        "parity": null,
+        "name": "GRASS",
+        "channel": null
+      },
+      {
+        "direction": "NC",
+        "pair_channel": null,
+        "side": "NC",
+        "bank": 1,
+        "relay": 0,
+        "code": "10",
+        "parity": null,
+        "name": "NC",
+        "channel": null
+      },
+      {
+        "direction": "NC",
+        "pair_channel": null,
+        "side": "NC",
+        "bank": 2,
+        "relay": 8,
+        "code": "28",
+        "parity": null,
+        "name": "NC",
+        "channel": null
+      },
+      {
+        "direction": "IN",
+        "pair_channel": null,
+        "side": "SKY IN",
+        "bank": 0,
+        "relay": 8,
+        "code": "08",
+        "parity": null,
+        "name": "SKY",
+        "channel": null
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": null,
+        "side": "SKY OUT",
+        "bank": 2,
+        "relay": 7,
+        "code": "27",
+        "parity": null,
+        "name": "SKY",
+        "channel": null
+      },
+      {
+        "direction": "IN",
+        "pair_channel": null,
+        "side": "SUN IN",
+        "bank": 0,
+        "relay": 0,
+        "code": "00",
+        "parity": null,
+        "name": "SUN",
+        "channel": null
+      },
+      {
+        "direction": "OUT",
+        "pair_channel": null,
+        "side": "SUN OUT",
+        "bank": 1,
+        "relay": 8,
+        "code": "18",
+        "parity": null,
+        "name": "SUN",
+        "channel": null
+      },
+      {
+        "direction": "IN",
+        "pair_channel": null,
+        "side": "SUN IN",
+        "bank": 3,
+        "relay": 7,
+        "code": "37",
+        "parity": null,
+        "name": "SUN",
+        "channel": null
+      }
+    ]
+  },
+  "quad_routing": [
+    {
+      "start": "LEFT",
+      "order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        1,
+        3,
+        2,
+        4
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        1,
+        3,
+        4,
+        2
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        1,
+        4,
+        2,
+        3
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        1,
+        4,
+        3,
+        2
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        2,
+        1,
+        3,
+        4
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        2,
+        1,
+        4,
+        3
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        2,
+        3,
+        1,
+        4
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        2,
+        3,
+        4,
+        1
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        2,
+        4,
+        1,
+        3
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        2,
+        4,
+        3,
+        1
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        3,
+        1,
+        2,
+        4
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        3,
+        1,
+        4,
+        2
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        3,
+        2,
+        4,
+        1
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        3,
+        4,
+        1,
+        2
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "LEFT",
+      "order": [
+        3,
+        4,
+        2,
+        1
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        4,
+        1,
+        2,
+        3
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        4,
+        1,
+        3,
+        2
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        4,
+        2,
+        1,
+        3
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        4,
+        2,
+        3,
+        1
+      ],
+      "end": "LEFT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        4,
+        3,
+        1,
+        2
+      ],
+      "end": "RIGHT"
+    },
+    {
+      "start": "RIGHT",
+      "order": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "end": "LEFT"
+    }
+  ],
+  "conflicts": [
+    {
+      "about": "card numbering",
+      "seen": [
+        "sheet '400 - EDAC 1' Card column says 3; its addresses are 4xx",
+        "Router.json names the same block Card_4_Snake_Interface",
+        "sheet '600 - EDAC 3' Card column says 5; its addresses are 6xx",
+        "Router.json names that block Card_6_Snake_Interface but describes it as 'Card 5 - Snake Channel Routing'",
+        "sheet '700 - Peripheral and TEST audio' says 7 and addresses 7xx — the only sheet where the two agree"
+      ],
+      "not_resolved": "The slot digit in the channel address is what the instrument answers to and is used here. The Card column is carried through unchanged."
+    },
+    {
+      "about": "card 3 special channels",
+      "seen": [
+        "'400 - EDAC 1' has 00=Grass OUT, 07=SUN OUT, 08=EARTH IN, 10=EARTH OUT, 17=SKY IN, 27=Grass OUT, 28=SUN IN, 30=SKY OUT, 37=EARTH IN, 38=SKY OUT",
+        "'500 - EDAC 2' has 00=SUN IN, 07=EARTH OUT, 08=SKY IN, 10=NC, 17=GRASS IN, 27=SKY OUT, 28=NC, 30=GRASS OUT, 37=SUN IN, 38=EARTH OUT"
+      ],
+      "not_resolved": "The two sheets disagree on every EARTH, SKY, SUN and GRASS position. Both are kept — the card layout from EDAC 1, the lookup from EDAC 2 under edac_channel_map.special."
+    },
+    {
+      "about": "peripheral audio bank 3 relay 4",
+      "seen": [
+        "'500 - Peripheral audio' lists relay 4 twice, code 34, once to AB-03 and once to AB-04"
+      ],
+      "not_resolved": "There is no AB-04 on this mainframe. Both rows are carried; the second names a bus that does not exist."
+    }
+  ],
+  "notes": [
+    "I actually have two of theses 01 on both is a signal gen. 02 goes to the transformaer patch panel - and 03 comes back from it. then 06 goes to the HP xformer bridgeing transofrmer - one per card.... then 10 goes to scope 1 - 02 goes to scope 2 03 on second card goes to scope 03 then of goes to scope 04"
+  ]
+}

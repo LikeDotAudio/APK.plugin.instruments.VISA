@@ -1,0 +1,126 @@
+{
+  "Power": {
+    "type": "OcaBin",
+    "description": {
+      "En": "Capture points on the discovered Lab Instruments devices"
+    },
+    "behavior": {
+      "overflow_ns": "auto"
+    },
+    "blocks": {
+      "Sweep": {
+        "type": "OcaBlock",
+        "label": {
+          "active": {
+            "text": {
+              "En": "Discovery Sweep"
+            }
+          }
+        },
+        "fields": {
+          "sweep": {
+            "type": "_GuiSweepStatus",
+            "description": {
+              "En": "Discovery Sweep"
+            },
+            "topic": "APK.audio/System/CapturePoints/Sweep",
+            "endpoint": "/api/discovery/sweep",
+            "layout": {
+              "height": 96,
+              "width": "100%"
+            }
+          }
+        }
+      },
+      "Points": {
+        "type": "OcaTable",
+        "description": {
+          "En": "3 point(s) — before every input, after every output"
+        },
+        "topic": "APK.audio/Gui/CapturePoints/Power",
+        "headers": [
+          "point",
+          "device",
+          "family",
+          "side",
+          "domain",
+          "signal",
+          "position",
+          "terminal",
+          "status",
+          "verdict",
+          "checked",
+          "last_seen",
+          "topic"
+        ],
+        "snapshot_at": 1788402381,
+        "refresh": {
+          "source": "/repo/APK:FrontEnd/Gui_Frames/6_Capture_Points/1_Lab_Instruments/Power/Power.json",
+          "block": "Points"
+        },
+        "poke": {
+          "endpoint": "/api/poke",
+          "stream": "APK.audio/System/CapturePoints/Poke",
+          "address_field": "_address",
+          "mac_field": "_mac"
+        },
+        "data": [
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "Power/US39009876/GPIB0_09_INSTR",
+            "device": "66102A · US39009876",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at 66102A · US39009876 · GPIB0::09::INSTR",
+            "terminal": "GPIB0::09::INSTR",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Power/US39009876/GPIB0_09_INSTR"
+          },
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "Power/US39009876/OUT",
+            "device": "66102A · US39009876",
+            "family": "Lab Instruments",
+            "side": "output",
+            "domain": "power",
+            "signal": "DC rail the supply delivers",
+            "position": "after 66102A · US39009876 · OUT",
+            "terminal": "OUT",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Power/US39009876/OUT"
+          },
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "Power/US39009876/MAINS_IN",
+            "device": "66102A · US39009876",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before 66102A · US39009876 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Power/US39009876/MAINS_IN"
+          }
+        ]
+      }
+    }
+  }
+}
