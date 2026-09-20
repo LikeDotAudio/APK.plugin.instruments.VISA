@@ -1,0 +1,240 @@
+{
+  "Oscilloscope": {
+    "type": "OcaBin",
+    "description": {
+      "En": "Capture points on the discovered Lab Instruments devices"
+    },
+    "behavior": {
+      "overflow_ns": "auto"
+    },
+    "blocks": {
+      "Sweep": {
+        "type": "OcaBlock",
+        "label": {
+          "active": {
+            "text": {
+              "En": "Discovery Sweep"
+            }
+          }
+        },
+        "fields": {
+          "sweep": {
+            "type": "_GuiSweepStatus",
+            "description": {
+              "En": "Discovery Sweep"
+            },
+            "topic": "APK.audio/System/CapturePoints/Sweep",
+            "endpoint": "/api/discovery/sweep",
+            "layout": {
+              "height": 96,
+              "width": "100%"
+            }
+          }
+        }
+      },
+      "Points": {
+        "type": "OcaTable",
+        "description": {
+          "En": "9 point(s) — before every input, after every output"
+        },
+        "topic": "APK.audio/Gui/CapturePoints/Oscilloscope",
+        "headers": [
+          "point",
+          "device",
+          "family",
+          "side",
+          "domain",
+          "signal",
+          "position",
+          "terminal",
+          "status",
+          "verdict",
+          "checked",
+          "last_seen",
+          "topic"
+        ],
+        "snapshot_at": 1788402381,
+        "refresh": {
+          "source": "/repo/APK:FrontEnd/Gui_Frames/6_Capture_Points/1_Lab_Instruments/Oscilloscope/Oscilloscope.json",
+          "block": "Points"
+        },
+        "poke": {
+          "endpoint": "/api/poke",
+          "stream": "APK.audio/System/CapturePoints/Poke",
+          "address_field": "_address",
+          "mac_field": "_mac"
+        },
+        "data": [
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "Oscilloscope/MY42000785/TCPIP_44.44.44.222_gpib7_16_INSTR",
+            "device": "54641D · MY42000785",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at 54641D · MY42000785 · TCPIP::44.44.44.222::gpib7,16::INSTR",
+            "terminal": "TCPIP::44.44.44.222::gpib7,16::INSTR",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-24 21:51:59",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/MY42000785/TCPIP_44.44.44.222_gpib7_16_INSTR",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "Oscilloscope/MY42000785/CH",
+            "device": "54641D · MY42000785",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "signal",
+            "signal": "probed waveform",
+            "position": "before 54641D · MY42000785 · CH",
+            "terminal": "CH",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-24 21:51:59",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/MY42000785/CH",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "Oscilloscope/MY42000785/MAINS_IN",
+            "device": "54641D · MY42000785",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before 54641D · MY42000785 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-24 21:51:59",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/MY42000785/MAINS_IN",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "Oscilloscope/MY42000747/TCPIP_44.44.44.222_gpib7_6_INSTR",
+            "device": "54641D · MY42000747",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at 54641D · MY42000747 · TCPIP::44.44.44.222::gpib7,6::INSTR",
+            "terminal": "TCPIP::44.44.44.222::gpib7,6::INSTR",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-24 21:51:59",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/MY42000747/TCPIP_44.44.44.222_gpib7_6_INSTR",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "Oscilloscope/MY42000747/CH",
+            "device": "54641D · MY42000747",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "signal",
+            "signal": "probed waveform",
+            "position": "before 54641D · MY42000747 · CH",
+            "terminal": "CH",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-24 21:51:59",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/MY42000747/CH",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "Oscilloscope/MY42000747/MAINS_IN",
+            "device": "54641D · MY42000747",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before 54641D · MY42000747 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-24 21:51:59",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/MY42000747/MAINS_IN",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "Oscilloscope/DS1ZA00000001/USB0_0x1AB1_0x04CE_INSTR",
+            "device": "DS1104Z · DS1ZA00000001",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at DS1104Z · DS1ZA00000001 · USB0::0x1AB1::0x04CE::INSTR",
+            "terminal": "USB0::0x1AB1::0x04CE::INSTR",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/DS1ZA00000001/USB0_0x1AB1_0x04CE_INSTR"
+          },
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "Oscilloscope/DS1ZA00000001/CH",
+            "device": "DS1104Z · DS1ZA00000001",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "signal",
+            "signal": "probed waveform",
+            "position": "before DS1104Z · DS1ZA00000001 · CH",
+            "terminal": "CH",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/DS1ZA00000001/CH"
+          },
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "Oscilloscope/DS1ZA00000001/MAINS_IN",
+            "device": "DS1104Z · DS1ZA00000001",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before DS1104Z · DS1ZA00000001 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/Oscilloscope/DS1ZA00000001/MAINS_IN"
+          }
+        ]
+      }
+    }
+  }
+}

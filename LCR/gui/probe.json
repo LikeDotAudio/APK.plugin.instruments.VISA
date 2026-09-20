@@ -1,0 +1,183 @@
+{
+  "LCR": {
+    "type": "OcaBin",
+    "description": {
+      "En": "Capture points on the discovered Lab Instruments devices"
+    },
+    "behavior": {
+      "overflow_ns": "auto"
+    },
+    "blocks": {
+      "Sweep": {
+        "type": "OcaBlock",
+        "label": {
+          "active": {
+            "text": {
+              "En": "Discovery Sweep"
+            }
+          }
+        },
+        "fields": {
+          "sweep": {
+            "type": "_GuiSweepStatus",
+            "description": {
+              "En": "Discovery Sweep"
+            },
+            "topic": "APK.audio/System/CapturePoints/Sweep",
+            "endpoint": "/api/discovery/sweep",
+            "layout": {
+              "height": 96,
+              "width": "100%"
+            }
+          }
+        }
+      },
+      "Points": {
+        "type": "OcaTable",
+        "description": {
+          "En": "6 point(s) — before every input, after every output"
+        },
+        "topic": "APK.audio/Gui/CapturePoints/LCR",
+        "headers": [
+          "point",
+          "device",
+          "family",
+          "side",
+          "domain",
+          "signal",
+          "position",
+          "terminal",
+          "status",
+          "verdict",
+          "checked",
+          "last_seen",
+          "topic"
+        ],
+        "snapshot_at": 1788402381,
+        "refresh": {
+          "source": "/repo/APK:FrontEnd/Gui_Frames/6_Capture_Points/1_Lab_Instruments/LCR/LCR.json",
+          "block": "Points"
+        },
+        "poke": {
+          "endpoint": "/api/poke",
+          "stream": "APK.audio/System/CapturePoints/Poke",
+          "address_field": "_address",
+          "mac_field": "_mac"
+        },
+        "data": [
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "LCR/JP10002345/GPIB0_17_INSTR",
+            "device": "4263A · JP10002345",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at 4263A · JP10002345 · GPIB0::17::INSTR",
+            "terminal": "GPIB0::17::INSTR",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/LCR/JP10002345/GPIB0_17_INSTR"
+          },
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "LCR/JP10002345/IN",
+            "device": "4263A · JP10002345",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "signal",
+            "signal": "bridge terminals",
+            "position": "before 4263A · JP10002345 · IN",
+            "terminal": "IN",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/LCR/JP10002345/IN"
+          },
+          {
+            "_row_state": "offline",
+            "_address": "",
+            "_mac": "",
+            "point": "LCR/JP10002345/MAINS_IN",
+            "device": "4263A · JP10002345",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before 4263A · JP10002345 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "offline",
+            "verdict": "bus says offline",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-25 00:33:03",
+            "topic": "APK.audio/System/CapturePoints/LCR/JP10002345/MAINS_IN"
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "LCR/3145J01840/TCPIP_44.44.44.222_gpib7_11_INSTR",
+            "device": "4263A · 3145J01840",
+            "family": "Lab Instruments",
+            "side": "bus",
+            "domain": "control",
+            "signal": "SCPI traffic to and from the instrument",
+            "position": "at 4263A · 3145J01840 · TCPIP::44.44.44.222::gpib7,11::INSTR",
+            "terminal": "TCPIP::44.44.44.222::gpib7,11::INSTR",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-29 01:43:36",
+            "topic": "APK.audio/System/CapturePoints/LCR/3145J01840/TCPIP_44.44.44.222_gpib7_11_INSTR",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "LCR/3145J01840/IN",
+            "device": "4263A · 3145J01840",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "signal",
+            "signal": "bridge terminals",
+            "position": "before 4263A · 3145J01840 · IN",
+            "terminal": "IN",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-29 01:43:36",
+            "topic": "APK.audio/System/CapturePoints/LCR/3145J01840/IN",
+            "_rtt_ms": 0.244
+          },
+          {
+            "_row_state": "online",
+            "_address": "44.44.44.222",
+            "_mac": "",
+            "point": "LCR/3145J01840/MAINS_IN",
+            "device": "4263A · 3145J01840",
+            "family": "Lab Instruments",
+            "side": "input",
+            "domain": "power",
+            "signal": "what the device draws from the wall",
+            "position": "before 4263A · 3145J01840 · MAINS IN",
+            "terminal": "MAINS IN",
+            "status": "online",
+            "verdict": "online",
+            "checked": "2026-09-02 22:26:18",
+            "last_seen": "2026-08-29 01:43:36",
+            "topic": "APK.audio/System/CapturePoints/LCR/3145J01840/MAINS_IN",
+            "_rtt_ms": 0.244
+          }
+        ]
+      }
+    }
+  }
+}
