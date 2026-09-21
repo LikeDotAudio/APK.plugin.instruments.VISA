@@ -1,0 +1,354 @@
+{
+  "api_version": "1.0.0",
+  "model": "3235",
+  "family": "Router",
+  "manufacturer": "HP / Agilent / Keysight",
+  "notes": "High-perf Switching Matrix",
+  "service": {
+    "host": "0.0.0.0",
+    "port": 15100,
+    "family_lane": {
+      "family_index": 1,
+      "base": 15100,
+      "offset": 0
+    },
+    "path": "/api/instrument/Router/3235",
+    "routes": {
+      "spec": "/api/instrument/Router/3235/3235.api.json",
+      "health": "/api/instrument/Router/3235/health",
+      "get": "/api/instrument/Router/3235/get/<command>",
+      "set": "/api/instrument/Router/3235/set/<command>",
+      "nab": "/api/instrument/Router/3235/nab/<command>",
+      "rig": "/api/instrument/Router/3235/rig/<command>",
+      "do": "/api/instrument/Router/3235/do/<command>"
+    },
+    "socket": {
+      "ws": "/ws/instrument/Router/3235",
+      "readings": "/ws/instrument/Router/3235/readings",
+      "unix": "/run/apk/instruments/Router.3235.sock"
+    }
+  },
+  "transport": {
+    "_note": "Protocol constants, not a per-model interface inventory. Which of these a box actually answers on is measured by the discovery sweep and recorded in the family probe file.",
+    "default": "raw_socket",
+    "visa": {
+      "lan": "TCPIP0::<host>::inst0::INSTR",
+      "raw": "TCPIP0::<host>::5025::SOCKET",
+      "hislip": "TCPIP0::<host>::hislip0::INSTR",
+      "gpib": "GPIB0::<address>::INSTR",
+      "usb": "USB0::<vid>::<pid>::<serial>::INSTR",
+      "serial": "ASRL<n>::INSTR"
+    },
+    "sockets": {
+      "raw_socket": {
+        "port": 5025,
+        "kind": "tcp",
+        "write_terminator": "\n",
+        "read_terminator": "\n",
+        "description": "Bare SCPI over TCP. No session layer, no discovery."
+      },
+      "hislip": {
+        "port": 4880,
+        "kind": "tcp",
+        "description": "IVI HiSLIP. Carries SRQ and device clear, unlike the raw socket."
+      },
+      "vxi11": {
+        "port": 111,
+        "kind": "tcp",
+        "description": "SUNRPC portmapper only; the core channel port is negotiated per session."
+      },
+      "telnet": {
+        "port": 5024,
+        "kind": "tcp",
+        "description": "Human-facing SCPI prompt. Echoes and prints a banner \u2014 do not parse."
+      }
+    }
+  },
+  "verb_mapping": {
+    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "set": "Single parameter mutation and write commands",
+    "nab": "Observation and telemetry acquisition queries",
+    "rig": "Multi-argument system configuration setup commands",
+    "do": "Zero-argument execution actions and trigger commands"
+  },
+  "summary": {
+    "total_commands": 9,
+    "get_count": 2,
+    "set_count": 2,
+    "nab_count": 2,
+    "rig_count": 0,
+    "do_count": 5
+  },
+  "endpoints": {
+    "get": {
+      "Query_Channel_State": {
+        "command": "Query_Channel_State",
+        "verb": "get",
+        "description": "Query Channel State",
+        "scpi": "CLOSE? <chan>",
+        "scpi_fast": "CLOS? <chan>",
+        "subsystem": "General",
+        "group": "Query specific relay state",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Query_Channel_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Channel_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Channel_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Query_Slot_ID": {
+        "command": "Query_Slot_ID",
+        "verb": "get",
+        "description": "Query Slot ID",
+        "scpi": "ID? <slot>",
+        "subsystem": "General",
+        "group": "Hardware Identification",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Query_Slot_ID",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Slot_ID"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Slot_ID",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      }
+    },
+    "set": {
+      "Close_Channels": {
+        "command": "Close_Channels",
+        "verb": "set",
+        "description": "Close Channels",
+        "scpi": "CLOSE <channel_list>",
+        "scpi_fast": "CLOS <channel_list>",
+        "subsystem": "General",
+        "group": "Close Relays",
+        "args": [
+          "channel_list"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Close_Channels",
+          "direction": "in",
+          "payload_format": {
+            "command": "Close_Channels",
+            "value": "<value>",
+            "input_name": "channel_list"
+          }
+        },
+        "unverified": false
+      },
+      "Open_Channels": {
+        "command": "Open_Channels",
+        "verb": "set",
+        "description": "Open Channels",
+        "scpi": "OPEN <channel_list>",
+        "subsystem": "General",
+        "group": "Open Relays",
+        "args": [
+          "channel_list"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Open_Channels",
+          "direction": "in",
+          "payload_format": {
+            "command": "Open_Channels",
+            "value": "<value>",
+            "input_name": "channel_list"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "nab": {
+      "Query_Channel_State": {
+        "command": "Query_Channel_State",
+        "verb": "nab",
+        "description": "Query Channel State",
+        "scpi": "CLOSE? <chan>",
+        "scpi_fast": "CLOS? <chan>",
+        "subsystem": "General",
+        "group": "Query specific relay state",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Query_Channel_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Channel_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Channel_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Query_Slot_ID": {
+        "command": "Query_Slot_ID",
+        "verb": "nab",
+        "description": "Query Slot ID",
+        "scpi": "ID? <slot>",
+        "subsystem": "General",
+        "group": "Hardware Identification",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Query_Slot_ID",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Slot_ID"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Slot_ID",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      }
+    },
+    "rig": {},
+    "do": {
+      "Card_Reset": {
+        "command": "Card_Reset",
+        "verb": "do",
+        "description": "Card Reset",
+        "scpi": "CRESET <slot>",
+        "scpi_fast": "CRES <slot>",
+        "subsystem": "General",
+        "group": "System Reset & Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Card_Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Card_Reset"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_State": {
+        "command": "Clear_State",
+        "verb": "do",
+        "description": "Clear State",
+        "scpi": "CLR",
+        "subsystem": "General",
+        "group": "System Reset & Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Clear_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_State"
+          }
+        },
+        "unverified": false
+      },
+      "Open_All": {
+        "command": "Open_All",
+        "verb": "do",
+        "description": "Open every relay in the frame \u2014 nothing connected to anything.",
+        "scpi": "OPEN 000-999",
+        "subsystem": "Root",
+        "group": "System Reset & Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Open_All",
+          "direction": "in",
+          "payload_format": {
+            "command": "Open_All"
+          }
+        },
+        "unverified": false
+      },
+      "Reset_Device": {
+        "command": "Reset_Device",
+        "verb": "do",
+        "description": "Reset System",
+        "scpi": "RESET",
+        "scpi_fast": "RES",
+        "subsystem": "General",
+        "group": "System Reset & Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Reset_Device",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset_Device"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Channel": {
+        "command": "Select_Channel",
+        "verb": "do",
+        "description": "Select Channel",
+        "scpi": "SELECT <chan>",
+        "scpi_fast": "SEL <chan>",
+        "subsystem": "General",
+        "group": "Break-Before-Make",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Select_Channel",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Channel"
+          }
+        },
+        "unverified": false
+      }
+    }
+  }
+}

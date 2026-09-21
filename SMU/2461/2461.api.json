@@ -1,0 +1,1106 @@
+{
+  "api_version": "1.0.0",
+  "model": "2461",
+  "family": "SMU",
+  "manufacturer": "Keithley",
+  "notes": "High Current Touchscreen (10A Pulse)",
+  "inherited_from": "SMU_Baseline",
+  "service": {
+    "host": "0.0.0.0",
+    "port": 16107,
+    "family_lane": {
+      "family_index": 11,
+      "base": 16100,
+      "offset": 7
+    },
+    "path": "/api/instrument/SMU/2461",
+    "routes": {
+      "spec": "/api/instrument/SMU/2461/2461.api.json",
+      "health": "/api/instrument/SMU/2461/health",
+      "get": "/api/instrument/SMU/2461/get/<command>",
+      "set": "/api/instrument/SMU/2461/set/<command>",
+      "nab": "/api/instrument/SMU/2461/nab/<command>",
+      "rig": "/api/instrument/SMU/2461/rig/<command>",
+      "do": "/api/instrument/SMU/2461/do/<command>"
+    },
+    "socket": {
+      "ws": "/ws/instrument/SMU/2461",
+      "readings": "/ws/instrument/SMU/2461/readings",
+      "unix": "/run/apk/instruments/SMU.2461.sock"
+    }
+  },
+  "transport": {
+    "_note": "Protocol constants, not a per-model interface inventory. Which of these a box actually answers on is measured by the discovery sweep and recorded in the family probe file.",
+    "default": "raw_socket",
+    "visa": {
+      "lan": "TCPIP0::<host>::inst0::INSTR",
+      "raw": "TCPIP0::<host>::5025::SOCKET",
+      "hislip": "TCPIP0::<host>::hislip0::INSTR",
+      "gpib": "GPIB0::<address>::INSTR",
+      "usb": "USB0::<vid>::<pid>::<serial>::INSTR",
+      "serial": "ASRL<n>::INSTR"
+    },
+    "sockets": {
+      "raw_socket": {
+        "port": 5025,
+        "kind": "tcp",
+        "write_terminator": "\n",
+        "read_terminator": "\n",
+        "description": "Bare SCPI over TCP. No session layer, no discovery."
+      },
+      "hislip": {
+        "port": 4880,
+        "kind": "tcp",
+        "description": "IVI HiSLIP. Carries SRQ and device clear, unlike the raw socket."
+      },
+      "vxi11": {
+        "port": 111,
+        "kind": "tcp",
+        "description": "SUNRPC portmapper only; the core channel port is negotiated per session."
+      },
+      "telnet": {
+        "port": 5024,
+        "kind": "tcp",
+        "description": "Human-facing SCPI prompt. Echoes and prints a banner \u2014 do not parse."
+      }
+    }
+  },
+  "verb_mapping": {
+    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "set": "Single parameter mutation and write commands",
+    "nab": "Observation and telemetry acquisition queries",
+    "rig": "Multi-argument system configuration setup commands",
+    "do": "Zero-argument execution actions and trigger commands"
+  },
+  "summary": {
+    "total_commands": 25,
+    "get_count": 8,
+    "set_count": 9,
+    "nab_count": 8,
+    "rig_count": 2,
+    "do_count": 6
+  },
+  "endpoints": {
+    "get": {
+      "Measure_Current": {
+        "command": "Measure_Current",
+        "verb": "get",
+        "description": "Measure current flowing through terminals",
+        "scpi": ":MEASure:CURRent?",
+        "scpi_fast": ":MEAS:CURR?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "current",
+              "unit": "A"
+            }
+          ],
+          "unit": "A"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Measure_Current",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Current"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Current",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Resistance": {
+        "command": "Measure_Resistance",
+        "verb": "get",
+        "description": "Calculate resistance from measured V and I",
+        "scpi": ":MEASure:RESistance?",
+        "scpi_fast": ":MEAS:RES?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "resistance",
+              "unit": "Ohm"
+            }
+          ],
+          "unit": "Ohm"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Measure_Resistance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Resistance"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Resistance",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Voltage": {
+        "command": "Measure_Voltage",
+        "verb": "get",
+        "description": "Measure voltage at terminals",
+        "scpi": ":MEASure:VOLTage?",
+        "scpi_fast": ":MEAS:VOLT?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "voltage",
+              "unit": "V"
+            }
+          ],
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Measure_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Voltage"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Voltage",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "get",
+        "description": "Query system error queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Compliance_Status": {
+        "command": "Read_Compliance_Status",
+        "verb": "get",
+        "description": "Check if voltage or current compliance threshold was tripped",
+        "scpi": ":SENSe:PROTection:TRIPped?",
+        "scpi_fast": ":SENS:PROT:TRIP?",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "tripped"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Compliance_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Compliance_Status"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Compliance_Status",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Read SMU identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "get",
+        "description": "Trigger measurement and return voltage, current, and resistance",
+        "scpi": ":READ?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "voltage",
+              "unit": "V"
+            },
+            {
+              "name": "current",
+              "unit": "A"
+            },
+            {
+              "name": "resistance",
+              "unit": "Ohm"
+            },
+            {
+              "name": "time",
+              "unit": "s"
+            },
+            {
+              "name": "status"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Output_State": {
+        "command": "Read_Output_State",
+        "verb": "get",
+        "description": "Query output enabled/disabled status",
+        "scpi": ":OUTPut:STATe?",
+        "scpi_fast": ":OUTP:STAT?",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "state"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Output_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Output_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Output_State",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "set": {
+      "Set_Current_Compliance": {
+        "command": "Set_Current_Compliance",
+        "verb": "set",
+        "description": "Set maximum current compliance protection limit",
+        "scpi": ":SENSe:CURRent:PROTection:LEVel <amps>",
+        "scpi_fast": ":SENS:CURR:PROT:LEV <amps>",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
+        "args": [
+          "amps"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "A"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Current_Compliance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Current_Compliance",
+            "value": "<value>",
+            "input_name": "amps"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Integration_NPLC": {
+        "command": "Set_Integration_NPLC",
+        "verb": "set",
+        "description": "Set A/D converter integration time in power line cycles",
+        "scpi": ":SENSe:NPLC <nplc>",
+        "scpi_fast": ":SENS:NPLC <nplc>",
+        "subsystem": "SENSe",
+        "group": "Measurement Setup",
+        "args": [
+          "nplc"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "min": 0.01,
+          "max": 10.0
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Integration_NPLC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Integration_NPLC",
+            "value": "<value>",
+            "input_name": "nplc"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Output_State": {
+        "command": "Set_Output_State",
+        "verb": "set",
+        "description": "Turn SMU output terminal ON or OFF",
+        "scpi": ":OUTPut:STATe <state>",
+        "scpi_fast": ":OUTP:STAT <state>",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Output_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Output_State",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Sense_Function": {
+        "command": "Set_Sense_Function",
+        "verb": "set",
+        "description": "Set measurement sense mode",
+        "scpi": ":SENSe:FUNCtion '<function>'",
+        "scpi_fast": ":SENS:FUNC '<function>'",
+        "subsystem": "SENSe",
+        "group": "Measurement Setup",
+        "args": [
+          "function"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "VOLTage",
+            "CURRent",
+            "RESistance"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Sense_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sense_Function",
+            "value": "<value>",
+            "input_name": "function"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Sense_Remote": {
+        "command": "Set_Sense_Remote",
+        "verb": "set",
+        "description": "Select 4-wire remote sensing or 2-wire local sensing",
+        "scpi": ":SENSe:REMote <state>",
+        "scpi_fast": ":SENS:REM <state>",
+        "subsystem": "SENSe",
+        "group": "Measurement Setup",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Sense_Remote",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sense_Remote",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Source_Current": {
+        "command": "Set_Source_Current",
+        "verb": "set",
+        "description": "Set current output level in Amperes",
+        "scpi": ":SOURce:CURRent:LEVel <amps>",
+        "scpi_fast": ":SOUR:CURR:LEV <amps>",
+        "subsystem": "SOURce",
+        "group": "Source Setup",
+        "args": [
+          "amps"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "A"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Source_Current",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Source_Current",
+            "value": "<value>",
+            "input_name": "amps"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Source_Function": {
+        "command": "Set_Source_Function",
+        "verb": "set",
+        "description": "Set active source mode: Voltage or Current",
+        "scpi": ":SOURce:FUNCtion <func>",
+        "scpi_fast": ":SOUR:FUNC <func>",
+        "subsystem": "SOURce",
+        "group": "Source Setup",
+        "args": [
+          "func"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "VOLTage",
+            "CURRent"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Source_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Source_Function",
+            "value": "<value>",
+            "input_name": "func"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Source_Voltage": {
+        "command": "Set_Source_Voltage",
+        "verb": "set",
+        "description": "Set voltage output level in Volts",
+        "scpi": ":SOURce:VOLTage:LEVel <volts>",
+        "scpi_fast": ":SOUR:VOLT:LEV <volts>",
+        "subsystem": "SOURce",
+        "group": "Source Setup",
+        "args": [
+          "volts"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Source_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Source_Voltage",
+            "value": "<value>",
+            "input_name": "volts"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Voltage_Compliance": {
+        "command": "Set_Voltage_Compliance",
+        "verb": "set",
+        "description": "Set maximum voltage compliance protection limit",
+        "scpi": ":SENSe:VOLTage:PROTection:LEVel <volts>",
+        "scpi_fast": ":SENS:VOLT:PROT:LEV <volts>",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
+        "args": [
+          "volts"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Voltage_Compliance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Voltage_Compliance",
+            "value": "<value>",
+            "input_name": "volts"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "nab": {
+      "Measure_Current": {
+        "command": "Measure_Current",
+        "verb": "nab",
+        "description": "Measure current flowing through terminals",
+        "scpi": ":MEASure:CURRent?",
+        "scpi_fast": ":MEAS:CURR?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "current",
+              "unit": "A"
+            }
+          ],
+          "unit": "A"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Measure_Current",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Current"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Current",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Resistance": {
+        "command": "Measure_Resistance",
+        "verb": "nab",
+        "description": "Calculate resistance from measured V and I",
+        "scpi": ":MEASure:RESistance?",
+        "scpi_fast": ":MEAS:RES?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "resistance",
+              "unit": "Ohm"
+            }
+          ],
+          "unit": "Ohm"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Measure_Resistance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Resistance"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Resistance",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Voltage": {
+        "command": "Measure_Voltage",
+        "verb": "nab",
+        "description": "Measure voltage at terminals",
+        "scpi": ":MEASure:VOLTage?",
+        "scpi_fast": ":MEAS:VOLT?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "voltage",
+              "unit": "V"
+            }
+          ],
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Measure_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Voltage"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Voltage",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "nab",
+        "description": "Query system error queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Compliance_Status": {
+        "command": "Read_Compliance_Status",
+        "verb": "nab",
+        "description": "Check if voltage or current compliance threshold was tripped",
+        "scpi": ":SENSe:PROTection:TRIPped?",
+        "scpi_fast": ":SENS:PROT:TRIP?",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "tripped"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Compliance_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Compliance_Status"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Compliance_Status",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Read SMU identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "nab",
+        "description": "Trigger measurement and return voltage, current, and resistance",
+        "scpi": ":READ?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "voltage",
+              "unit": "V"
+            },
+            {
+              "name": "current",
+              "unit": "A"
+            },
+            {
+              "name": "resistance",
+              "unit": "Ohm"
+            },
+            {
+              "name": "time",
+              "unit": "s"
+            },
+            {
+              "name": "status"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Output_State": {
+        "command": "Read_Output_State",
+        "verb": "nab",
+        "description": "Query output enabled/disabled status",
+        "scpi": ":OUTPut:STATe?",
+        "scpi_fast": ":OUTP:STAT?",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "state"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Output_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Output_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Output_State",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "rig": {
+      "Configure_Current_Source": {
+        "command": "Configure_Current_Source",
+        "verb": "rig",
+        "description": "Configure SMU as current source with current setpoint and voltage compliance limit",
+        "scpi": ":SOURce:FUNCtion CURRent;:SOURce:CURRent:LEVel <amps>;:SENSe:VOLTage:PROTection <compliance>",
+        "scpi_fast": ":SOUR:FUNC CURR;:SOUR:CURR:LEV <amps>;:SENS:VOLT:PROT <compliance>",
+        "subsystem": "SOURce",
+        "group": "Source Setup",
+        "args": [
+          "amps",
+          "compliance"
+        ],
+        "arg": {
+          "kind": "multi",
+          "parameters": {
+            "amps": {
+              "kind": "numeric",
+              "unit": "A"
+            },
+            "compliance": {
+              "kind": "numeric",
+              "unit": "V"
+            }
+          }
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Configure_Current_Source",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_Current_Source",
+            "amps": "<amps>",
+            "compliance": "<compliance>"
+          }
+        },
+        "unverified": false
+      },
+      "Configure_Voltage_Source": {
+        "command": "Configure_Voltage_Source",
+        "verb": "rig",
+        "description": "Configure SMU as voltage source with voltage setpoint and current compliance limit",
+        "scpi": ":SOURce:FUNCtion VOLTage;:SOURce:VOLTage:LEVel <volts>;:SENSe:CURRent:PROTection <compliance>",
+        "scpi_fast": ":SOUR:FUNC VOLT;:SOUR:VOLT:LEV <volts>;:SENS:CURR:PROT <compliance>",
+        "subsystem": "SOURce",
+        "group": "Source Setup",
+        "args": [
+          "volts",
+          "compliance"
+        ],
+        "arg": {
+          "kind": "multi",
+          "parameters": {
+            "volts": {
+              "kind": "numeric",
+              "unit": "V"
+            },
+            "compliance": {
+              "kind": "numeric",
+              "unit": "A"
+            }
+          }
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Configure_Voltage_Source",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_Voltage_Source",
+            "volts": "<volts>",
+            "compliance": "<compliance>"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "do": {
+      "Abort": {
+        "command": "Abort",
+        "verb": "do",
+        "description": "Abort ongoing sweep or measurement sequence",
+        "scpi": ":ABORt",
+        "scpi_fast": ":ABOR",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Abort",
+          "direction": "in",
+          "payload_format": {
+            "command": "Abort"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear status registers and error queue",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Initiate": {
+        "command": "Initiate",
+        "verb": "do",
+        "description": "Arm trigger system and initiate measurement",
+        "scpi": ":INITiate",
+        "scpi_fast": ":INIT",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Initiate",
+          "direction": "in",
+          "payload_format": {
+            "command": "Initiate"
+          }
+        },
+        "unverified": false
+      },
+      "Output_OFF": {
+        "command": "Output_OFF",
+        "verb": "do",
+        "description": "Safely disable SMU output terminals",
+        "scpi": ":OUTPut:STATe OFF",
+        "scpi_fast": ":OUTP:STAT OFF",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Output_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Output_OFF"
+          }
+        },
+        "unverified": false
+      },
+      "Output_ON": {
+        "command": "Output_ON",
+        "verb": "do",
+        "description": "Enable SMU power output terminals",
+        "scpi": ":OUTPut:STATe ON",
+        "scpi_fast": ":OUTP:STAT ON",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Output_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Output_ON"
+          }
+        },
+        "unverified": false
+      },
+      "Reset": {
+        "command": "Reset",
+        "verb": "do",
+        "description": "Reset SMU to default factory parameters",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset"
+          }
+        },
+        "unverified": false
+      }
+    }
+  }
+}

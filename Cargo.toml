@@ -2,10 +2,10 @@
 name = "apkaudio-plugin-instruments-visa"
 version = "0.1.0"
 edition.workspace = true
-workspace = "../APK:discovery/SRC"
+workspace = "../discovery/SRC"
 
 [dependencies]
-apkaudio-contracts = { path = "../APK:BareMetal/SRC/contracts/rust" }
+apkaudio-contracts = { path = "../BareMetal/SRC/contracts/rust" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 tokio = { version = "1.36", features = ["full"] }

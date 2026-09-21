@@ -3,7 +3,7 @@
     "_": "This key is not an instrument class. Keys beginning with _ are notes.",
     "every_class_needs_an_entry": "Every directory under Instruments/ that is not _-prefixed is an instrument class and must appear here. Counter, DAQ, SMU and VNA had a symlink and no entry until 2026-08-30, so they existed to `ls` and not to this file, and nothing reported the gap. `check.sh binding` now fails when they diverge.",
     "the_short_form_is_deliberate": "A class may carry `tab` alone. `groups` declares a PRE-BUILT panel — a named bank over several devices, with a station and an id — and only four classes have one because only four have a bank worth pre-declaring. The short form means 'this class renders its devices individually', not 'this entry is unfinished'.",
-    "tab_is_an_ordering_prefix": "The digit before the underscore orders the tabs; it is not an id and is not referenced anywhere. 6 was free and the three above 9 are new."
+    "tab_is_an_ordering_prefix": "The digit before the underscore orders the tabs and, since the instrument APIs were given addresses, ALSO FIXES THE CLASS'S PORT LANE: _komand/generate_device_apis.py reads it as family_index and every model in the class lands on 15000 + family_index * 100 + its position in the sorted model list. It used to be free to renumber; it is not any more, because renumbering a tab moves 100 ports. 6 was free and the three above 9 are new."
   },
   "DMM": {
     "tab": "4_DMM",

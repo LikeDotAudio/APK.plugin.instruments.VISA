@@ -1,0 +1,958 @@
+{
+  "api_version": "1.0.0",
+  "model": "DAQ970A",
+  "family": "DAQ",
+  "manufacturer": "HP / Agilent / Keysight",
+  "notes": "Data Acq System (Next Gen)",
+  "inherited_from": "DAQ_Baseline",
+  "service": {
+    "host": "0.0.0.0",
+    "port": 16003,
+    "family_lane": {
+      "family_index": 10,
+      "base": 16000,
+      "offset": 3
+    },
+    "path": "/api/instrument/DAQ/DAQ970A",
+    "routes": {
+      "spec": "/api/instrument/DAQ/DAQ970A/DAQ970A.api.json",
+      "health": "/api/instrument/DAQ/DAQ970A/health",
+      "get": "/api/instrument/DAQ/DAQ970A/get/<command>",
+      "set": "/api/instrument/DAQ/DAQ970A/set/<command>",
+      "nab": "/api/instrument/DAQ/DAQ970A/nab/<command>",
+      "rig": "/api/instrument/DAQ/DAQ970A/rig/<command>",
+      "do": "/api/instrument/DAQ/DAQ970A/do/<command>"
+    },
+    "socket": {
+      "ws": "/ws/instrument/DAQ/DAQ970A",
+      "readings": "/ws/instrument/DAQ/DAQ970A/readings",
+      "unix": "/run/apk/instruments/DAQ.DAQ970A.sock"
+    }
+  },
+  "transport": {
+    "_note": "Protocol constants, not a per-model interface inventory. Which of these a box actually answers on is measured by the discovery sweep and recorded in the family probe file.",
+    "default": "raw_socket",
+    "visa": {
+      "lan": "TCPIP0::<host>::inst0::INSTR",
+      "raw": "TCPIP0::<host>::5025::SOCKET",
+      "hislip": "TCPIP0::<host>::hislip0::INSTR",
+      "gpib": "GPIB0::<address>::INSTR",
+      "usb": "USB0::<vid>::<pid>::<serial>::INSTR",
+      "serial": "ASRL<n>::INSTR"
+    },
+    "sockets": {
+      "raw_socket": {
+        "port": 5025,
+        "kind": "tcp",
+        "write_terminator": "\n",
+        "read_terminator": "\n",
+        "description": "Bare SCPI over TCP. No session layer, no discovery."
+      },
+      "hislip": {
+        "port": 4880,
+        "kind": "tcp",
+        "description": "IVI HiSLIP. Carries SRQ and device clear, unlike the raw socket."
+      },
+      "vxi11": {
+        "port": 111,
+        "kind": "tcp",
+        "description": "SUNRPC portmapper only; the core channel port is negotiated per session."
+      },
+      "telnet": {
+        "port": 5024,
+        "kind": "tcp",
+        "description": "Human-facing SCPI prompt. Echoes and prints a banner \u2014 do not parse."
+      }
+    }
+  },
+  "verb_mapping": {
+    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "set": "Single parameter mutation and write commands",
+    "nab": "Observation and telemetry acquisition queries",
+    "rig": "Multi-argument system configuration setup commands",
+    "do": "Zero-argument execution actions and trigger commands"
+  },
+  "summary": {
+    "total_commands": 23,
+    "get_count": 7,
+    "set_count": 8,
+    "nab_count": 7,
+    "rig_count": 2,
+    "do_count": 6
+  },
+  "endpoints": {
+    "get": {
+      "Fetch_Scan": {
+        "command": "Fetch_Scan",
+        "verb": "get",
+        "description": "Fetch reading buffer contents from memory",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "readings"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Fetch_Scan",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Scan"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Scan",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "get",
+        "description": "Query next error code and message",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Scan_Size": {
+        "command": "Query_Scan_Size",
+        "verb": "get",
+        "description": "Query number of readings currently stored in volatile memory",
+        "scpi": ":DATA:POINts?",
+        "scpi_fast": ":DATA:POIN?",
+        "subsystem": "DATA",
+        "group": "Memory System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "count"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Scan_Size",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Scan_Size"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Scan_Size",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Read DAQ identity and installed module firmware",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Monitor_Data": {
+        "command": "Read_Monitor_Data",
+        "verb": "get",
+        "description": "Read latest measurement from monitored channel",
+        "scpi": ":ROUTe:MONItor:DATA?",
+        "scpi_fast": ":ROUT:MON:DATA?",
+        "subsystem": "ROUTe",
+        "group": "Channel Monitor",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "reading"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Monitor_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Monitor_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Monitor_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "get",
+        "description": "Trigger scan sweep and return all channel readings",
+        "scpi": ":READ?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "readings"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Scan_List": {
+        "command": "Read_Scan_List",
+        "verb": "get",
+        "description": "Query configured scan channel list",
+        "scpi": ":ROUTe:SCAN?",
+        "scpi_fast": ":ROUT:SCAN?",
+        "subsystem": "ROUTe",
+        "group": "Route Configuration",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "scan_list"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Scan_List",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Scan_List"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Scan_List",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "set": {
+      "Set_Channel_Delay": {
+        "command": "Set_Channel_Delay",
+        "verb": "set",
+        "description": "Set settling delay time before measurement on specified channels",
+        "scpi": ":ROUTe:CHANnel:DELay <seconds>, (@<channels>)",
+        "scpi_fast": ":ROUT:CHAN:DEL <seconds>, (@<channels>)",
+        "subsystem": "ROUTe",
+        "group": "Scan Timing",
+        "args": [
+          "seconds",
+          "channels"
+        ],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Channel_Delay",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Channel_Delay",
+            "value": "<value>",
+            "input_name": "seconds"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Integration_NPLC": {
+        "command": "Set_Integration_NPLC",
+        "verb": "set",
+        "description": "Set integration time in power line cycles for DC measurements",
+        "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>, (@<channels>)",
+        "scpi_fast": ":SENS:VOLT:DC:NPLC <nplc>, (@<channels>)",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
+        "args": [
+          "nplc",
+          "channels"
+        ],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Integration_NPLC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Integration_NPLC",
+            "value": "<value>",
+            "input_name": "nplc"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Monitor_Channel": {
+        "command": "Set_Monitor_Channel",
+        "verb": "set",
+        "description": "Designate single channel for real-time monitoring",
+        "scpi": ":ROUTe:MONItor (@<channel>)",
+        "scpi_fast": ":ROUT:MON (@<channel>)",
+        "subsystem": "ROUTe",
+        "group": "Channel Monitor",
+        "args": [
+          "channel"
+        ],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Monitor_Channel",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Monitor_Channel",
+            "value": "<value>",
+            "input_name": "channel"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Monitor_State": {
+        "command": "Set_Monitor_State",
+        "verb": "set",
+        "description": "Enable or disable background channel monitoring",
+        "scpi": ":ROUTe:MONItor:STATe <state>",
+        "scpi_fast": ":ROUT:MON:STAT <state>",
+        "subsystem": "ROUTe",
+        "group": "Channel Monitor",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Monitor_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Monitor_State",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Scan_Interval": {
+        "command": "Set_Scan_Interval",
+        "verb": "set",
+        "description": "Set timer interval between scan sweeps",
+        "scpi": ":ROUTe:SCAN:TIMer <seconds>",
+        "scpi_fast": ":ROUT:SCAN:TIM <seconds>",
+        "subsystem": "ROUTe",
+        "group": "Scan Timing",
+        "args": [
+          "seconds"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "s",
+          "min": 0.0,
+          "max": 359999.0
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Scan_Interval",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Scan_Interval",
+            "value": "<value>",
+            "input_name": "seconds"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Scan_List": {
+        "command": "Set_Scan_List",
+        "verb": "set",
+        "description": "Define channels included in automatic scan sweep",
+        "scpi": ":ROUTe:SCAN (@<channels>)",
+        "scpi_fast": ":ROUT:SCAN (@<channels>)",
+        "subsystem": "ROUTe",
+        "group": "Route Configuration",
+        "args": [
+          "channels"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Scan_List",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Scan_List",
+            "value": "<value>",
+            "input_name": "channels"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Trigger_Count": {
+        "command": "Set_Trigger_Count",
+        "verb": "set",
+        "description": "Set number of sweeps to perform before trigger system idles",
+        "scpi": ":TRIGger:COUNt <count>",
+        "scpi_fast": ":TRIG:COUN <count>",
+        "subsystem": "TRIGger",
+        "group": "Trigger Setup",
+        "args": [
+          "count"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "min": 1,
+          "max": 50000
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Trigger_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Trigger_Count",
+            "value": "<value>",
+            "input_name": "count"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Trigger_Source": {
+        "command": "Set_Trigger_Source",
+        "verb": "set",
+        "description": "Set trigger source for scan acquisition",
+        "scpi": ":TRIGger:SOURce <source>",
+        "scpi_fast": ":TRIG:SOUR <source>",
+        "subsystem": "TRIGger",
+        "group": "Trigger Setup",
+        "args": [
+          "source"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "IMMediate",
+            "TIMer",
+            "EXTernal",
+            "BUS",
+            "ALARm1",
+            "ALARm2"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Trigger_Source",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Trigger_Source",
+            "value": "<value>",
+            "input_name": "source"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "nab": {
+      "Fetch_Scan": {
+        "command": "Fetch_Scan",
+        "verb": "nab",
+        "description": "Fetch reading buffer contents from memory",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "readings"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Fetch_Scan",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Scan"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Scan",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "nab",
+        "description": "Query next error code and message",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Scan_Size": {
+        "command": "Query_Scan_Size",
+        "verb": "nab",
+        "description": "Query number of readings currently stored in volatile memory",
+        "scpi": ":DATA:POINts?",
+        "scpi_fast": ":DATA:POIN?",
+        "subsystem": "DATA",
+        "group": "Memory System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "count"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Scan_Size",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Scan_Size"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Scan_Size",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Read DAQ identity and installed module firmware",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Monitor_Data": {
+        "command": "Read_Monitor_Data",
+        "verb": "nab",
+        "description": "Read latest measurement from monitored channel",
+        "scpi": ":ROUTe:MONItor:DATA?",
+        "scpi_fast": ":ROUT:MON:DATA?",
+        "subsystem": "ROUTe",
+        "group": "Channel Monitor",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "reading"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Monitor_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Monitor_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Monitor_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "nab",
+        "description": "Trigger scan sweep and return all channel readings",
+        "scpi": ":READ?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "readings"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Scan_List": {
+        "command": "Read_Scan_List",
+        "verb": "nab",
+        "description": "Query configured scan channel list",
+        "scpi": ":ROUTe:SCAN?",
+        "scpi_fast": ":ROUT:SCAN?",
+        "subsystem": "ROUTe",
+        "group": "Route Configuration",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "scan_list"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Scan_List",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Scan_List"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Scan_List",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "rig": {
+      "Configure_Temperature_Scan": {
+        "command": "Configure_Temperature_Scan",
+        "verb": "rig",
+        "description": "Configure thermocouple/RTD temperature measurement on channel list",
+        "scpi": ":CONFigure:TEMPerature <type>, <transducer>, (@<channels>)",
+        "scpi_fast": ":CONF:TEMP <type>, <transducer>, (@<channels>)",
+        "subsystem": "CONFigure",
+        "group": "Measurement Configuration",
+        "args": [
+          "type",
+          "transducer",
+          "channels"
+        ],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Configure_Temperature_Scan",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_Temperature_Scan",
+            "type": "<type>",
+            "transducer": "<transducer>",
+            "channels": "<channels>"
+          }
+        },
+        "unverified": false
+      },
+      "Configure_Voltage_Scan": {
+        "command": "Configure_Voltage_Scan",
+        "verb": "rig",
+        "description": "Configure DC voltage measurements with range and resolution across channel list",
+        "scpi": ":CONFigure:VOLTage:DC <range>, <resolution>, (@<channels>)",
+        "scpi_fast": ":CONF:VOLT:DC <range>, <resolution>, (@<channels>)",
+        "subsystem": "CONFigure",
+        "group": "Measurement Configuration",
+        "args": [
+          "range",
+          "resolution",
+          "channels"
+        ],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Configure_Voltage_Scan",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_Voltage_Scan",
+            "range": "<range>",
+            "resolution": "<resolution>",
+            "channels": "<channels>"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "do": {
+      "Abort": {
+        "command": "Abort",
+        "verb": "do",
+        "description": "Abort running scan sweep",
+        "scpi": ":ABORt",
+        "scpi_fast": ":ABOR",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Abort",
+          "direction": "in",
+          "payload_format": {
+            "command": "Abort"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_Memory": {
+        "command": "Clear_Memory",
+        "verb": "do",
+        "description": "Clear internal reading storage buffer",
+        "scpi": ":DATA:CLEar",
+        "scpi_fast": ":DATA:CLE",
+        "subsystem": "DATA",
+        "group": "Memory System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Clear_Memory",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Memory"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear all status registers and error queue",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Open_All": {
+        "command": "Open_All",
+        "verb": "do",
+        "description": "Open all switch and multiplexer channels across all slots",
+        "scpi": ":ROUTe:OPEN:ALL",
+        "scpi_fast": ":ROUT:OPEN:ALL",
+        "subsystem": "ROUTe",
+        "group": "Route Configuration",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Open_All",
+          "direction": "in",
+          "payload_format": {
+            "command": "Open_All"
+          }
+        },
+        "unverified": false
+      },
+      "Reset": {
+        "command": "Reset",
+        "verb": "do",
+        "description": "Reset DAQ mainframe and installed modules",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset"
+          }
+        },
+        "unverified": false
+      },
+      "Start_Scan": {
+        "command": "Start_Scan",
+        "verb": "do",
+        "description": "Initiate scan sequence",
+        "scpi": ":INITiate",
+        "scpi_fast": ":INIT",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Start_Scan",
+          "direction": "in",
+          "payload_format": {
+            "command": "Start_Scan"
+          }
+        },
+        "unverified": false
+      }
+    }
+  }
+}

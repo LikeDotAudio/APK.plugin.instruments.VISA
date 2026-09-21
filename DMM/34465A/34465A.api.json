@@ -1,0 +1,6391 @@
+{
+  "api_version": "1.0.0",
+  "model": "34465A",
+  "family": "DMM",
+  "manufacturer": "HP / Agilent / Keysight",
+  "notes": "6.5 Digit Performance Truevolt",
+  "inherited_from": "34401A",
+  "service": {
+    "host": "0.0.0.0",
+    "port": 15408,
+    "family_lane": {
+      "family_index": 4,
+      "base": 15400,
+      "offset": 8
+    },
+    "path": "/api/instrument/DMM/34465A",
+    "routes": {
+      "spec": "/api/instrument/DMM/34465A/34465A.api.json",
+      "health": "/api/instrument/DMM/34465A/health",
+      "get": "/api/instrument/DMM/34465A/get/<command>",
+      "set": "/api/instrument/DMM/34465A/set/<command>",
+      "nab": "/api/instrument/DMM/34465A/nab/<command>",
+      "rig": "/api/instrument/DMM/34465A/rig/<command>",
+      "do": "/api/instrument/DMM/34465A/do/<command>"
+    },
+    "socket": {
+      "ws": "/ws/instrument/DMM/34465A",
+      "readings": "/ws/instrument/DMM/34465A/readings",
+      "unix": "/run/apk/instruments/DMM.34465A.sock"
+    }
+  },
+  "transport": {
+    "_note": "Protocol constants, not a per-model interface inventory. Which of these a box actually answers on is measured by the discovery sweep and recorded in the family probe file.",
+    "default": "raw_socket",
+    "visa": {
+      "lan": "TCPIP0::<host>::inst0::INSTR",
+      "raw": "TCPIP0::<host>::5025::SOCKET",
+      "hislip": "TCPIP0::<host>::hislip0::INSTR",
+      "gpib": "GPIB0::<address>::INSTR",
+      "usb": "USB0::<vid>::<pid>::<serial>::INSTR",
+      "serial": "ASRL<n>::INSTR"
+    },
+    "sockets": {
+      "raw_socket": {
+        "port": 5025,
+        "kind": "tcp",
+        "write_terminator": "\n",
+        "read_terminator": "\n",
+        "description": "Bare SCPI over TCP. No session layer, no discovery."
+      },
+      "hislip": {
+        "port": 4880,
+        "kind": "tcp",
+        "description": "IVI HiSLIP. Carries SRQ and device clear, unlike the raw socket."
+      },
+      "vxi11": {
+        "port": 111,
+        "kind": "tcp",
+        "description": "SUNRPC portmapper only; the core channel port is negotiated per session."
+      },
+      "telnet": {
+        "port": 5024,
+        "kind": "tcp",
+        "description": "Human-facing SCPI prompt. Echoes and prints a banner \u2014 do not parse."
+      }
+    }
+  },
+  "verb_mapping": {
+    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "set": "Single parameter mutation and write commands",
+    "nab": "Observation and telemetry acquisition queries",
+    "rig": "Multi-argument system configuration setup commands",
+    "do": "Zero-argument execution actions and trigger commands"
+  },
+  "summary": {
+    "total_commands": 163,
+    "get_count": 75,
+    "set_count": 47,
+    "nab_count": 75,
+    "rig_count": 5,
+    "do_count": 36
+  },
+  "endpoints": {
+    "get": {
+      "Fetch_Existing": {
+        "command": "Fetch_Existing",
+        "verb": "get",
+        "description": "Fetch Existing",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "MEASure",
+        "group": "Fetch data after INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Fetch_Existing",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Existing"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Existing",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Get_Average_Average": {
+        "command": "Get_Average_Average",
+        "verb": "get",
+        "description": "Math Operation Commands",
+        "scpi": ":AVERage:AVERage?",
+        "scpi_fast": ":AVER:AVER?",
+        "subsystem": "AVER",
+        "group": "AVER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Average_Average",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Average_Average"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Average_Average",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Average_Count": {
+        "command": "Get_Average_Count",
+        "verb": "get",
+        "description": "Math Operation Commands",
+        "scpi": ":AVERage:COUNt?",
+        "scpi_fast": ":AVER:COUN?",
+        "subsystem": "AVER",
+        "group": "AVER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Average_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Average_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Average_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Beeper_State": {
+        "command": "Get_Beeper_State",
+        "verb": "get",
+        "description": "System-Related Commands",
+        "scpi": ":BEEPer:STATe?",
+        "scpi_fast": ":BEEP:STAT?",
+        "subsystem": "BEEP",
+        "group": "BEEP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Beeper_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Beeper_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Beeper_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Average_Count": {
+        "command": "Get_Calculate_Average_Count",
+        "verb": "get",
+        "description": "Math Operations",
+        "scpi": "CALCulate:AVERage:COUNt?",
+        "scpi_fast": "CALC:AVER:COUN?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Average_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Average_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Average_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Db_Reference": {
+        "command": "Get_Calculate_Db_Reference",
+        "verb": "get",
+        "description": "Get calculate db reference",
+        "scpi": "CALCulate:DB:REFerence?",
+        "scpi_fast": "CALC:DB:REF?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Db_Reference",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Db_Reference"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Db_Reference",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Function": {
+        "command": "Get_Calculate_Function",
+        "verb": "get",
+        "description": "Get calculate function",
+        "scpi": "CALCulate:FUNCtion?",
+        "scpi_fast": "CALC:FUNC?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Function"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Function",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Limit_Lower": {
+        "command": "Get_Calculate_Limit_Lower",
+        "verb": "get",
+        "description": "Math Operations",
+        "scpi": "CALCulate:LIMit:LOWer?",
+        "scpi_fast": "CALC:LIM:LOW?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Limit_Lower",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Limit_Lower"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Limit_Lower",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Limit_Upper": {
+        "command": "Get_Calculate_Limit_Upper",
+        "verb": "get",
+        "description": "Math Operations",
+        "scpi": "CALCulate:LIMit:UPPer?",
+        "scpi_fast": "CALC:LIM:UPP?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Limit_Upper",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Limit_Upper"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Limit_Upper",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Null_Offset": {
+        "command": "Get_Calculate_Null_Offset",
+        "verb": "get",
+        "description": "Get calculate null offset",
+        "scpi": "CALCulate:NULL:OFFSet?",
+        "scpi_fast": "CALC:NULL:OFFS?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Null_Offset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Null_Offset"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Null_Offset",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_State": {
+        "command": "Get_Calculate_State",
+        "verb": "get",
+        "description": "Get calculate state",
+        "scpi": "CALCulate:STATe?",
+        "scpi_fast": "CALC:STAT?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_Count": {
+        "command": "Get_Calibration_Count",
+        "verb": "get",
+        "description": "Calibration Count",
+        "scpi": "CALibration:COUNt?",
+        "scpi_fast": "CAL:COUN?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_Secure_State": {
+        "command": "Get_Calibration_Secure_State",
+        "verb": "get",
+        "description": "Calibration Overview",
+        "scpi": "CALibration:SECure:STATe?",
+        "scpi_fast": "CAL:SEC:STAT?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_Secure_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_Secure_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_Secure_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_String": {
+        "command": "Get_Calibration_String",
+        "verb": "get",
+        "description": "Calibration Message",
+        "scpi": "CALibration:STRing?",
+        "scpi_fast": "CAL:STR?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_String",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_String"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_String",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_Value": {
+        "command": "Get_Calibration_Value",
+        "verb": "get",
+        "description": "Calibration Commands",
+        "scpi": "CALibration:VALue?",
+        "scpi_fast": "CAL:VAL?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_Value",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_Value"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_Value",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Data_Feed": {
+        "command": "Get_Data_Feed",
+        "verb": "get",
+        "description": "Math Operations",
+        "scpi": "DATA:FEED?",
+        "subsystem": "DATA",
+        "group": "DATA",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Data_Feed",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Data_Feed"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Data_Feed",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Data_Points": {
+        "command": "Get_Data_Points",
+        "verb": "get",
+        "description": "Get data points",
+        "scpi": "DATA:POINts?",
+        "scpi_fast": "DATA:POIN?",
+        "subsystem": "DATA",
+        "group": "DATA",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Data_Points",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Data_Points"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Data_Points",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Db_Reference": {
+        "command": "Get_Db_Reference",
+        "verb": "get",
+        "description": "Math Operation Commands",
+        "scpi": ":DB:REFerence?",
+        "scpi_fast": ":DB:REF?",
+        "subsystem": "DB",
+        "group": "DB",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Db_Reference",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Db_Reference"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Db_Reference",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Detector_Bandwidth": {
+        "command": "Get_Detector_Bandwidth",
+        "verb": "get",
+        "description": "Get detector bandwidth",
+        "scpi": "DETector:BANDwidth?",
+        "scpi_fast": "DET:BAND?",
+        "subsystem": "DET",
+        "group": "DET",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Detector_Bandwidth",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Detector_Bandwidth"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Detector_Bandwidth",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Display_Text": {
+        "command": "Get_Display_Text",
+        "verb": "get",
+        "description": "Get display text",
+        "scpi": "DISPlay:TEXT?",
+        "scpi_fast": "DISP:TEXT?",
+        "subsystem": "DISP",
+        "group": "DISP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Display_Text",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Display_Text"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Text",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Ese": {
+        "command": "Get_Ese",
+        "verb": "get",
+        "description": "Get ese",
+        "scpi": "*ESE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Ese",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Ese"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Esr": {
+        "command": "Get_Esr",
+        "verb": "get",
+        "description": "Get esr",
+        "scpi": "*ESR?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Esr",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Esr"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Frequency_Aperture": {
+        "command": "Get_Frequency_Aperture",
+        "verb": "get",
+        "description": "Measurement Configuration",
+        "scpi": "FREQuency:APERture?",
+        "scpi_fast": "FREQ:APER?",
+        "subsystem": "FREQ",
+        "group": "FREQ",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Frequency_Aperture",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Frequency_Aperture"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Frequency_Aperture",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Frequency_Voltage_Range": {
+        "command": "Get_Frequency_Voltage_Range",
+        "verb": "get",
+        "description": "Get frequency voltage range",
+        "scpi": "FREQuency:VOLTage:RANGe?",
+        "scpi_fast": "FREQ:VOLT:RANG?",
+        "subsystem": "FREQ",
+        "group": "FREQ",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Frequency_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Frequency_Voltage_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Frequency_Voltage_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Fresistance_Nplcycles": {
+        "command": "Get_Fresistance_Nplcycles",
+        "verb": "get",
+        "description": "Get fresistance nplcycles",
+        "scpi": "FRESistance:NPLCycles?",
+        "scpi_fast": "FRES:NPLC?",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Fresistance_Nplcycles",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Fresistance_Nplcycles"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Fresistance_Nplcycles",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Fresistance_Range": {
+        "command": "Get_Fresistance_Range",
+        "verb": "get",
+        "description": "Get fresistance range",
+        "scpi": "FRESistance:RANGe?",
+        "scpi_fast": "FRES:RANG?",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Fresistance_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Fresistance_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Fresistance_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Fresistance_Resolution": {
+        "command": "Get_Fresistance_Resolution",
+        "verb": "get",
+        "description": "Measurement Configuration Commands",
+        "scpi": "FRESistance:RESolution?",
+        "scpi_fast": "FRES:RES?",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Fresistance_Resolution",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Fresistance_Resolution"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Fresistance_Resolution",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Func": {
+        "command": "Get_Func",
+        "verb": "get",
+        "description": "Which measurement function is selected",
+        "scpi": "FUNCtion?",
+        "scpi_fast": "FUNC?",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Func",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Func"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Func",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Get_Limit_Lower": {
+        "command": "Get_Limit_Lower",
+        "verb": "get",
+        "description": "Get limit lower",
+        "scpi": ":LIMit:LOWer?",
+        "scpi_fast": ":LIM:LOW?",
+        "subsystem": "LIM",
+        "group": "LIM",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Limit_Lower",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Limit_Lower"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Limit_Lower",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Limit_Upper": {
+        "command": "Get_Limit_Upper",
+        "verb": "get",
+        "description": "Get limit upper",
+        "scpi": ":LIMit:UPPer?",
+        "scpi_fast": ":LIM:UPP?",
+        "subsystem": "LIM",
+        "group": "LIM",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Limit_Upper",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Limit_Upper"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Limit_Upper",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Math_Stats": {
+        "command": "Get_Math_Stats",
+        "verb": "get",
+        "description": "Read min, max and average in one transaction",
+        "scpi": ":CALCulate:AVERage:MINimum?;:CALCulate:AVERage:MAXimum?;:CALCulate:AVERage:AVERage?",
+        "scpi_fast": ":CALC:AVER:MIN?;:CALC:AVER:MAX?;:CALC:AVER:AVER?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "minimum"
+            },
+            {
+              "name": "maximum"
+            },
+            {
+              "name": "average",
+              "type": "NR1"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Math_Stats",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Math_Stats"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Math_Stats",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Continuity": {
+        "command": "Get_Measure_Continuity",
+        "verb": "get",
+        "description": "The MEASure? and CONFigure Commands",
+        "scpi": "MEASure:CONTinuity?",
+        "scpi_fast": "MEAS:CONT?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Continuity",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Continuity"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Continuity",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Diode": {
+        "command": "Get_Measure_Diode",
+        "verb": "get",
+        "description": "Get measure diode",
+        "scpi": "MEASure:DIODe?",
+        "scpi_fast": "MEAS:DIOD?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Diode",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Diode"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Diode",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Fresistance": {
+        "command": "Get_Measure_Fresistance",
+        "verb": "get",
+        "description": "Get measure fresistance",
+        "scpi": "MEASure:FRESistance?",
+        "scpi_fast": "MEAS:FRES?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Fresistance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Fresistance"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Fresistance",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Period": {
+        "command": "Get_Measure_Period",
+        "verb": "get",
+        "description": "Get measure period",
+        "scpi": "MEASure:PERiod?",
+        "scpi_fast": "MEAS:PER?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Period",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Period"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Period",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Null_Offset": {
+        "command": "Get_Null_Offset",
+        "verb": "get",
+        "description": "Math Operation Commands",
+        "scpi": ":NULL:OFFSet?",
+        "scpi_fast": ":NULL:OFFS?",
+        "subsystem": "NULL",
+        "group": "NULL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Null_Offset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Null_Offset"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Null_Offset",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Opc": {
+        "command": "Get_Opc",
+        "verb": "get",
+        "description": "Get opc",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Opc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Opc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Period_Aperture": {
+        "command": "Get_Period_Aperture",
+        "verb": "get",
+        "description": "Measurement Configuration",
+        "scpi": "PERiod:APERture?",
+        "scpi_fast": "PER:APER?",
+        "subsystem": "PER",
+        "group": "PER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Period_Aperture",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Period_Aperture"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Period_Aperture",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Period_Voltage_Range": {
+        "command": "Get_Period_Voltage_Range",
+        "verb": "get",
+        "description": "Get period voltage range",
+        "scpi": "PERiod:VOLTage:RANGe?",
+        "scpi_fast": "PER:VOLT:RANG?",
+        "subsystem": "PER",
+        "group": "PER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Period_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Period_Voltage_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Period_Voltage_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Psc": {
+        "command": "Get_Psc",
+        "verb": "get",
+        "description": "Get psc",
+        "scpi": "*PSC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Psc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Psc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Psc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Questionable_Enable": {
+        "command": "Get_Questionable_Enable",
+        "verb": "get",
+        "description": "Status Reporting Commands",
+        "scpi": ":QUEStionable:ENABle?",
+        "scpi_fast": ":QUES:ENAB?",
+        "subsystem": "QUES",
+        "group": "QUES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Questionable_Enable",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Questionable_Enable"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Questionable_Enable",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Questionable_Event": {
+        "command": "Get_Questionable_Event",
+        "verb": "get",
+        "description": "Status Reporting Commands",
+        "scpi": ":QUEStionable:EVENt?",
+        "scpi_fast": ":QUES:EVEN?",
+        "subsystem": "QUES",
+        "group": "QUES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Questionable_Event",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Questionable_Event"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Questionable_Event",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Read_All": {
+        "command": "Get_Read_All",
+        "verb": "get",
+        "description": "Authored from a panel literal in DMM_N.json; never executed before.",
+        "scpi": "READ:ALL?",
+        "subsystem": "General",
+        "group": "General",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Read_All",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Read_All"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Read_All",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Resolution_Nplcycles": {
+        "command": "Get_Resolution_Nplcycles",
+        "verb": "get",
+        "description": "Get resolution nplcycles",
+        "scpi": "RESistance:NPLCycles?",
+        "scpi_fast": "RES:NPLC?",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Resolution_Nplcycles",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Resolution_Nplcycles"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Resolution_Nplcycles",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Resolution_Range": {
+        "command": "Get_Resolution_Range",
+        "verb": "get",
+        "description": "Get resolution range",
+        "scpi": "RESistance:RANGe?",
+        "scpi_fast": "RES:RANG?",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Resolution_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Resolution_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Resolution_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Resolution_Resolution": {
+        "command": "Get_Resolution_Resolution",
+        "verb": "get",
+        "description": "Measurement Configuration Commands",
+        "scpi": "RESistance:RESolution?",
+        "scpi_fast": "RES:RES?",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Resolution_Resolution",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Resolution_Resolution"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Resolution_Resolution",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Route_Terminals": {
+        "command": "Get_Route_Terminals",
+        "verb": "get",
+        "description": "Front / Rear Input Terminal Switching",
+        "scpi": "ROUTe:TERMinals?",
+        "scpi_fast": "ROUT:TERM?",
+        "subsystem": "ROUT",
+        "group": "ROUT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Route_Terminals",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Route_Terminals"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Route_Terminals",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Sample_Count": {
+        "command": "Get_Sample_Count",
+        "verb": "get",
+        "description": "Get sample count",
+        "scpi": "SAMP:COUN?",
+        "subsystem": "SAMP",
+        "group": "SAMP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Sample_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Sample_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sample_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Secure_State": {
+        "command": "Get_Secure_State",
+        "verb": "get",
+        "description": "Calibration Commands",
+        "scpi": ":SECure:STATe?",
+        "scpi_fast": ":SEC:STAT?",
+        "subsystem": "SEC",
+        "group": "SEC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Secure_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Secure_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Secure_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Sre": {
+        "command": "Get_Sre",
+        "verb": "get",
+        "description": "Get sre",
+        "scpi": "*SRE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Sre",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Sre"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_State_Questionable_Enable": {
+        "command": "Get_State_Questionable_Enable",
+        "verb": "get",
+        "description": "The SCPI Status Model",
+        "scpi": "STATus:QUEStionable:ENABle?",
+        "scpi_fast": "STAT:QUES:ENAB?",
+        "subsystem": "STAT",
+        "group": "STAT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_State_Questionable_Enable",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_State_Questionable_Enable"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Enable",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_State_Questionable_Event": {
+        "command": "Get_State_Questionable_Event",
+        "verb": "get",
+        "description": "Get state questionable event",
+        "scpi": "STATus:QUEStionable:EVENt?",
+        "scpi_fast": "STAT:QUES:EVEN?",
+        "subsystem": "STAT",
+        "group": "STAT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_State_Questionable_Event",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_State_Questionable_Event"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Event",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Stb": {
+        "command": "Get_Stb",
+        "verb": "get",
+        "description": "Get stb",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Stb",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Stb"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_System_Beeper_State": {
+        "command": "Get_System_Beeper_State",
+        "verb": "get",
+        "description": "System-Related Commands",
+        "scpi": "SYSTem:BEEPer:STATe?",
+        "scpi_fast": "SYST:BEEP:STAT?",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_System_Beeper_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_System_Beeper_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Beeper_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_System_Version": {
+        "command": "Get_System_Version",
+        "verb": "get",
+        "description": "SCPI Language Version Query",
+        "scpi": "SYSTem:VERSion?",
+        "scpi_fast": "SYST:VERS?",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_System_Version",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_System_Version"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Version",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Trigger_Count": {
+        "command": "Get_Trigger_Count",
+        "verb": "get",
+        "description": "Get trigger count",
+        "scpi": "TRIGger:COUNt?",
+        "scpi_fast": "TRIG:COUN?",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Trigger_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Trigger_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Trigger_Delay": {
+        "command": "Get_Trigger_Delay",
+        "verb": "get",
+        "description": "Get trigger delay",
+        "scpi": "TRIGger:DELay?",
+        "scpi_fast": "TRIG:DEL?",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Trigger_Delay",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Trigger_Delay"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Delay",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Trigger_Source": {
+        "command": "Get_Trigger_Source",
+        "verb": "get",
+        "description": "Trigger Source Choices",
+        "scpi": "TRIGger:SOURce?",
+        "scpi_fast": "TRIG:SOUR?",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Trigger_Source",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Trigger_Source"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Source",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Tst": {
+        "command": "Get_Tst",
+        "verb": "get",
+        "description": "Get tst",
+        "scpi": "*TST?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Tst",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Tst"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Voltage_Range": {
+        "command": "Get_Voltage_Range",
+        "verb": "get",
+        "description": "An Introduction to the SCPI Language",
+        "scpi": "VOLTage:RANGe?",
+        "scpi_fast": "VOLT:RANG?",
+        "subsystem": "VOLT",
+        "group": "VOLT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Voltage_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Voltage_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "MEASure_Resistance": {
+        "command": "MEASure_Resistance",
+        "verb": "get",
+        "description": "MEASure Resistance",
+        "scpi": "MEASure:RESistance?",
+        "scpi_fast": "MEAS:RES?",
+        "subsystem": "MEASure",
+        "group": "MEASure Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/MEASure_Resistance",
+          "direction": "in",
+          "payload_format": {
+            "command": "MEASure_Resistance"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/MEASure_Resistance",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "MEASure_Voltage_AC": {
+        "command": "MEASure_Voltage_AC",
+        "verb": "get",
+        "description": "MEASure Voltage AC",
+        "scpi": "MEASure:VOLTage:AC?",
+        "scpi_fast": "MEAS:VOLT:AC?",
+        "subsystem": "MEASure",
+        "group": "MEASure Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/MEASure_Voltage_AC",
+          "direction": "in",
+          "payload_format": {
+            "command": "MEASure_Voltage_AC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/MEASure_Voltage_AC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "MEASure_Voltage_DC": {
+        "command": "MEASure_Voltage_DC",
+        "verb": "get",
+        "description": "MEASure Voltage DC",
+        "scpi": "MEASure:VOLTage:DC?",
+        "scpi_fast": "MEAS:VOLT:DC?",
+        "subsystem": "MEASure",
+        "group": "MEASure Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/MEASure_Voltage_DC",
+          "direction": "in",
+          "payload_format": {
+            "command": "MEASure_Voltage_DC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/MEASure_Voltage_DC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_AC_Voltage": {
+        "command": "Measure_AC_Voltage",
+        "verb": "get",
+        "description": "Measure AC Voltage",
+        "scpi": ":MEASure:VOLTage:AC? <range>,<resolution>",
+        "scpi_fast": ":MEAS:VOLT:AC? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_AC_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_AC_Voltage"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_AC_Voltage",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_DC_Current": {
+        "command": "Measure_DC_Current",
+        "verb": "get",
+        "description": "Measure DC Current",
+        "scpi": ":MEASure:CURRent:DC? <range>,<resolution>",
+        "scpi_fast": ":MEAS:CURR:DC? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_DC_Current",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_DC_Current"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_DC_Current",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_DC_Voltage": {
+        "command": "Measure_DC_Voltage",
+        "verb": "get",
+        "description": "Measure DC Voltage",
+        "scpi": ":MEASure:VOLTage:DC? <range>,<resolution>",
+        "scpi_fast": ":MEAS:VOLT:DC? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_DC_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_DC_Voltage"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_DC_Voltage",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Frequency": {
+        "command": "Measure_Frequency",
+        "verb": "get",
+        "description": "Measure Frequency",
+        "scpi": ":MEASure:FREQuency? <range>,<resolution>",
+        "scpi_fast": ":MEAS:FREQ? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Frequency"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Frequency",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Resistance_2Wire": {
+        "command": "Measure_Resistance_2Wire",
+        "verb": "get",
+        "description": "Measure Resistance (2W)",
+        "scpi": ":MEASure:RESistance? <range>,<resolution>",
+        "scpi_fast": ":MEAS:RES? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_Resistance_2Wire",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Resistance_2Wire"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Resistance_2Wire",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Average": {
+        "command": "Query_Average",
+        "verb": "get",
+        "description": "Query Average",
+        "scpi": ":CALCulate:AVERage:AVERage?",
+        "scpi_fast": ":CALC:AVER:AVER?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Query_Average",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Average"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Average",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Max": {
+        "command": "Query_Max",
+        "verb": "get",
+        "description": "Query Max",
+        "scpi": ":CALCulate:AVERage:MAXimum?",
+        "scpi_fast": ":CALC:AVER:MAX?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Query_Max",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Max"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Max",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Min": {
+        "command": "Query_Min",
+        "verb": "get",
+        "description": "Query Min",
+        "scpi": ":CALCulate:AVERage:MINimum?",
+        "scpi_fast": ":CALC:AVER:MIN?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Query_Min",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Min"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Min",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Error": {
+        "command": "Read_Error",
+        "verb": "get",
+        "description": "Read Error",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR2"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Read_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Read IDN",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "Common Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "get",
+        "description": "Read Next",
+        "scpi": ":READ?",
+        "subsystem": "MEASure",
+        "group": "Fetch data after INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "meter_reading": {
+        "command": "meter_reading",
+        "verb": "get",
+        "description": "What the meter is measuring, and the measurement, together.",
+        "scpi": "FUNCtion?;:READ?",
+        "scpi_fast": "FUNC?;:READ?",
+        "subsystem": "MEASure",
+        "group": "Fetch data after INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 2,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "function",
+              "type": "CRD"
+            },
+            {
+              "name": "value",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/meter_reading",
+          "direction": "in",
+          "payload_format": {
+            "command": "meter_reading"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/meter_reading",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "set": {
+      "Display_Text": {
+        "command": "Display_Text",
+        "verb": "set",
+        "description": "Display Text",
+        "scpi": ":DISPlay:TEXT <string>",
+        "scpi_fast": ":DISP:TEXT <string>",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [
+          "string"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Display_Text",
+          "direction": "in",
+          "payload_format": {
+            "command": "Display_Text",
+            "value": "<value>",
+            "input_name": "string"
+          }
+        },
+        "unverified": false
+      },
+      "Enable_Math": {
+        "command": "Enable_Math",
+        "verb": "set",
+        "description": "Enable Math",
+        "scpi": ":CALCulate:STATe <state>",
+        "scpi_fast": ":CALC:STAT <state>",
+        "subsystem": "CALCulate",
+        "group": "Math and Limits Setup",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Enable_Math",
+          "direction": "in",
+          "payload_format": {
+            "command": "Enable_Math",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_AC_Bandwidth": {
+        "command": "Set_AC_Bandwidth",
+        "verb": "set",
+        "description": "Set AC Bandwidth",
+        "scpi": ":SENSe:VOLTage:AC:BANDwidth <filter>",
+        "scpi_fast": ":SENS:VOLT:AC:BAND <filter>",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
+        "args": [
+          "filter"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_AC_Bandwidth",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_AC_Bandwidth",
+            "value": "<value>",
+            "input_name": "filter"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Autorange": {
+        "command": "Set_Autorange",
+        "verb": "set",
+        "description": "Set Autorange",
+        "scpi": ":SENSe:VOLTage:DC:RANGe:AUTO <state>",
+        "scpi_fast": ":SENS:VOLT:DC:RANG:AUTO <state>",
+        "subsystem": "Panel",
+        "group": "SCOPED TO DC VOLTS on purpose: the 34401A has no function-agnostic autorange command, so :SENSe:VOLTage:DC:RANGe:AUTO is what a panel AUTO RANGE control can address. Selecting another function turns its own autorange on by default, which is why this is adequate for a bench panel and would not be for a test sequence.",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Autorange",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Autorange",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Beeper_State": {
+        "command": "Set_Beeper_State",
+        "verb": "set",
+        "description": "System-Related Commands",
+        "scpi": ":BEEPer:STATe <value>",
+        "scpi_fast": ":BEEP:STAT <value>",
+        "subsystem": "BEEP",
+        "group": "BEEP",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Beeper_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Beeper_State",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Calibration_Secure_State": {
+        "command": "Set_Calibration_Secure_State",
+        "verb": "set",
+        "description": "Calibration Overview",
+        "scpi": "CALibration:SECure:STATe <value>",
+        "scpi_fast": "CAL:SEC:STAT <value>",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Calibration_Secure_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Calibration_Secure_State",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Calibration_String": {
+        "command": "Set_Calibration_String",
+        "verb": "set",
+        "description": "Calibration Message",
+        "scpi": "CALibration:STRing <value>",
+        "scpi_fast": "CAL:STR <value>",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Calibration_String",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Calibration_String",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Calibration_Value": {
+        "command": "Set_Calibration_Value",
+        "verb": "set",
+        "description": "Calibration Commands",
+        "scpi": "CALibration:VALue <value>",
+        "scpi_fast": "CAL:VAL <value>",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Calibration_Value",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Calibration_Value",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_DCV_Range": {
+        "command": "Set_DCV_Range",
+        "verb": "set",
+        "description": "Set DCV Range",
+        "scpi": ":SENSe:VOLTage:DC:RANGe <range>",
+        "scpi_fast": ":SENS:VOLT:DC:RANG <range>",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
+        "args": [
+          "range"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_DCV_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_DCV_Range",
+            "value": "<value>",
+            "input_name": "range"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Data_Feed": {
+        "command": "Set_Data_Feed",
+        "verb": "set",
+        "description": "Math Operations",
+        "scpi": "DATA:FEED <value>",
+        "subsystem": "DATA",
+        "group": "DATA",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Data_Feed",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Data_Feed",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Db_Reference": {
+        "command": "Set_Db_Reference",
+        "verb": "set",
+        "description": "Math Operation Commands",
+        "scpi": ":DB:REFerence <value>",
+        "scpi_fast": ":DB:REF <value>",
+        "subsystem": "DB",
+        "group": "DB",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "enum"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Db_Reference",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Db_Reference",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Detector_Bandwidth": {
+        "command": "Set_Detector_Bandwidth",
+        "verb": "set",
+        "description": "Set detector bandwidth",
+        "scpi": "DETector:BANDwidth <value>",
+        "scpi_fast": "DET:BAND <value>",
+        "subsystem": "DET",
+        "group": "DET",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Detector_Bandwidth",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Detector_Bandwidth",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Ese": {
+        "command": "Set_Ese",
+        "verb": "set",
+        "description": "Set ese",
+        "scpi": "*ESE <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Ese",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Ese",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Frequency_Aperture": {
+        "command": "Set_Frequency_Aperture",
+        "verb": "set",
+        "description": "Measurement Configuration",
+        "scpi": "FREQuency:APERture <value>",
+        "scpi_fast": "FREQ:APER <value>",
+        "subsystem": "FREQ",
+        "group": "FREQ",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Frequency_Aperture",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Frequency_Aperture",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Frequency_Voltage_Range": {
+        "command": "Set_Frequency_Voltage_Range",
+        "verb": "set",
+        "description": "Set frequency voltage range",
+        "scpi": "FREQuency:VOLTage:RANGe <value>",
+        "scpi_fast": "FREQ:VOLT:RANG <value>",
+        "subsystem": "FREQ",
+        "group": "FREQ",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Frequency_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Frequency_Voltage_Range",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Fresistance_Nplcycles": {
+        "command": "Set_Fresistance_Nplcycles",
+        "verb": "set",
+        "description": "Set fresistance nplcycles",
+        "scpi": "FRESistance:NPLCycles <value>",
+        "scpi_fast": "FRES:NPLC <value>",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Fresistance_Nplcycles",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Fresistance_Nplcycles",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Fresistance_Range": {
+        "command": "Set_Fresistance_Range",
+        "verb": "set",
+        "description": "Set fresistance range",
+        "scpi": "FRESistance:RANGe <value>",
+        "scpi_fast": "FRES:RANG <value>",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Fresistance_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Fresistance_Range",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Fresistance_Resolution": {
+        "command": "Set_Fresistance_Resolution",
+        "verb": "set",
+        "description": "Measurement Configuration Commands",
+        "scpi": "FRESistance:RESolution <value>",
+        "scpi_fast": "FRES:RES <value>",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Fresistance_Resolution",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Fresistance_Resolution",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Func": {
+        "command": "Set_Func",
+        "verb": "set",
+        "description": "Select the measurement function",
+        "scpi": "FUNCtion \"<value>\"",
+        "scpi_fast": "FUNC \"<value>\"",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "VOLT:DC",
+            "VOLT:AC",
+            "RES",
+            "FRES",
+            "FREQ",
+            "PER",
+            "CONT",
+            "DIOD",
+            "CURR:DC",
+            "CURR:AC"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Func",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Func",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Input_Impedance": {
+        "command": "Set_Input_Impedance",
+        "verb": "set",
+        "description": "Set Input Impedance",
+        "scpi": ":INPut:IMPedance:AUTO <state>",
+        "scpi_fast": ":INP:IMP:AUTO <state>",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Input_Impedance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Input_Impedance",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Integration_NPLC": {
+        "command": "Set_Integration_NPLC",
+        "verb": "set",
+        "description": "Set Integration NPLC",
+        "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>",
+        "scpi_fast": ":SENS:VOLT:DC:NPLC <nplc>",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
+        "args": [
+          "nplc"
+        ],
+        "arg": {
+          "kind": "integer",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Integration_NPLC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Integration_NPLC",
+            "value": "<value>",
+            "input_name": "nplc"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Limit_Lower": {
+        "command": "Set_Limit_Lower",
+        "verb": "set",
+        "description": "Set limit lower",
+        "scpi": ":LIMit:LOWer <value>",
+        "scpi_fast": ":LIM:LOW <value>",
+        "subsystem": "LIM",
+        "group": "LIM",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Limit_Lower",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Limit_Lower",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Limit_Upper": {
+        "command": "Set_Limit_Upper",
+        "verb": "set",
+        "description": "Set limit upper",
+        "scpi": ":LIMit:UPPer <value>",
+        "scpi_fast": ":LIM:UPP <value>",
+        "subsystem": "LIM",
+        "group": "LIM",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Limit_Upper",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Limit_Upper",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Math_Function": {
+        "command": "Set_Math_Function",
+        "verb": "set",
+        "description": "Set Math Function",
+        "scpi": ":CALCulate:FUNCtion <function>",
+        "scpi_fast": ":CALC:FUNC <function>",
+        "subsystem": "CALCulate",
+        "group": "Math and Limits Setup",
+        "args": [
+          "function"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "NULL",
+            "DB",
+            "DBM",
+            "AVER",
+            "LIM"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Math_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Math_Function",
+            "value": "<value>",
+            "input_name": "function"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Null_Offset": {
+        "command": "Set_Null_Offset",
+        "verb": "set",
+        "description": "Set Null Offset",
+        "scpi": ":CALCulate:NULL:OFFSet <value>",
+        "scpi_fast": ":CALC:NULL:OFFS <value>",
+        "subsystem": "CALCulate",
+        "group": "Math and Limits Setup",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Null_Offset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Null_Offset",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Null_Offset_Alt": {
+        "command": "Set_Null_Offset_Alt",
+        "verb": "set",
+        "description": "Math Operation Commands",
+        "scpi": ":NULL:OFFSet <value>",
+        "scpi_fast": ":NULL:OFFS <value>",
+        "subsystem": "NULL",
+        "group": "NULL",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Null_Offset_Alt",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Null_Offset_Alt",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Period_Aperture": {
+        "command": "Set_Period_Aperture",
+        "verb": "set",
+        "description": "Measurement Configuration",
+        "scpi": "PERiod:APERture <value>",
+        "scpi_fast": "PER:APER <value>",
+        "subsystem": "PER",
+        "group": "PER",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "s",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Period_Aperture",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Period_Aperture",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Period_Voltage_Range": {
+        "command": "Set_Period_Voltage_Range",
+        "verb": "set",
+        "description": "Set period voltage range",
+        "scpi": "PERiod:VOLTage:RANGe <value>",
+        "scpi_fast": "PER:VOLT:RANG <value>",
+        "subsystem": "PER",
+        "group": "PER",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Period_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Period_Voltage_Range",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Psc": {
+        "command": "Set_Psc",
+        "verb": "set",
+        "description": "Set psc",
+        "scpi": "*PSC <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "0",
+            "1"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Psc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Psc",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Questionable_Enable": {
+        "command": "Set_Questionable_Enable",
+        "verb": "set",
+        "description": "Status Reporting Commands",
+        "scpi": ":QUEStionable:ENABle <value>",
+        "scpi_fast": ":QUES:ENAB <value>",
+        "subsystem": "QUES",
+        "group": "QUES",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Questionable_Enable",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Questionable_Enable",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Rang": {
+        "command": "Set_Rang",
+        "verb": "set",
+        "description": "Authored from a panel literal in DMM.json; never executed before.",
+        "scpi": "RANG <value>",
+        "subsystem": "General",
+        "group": "General",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Rang",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Rang",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Rang_Auto": {
+        "command": "Set_Rang_Auto",
+        "verb": "set",
+        "description": "Authored from a panel literal in DMM.json; never executed before.",
+        "scpi": "RANG:AUTO <value>",
+        "subsystem": "General",
+        "group": "General",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Rang_Auto",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Rang_Auto",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Resolution_Nplcycles": {
+        "command": "Set_Resolution_Nplcycles",
+        "verb": "set",
+        "description": "Set resolution nplcycles",
+        "scpi": "RESistance:NPLCycles <value>",
+        "scpi_fast": "RES:NPLC <value>",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Resolution_Nplcycles",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Resolution_Nplcycles",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Resolution_Range": {
+        "command": "Set_Resolution_Range",
+        "verb": "set",
+        "description": "Set resolution range",
+        "scpi": "RESistance:RANGe <value>",
+        "scpi_fast": "RES:RANG <value>",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Resolution_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Resolution_Range",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Resolution_Resolution": {
+        "command": "Set_Resolution_Resolution",
+        "verb": "set",
+        "description": "Measurement Configuration Commands",
+        "scpi": "RESistance:RESolution <value>",
+        "scpi_fast": "RES:RES <value>",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Resolution_Resolution",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Resolution_Resolution",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Sample_Count": {
+        "command": "Set_Sample_Count",
+        "verb": "set",
+        "description": "Set Sample Count",
+        "scpi": ":SAMPle:COUNt <count>",
+        "scpi_fast": ":SAMP:COUN <count>",
+        "subsystem": "TRIGger",
+        "group": "Setup Trigger Model",
+        "args": [
+          "count"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Sample_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sample_Count",
+            "value": "<value>",
+            "input_name": "count"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Secure_State": {
+        "command": "Set_Secure_State",
+        "verb": "set",
+        "description": "Calibration Commands",
+        "scpi": ":SECure:STATe <value>",
+        "scpi_fast": ":SEC:STAT <value>",
+        "subsystem": "SEC",
+        "group": "SEC",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Secure_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Secure_State",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Sens_Volt_Nplc": {
+        "command": "Set_Sens_Volt_Nplc",
+        "verb": "set",
+        "description": "Authored from a panel literal in DMM.json; never executed before.",
+        "scpi": "SENS:VOLT:NPLC <value>",
+        "subsystem": "General",
+        "group": "General",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Sens_Volt_Nplc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sens_Volt_Nplc",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Sre": {
+        "command": "Set_Sre",
+        "verb": "set",
+        "description": "Set sre",
+        "scpi": "*SRE <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Sre",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sre",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_State_Questionable_Enable": {
+        "command": "Set_State_Questionable_Enable",
+        "verb": "set",
+        "description": "The SCPI Status Model",
+        "scpi": "STATus:QUEStionable:ENABle <value>",
+        "scpi_fast": "STAT:QUES:ENAB <value>",
+        "subsystem": "STAT",
+        "group": "STAT",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_State_Questionable_Enable",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_State_Questionable_Enable",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_System_Beeper_State": {
+        "command": "Set_System_Beeper_State",
+        "verb": "set",
+        "description": "System-Related Commands",
+        "scpi": "SYSTem:BEEPer:STATe <value>",
+        "scpi_fast": "SYST:BEEP:STAT <value>",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_System_Beeper_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_System_Beeper_State",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Trigger_Count": {
+        "command": "Set_Trigger_Count",
+        "verb": "set",
+        "description": "Set Trigger Count",
+        "scpi": ":TRIGger:COUNt <count>",
+        "scpi_fast": ":TRIG:COUN <count>",
+        "subsystem": "TRIGger",
+        "group": "Setup Trigger Model",
+        "args": [
+          "count"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Trigger_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Trigger_Count",
+            "value": "<value>",
+            "input_name": "count"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Trigger_Delay": {
+        "command": "Set_Trigger_Delay",
+        "verb": "set",
+        "description": "Set Trigger Delay",
+        "scpi": ":TRIGger:DELay <delay>",
+        "scpi_fast": ":TRIG:DEL <delay>",
+        "subsystem": "TRIGger",
+        "group": "Setup Trigger Model",
+        "args": [
+          "delay"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "s",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Trigger_Delay",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Trigger_Delay",
+            "value": "<value>",
+            "input_name": "delay"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Trigger_Source": {
+        "command": "Set_Trigger_Source",
+        "verb": "set",
+        "description": "Set Trigger Source",
+        "scpi": ":TRIGger:SOURce <source>",
+        "scpi_fast": ":TRIG:SOUR <source>",
+        "subsystem": "TRIGger",
+        "group": "Setup Trigger Model",
+        "args": [
+          "source"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "BUS",
+            "IMM",
+            "EXT"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Trigger_Source",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Trigger_Source",
+            "value": "<value>",
+            "input_name": "source"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Voltage_Range": {
+        "command": "Set_Voltage_Range",
+        "verb": "set",
+        "description": "An Introduction to the SCPI Language",
+        "scpi": "VOLTage:RANGe <value>",
+        "scpi_fast": "VOLT:RANG <value>",
+        "subsystem": "VOLT",
+        "group": "VOLT",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Voltage_Range",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_dB_Ref": {
+        "command": "Set_dB_Ref",
+        "verb": "set",
+        "description": "Set dB Ref",
+        "scpi": ":CALCulate:DB:REFerence <value>",
+        "scpi_fast": ":CALC:DB:REF <value>",
+        "subsystem": "CALCulate",
+        "group": "Math and Limits Setup",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "enum"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_dB_Ref",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_dB_Ref",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": false
+      },
+      "Set_dBm_Ref": {
+        "command": "Set_dBm_Ref",
+        "verb": "set",
+        "description": "Set dBm Ref",
+        "scpi": ":CALCulate:DBM:REFerence <value>",
+        "scpi_fast": ":CALC:DBM:REF <value>",
+        "subsystem": "CALCulate",
+        "group": "Math and Limits Setup",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "enum"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Set_dBm_Ref",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_dBm_Ref",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "nab": {
+      "Fetch_Existing": {
+        "command": "Fetch_Existing",
+        "verb": "nab",
+        "description": "Fetch Existing",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "MEASure",
+        "group": "Fetch data after INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Fetch_Existing",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Existing"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Existing",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Get_Average_Average": {
+        "command": "Get_Average_Average",
+        "verb": "nab",
+        "description": "Math Operation Commands",
+        "scpi": ":AVERage:AVERage?",
+        "scpi_fast": ":AVER:AVER?",
+        "subsystem": "AVER",
+        "group": "AVER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Average_Average",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Average_Average"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Average_Average",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Average_Count": {
+        "command": "Get_Average_Count",
+        "verb": "nab",
+        "description": "Math Operation Commands",
+        "scpi": ":AVERage:COUNt?",
+        "scpi_fast": ":AVER:COUN?",
+        "subsystem": "AVER",
+        "group": "AVER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Average_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Average_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Average_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Beeper_State": {
+        "command": "Get_Beeper_State",
+        "verb": "nab",
+        "description": "System-Related Commands",
+        "scpi": ":BEEPer:STATe?",
+        "scpi_fast": ":BEEP:STAT?",
+        "subsystem": "BEEP",
+        "group": "BEEP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Beeper_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Beeper_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Beeper_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Average_Count": {
+        "command": "Get_Calculate_Average_Count",
+        "verb": "nab",
+        "description": "Math Operations",
+        "scpi": "CALCulate:AVERage:COUNt?",
+        "scpi_fast": "CALC:AVER:COUN?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Average_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Average_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Average_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Db_Reference": {
+        "command": "Get_Calculate_Db_Reference",
+        "verb": "nab",
+        "description": "Get calculate db reference",
+        "scpi": "CALCulate:DB:REFerence?",
+        "scpi_fast": "CALC:DB:REF?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Db_Reference",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Db_Reference"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Db_Reference",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Function": {
+        "command": "Get_Calculate_Function",
+        "verb": "nab",
+        "description": "Get calculate function",
+        "scpi": "CALCulate:FUNCtion?",
+        "scpi_fast": "CALC:FUNC?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Function"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Function",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Limit_Lower": {
+        "command": "Get_Calculate_Limit_Lower",
+        "verb": "nab",
+        "description": "Math Operations",
+        "scpi": "CALCulate:LIMit:LOWer?",
+        "scpi_fast": "CALC:LIM:LOW?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Limit_Lower",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Limit_Lower"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Limit_Lower",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Limit_Upper": {
+        "command": "Get_Calculate_Limit_Upper",
+        "verb": "nab",
+        "description": "Math Operations",
+        "scpi": "CALCulate:LIMit:UPPer?",
+        "scpi_fast": "CALC:LIM:UPP?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Limit_Upper",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Limit_Upper"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Limit_Upper",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_Null_Offset": {
+        "command": "Get_Calculate_Null_Offset",
+        "verb": "nab",
+        "description": "Get calculate null offset",
+        "scpi": "CALCulate:NULL:OFFSet?",
+        "scpi_fast": "CALC:NULL:OFFS?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_Null_Offset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_Null_Offset"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_Null_Offset",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calculate_State": {
+        "command": "Get_Calculate_State",
+        "verb": "nab",
+        "description": "Get calculate state",
+        "scpi": "CALCulate:STATe?",
+        "scpi_fast": "CALC:STAT?",
+        "subsystem": "CALC",
+        "group": "CALC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calculate_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calculate_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calculate_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_Count": {
+        "command": "Get_Calibration_Count",
+        "verb": "nab",
+        "description": "Calibration Count",
+        "scpi": "CALibration:COUNt?",
+        "scpi_fast": "CAL:COUN?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_Secure_State": {
+        "command": "Get_Calibration_Secure_State",
+        "verb": "nab",
+        "description": "Calibration Overview",
+        "scpi": "CALibration:SECure:STATe?",
+        "scpi_fast": "CAL:SEC:STAT?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_Secure_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_Secure_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_Secure_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_String": {
+        "command": "Get_Calibration_String",
+        "verb": "nab",
+        "description": "Calibration Message",
+        "scpi": "CALibration:STRing?",
+        "scpi_fast": "CAL:STR?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_String",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_String"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_String",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Calibration_Value": {
+        "command": "Get_Calibration_Value",
+        "verb": "nab",
+        "description": "Calibration Commands",
+        "scpi": "CALibration:VALue?",
+        "scpi_fast": "CAL:VAL?",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Calibration_Value",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Calibration_Value"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibration_Value",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Data_Feed": {
+        "command": "Get_Data_Feed",
+        "verb": "nab",
+        "description": "Math Operations",
+        "scpi": "DATA:FEED?",
+        "subsystem": "DATA",
+        "group": "DATA",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Data_Feed",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Data_Feed"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Data_Feed",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Data_Points": {
+        "command": "Get_Data_Points",
+        "verb": "nab",
+        "description": "Get data points",
+        "scpi": "DATA:POINts?",
+        "scpi_fast": "DATA:POIN?",
+        "subsystem": "DATA",
+        "group": "DATA",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Data_Points",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Data_Points"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Data_Points",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Db_Reference": {
+        "command": "Get_Db_Reference",
+        "verb": "nab",
+        "description": "Math Operation Commands",
+        "scpi": ":DB:REFerence?",
+        "scpi_fast": ":DB:REF?",
+        "subsystem": "DB",
+        "group": "DB",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Db_Reference",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Db_Reference"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Db_Reference",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Detector_Bandwidth": {
+        "command": "Get_Detector_Bandwidth",
+        "verb": "nab",
+        "description": "Get detector bandwidth",
+        "scpi": "DETector:BANDwidth?",
+        "scpi_fast": "DET:BAND?",
+        "subsystem": "DET",
+        "group": "DET",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Detector_Bandwidth",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Detector_Bandwidth"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Detector_Bandwidth",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Display_Text": {
+        "command": "Get_Display_Text",
+        "verb": "nab",
+        "description": "Get display text",
+        "scpi": "DISPlay:TEXT?",
+        "scpi_fast": "DISP:TEXT?",
+        "subsystem": "DISP",
+        "group": "DISP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Display_Text",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Display_Text"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Text",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Ese": {
+        "command": "Get_Ese",
+        "verb": "nab",
+        "description": "Get ese",
+        "scpi": "*ESE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Ese",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Ese"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Esr": {
+        "command": "Get_Esr",
+        "verb": "nab",
+        "description": "Get esr",
+        "scpi": "*ESR?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Esr",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Esr"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Frequency_Aperture": {
+        "command": "Get_Frequency_Aperture",
+        "verb": "nab",
+        "description": "Measurement Configuration",
+        "scpi": "FREQuency:APERture?",
+        "scpi_fast": "FREQ:APER?",
+        "subsystem": "FREQ",
+        "group": "FREQ",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Frequency_Aperture",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Frequency_Aperture"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Frequency_Aperture",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Frequency_Voltage_Range": {
+        "command": "Get_Frequency_Voltage_Range",
+        "verb": "nab",
+        "description": "Get frequency voltage range",
+        "scpi": "FREQuency:VOLTage:RANGe?",
+        "scpi_fast": "FREQ:VOLT:RANG?",
+        "subsystem": "FREQ",
+        "group": "FREQ",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Frequency_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Frequency_Voltage_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Frequency_Voltage_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Fresistance_Nplcycles": {
+        "command": "Get_Fresistance_Nplcycles",
+        "verb": "nab",
+        "description": "Get fresistance nplcycles",
+        "scpi": "FRESistance:NPLCycles?",
+        "scpi_fast": "FRES:NPLC?",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Fresistance_Nplcycles",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Fresistance_Nplcycles"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Fresistance_Nplcycles",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Fresistance_Range": {
+        "command": "Get_Fresistance_Range",
+        "verb": "nab",
+        "description": "Get fresistance range",
+        "scpi": "FRESistance:RANGe?",
+        "scpi_fast": "FRES:RANG?",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Fresistance_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Fresistance_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Fresistance_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Fresistance_Resolution": {
+        "command": "Get_Fresistance_Resolution",
+        "verb": "nab",
+        "description": "Measurement Configuration Commands",
+        "scpi": "FRESistance:RESolution?",
+        "scpi_fast": "FRES:RES?",
+        "subsystem": "FRES",
+        "group": "FRES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Fresistance_Resolution",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Fresistance_Resolution"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Fresistance_Resolution",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Func": {
+        "command": "Get_Func",
+        "verb": "nab",
+        "description": "Which measurement function is selected",
+        "scpi": "FUNCtion?",
+        "scpi_fast": "FUNC?",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Func",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Func"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Func",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Get_Limit_Lower": {
+        "command": "Get_Limit_Lower",
+        "verb": "nab",
+        "description": "Get limit lower",
+        "scpi": ":LIMit:LOWer?",
+        "scpi_fast": ":LIM:LOW?",
+        "subsystem": "LIM",
+        "group": "LIM",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Limit_Lower",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Limit_Lower"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Limit_Lower",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Limit_Upper": {
+        "command": "Get_Limit_Upper",
+        "verb": "nab",
+        "description": "Get limit upper",
+        "scpi": ":LIMit:UPPer?",
+        "scpi_fast": ":LIM:UPP?",
+        "subsystem": "LIM",
+        "group": "LIM",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Limit_Upper",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Limit_Upper"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Limit_Upper",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Math_Stats": {
+        "command": "Get_Math_Stats",
+        "verb": "nab",
+        "description": "Read min, max and average in one transaction",
+        "scpi": ":CALCulate:AVERage:MINimum?;:CALCulate:AVERage:MAXimum?;:CALCulate:AVERage:AVERage?",
+        "scpi_fast": ":CALC:AVER:MIN?;:CALC:AVER:MAX?;:CALC:AVER:AVER?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 3,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "minimum"
+            },
+            {
+              "name": "maximum"
+            },
+            {
+              "name": "average",
+              "type": "NR1"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Math_Stats",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Math_Stats"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Math_Stats",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Continuity": {
+        "command": "Get_Measure_Continuity",
+        "verb": "nab",
+        "description": "The MEASure? and CONFigure Commands",
+        "scpi": "MEASure:CONTinuity?",
+        "scpi_fast": "MEAS:CONT?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Continuity",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Continuity"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Continuity",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Diode": {
+        "command": "Get_Measure_Diode",
+        "verb": "nab",
+        "description": "Get measure diode",
+        "scpi": "MEASure:DIODe?",
+        "scpi_fast": "MEAS:DIOD?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Diode",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Diode"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Diode",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Fresistance": {
+        "command": "Get_Measure_Fresistance",
+        "verb": "nab",
+        "description": "Get measure fresistance",
+        "scpi": "MEASure:FRESistance?",
+        "scpi_fast": "MEAS:FRES?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Fresistance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Fresistance"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Fresistance",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Measure_Period": {
+        "command": "Get_Measure_Period",
+        "verb": "nab",
+        "description": "Get measure period",
+        "scpi": "MEASure:PERiod?",
+        "scpi_fast": "MEAS:PER?",
+        "subsystem": "MEAS",
+        "group": "MEAS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Measure_Period",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Measure_Period"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Period",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Null_Offset": {
+        "command": "Get_Null_Offset",
+        "verb": "nab",
+        "description": "Math Operation Commands",
+        "scpi": ":NULL:OFFSet?",
+        "scpi_fast": ":NULL:OFFS?",
+        "subsystem": "NULL",
+        "group": "NULL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Null_Offset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Null_Offset"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Null_Offset",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Opc": {
+        "command": "Get_Opc",
+        "verb": "nab",
+        "description": "Get opc",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Opc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Opc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Period_Aperture": {
+        "command": "Get_Period_Aperture",
+        "verb": "nab",
+        "description": "Measurement Configuration",
+        "scpi": "PERiod:APERture?",
+        "scpi_fast": "PER:APER?",
+        "subsystem": "PER",
+        "group": "PER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Period_Aperture",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Period_Aperture"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Period_Aperture",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Period_Voltage_Range": {
+        "command": "Get_Period_Voltage_Range",
+        "verb": "nab",
+        "description": "Get period voltage range",
+        "scpi": "PERiod:VOLTage:RANGe?",
+        "scpi_fast": "PER:VOLT:RANG?",
+        "subsystem": "PER",
+        "group": "PER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Period_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Period_Voltage_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Period_Voltage_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Psc": {
+        "command": "Get_Psc",
+        "verb": "nab",
+        "description": "Get psc",
+        "scpi": "*PSC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Psc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Psc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Psc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Questionable_Enable": {
+        "command": "Get_Questionable_Enable",
+        "verb": "nab",
+        "description": "Status Reporting Commands",
+        "scpi": ":QUEStionable:ENABle?",
+        "scpi_fast": ":QUES:ENAB?",
+        "subsystem": "QUES",
+        "group": "QUES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Questionable_Enable",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Questionable_Enable"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Questionable_Enable",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Questionable_Event": {
+        "command": "Get_Questionable_Event",
+        "verb": "nab",
+        "description": "Status Reporting Commands",
+        "scpi": ":QUEStionable:EVENt?",
+        "scpi_fast": ":QUES:EVEN?",
+        "subsystem": "QUES",
+        "group": "QUES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Questionable_Event",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Questionable_Event"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Questionable_Event",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Read_All": {
+        "command": "Get_Read_All",
+        "verb": "nab",
+        "description": "Authored from a panel literal in DMM_N.json; never executed before.",
+        "scpi": "READ:ALL?",
+        "subsystem": "General",
+        "group": "General",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Read_All",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Read_All"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Read_All",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Resolution_Nplcycles": {
+        "command": "Get_Resolution_Nplcycles",
+        "verb": "nab",
+        "description": "Get resolution nplcycles",
+        "scpi": "RESistance:NPLCycles?",
+        "scpi_fast": "RES:NPLC?",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Resolution_Nplcycles",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Resolution_Nplcycles"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Resolution_Nplcycles",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Resolution_Range": {
+        "command": "Get_Resolution_Range",
+        "verb": "nab",
+        "description": "Get resolution range",
+        "scpi": "RESistance:RANGe?",
+        "scpi_fast": "RES:RANG?",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Resolution_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Resolution_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Resolution_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Resolution_Resolution": {
+        "command": "Get_Resolution_Resolution",
+        "verb": "nab",
+        "description": "Measurement Configuration Commands",
+        "scpi": "RESistance:RESolution?",
+        "scpi_fast": "RES:RES?",
+        "subsystem": "RES",
+        "group": "RES",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Resolution_Resolution",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Resolution_Resolution"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Resolution_Resolution",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Route_Terminals": {
+        "command": "Get_Route_Terminals",
+        "verb": "nab",
+        "description": "Front / Rear Input Terminal Switching",
+        "scpi": "ROUTe:TERMinals?",
+        "scpi_fast": "ROUT:TERM?",
+        "subsystem": "ROUT",
+        "group": "ROUT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Route_Terminals",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Route_Terminals"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Route_Terminals",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Sample_Count": {
+        "command": "Get_Sample_Count",
+        "verb": "nab",
+        "description": "Get sample count",
+        "scpi": "SAMP:COUN?",
+        "subsystem": "SAMP",
+        "group": "SAMP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Sample_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Sample_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sample_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Secure_State": {
+        "command": "Get_Secure_State",
+        "verb": "nab",
+        "description": "Calibration Commands",
+        "scpi": ":SECure:STATe?",
+        "scpi_fast": ":SEC:STAT?",
+        "subsystem": "SEC",
+        "group": "SEC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Secure_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Secure_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Secure_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Sre": {
+        "command": "Get_Sre",
+        "verb": "nab",
+        "description": "Get sre",
+        "scpi": "*SRE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Sre",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Sre"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_State_Questionable_Enable": {
+        "command": "Get_State_Questionable_Enable",
+        "verb": "nab",
+        "description": "The SCPI Status Model",
+        "scpi": "STATus:QUEStionable:ENABle?",
+        "scpi_fast": "STAT:QUES:ENAB?",
+        "subsystem": "STAT",
+        "group": "STAT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_State_Questionable_Enable",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_State_Questionable_Enable"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Enable",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_State_Questionable_Event": {
+        "command": "Get_State_Questionable_Event",
+        "verb": "nab",
+        "description": "Get state questionable event",
+        "scpi": "STATus:QUEStionable:EVENt?",
+        "scpi_fast": "STAT:QUES:EVEN?",
+        "subsystem": "STAT",
+        "group": "STAT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_State_Questionable_Event",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_State_Questionable_Event"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Event",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Stb": {
+        "command": "Get_Stb",
+        "verb": "nab",
+        "description": "Get stb",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Stb",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Stb"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_System_Beeper_State": {
+        "command": "Get_System_Beeper_State",
+        "verb": "nab",
+        "description": "System-Related Commands",
+        "scpi": "SYSTem:BEEPer:STATe?",
+        "scpi_fast": "SYST:BEEP:STAT?",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_System_Beeper_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_System_Beeper_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Beeper_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_System_Version": {
+        "command": "Get_System_Version",
+        "verb": "nab",
+        "description": "SCPI Language Version Query",
+        "scpi": "SYSTem:VERSion?",
+        "scpi_fast": "SYST:VERS?",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_System_Version",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_System_Version"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Version",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Trigger_Count": {
+        "command": "Get_Trigger_Count",
+        "verb": "nab",
+        "description": "Get trigger count",
+        "scpi": "TRIGger:COUNt?",
+        "scpi_fast": "TRIG:COUN?",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Trigger_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Trigger_Count"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Count",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Trigger_Delay": {
+        "command": "Get_Trigger_Delay",
+        "verb": "nab",
+        "description": "Get trigger delay",
+        "scpi": "TRIGger:DELay?",
+        "scpi_fast": "TRIG:DEL?",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Trigger_Delay",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Trigger_Delay"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Delay",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Trigger_Source": {
+        "command": "Get_Trigger_Source",
+        "verb": "nab",
+        "description": "Trigger Source Choices",
+        "scpi": "TRIGger:SOURce?",
+        "scpi_fast": "TRIG:SOUR?",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Trigger_Source",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Trigger_Source"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Source",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Tst": {
+        "command": "Get_Tst",
+        "verb": "nab",
+        "description": "Get tst",
+        "scpi": "*TST?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Tst",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Tst"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Voltage_Range": {
+        "command": "Get_Voltage_Range",
+        "verb": "nab",
+        "description": "An Introduction to the SCPI Language",
+        "scpi": "VOLTage:RANGe?",
+        "scpi_fast": "VOLT:RANG?",
+        "subsystem": "VOLT",
+        "group": "VOLT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Get_Voltage_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Voltage_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Voltage_Range",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "MEASure_Resistance": {
+        "command": "MEASure_Resistance",
+        "verb": "nab",
+        "description": "MEASure Resistance",
+        "scpi": "MEASure:RESistance?",
+        "scpi_fast": "MEAS:RES?",
+        "subsystem": "MEASure",
+        "group": "MEASure Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/MEASure_Resistance",
+          "direction": "in",
+          "payload_format": {
+            "command": "MEASure_Resistance"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/MEASure_Resistance",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "MEASure_Voltage_AC": {
+        "command": "MEASure_Voltage_AC",
+        "verb": "nab",
+        "description": "MEASure Voltage AC",
+        "scpi": "MEASure:VOLTage:AC?",
+        "scpi_fast": "MEAS:VOLT:AC?",
+        "subsystem": "MEASure",
+        "group": "MEASure Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/MEASure_Voltage_AC",
+          "direction": "in",
+          "payload_format": {
+            "command": "MEASure_Voltage_AC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/MEASure_Voltage_AC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "MEASure_Voltage_DC": {
+        "command": "MEASure_Voltage_DC",
+        "verb": "nab",
+        "description": "MEASure Voltage DC",
+        "scpi": "MEASure:VOLTage:DC?",
+        "scpi_fast": "MEAS:VOLT:DC?",
+        "subsystem": "MEASure",
+        "group": "MEASure Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/MEASure_Voltage_DC",
+          "direction": "in",
+          "payload_format": {
+            "command": "MEASure_Voltage_DC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/MEASure_Voltage_DC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_AC_Voltage": {
+        "command": "Measure_AC_Voltage",
+        "verb": "nab",
+        "description": "Measure AC Voltage",
+        "scpi": ":MEASure:VOLTage:AC? <range>,<resolution>",
+        "scpi_fast": ":MEAS:VOLT:AC? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_AC_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_AC_Voltage"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_AC_Voltage",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_DC_Current": {
+        "command": "Measure_DC_Current",
+        "verb": "nab",
+        "description": "Measure DC Current",
+        "scpi": ":MEASure:CURRent:DC? <range>,<resolution>",
+        "scpi_fast": ":MEAS:CURR:DC? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_DC_Current",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_DC_Current"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_DC_Current",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_DC_Voltage": {
+        "command": "Measure_DC_Voltage",
+        "verb": "nab",
+        "description": "Measure DC Voltage",
+        "scpi": ":MEASure:VOLTage:DC? <range>,<resolution>",
+        "scpi_fast": ":MEAS:VOLT:DC? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_DC_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_DC_Voltage"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_DC_Voltage",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Frequency": {
+        "command": "Measure_Frequency",
+        "verb": "nab",
+        "description": "Measure Frequency",
+        "scpi": ":MEASure:FREQuency? <range>,<resolution>",
+        "scpi_fast": ":MEAS:FREQ? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Frequency"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Frequency",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Resistance_2Wire": {
+        "command": "Measure_Resistance_2Wire",
+        "verb": "nab",
+        "description": "Measure Resistance (2W)",
+        "scpi": ":MEASure:RESistance? <range>,<resolution>",
+        "scpi_fast": ":MEAS:RES? <range>,<resolution>",
+        "subsystem": "MEASure",
+        "group": "Configure and Measure immediately",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Measure_Resistance_2Wire",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Resistance_2Wire"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Resistance_2Wire",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Average": {
+        "command": "Query_Average",
+        "verb": "nab",
+        "description": "Query Average",
+        "scpi": ":CALCulate:AVERage:AVERage?",
+        "scpi_fast": ":CALC:AVER:AVER?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Query_Average",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Average"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Average",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Max": {
+        "command": "Query_Max",
+        "verb": "nab",
+        "description": "Query Max",
+        "scpi": ":CALCulate:AVERage:MAXimum?",
+        "scpi_fast": ":CALC:AVER:MAX?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Query_Max",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Max"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Max",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Min": {
+        "command": "Query_Min",
+        "verb": "nab",
+        "description": "Query Min",
+        "scpi": ":CALCulate:AVERage:MINimum?",
+        "scpi_fast": ":CALC:AVER:MIN?",
+        "subsystem": "CALCulate",
+        "group": "Statistics and Calc Results",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Query_Min",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Min"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Min",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Error": {
+        "command": "Read_Error",
+        "verb": "nab",
+        "description": "Read Error",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR2"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Read_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Read IDN",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "Common Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "nab",
+        "description": "Read Next",
+        "scpi": ":READ?",
+        "subsystem": "MEASure",
+        "group": "Fetch data after INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "meter_reading": {
+        "command": "meter_reading",
+        "verb": "nab",
+        "description": "What the meter is measuring, and the measurement, together.",
+        "scpi": "FUNCtion?;:READ?",
+        "scpi_fast": "FUNC?;:READ?",
+        "subsystem": "MEASure",
+        "group": "Fetch data after INITiate",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 2,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "function",
+              "type": "CRD"
+            },
+            {
+              "name": "value",
+              "type": "NR3"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/meter_reading",
+          "direction": "in",
+          "payload_format": {
+            "command": "meter_reading"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/meter_reading",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "rig": {
+      "Config_AC_Volts": {
+        "command": "Config_AC_Volts",
+        "verb": "rig",
+        "description": "Config AC Volts",
+        "scpi": ":CONFigure:VOLTage:AC <range>,<resolution>",
+        "scpi_fast": ":CONF:VOLT:AC <range>,<resolution>",
+        "subsystem": "CONFigure",
+        "group": "Preset meter for specific function",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Config_AC_Volts",
+          "direction": "in",
+          "payload_format": {
+            "command": "Config_AC_Volts",
+            "range": "<range>",
+            "resolution": "<resolution>"
+          }
+        },
+        "unverified": false
+      },
+      "Config_DC_Volts": {
+        "command": "Config_DC_Volts",
+        "verb": "rig",
+        "description": "Config DC Volts",
+        "scpi": ":CONFigure:VOLTage:DC <range>,<resolution>",
+        "scpi_fast": ":CONF:VOLT:DC <range>,<resolution>",
+        "subsystem": "CONFigure",
+        "group": "Preset meter for specific function",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "domain": "volt",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Config_DC_Volts",
+          "direction": "in",
+          "payload_format": {
+            "command": "Config_DC_Volts",
+            "range": "<range>",
+            "resolution": "<resolution>"
+          }
+        },
+        "unverified": false
+      },
+      "Config_Resistance_4Wire": {
+        "command": "Config_Resistance_4Wire",
+        "verb": "rig",
+        "description": "Config Resistance 4Wire",
+        "scpi": ":CONFigure:FRESistance <range>,<resolution>",
+        "scpi_fast": ":CONF:FRES <range>,<resolution>",
+        "subsystem": "CONFigure",
+        "group": "Preset meter for specific function",
+        "args": [
+          "range",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Config_Resistance_4Wire",
+          "direction": "in",
+          "payload_format": {
+            "command": "Config_Resistance_4Wire",
+            "range": "<range>",
+            "resolution": "<resolution>"
+          }
+        },
+        "unverified": false
+      },
+      "Config_Temperature": {
+        "command": "Config_Temperature",
+        "verb": "rig",
+        "description": "Config Temperature",
+        "scpi": ":CONFigure:TEMPerature <probe_type>,<sensor_type>",
+        "scpi_fast": ":CONF:TEMP <probe_type>,<sensor_type>",
+        "subsystem": "CONFigure",
+        "group": "Preset meter for specific function",
+        "args": [
+          "probe_type",
+          "sensor_type"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Config_Temperature",
+          "direction": "in",
+          "payload_format": {
+            "command": "Config_Temperature",
+            "probe_type": "<probe_type>",
+            "sensor_type": "<sensor_type>"
+          }
+        },
+        "unverified": false
+      },
+      "Setup_Limits": {
+        "command": "Setup_Limits",
+        "verb": "rig",
+        "description": "Set both comparator limits in one transaction",
+        "scpi": ":CALCulate:LIMit:LOWer <lower>;:CALCulate:LIMit:UPPer <upper>",
+        "scpi_fast": ":CALC:LIM:LOW <lower>;:CALC:LIM:UPP <upper>",
+        "subsystem": "CALCulate",
+        "group": "Math and Limits Setup",
+        "args": [
+          "lower",
+          "upper"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Setup_Limits",
+          "direction": "in",
+          "payload_format": {
+            "command": "Setup_Limits",
+            "lower": "<lower>",
+            "upper": "<upper>"
+          }
+        },
+        "unverified": true
+      }
+    },
+    "do": {
+      "Abort": {
+        "command": "Abort",
+        "verb": "do",
+        "description": "Abort",
+        "scpi": ":ABORt",
+        "scpi_fast": ":ABOR",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Abort",
+          "direction": "in",
+          "payload_format": {
+            "command": "Abort"
+          }
+        },
+        "unverified": false
+      },
+      "Auto_Zero_OFF": {
+        "command": "Auto_Zero_OFF",
+        "verb": "do",
+        "description": "Auto Zero OFF",
+        "scpi": ":SENSe:ZERO:AUTO OFF",
+        "scpi_fast": ":SENS:ZERO:AUTO OFF",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Auto_Zero_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Auto_Zero_OFF"
+          }
+        },
+        "unverified": false
+      },
+      "Auto_Zero_ON": {
+        "command": "Auto_Zero_ON",
+        "verb": "do",
+        "description": "Auto Zero ON",
+        "scpi": ":SENSe:ZERO:AUTO ON",
+        "scpi_fast": ":SENS:ZERO:AUTO ON",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Auto_Zero_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Auto_Zero_ON"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_Display": {
+        "command": "Clear_Display",
+        "verb": "do",
+        "description": "Clear Display",
+        "scpi": ":DISPlay:TEXT:CLEar",
+        "scpi_fast": ":DISP:TEXT:CLE",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Clear_Display",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Display"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear Status",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "Common Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Do_Back_Goto": {
+        "command": "Do_Back_Goto",
+        "verb": "do",
+        "description": "Using the Status Registers",
+        "scpi": "BACK:GOTO",
+        "subsystem": "BACK",
+        "group": "BACK",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Back_Goto",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Back_Goto"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Calibration_Secure": {
+        "command": "Do_Calibration_Secure",
+        "verb": "do",
+        "description": "Do calibration secure",
+        "scpi": "CALibration:SECure",
+        "scpi_fast": "CAL:SEC",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Calibration_Secure",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Calibration_Secure"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Calibration_Secure_Code": {
+        "command": "Do_Calibration_Secure_Code",
+        "verb": "do",
+        "description": "Calibration Overview",
+        "scpi": "CALibration:SECure:CODE",
+        "scpi_fast": "CAL:SEC:CODE",
+        "subsystem": "CAL",
+        "group": "CAL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Calibration_Secure_Code",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Calibration_Secure_Code"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Configure_Frequency": {
+        "command": "Do_Configure_Frequency",
+        "verb": "do",
+        "description": "Measurement Configuration",
+        "scpi": "CONF:FREQ",
+        "subsystem": "CONF",
+        "group": "CONF",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Configure_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Configure_Frequency"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Configure_Period": {
+        "command": "Do_Configure_Period",
+        "verb": "do",
+        "description": "Do configure period",
+        "scpi": "CONFigure:PERiod",
+        "scpi_fast": "CONF:PER",
+        "subsystem": "CONF",
+        "group": "CONF",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Configure_Period",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Configure_Period"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Configure_Voltage": {
+        "command": "Do_Configure_Voltage",
+        "verb": "do",
+        "description": "Do configure voltage",
+        "scpi": "CONF:VOLT",
+        "subsystem": "CONF",
+        "group": "CONF",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Configure_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Configure_Voltage"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Data_Points?_All": {
+        "command": "Do_Data_Points?_All",
+        "verb": "do",
+        "description": "Authored from a panel literal in DMM.json; never executed before.",
+        "scpi": "DATA:POINts? ALL",
+        "subsystem": "General",
+        "group": "General",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Data_Points?_All",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Data_Points?_All"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Dcv_Dcv": {
+        "command": "Do_Dcv_Dcv",
+        "verb": "do",
+        "description": "Do dcv dcv",
+        "scpi": "DCV:DCV",
+        "subsystem": "DCV",
+        "group": "DCV",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Dcv_Dcv",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Dcv_Dcv"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Frequency_Voltage": {
+        "command": "Do_Frequency_Voltage",
+        "verb": "do",
+        "description": "Do frequency voltage",
+        "scpi": "FREQuency:VOLTage",
+        "scpi_fast": "FREQ:VOLT",
+        "subsystem": "FREQ",
+        "group": "FREQ",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Frequency_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Frequency_Voltage"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Opc": {
+        "command": "Do_Opc",
+        "verb": "do",
+        "description": "Do opc",
+        "scpi": "*OPC",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Opc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Opc"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Period_Voltage": {
+        "command": "Do_Period_Voltage",
+        "verb": "do",
+        "description": "Do period voltage",
+        "scpi": "PERiod:VOLTage",
+        "scpi_fast": "PER:VOLT",
+        "subsystem": "PER",
+        "group": "PER",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Period_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Period_Voltage"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Secure_Code": {
+        "command": "Do_Secure_Code",
+        "verb": "do",
+        "description": "Calibration Commands",
+        "scpi": ":SECure:CODE",
+        "scpi_fast": ":SEC:CODE",
+        "subsystem": "SEC",
+        "group": "SEC",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Secure_Code",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Secure_Code"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Sense_Function": {
+        "command": "Do_Sense_Function",
+        "verb": "do",
+        "description": "Using the CONFigure Command",
+        "scpi": "SENSe:FUNCtion",
+        "scpi_fast": "SENS:FUNC",
+        "subsystem": "SENS",
+        "group": "SENS",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Sense_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Sense_Function"
+          }
+        },
+        "unverified": true
+      },
+      "Do_State_Preset": {
+        "command": "Do_State_Preset",
+        "verb": "do",
+        "description": "Status Reporting Commands",
+        "scpi": "STATus:PRESet",
+        "scpi_fast": "STAT:PRES",
+        "subsystem": "STAT",
+        "group": "STAT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_State_Preset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_State_Preset"
+          }
+        },
+        "unverified": true
+      },
+      "Do_System_Beeper": {
+        "command": "Do_System_Beeper",
+        "verb": "do",
+        "description": "Do system beeper",
+        "scpi": "SYSTem:BEEPer",
+        "scpi_fast": "SYST:BEEP",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_System_Beeper",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_System_Beeper"
+          }
+        },
+        "unverified": true
+      },
+      "Do_System_Local": {
+        "command": "Do_System_Local",
+        "verb": "do",
+        "description": "RS-232 Interface Commands",
+        "scpi": "SYSTem:LOCal",
+        "scpi_fast": "SYST:LOC",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_System_Local",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_System_Local"
+          }
+        },
+        "unverified": true
+      },
+      "Do_System_Remote": {
+        "command": "Do_System_Remote",
+        "verb": "do",
+        "description": "RS-232 Interface Commands",
+        "scpi": "SYSTem:REMote",
+        "scpi_fast": "SYST:REM",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_System_Remote",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_System_Remote"
+          }
+        },
+        "unverified": true
+      },
+      "Do_System_Rwlock": {
+        "command": "Do_System_Rwlock",
+        "verb": "do",
+        "description": "RS-232 Interface Commands",
+        "scpi": "SYSTem:RWLock",
+        "scpi_fast": "SYST:RWL",
+        "subsystem": "SYST",
+        "group": "SYST",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_System_Rwlock",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_System_Rwlock"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Text_Clear": {
+        "command": "Do_Text_Clear",
+        "verb": "do",
+        "description": "System-Related Commands",
+        "scpi": ":TEXT:CLEar",
+        "scpi_fast": ":TEXT:CLE",
+        "subsystem": "TEXT",
+        "group": "TEXT",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Text_Clear",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Text_Clear"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Trg": {
+        "command": "Do_Trg",
+        "verb": "do",
+        "description": "Do trg",
+        "scpi": "*TRG",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Trg",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Trg"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Trigger_Source_Immediate": {
+        "command": "Do_Trigger_Source_Immediate",
+        "verb": "do",
+        "description": "How to Use the Message Available Bit (MAV)",
+        "scpi": "TRIGger:SOURce:IMMediate",
+        "scpi_fast": "TRIG:SOUR:IMM",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Do_Trigger_Source_Immediate",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Trigger_Source_Immediate"
+          }
+        },
+        "unverified": true
+      },
+      "Initiate": {
+        "command": "Initiate",
+        "verb": "do",
+        "description": "Initiate",
+        "scpi": ":INITiate",
+        "scpi_fast": ":INIT",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Initiate",
+          "direction": "in",
+          "payload_format": {
+            "command": "Initiate"
+          }
+        },
+        "unverified": false
+      },
+      "Reset_Device": {
+        "command": "Reset_Device",
+        "verb": "do",
+        "description": "Reset Device",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "Common Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Reset_Device",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset_Device"
+          }
+        },
+        "unverified": false
+      },
+      "Select_AC_Current": {
+        "command": "Select_AC_Current",
+        "verb": "do",
+        "description": "Select AC Current",
+        "scpi": ":CONFigure:CURRent:AC",
+        "scpi_fast": ":CONF:CURR:AC",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_AC_Current",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_AC_Current"
+          }
+        },
+        "unverified": false
+      },
+      "Select_AC_Volts": {
+        "command": "Select_AC_Volts",
+        "verb": "do",
+        "description": "Select AC Volts",
+        "scpi": ":CONFigure:VOLTage:AC",
+        "scpi_fast": ":CONF:VOLT:AC",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_AC_Volts",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_AC_Volts"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Continuity": {
+        "command": "Select_Continuity",
+        "verb": "do",
+        "description": "Fixed 1 kOhm range, beeper on threshold \u2014 no range argument exists for this function",
+        "scpi": ":CONFigure:CONTinuity",
+        "scpi_fast": ":CONF:CONT",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_Continuity",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Continuity"
+          }
+        },
+        "unverified": false
+      },
+      "Select_DC_Current": {
+        "command": "Select_DC_Current",
+        "verb": "do",
+        "description": "Select DC Current",
+        "scpi": ":CONFigure:CURRent:DC",
+        "scpi_fast": ":CONF:CURR:DC",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_DC_Current",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_DC_Current"
+          }
+        },
+        "unverified": false
+      },
+      "Select_DC_Volts": {
+        "command": "Select_DC_Volts",
+        "verb": "do",
+        "description": "Select DC Volts",
+        "scpi": ":CONFigure:VOLTage:DC",
+        "scpi_fast": ":CONF:VOLT:DC",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_DC_Volts",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_DC_Volts"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Diode": {
+        "command": "Select_Diode",
+        "verb": "do",
+        "description": "Fixed 1 mA / 1 V test, likewise argument-free",
+        "scpi": ":CONFigure:DIODe",
+        "scpi_fast": ":CONF:DIOD",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_Diode",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Diode"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Resistance_2W": {
+        "command": "Select_Resistance_2W",
+        "verb": "do",
+        "description": "Select Resistance 2W",
+        "scpi": ":CONFigure:RESistance",
+        "scpi_fast": ":CONF:RES",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_Resistance_2W",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Resistance_2W"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Resistance_4W": {
+        "command": "Select_Resistance_4W",
+        "verb": "do",
+        "description": "Select Resistance 4W",
+        "scpi": ":CONFigure:FRESistance",
+        "scpi_fast": ":CONF:FRES",
+        "subsystem": "Panel",
+        "group": "One command per measurement function",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DMM/Select_Resistance_4W",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Resistance_4W"
+          }
+        },
+        "unverified": false
+      }
+    }
+  }
+}

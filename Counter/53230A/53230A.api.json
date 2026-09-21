@@ -1,0 +1,1216 @@
+{
+  "api_version": "1.0.0",
+  "model": "53230A",
+  "family": "Counter",
+  "manufacturer": "HP / Agilent / Keysight",
+  "notes": "350 MHz Universal (High Precision)",
+  "inherited_from": "Counter_Baseline",
+  "service": {
+    "host": "0.0.0.0",
+    "port": 15605,
+    "family_lane": {
+      "family_index": 6,
+      "base": 15600,
+      "offset": 5
+    },
+    "path": "/api/instrument/Counter/53230A",
+    "routes": {
+      "spec": "/api/instrument/Counter/53230A/53230A.api.json",
+      "health": "/api/instrument/Counter/53230A/health",
+      "get": "/api/instrument/Counter/53230A/get/<command>",
+      "set": "/api/instrument/Counter/53230A/set/<command>",
+      "nab": "/api/instrument/Counter/53230A/nab/<command>",
+      "rig": "/api/instrument/Counter/53230A/rig/<command>",
+      "do": "/api/instrument/Counter/53230A/do/<command>"
+    },
+    "socket": {
+      "ws": "/ws/instrument/Counter/53230A",
+      "readings": "/ws/instrument/Counter/53230A/readings",
+      "unix": "/run/apk/instruments/Counter.53230A.sock"
+    }
+  },
+  "transport": {
+    "_note": "Protocol constants, not a per-model interface inventory. Which of these a box actually answers on is measured by the discovery sweep and recorded in the family probe file.",
+    "default": "raw_socket",
+    "visa": {
+      "lan": "TCPIP0::<host>::inst0::INSTR",
+      "raw": "TCPIP0::<host>::5025::SOCKET",
+      "hislip": "TCPIP0::<host>::hislip0::INSTR",
+      "gpib": "GPIB0::<address>::INSTR",
+      "usb": "USB0::<vid>::<pid>::<serial>::INSTR",
+      "serial": "ASRL<n>::INSTR"
+    },
+    "sockets": {
+      "raw_socket": {
+        "port": 5025,
+        "kind": "tcp",
+        "write_terminator": "\n",
+        "read_terminator": "\n",
+        "description": "Bare SCPI over TCP. No session layer, no discovery."
+      },
+      "hislip": {
+        "port": 4880,
+        "kind": "tcp",
+        "description": "IVI HiSLIP. Carries SRQ and device clear, unlike the raw socket."
+      },
+      "vxi11": {
+        "port": 111,
+        "kind": "tcp",
+        "description": "SUNRPC portmapper only; the core channel port is negotiated per session."
+      },
+      "telnet": {
+        "port": 5024,
+        "kind": "tcp",
+        "description": "Human-facing SCPI prompt. Echoes and prints a banner \u2014 do not parse."
+      }
+    }
+  },
+  "verb_mapping": {
+    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "set": "Single parameter mutation and write commands",
+    "nab": "Observation and telemetry acquisition queries",
+    "rig": "Multi-argument system configuration setup commands",
+    "do": "Zero-argument execution actions and trigger commands"
+  },
+  "summary": {
+    "total_commands": 27,
+    "get_count": 10,
+    "set_count": 9,
+    "nab_count": 10,
+    "rig_count": 3,
+    "do_count": 5
+  },
+  "endpoints": {
+    "get": {
+      "Fetch_Data": {
+        "command": "Fetch_Data",
+        "verb": "get",
+        "description": "Fetch last calculated measurement",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ";",
+          "fields": [
+            {
+              "name": "reading",
+              "unit": "Hz"
+            }
+          ],
+          "unit": "Hz"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Fetch_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Frequency": {
+        "command": "Measure_Frequency",
+        "verb": "get",
+        "description": "Measure frequency on channel 1",
+        "scpi": ":MEASure:FREQuency?",
+        "scpi_fast": ":MEAS:FREQ?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "frequency",
+              "unit": "Hz"
+            }
+          ],
+          "unit": "Hz"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Frequency"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Frequency",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Period": {
+        "command": "Measure_Period",
+        "verb": "get",
+        "description": "Measure signal period on channel 1",
+        "scpi": ":MEASure:PERiod?",
+        "scpi_fast": ":MEAS:PER?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "period",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Period",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Period"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Period",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Pulse_Width": {
+        "command": "Measure_Pulse_Width",
+        "verb": "get",
+        "description": "Measure positive pulse width",
+        "scpi": ":MEASure:PWIDth?",
+        "scpi_fast": ":MEAS:PWID?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "width",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Pulse_Width",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Pulse_Width"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Pulse_Width",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Time_Interval": {
+        "command": "Measure_Time_Interval",
+        "verb": "get",
+        "description": "Measure time interval between channel 1 and channel 2",
+        "scpi": ":MEASure:TINTerval?",
+        "scpi_fast": ":MEAS:TINT?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "interval",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Time_Interval",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Time_Interval"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Time_Interval",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "get",
+        "description": "Query next error code and message from queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_OPC": {
+        "command": "Query_OPC",
+        "verb": "get",
+        "description": "Query operation complete state",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "complete"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Query_OPC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_OPC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_OPC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Read instrument identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "get",
+        "description": "Trigger counter and fetch next reading",
+        "scpi": ":READ?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ";",
+          "fields": [
+            {
+              "name": "reading",
+              "unit": "Hz"
+            }
+          ],
+          "unit": "Hz"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_STB": {
+        "command": "Read_STB",
+        "verb": "get",
+        "description": "Read status byte register",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "status_byte"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_STB",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_STB"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_STB",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "set": {
+      "Set_Frequency_Arm_Start": {
+        "command": "Set_Frequency_Arm_Start",
+        "verb": "set",
+        "description": "Set start arm source for frequency measurements",
+        "scpi": ":SENSe:FREQuency:ARM:STARt:SOURce <source>",
+        "scpi_fast": ":SENS:FREQ:ARM:STAR:SOUR <source>",
+        "subsystem": "SENSe",
+        "group": "Arming and Triggering",
+        "args": [
+          "source"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "IMMediate",
+            "EXTernal"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Frequency_Arm_Start",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Frequency_Arm_Start",
+            "value": "<value>",
+            "input_name": "source"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Function": {
+        "command": "Set_Function",
+        "verb": "set",
+        "description": "Set active measurement function",
+        "scpi": ":SENSe:FUNCtion '<function>'",
+        "scpi_fast": ":SENS:FUNC '<function>'",
+        "subsystem": "SENSe",
+        "group": "Measurement Setup",
+        "args": [
+          "function"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "FREQuency 1",
+            "PERiod 1",
+            "TINTerval 1,2",
+            "PWIDth 1",
+            "NWIDth 1"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Function",
+            "value": "<value>",
+            "input_name": "function"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Gate_Time": {
+        "command": "Set_Gate_Time",
+        "verb": "set",
+        "description": "Set gate time in seconds",
+        "scpi": ":SENSe:FREQuency:ARM:STOP:TIMer <seconds>",
+        "scpi_fast": ":SENS:FREQ:ARM:STOP:TIM <seconds>",
+        "subsystem": "SENSe",
+        "group": "Gate Control",
+        "args": [
+          "seconds"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "s",
+          "min": 0.001,
+          "max": 100.0
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Gate_Time",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Gate_Time",
+            "value": "<value>",
+            "input_name": "seconds"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Input1_Coupling": {
+        "command": "Set_Input1_Coupling",
+        "verb": "set",
+        "description": "Set Channel 1 AC/DC input coupling",
+        "scpi": ":INPut1:COUPling <coupling>",
+        "scpi_fast": ":INP1:COUP <coupling>",
+        "subsystem": "INPut",
+        "group": "Input Conditioning",
+        "args": [
+          "coupling"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "AC",
+            "DC"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Input1_Coupling",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Input1_Coupling",
+            "value": "<value>",
+            "input_name": "coupling"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Input1_Filter": {
+        "command": "Set_Input1_Filter",
+        "verb": "set",
+        "description": "Enable or disable 100 kHz low-pass filter on Channel 1",
+        "scpi": ":INPut1:FILTer:STATe <state>",
+        "scpi_fast": ":INP1:FILT:STAT <state>",
+        "subsystem": "INPut",
+        "group": "Input Conditioning",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Input1_Filter",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Input1_Filter",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Input1_Impedance": {
+        "command": "Set_Input1_Impedance",
+        "verb": "set",
+        "description": "Set Channel 1 input impedance (50 Ohm or 1 MOhm)",
+        "scpi": ":INPut1:IMPedance <ohms>",
+        "scpi_fast": ":INP1:IMP <ohms>",
+        "subsystem": "INPut",
+        "group": "Input Conditioning",
+        "args": [
+          "ohms"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "50",
+            "1M"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Input1_Impedance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Input1_Impedance",
+            "value": "<value>",
+            "input_name": "ohms"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Input2_Coupling": {
+        "command": "Set_Input2_Coupling",
+        "verb": "set",
+        "description": "Set Channel 2 AC/DC input coupling",
+        "scpi": ":INPut2:COUPling <coupling>",
+        "scpi_fast": ":INP2:COUP <coupling>",
+        "subsystem": "INPut",
+        "group": "Input Conditioning",
+        "args": [
+          "coupling"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "AC",
+            "DC"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Input2_Coupling",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Input2_Coupling",
+            "value": "<value>",
+            "input_name": "coupling"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Input2_Impedance": {
+        "command": "Set_Input2_Impedance",
+        "verb": "set",
+        "description": "Set Channel 2 input impedance (50 Ohm or 1 MOhm)",
+        "scpi": ":INPut2:IMPedance <ohms>",
+        "scpi_fast": ":INP2:IMP <ohms>",
+        "subsystem": "INPut",
+        "group": "Input Conditioning",
+        "args": [
+          "ohms"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "50",
+            "1M"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Input2_Impedance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Input2_Impedance",
+            "value": "<value>",
+            "input_name": "ohms"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Trigger_Level": {
+        "command": "Set_Trigger_Level",
+        "verb": "set",
+        "description": "Set Channel 1 trigger threshold voltage",
+        "scpi": ":SENSe:EVENt1:LEVel <level>",
+        "scpi_fast": ":SENS:EVEN1:LEV <level>",
+        "subsystem": "SENSe",
+        "group": "Trigger Setup",
+        "args": [
+          "level"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Trigger_Level",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Trigger_Level",
+            "value": "<value>",
+            "input_name": "level"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "nab": {
+      "Fetch_Data": {
+        "command": "Fetch_Data",
+        "verb": "nab",
+        "description": "Fetch last calculated measurement",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ";",
+          "fields": [
+            {
+              "name": "reading",
+              "unit": "Hz"
+            }
+          ],
+          "unit": "Hz"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Fetch_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Frequency": {
+        "command": "Measure_Frequency",
+        "verb": "nab",
+        "description": "Measure frequency on channel 1",
+        "scpi": ":MEASure:FREQuency?",
+        "scpi_fast": ":MEAS:FREQ?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "frequency",
+              "unit": "Hz"
+            }
+          ],
+          "unit": "Hz"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Frequency"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Frequency",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Period": {
+        "command": "Measure_Period",
+        "verb": "nab",
+        "description": "Measure signal period on channel 1",
+        "scpi": ":MEASure:PERiod?",
+        "scpi_fast": ":MEAS:PER?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "period",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Period",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Period"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Period",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Pulse_Width": {
+        "command": "Measure_Pulse_Width",
+        "verb": "nab",
+        "description": "Measure positive pulse width",
+        "scpi": ":MEASure:PWIDth?",
+        "scpi_fast": ":MEAS:PWID?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "width",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Pulse_Width",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Pulse_Width"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Pulse_Width",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Measure_Time_Interval": {
+        "command": "Measure_Time_Interval",
+        "verb": "nab",
+        "description": "Measure time interval between channel 1 and channel 2",
+        "scpi": ":MEASure:TINTerval?",
+        "scpi_fast": ":MEAS:TINT?",
+        "subsystem": "SENSe",
+        "group": "Direct Measurement",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "interval",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Measure_Time_Interval",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measure_Time_Interval"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Measure_Time_Interval",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "nab",
+        "description": "Query next error code and message from queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_OPC": {
+        "command": "Query_OPC",
+        "verb": "nab",
+        "description": "Query operation complete state",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "complete"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Query_OPC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_OPC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_OPC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Read instrument identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "nab",
+        "description": "Trigger counter and fetch next reading",
+        "scpi": ":READ?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ";",
+          "fields": [
+            {
+              "name": "reading",
+              "unit": "Hz"
+            }
+          ],
+          "unit": "Hz"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_STB": {
+        "command": "Read_STB",
+        "verb": "nab",
+        "description": "Read status byte register",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "status_byte"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_STB",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_STB"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_STB",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "rig": {
+      "Configure_Frequency": {
+        "command": "Configure_Frequency",
+        "verb": "rig",
+        "description": "Configure frequency measurement with expected frequency and target resolution",
+        "scpi": ":CONFigure:FREQuency <expected_freq>, <resolution>",
+        "scpi_fast": ":CONF:FREQ <expected_freq>, <resolution>",
+        "subsystem": "CONFigure",
+        "group": "Measurement Configuration",
+        "args": [
+          "expected_freq",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "multi",
+          "parameters": {
+            "expected_freq": {
+              "kind": "numeric",
+              "unit": "Hz"
+            },
+            "resolution": {
+              "kind": "numeric",
+              "unit": "Hz"
+            }
+          }
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Configure_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_Frequency",
+            "expected_freq": "<expected_freq>",
+            "resolution": "<resolution>"
+          }
+        },
+        "unverified": false
+      },
+      "Configure_Period": {
+        "command": "Configure_Period",
+        "verb": "rig",
+        "description": "Configure period measurement with expected period and resolution",
+        "scpi": ":CONFigure:PERiod <expected_period>, <resolution>",
+        "scpi_fast": ":CONF:PER <expected_period>, <resolution>",
+        "subsystem": "CONFigure",
+        "group": "Measurement Configuration",
+        "args": [
+          "expected_period",
+          "resolution"
+        ],
+        "arg": {
+          "kind": "multi",
+          "parameters": {
+            "expected_period": {
+              "kind": "numeric",
+              "unit": "s"
+            },
+            "resolution": {
+              "kind": "numeric",
+              "unit": "s"
+            }
+          }
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Configure_Period",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_Period",
+            "expected_period": "<expected_period>",
+            "resolution": "<resolution>"
+          }
+        },
+        "unverified": false
+      },
+      "Configure_Time_Interval": {
+        "command": "Configure_Time_Interval",
+        "verb": "rig",
+        "description": "Configure time interval measurement between Channel 1 and 2",
+        "scpi": ":CONFigure:TINTerval",
+        "scpi_fast": ":CONF:TINT",
+        "subsystem": "CONFigure",
+        "group": "Measurement Configuration",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Configure_Time_Interval",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_Time_Interval"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "do": {
+      "Abort": {
+        "command": "Abort",
+        "verb": "do",
+        "description": "Abort active measurement",
+        "scpi": ":ABORt",
+        "scpi_fast": ":ABOR",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Abort",
+          "direction": "in",
+          "payload_format": {
+            "command": "Abort"
+          }
+        },
+        "unverified": false
+      },
+      "Auto_Trigger": {
+        "command": "Auto_Trigger",
+        "verb": "do",
+        "description": "Automatically set trigger levels",
+        "scpi": ":SENSe:EVENt1:LEVel:AUTO ON",
+        "scpi_fast": ":SENS:EVEN1:LEV:AUTO ON",
+        "subsystem": "SENSe",
+        "group": "Trigger Setup",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Auto_Trigger",
+          "direction": "in",
+          "payload_format": {
+            "command": "Auto_Trigger"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear status registers and error queue",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Initiate": {
+        "command": "Initiate",
+        "verb": "do",
+        "description": "Initiate measurement cycle",
+        "scpi": ":INITiate",
+        "scpi_fast": ":INIT",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Initiate",
+          "direction": "in",
+          "payload_format": {
+            "command": "Initiate"
+          }
+        },
+        "unverified": false
+      },
+      "Reset": {
+        "command": "Reset",
+        "verb": "do",
+        "description": "Reset counter to factory default settings",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset"
+          }
+        },
+        "unverified": false
+      }
+    }
+  }
+}

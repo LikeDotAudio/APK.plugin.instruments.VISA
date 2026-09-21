@@ -1,0 +1,964 @@
+{
+  "api_version": "1.0.0",
+  "model": "8753E",
+  "family": "VNA",
+  "manufacturer": "HP / Agilent / Keysight",
+  "notes": "RF VNA 3/6 GHz (Classic)",
+  "inherited_from": "VNA_Baseline",
+  "service": {
+    "host": "0.0.0.0",
+    "port": 16201,
+    "family_lane": {
+      "family_index": 12,
+      "base": 16200,
+      "offset": 1
+    },
+    "path": "/api/instrument/VNA/8753E",
+    "routes": {
+      "spec": "/api/instrument/VNA/8753E/8753E.api.json",
+      "health": "/api/instrument/VNA/8753E/health",
+      "get": "/api/instrument/VNA/8753E/get/<command>",
+      "set": "/api/instrument/VNA/8753E/set/<command>",
+      "nab": "/api/instrument/VNA/8753E/nab/<command>",
+      "rig": "/api/instrument/VNA/8753E/rig/<command>",
+      "do": "/api/instrument/VNA/8753E/do/<command>"
+    },
+    "socket": {
+      "ws": "/ws/instrument/VNA/8753E",
+      "readings": "/ws/instrument/VNA/8753E/readings",
+      "unix": "/run/apk/instruments/VNA.8753E.sock"
+    }
+  },
+  "transport": {
+    "_note": "Protocol constants, not a per-model interface inventory. Which of these a box actually answers on is measured by the discovery sweep and recorded in the family probe file.",
+    "default": "raw_socket",
+    "visa": {
+      "lan": "TCPIP0::<host>::inst0::INSTR",
+      "raw": "TCPIP0::<host>::5025::SOCKET",
+      "hislip": "TCPIP0::<host>::hislip0::INSTR",
+      "gpib": "GPIB0::<address>::INSTR",
+      "usb": "USB0::<vid>::<pid>::<serial>::INSTR",
+      "serial": "ASRL<n>::INSTR"
+    },
+    "sockets": {
+      "raw_socket": {
+        "port": 5025,
+        "kind": "tcp",
+        "write_terminator": "\n",
+        "read_terminator": "\n",
+        "description": "Bare SCPI over TCP. No session layer, no discovery."
+      },
+      "hislip": {
+        "port": 4880,
+        "kind": "tcp",
+        "description": "IVI HiSLIP. Carries SRQ and device clear, unlike the raw socket."
+      },
+      "vxi11": {
+        "port": 111,
+        "kind": "tcp",
+        "description": "SUNRPC portmapper only; the core channel port is negotiated per session."
+      },
+      "telnet": {
+        "port": 5024,
+        "kind": "tcp",
+        "description": "Human-facing SCPI prompt. Echoes and prints a banner \u2014 do not parse."
+      }
+    }
+  },
+  "verb_mapping": {
+    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "set": "Single parameter mutation and write commands",
+    "nab": "Observation and telemetry acquisition queries",
+    "rig": "Multi-argument system configuration setup commands",
+    "do": "Zero-argument execution actions and trigger commands"
+  },
+  "summary": {
+    "total_commands": 23,
+    "get_count": 6,
+    "set_count": 9,
+    "nab_count": 6,
+    "rig_count": 1,
+    "do_count": 7
+  },
+  "endpoints": {
+    "get": {
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "get",
+        "description": "Query system error queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Active_Parameter": {
+        "command": "Read_Active_Parameter",
+        "verb": "get",
+        "description": "Query currently selected S-parameter definition",
+        "scpi": ":CALCulate:PARameter:SELect?",
+        "scpi_fast": ":CALC:PAR:SEL?",
+        "subsystem": "CALCulate",
+        "group": "Trace Setup",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "parameter"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_Active_Parameter",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Active_Parameter"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Active_Parameter",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Frequency_Range": {
+        "command": "Read_Frequency_Range",
+        "verb": "get",
+        "description": "Read sweep start and stop frequency bounds",
+        "scpi": ":SENSe:FREQuency:STARt?;:SENSe:FREQuency:STOP?",
+        "scpi_fast": ":SENS:FREQ:STAR?;:SENS:FREQ:STOP?",
+        "subsystem": "SENSe",
+        "group": "Frequency Setup",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ";",
+          "fields": [
+            {
+              "name": "start_frequency",
+              "unit": "Hz"
+            },
+            {
+              "name": "stop_frequency",
+              "unit": "Hz"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_Frequency_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Frequency_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Frequency_Range",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Read VNA identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_S_Parameter_Data": {
+        "command": "Read_S_Parameter_Data",
+        "verb": "get",
+        "description": "Fetch formatted trace data points for active S-parameter",
+        "scpi": ":CALCulate:DATA? FDATA",
+        "scpi_fast": ":CALC:DATA? FDATA",
+        "subsystem": "CALCulate",
+        "group": "Trace Data",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "trace_points"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_S_Parameter_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_S_Parameter_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_S_Parameter_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Sweep_Time": {
+        "command": "Read_Sweep_Time",
+        "verb": "get",
+        "description": "Read calculated duration of single sweep",
+        "scpi": ":SENSe:SWEep:TIME?",
+        "scpi_fast": ":SENS:SWE:TIME?",
+        "subsystem": "SENSe",
+        "group": "Sweep Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "time",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_Sweep_Time",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Sweep_Time"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Sweep_Time",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "set": {
+      "Set_Center_Frequency": {
+        "command": "Set_Center_Frequency",
+        "verb": "set",
+        "description": "Set sweep center frequency in Hz",
+        "scpi": ":SENSe:FREQuency:CENTer <freq>",
+        "scpi_fast": ":SENS:FREQ:CENT <freq>",
+        "subsystem": "SENSe",
+        "group": "Frequency Setup",
+        "args": [
+          "freq"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "Hz"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Center_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Center_Frequency",
+            "value": "<value>",
+            "input_name": "freq"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Display_Format": {
+        "command": "Set_Display_Format",
+        "verb": "set",
+        "description": "Set active trace display format",
+        "scpi": ":CALCulate:FORMat <format>",
+        "scpi_fast": ":CALC:FORM <format>",
+        "subsystem": "CALCulate",
+        "group": "Trace Setup",
+        "args": [
+          "format"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "MLOGarithmic",
+            "PHASe",
+            "GDELay",
+            "SMITh",
+            "POLar",
+            "SWR",
+            "REAL",
+            "IMAGinary"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Display_Format",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Display_Format",
+            "value": "<value>",
+            "input_name": "format"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Frequency_Span": {
+        "command": "Set_Frequency_Span",
+        "verb": "set",
+        "description": "Set sweep frequency span in Hz",
+        "scpi": ":SENSe:FREQuency:SPAN <span>",
+        "scpi_fast": ":SENS:FREQ:SPAN <span>",
+        "subsystem": "SENSe",
+        "group": "Frequency Setup",
+        "args": [
+          "span"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "Hz"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Frequency_Span",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Frequency_Span",
+            "value": "<value>",
+            "input_name": "span"
+          }
+        },
+        "unverified": false
+      },
+      "Set_IF_Bandwidth": {
+        "command": "Set_IF_Bandwidth",
+        "verb": "set",
+        "description": "Set intermediate frequency (IF) filter resolution bandwidth",
+        "scpi": ":SENSe:BANDwidth:RESolution <bandwidth>",
+        "scpi_fast": ":SENS:BAND:RES <bandwidth>",
+        "subsystem": "SENSe",
+        "group": "Receiver Setup",
+        "args": [
+          "bandwidth"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "Hz"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_IF_Bandwidth",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_IF_Bandwidth",
+            "value": "<value>",
+            "input_name": "bandwidth"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Measurement_Parameter": {
+        "command": "Set_Measurement_Parameter",
+        "verb": "set",
+        "description": "Select S-parameter to measure on active trace",
+        "scpi": ":CALCulate:PARameter:DEFine '<param>'",
+        "scpi_fast": ":CALC:PAR:DEF '<param>'",
+        "subsystem": "CALCulate",
+        "group": "Trace Setup",
+        "args": [
+          "param"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "S11",
+            "S21",
+            "S12",
+            "S22"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Measurement_Parameter",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Measurement_Parameter",
+            "value": "<value>",
+            "input_name": "param"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Power_Level": {
+        "command": "Set_Power_Level",
+        "verb": "set",
+        "description": "Set RF test port stimulus power level in dBm",
+        "scpi": ":SOURce:POWer:LEVel:IMMediate:AMPLitude <power>",
+        "scpi_fast": ":SOUR:POW:LEV:IMM:AMPL <power>",
+        "subsystem": "SOURce",
+        "group": "Source Setup",
+        "args": [
+          "power"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "dBm"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Power_Level",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Power_Level",
+            "value": "<value>",
+            "input_name": "power"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Start_Frequency": {
+        "command": "Set_Start_Frequency",
+        "verb": "set",
+        "description": "Set sweep start frequency in Hz",
+        "scpi": ":SENSe:FREQuency:STARt <freq>",
+        "scpi_fast": ":SENS:FREQ:STAR <freq>",
+        "subsystem": "SENSe",
+        "group": "Frequency Setup",
+        "args": [
+          "freq"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "Hz"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Start_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Start_Frequency",
+            "value": "<value>",
+            "input_name": "freq"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Stop_Frequency": {
+        "command": "Set_Stop_Frequency",
+        "verb": "set",
+        "description": "Set sweep stop frequency in Hz",
+        "scpi": ":SENSe:FREQuency:STOP <freq>",
+        "scpi_fast": ":SENS:FREQ:STOP <freq>",
+        "subsystem": "SENSe",
+        "group": "Frequency Setup",
+        "args": [
+          "freq"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "Hz"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Stop_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Stop_Frequency",
+            "value": "<value>",
+            "input_name": "freq"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Sweep_Points": {
+        "command": "Set_Sweep_Points",
+        "verb": "set",
+        "description": "Set number of measurement points per sweep",
+        "scpi": ":SENSe:SWEep:POINts <points>",
+        "scpi_fast": ":SENS:SWE:POIN <points>",
+        "subsystem": "SENSe",
+        "group": "Sweep Control",
+        "args": [
+          "points"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "min": 2,
+          "max": 100001
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Set_Sweep_Points",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sweep_Points",
+            "value": "<value>",
+            "input_name": "points"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "nab": {
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "nab",
+        "description": "Query system error queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Active_Parameter": {
+        "command": "Read_Active_Parameter",
+        "verb": "nab",
+        "description": "Query currently selected S-parameter definition",
+        "scpi": ":CALCulate:PARameter:SELect?",
+        "scpi_fast": ":CALC:PAR:SEL?",
+        "subsystem": "CALCulate",
+        "group": "Trace Setup",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "parameter"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_Active_Parameter",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Active_Parameter"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Active_Parameter",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Frequency_Range": {
+        "command": "Read_Frequency_Range",
+        "verb": "nab",
+        "description": "Read sweep start and stop frequency bounds",
+        "scpi": ":SENSe:FREQuency:STARt?;:SENSe:FREQuency:STOP?",
+        "scpi_fast": ":SENS:FREQ:STAR?;:SENS:FREQ:STOP?",
+        "subsystem": "SENSe",
+        "group": "Frequency Setup",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ";",
+          "fields": [
+            {
+              "name": "start_frequency",
+              "unit": "Hz"
+            },
+            {
+              "name": "stop_frequency",
+              "unit": "Hz"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_Frequency_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Frequency_Range"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Frequency_Range",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Read VNA identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_S_Parameter_Data": {
+        "command": "Read_S_Parameter_Data",
+        "verb": "nab",
+        "description": "Fetch formatted trace data points for active S-parameter",
+        "scpi": ":CALCulate:DATA? FDATA",
+        "scpi_fast": ":CALC:DATA? FDATA",
+        "subsystem": "CALCulate",
+        "group": "Trace Data",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "trace_points"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_S_Parameter_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_S_Parameter_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_S_Parameter_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Sweep_Time": {
+        "command": "Read_Sweep_Time",
+        "verb": "nab",
+        "description": "Read calculated duration of single sweep",
+        "scpi": ":SENSe:SWEep:TIME?",
+        "scpi_fast": ":SENS:SWE:TIME?",
+        "subsystem": "SENSe",
+        "group": "Sweep Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "time",
+              "unit": "s"
+            }
+          ],
+          "unit": "s"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Read_Sweep_Time",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Sweep_Time"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Sweep_Time",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "rig": {
+      "Configure_S_Parameter_Sweep": {
+        "command": "Configure_S_Parameter_Sweep",
+        "verb": "rig",
+        "description": "Configure S-parameter, sweep frequency bounds, and number of sweep points in one atomic operation",
+        "scpi": ":CALCulate:PARameter:DEFine '<param>';:SENSe:FREQuency:STARt <start>;:SENSe:FREQuency:STOP <stop>;:SENSe:SWEep:POINts <points>",
+        "scpi_fast": ":CALC:PAR:DEF '<param>';:SENS:FREQ:STAR <start>;:SENS:FREQ:STOP <stop>;:SENS:SWE:POIN <points>",
+        "subsystem": "CONFigure",
+        "group": "Measurement Configuration",
+        "args": [
+          "param",
+          "start",
+          "stop",
+          "points"
+        ],
+        "arg": {
+          "kind": "multi",
+          "parameters": {
+            "param": {
+              "kind": "enum",
+              "values": [
+                "S11",
+                "S21",
+                "S12",
+                "S22"
+              ]
+            },
+            "start": {
+              "kind": "numeric",
+              "unit": "Hz"
+            },
+            "stop": {
+              "kind": "numeric",
+              "unit": "Hz"
+            },
+            "points": {
+              "kind": "numeric",
+              "min": 2,
+              "max": 100001
+            }
+          }
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Configure_S_Parameter_Sweep",
+          "direction": "in",
+          "payload_format": {
+            "command": "Configure_S_Parameter_Sweep",
+            "param": "<param>",
+            "start": "<start>",
+            "stop": "<stop>",
+            "points": "<points>"
+          }
+        },
+        "unverified": false
+      }
+    },
+    "do": {
+      "Autoscale": {
+        "command": "Autoscale",
+        "verb": "do",
+        "description": "Autoscale active trace Y-axis limits",
+        "scpi": ":DISPlay:WINDow:TRACe:Y:SCALe:AUTO",
+        "scpi_fast": ":DISP:WIND:TRAC:Y:SCAL:AUTO",
+        "subsystem": "DISPlay",
+        "group": "Display Format",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Autoscale",
+          "direction": "in",
+          "payload_format": {
+            "command": "Autoscale"
+          }
+        },
+        "unverified": false
+      },
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear status registers",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Continuous_Sweep": {
+        "command": "Continuous_Sweep",
+        "verb": "do",
+        "description": "Arm continuous sweeping mode",
+        "scpi": ":INITiate:CONTinuous ON",
+        "scpi_fast": ":INIT:CONT ON",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Continuous_Sweep",
+          "direction": "in",
+          "payload_format": {
+            "command": "Continuous_Sweep"
+          }
+        },
+        "unverified": false
+      },
+      "RF_Power_OFF": {
+        "command": "RF_Power_OFF",
+        "verb": "do",
+        "description": "Turn RF stimulus port power OFF",
+        "scpi": ":OUTPut:STATe OFF",
+        "scpi_fast": ":OUTP:STAT OFF",
+        "subsystem": "OUTPut",
+        "group": "Source Setup",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/RF_Power_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "RF_Power_OFF"
+          }
+        },
+        "unverified": false
+      },
+      "RF_Power_ON": {
+        "command": "RF_Power_ON",
+        "verb": "do",
+        "description": "Turn RF stimulus port power ON",
+        "scpi": ":OUTPut:STATe ON",
+        "scpi_fast": ":OUTP:STAT ON",
+        "subsystem": "OUTPut",
+        "group": "Source Setup",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/RF_Power_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "RF_Power_ON"
+          }
+        },
+        "unverified": false
+      },
+      "Reset": {
+        "command": "Reset",
+        "verb": "do",
+        "description": "Reset VNA to factory preset state",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset"
+          }
+        },
+        "unverified": false
+      },
+      "Trigger_Single": {
+        "command": "Trigger_Single",
+        "verb": "do",
+        "description": "Disarm continuous trigger and initiate single sweep",
+        "scpi": ":INITiate:CONTinuous OFF;:INITiate:IMMediate",
+        "scpi_fast": ":INIT:CONT OFF;:INIT:IMM",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/VNA/Trigger_Single",
+          "direction": "in",
+          "payload_format": {
+            "command": "Trigger_Single"
+          }
+        },
+        "unverified": false
+      }
+    }
+  }
+}
