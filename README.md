@@ -5,15 +5,47 @@ The instrument library — bench panel templates by family, and the KOMAND defin
 | | |
 |---|---|
 | **Recipe** | none — data, not a container: other stacks read it or copy it in |
-| **Source** | `SRC/` (this repository — https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) — `SRC/{Counter,DAQ,DMM,Generator,LCR,Load,Oscilloscope,Power,Router,SMU,Spectrum,VNA,Distortion}` templates, `SRC/_komand/knownDevices.json`, `SRC/_datasets`, and the `apkaudio-plugin-instruments-visa` crate |
+| **Source** | this repository (https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) — `INSTRUMENT:{Counter,DAQ,DMM,Generator,LCR,Load,Oscilloscope,Power,Router,SMU,Spectrum,VNA,Distortion}` families (see *Layout* below), `SRC/_komand/knownDevices.json`, `SRC/_datasets`, and the `apkaudio-plugin-instruments-visa` crate |
 | **Used by** | `APK:plugin:VISA` (its `build.rs` walks up to `APK:data:INSTRUMENTS/SRC/_komand/knownDevices.json` and compiles it in); `APK:BareMetal/Docker/Dockerfile` copies `SRC/` to `/app/Instruments`, where the orchestrator stamps one panel per discovered instrument; `APK:web:OsApi` (`os_roots.komand_library`) |
+
+---
+
+## Layout
+
+This is the central home of every bench instrument's GUI. One folder per
+family, and the folder carries the `INSTRUMENT:` prefix:
+
+```
+INSTRUMENT:DMM/
+  gui/                  the family's GUI — real files, and the only copy
+    DMM.json            the instrument panel, stamped once per device
+    DMM_N.json          N of the instrument — the block that repeats (if any)
+    DMM.cad.json        CAD drawing definition
+    DMM.probe.json      probe points
+    DMM.dxf             the drawing
+  34401A/               one folder per model: <Model>.gui, <Model>.komand,
+  …                     <Model>.api.json
+```
+
+`Router`'s `gui/` also holds `Cards.json` (the HP 3235 port map).
+
+**The prefix belongs to the directory and to nothing else.** The family NAME —
+the device type, the MQTT topics, the `manifest.json` key, its `tab`, the port
+lane and `${family}` — is always the bare `DMM`. A reader resolves a family's
+folder as `INSTRUMENT:<Family>` if it exists, else `<Family>` (so a crate's
+`gui/dante/` and an older tree still read), and strips a leading `INSTRUMENT:`
+when it derives a family name from a directory listing. Each language has one
+helper for that: `family_directory` in the orchestrator (`instruments/mod.rs`),
+`family_name`/`family_directory` in `_komand/generate_device_apis.py`,
+`Baremetal:Manager/node_paths.py` and `web:OsApi/SRC/os_roots.py`.
 
 ---
 
 ## One name per file
 
-An instrument's API spec is **always** `<Model>.api.json` — `SMU/2410/2410.api.json`,
-never `SMU/2410/api.json`. Each model folder used to carry a bare `api.json`
+An instrument's API spec is **always** `<Model>.api.json` — `INSTRUMENT:SMU/2410/2410.api.json`,
+never `INSTRUMENT:SMU/2410/api.json`. The family's GUI files follow the same rule:
+`gui/DMM.cad.json`, never `gui/cad.json`. Each model folder used to carry a bare `api.json`
 symlink beside the real file; 181 of them were swept on 2026-09-20 and the
 generator now removes any that reappear.
 

@@ -23,6 +23,26 @@ KNOWN_DEVICES_PATH = os.path.join(INSTRUMENTS_ROOT, '_komand', 'knownDevices.jso
 MANIFEST_PATH = os.path.join(INSTRUMENTS_ROOT, 'manifest.json')
 PORTS_PATH = os.path.join(INSTRUMENTS_ROOT, '_komand', 'ports.json')
 
+# A FAMILY'S FOLDER IS `INSTRUMENT:<Family>`; ITS NAME IS `<Family>`.
+# The prefix is the directory's, and nothing else's: the device type, the MQTT
+# topic, the manifest key, the `tab` and the port lane all use the bare name.
+# A bare `<Family>/` folder is still read, so a tree that predates the prefix
+# resolves the same way.
+FAMILY_PREFIX = 'INSTRUMENT:'
+
+
+def family_name(directory_name):
+    """`INSTRUMENT:DMM` -> `DMM`; a bare name is returned as it is."""
+    if directory_name.startswith(FAMILY_PREFIX):
+        return directory_name[len(FAMILY_PREFIX):]
+    return directory_name
+
+
+def family_directory(family, root=INSTRUMENTS_ROOT):
+    """`<root>/INSTRUMENT:<family>` if it exists, else `<root>/<family>`."""
+    prefixed = os.path.join(root, FAMILY_PREFIX + family)
+    return prefixed if os.path.isdir(prefixed) else os.path.join(root, family)
+
 # --------------------------------------------------------------------------
 # WHERE AN INSTRUMENT'S API ANSWERS, and where it goes to find the box.
 #
@@ -1232,7 +1252,7 @@ def build_endpoint_entry(family, cmd_name, raw_cmd, verb):
 def generate_device_api(family, model, authored_komands, known_devices,
                         family_index, model_index):
     """Generate the full API dictionary for one device model."""
-    gui_file = os.path.join(INSTRUMENTS_ROOT, family, model, f"{model}.gui")
+    gui_file = os.path.join(family_directory(family), model, f"{model}.gui")
     gui_data = {}
     if os.path.isfile(gui_file):
         try:
@@ -1332,12 +1352,13 @@ def main():
         with open(KNOWN_DEVICES_PATH, 'r', encoding='utf-8') as f:
             known_devices = json.load(f)
 
-    classes = sorted([
-        d for d in os.listdir(INSTRUMENTS_ROOT)
+    # Sorted by the BARE name, so the prefix cannot reorder the lanes.
+    classes = sorted(set(
+        family_name(d) for d in os.listdir(INSTRUMENTS_ROOT)
         if os.path.isdir(os.path.join(INSTRUMENTS_ROOT, d))
         and not d.startswith(('.', '_'))
         and d not in ('src', 'SRC')
-    ])
+    ))
 
     missing = [c for c in classes if c not in family_lanes]
     if missing:
@@ -1353,7 +1374,7 @@ def main():
     swept = []
 
     for family in classes:
-        family_dir = os.path.join(INSTRUMENTS_ROOT, family)
+        family_dir = family_directory(family)
         devs = sorted([
             d for d in os.listdir(family_dir)
             if os.path.isdir(os.path.join(family_dir, d)) and d != 'gui'
