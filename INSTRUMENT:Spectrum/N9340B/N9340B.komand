@@ -2,35 +2,29 @@
   "model": "N9340B",
   "family": "Spectrum",
   "set": {
-    "Set_Averaging": {
-      "scpi": ":SENSe:AVERage:TRACe<trace_number>:COUNt <count_int>",
-      "scpiFast": ":SENS:AVER:TRAC<trace_number>:COUN <count_int>",
-      "description": "Trace averaging count.",
+    "Set_Ese": {
+      "scpi": "*ESE <value>",
+      "description": "Set ese",
       "arg": {
-        "kind": "numeric"
+        "kind": "integer"
       },
       "args": [
-        "count_int"
+        "value"
       ],
-      "subsystem": "Trace",
-      "notes": "The trace index sits in the MIDDLE: ':SENSe:AVERage:TRACe<n>:COUNt'. Eight spellings with it elsewhere — :TRACe:AVERage:COUNt, :SENSe:AVERage:COUNt, :AVERage:COUNt, :TRACe1:AVERage:COUNt and friends — all return -171 'Invalid expression', which is what made this look unsupported. Verified on CN03480580 2026-08-07: set 25 -> reads +25, set 100 -> reads +100."
+      "subsystem": "Common",
+      "unverified": true
     },
-    "Set_Averaging_State": {
-      "scpi": ":SENSe:AVERage:TRACe<trace_number>:STATe <state_bool>",
-      "scpiFast": ":SENS:AVER:TRAC<trace_number>:STAT <state_bool>",
-      "description": "Turn trace averaging on or off — the switch the count is useless without.",
+    "Set_Sre": {
+      "scpi": "*SRE <value>",
+      "description": "Set sre",
       "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
+        "kind": "integer"
       },
       "args": [
-        "state_bool"
+        "value"
       ],
-      "subsystem": "Trace",
-      "notes": "Averaging has TWO halves and the count is the lesser one. ':SENSe:AVERage:TRACe<n>:COUNt' only says how many sweeps to average over; nothing is averaged until ':SENSe:AVERage:TRACe<n>:STATe' is 1. Verified on CN03480580 2026-08-08: with COUNt at 25, STATe read 0 — setting STATe 1 read back 1 with the count untouched, and the trace mode stayed WRIT (this is NOT the AVERage trace mode). COUNt 0 does not disable it either: the instrument clamps it to +1 and leaves STATe alone."
+      "subsystem": "Common",
+      "unverified": true
     },
     "Set_Bwidth_Integration": {
       "scpi": "BWIDth:INTegration <value>",
@@ -101,23 +95,10 @@
       "subsystem": "CALC",
       "unverified": true
     },
-    "Set_Center_Freq_MHz": {
-      "scpi": ":FREQuency:CENTer <hz_value>",
-      "scpiFast": ":FREQ:CENT <hz_value>",
-      "description": "Set Center Freq MHz",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "RIG Frequency commands",
-      "args": [
-        "hz_value"
-      ],
-      "subsystem": "Frequency"
-    },
-    "Set_Continuous_Mode": {
-      "scpi": ":INITiate:CONTinuous <state_bool>",
-      "scpiFast": ":INIT:CONT <state_bool>",
-      "description": "Set Continuous Mode",
+    "Set_Marker_State": {
+      "scpi": ":CALCulate:MARKer<marker_number>:STATe <state_bool>",
+      "scpiFast": ":CALC:MARK<marker_number>:STAT <state_bool>",
+      "description": "Set Marker State",
       "arg": {
         "kind": "bool",
         "values": [
@@ -125,11 +106,24 @@
           "ON"
         ]
       },
-      "group": "Trace Command Sets",
+      "group": "Marker Command Sets",
       "args": [
         "state_bool"
       ],
-      "subsystem": "Trace"
+      "subsystem": "Markers"
+    },
+    "Set_Marker_X_position": {
+      "scpi": ":CALCulate:MARKer<marker_number>:X <hz_value>",
+      "scpiFast": ":CALC:MARK<marker_number>:X <hz_value>",
+      "description": "Set Marker Frequency",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "Marker Command Sets",
+      "args": [
+        "hz_value"
+      ],
+      "subsystem": "Markers"
     },
     "Set_Demod_Am_State": {
       "scpi": ":DEMod:AM:STATe <value>",
@@ -178,17 +172,19 @@
       "subsystem": "DISP",
       "unverified": true
     },
-    "Set_Ese": {
-      "scpi": "*ESE <value>",
-      "description": "Set ese",
+    "Set_Reference_Level": {
+      "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel <dbm_value>",
+      "scpiFast": ":DISP:WIND:TRAC:Y:RLEV <dbm_value>",
+      "description": "Set Reference Level",
       "arg": {
-        "kind": "integer"
+        "kind": "numeric",
+        "unit": "V"
       },
+      "group": "Individual Power Sets",
       "args": [
-        "value"
+        "dbm_value"
       ],
-      "subsystem": "Common",
-      "unverified": true
+      "subsystem": "Amplitude"
     },
     "Set_Fcount_State": {
       "scpi": "FCOunt:STATe <value>",
@@ -206,6 +202,75 @@
       ],
       "subsystem": "FCO",
       "unverified": true
+    },
+    "Set_Center_Freq_MHz": {
+      "scpi": ":FREQuency:CENTer <hz_value>",
+      "scpiFast": ":FREQ:CENT <hz_value>",
+      "description": "Set Center Freq MHz",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "RIG Frequency commands",
+      "args": [
+        "hz_value"
+      ],
+      "subsystem": "Frequency"
+    },
+    "Set_Span_Frequency": {
+      "scpi": ":FREQuency:SPAN <hz_value>",
+      "scpiFast": ":FREQ:SPAN <hz_value>",
+      "description": "Set Span Frequency",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "RIG Frequency commands",
+      "args": [
+        "hz_value"
+      ],
+      "subsystem": "Frequency"
+    },
+    "Set_Start_Freq_MHz": {
+      "scpi": ":FREQuency:STARt <hz_value>",
+      "scpiFast": ":FREQ:STAR <hz_value>",
+      "description": "Set Start Freq MHz",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "RIG Frequency commands",
+      "args": [
+        "hz_value"
+      ],
+      "subsystem": "Frequency"
+    },
+    "Set_Stop_Freq_MHz": {
+      "scpi": ":FREQuency:STOP <hz_value>",
+      "scpiFast": ":FREQ:STOP <hz_value>",
+      "description": "Set Stop Freq MHz",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "RIG Frequency commands",
+      "args": [
+        "hz_value"
+      ],
+      "subsystem": "Frequency"
+    },
+    "Set_Continuous_Mode": {
+      "scpi": ":INITiate:CONTinuous <state_bool>",
+      "scpiFast": ":INIT:CONT <state_bool>",
+      "description": "Set Continuous Mode",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "group": "Trace Command Sets",
+      "args": [
+        "state_bool"
+      ],
+      "subsystem": "Trace"
     },
     "Set_Instrument_Measure": {
       "scpi": ":INSTrument:MEASure <value>",
@@ -244,36 +309,6 @@
       ],
       "subsystem": "INST",
       "unverified": true
-    },
-    "Set_Marker_State": {
-      "scpi": ":CALCulate:MARKer<marker_number>:STATe <state_bool>",
-      "scpiFast": ":CALC:MARK<marker_number>:STAT <state_bool>",
-      "description": "Set Marker State",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "group": "Marker Command Sets",
-      "args": [
-        "state_bool"
-      ],
-      "subsystem": "Markers"
-    },
-    "Set_Marker_X_position": {
-      "scpi": ":CALCulate:MARKer<marker_number>:X <hz_value>",
-      "scpiFast": ":CALC:MARK<marker_number>:X <hz_value>",
-      "description": "Set Marker Frequency",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "Marker Command Sets",
-      "args": [
-        "hz_value"
-      ],
-      "subsystem": "Markers"
     },
     "Set_Measure_Acpr_Adjacent": {
       "scpi": ":MEASure:ACPR:ADJacent <value>",
@@ -588,51 +623,6 @@
       ],
       "subsystem": "Amplitude"
     },
-    "Set_RBW": {
-      "scpi": ":SENSe:BANDwidth:RESolution <hz_value>",
-      "scpiFast": ":SENS:BAND:RES <hz_value>",
-      "description": "Set RBW",
-      "arg": {
-        "kind": "numeric",
-        "unit": "Hz"
-      },
-      "group": "RIG Bandwidth Commands",
-      "args": [
-        "hz_value"
-      ],
-      "subsystem": "Bandwidth"
-    },
-    "Set_RBW_Auto": {
-      "scpi": ":SENSe:BANDwidth:RESolution:AUTO <state_bool>",
-      "scpiFast": ":SENS:BAND:RES:AUTO <state_bool>",
-      "description": "Set RBW Auto",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "group": "RIG Bandwidth Commands",
-      "args": [
-        "state_bool"
-      ],
-      "subsystem": "Bandwidth"
-    },
-    "Set_Reference_Level": {
-      "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel <dbm_value>",
-      "scpiFast": ":DISP:WIND:TRAC:Y:RLEV <dbm_value>",
-      "description": "Set Reference Level",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V"
-      },
-      "group": "Individual Power Sets",
-      "args": [
-        "dbm_value"
-      ],
-      "subsystem": "Amplitude"
-    },
     "Set_Scale_Pdivision": {
       "scpi": ":SCALe:PDIVision <value>",
       "scpiFast": ":SCAL:PDIV <value>",
@@ -689,19 +679,6 @@
       "subsystem": "SENS",
       "unverified": true
     },
-    "Set_Sense_Frequency_Center_Step_Increment": {
-      "scpi": ":SENSe:FREQuency:CENTer:STEP:INCRement <value>",
-      "scpiFast": ":SENS:FREQ:CENT:STEP:INCR <value>",
-      "description": "Center Frequency Step Size",
-      "arg": {
-        "kind": "unknown"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "SENS",
-      "unverified": true
-    },
     "Set_Sense_Frequency_Span": {
       "scpi": "SENS:FREQ:SPAN <value>",
       "description": "Using C with Marker Peak Search and Peak Excursion",
@@ -734,6 +711,111 @@
       "arg": {
         "kind": "numeric",
         "unit": "Hz"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "SENS",
+      "unverified": true
+    },
+    "Set_Averaging": {
+      "scpi": ":SENSe:AVERage:TRACe<trace_number>:COUNt <count_int>",
+      "scpiFast": ":SENS:AVER:TRAC<trace_number>:COUN <count_int>",
+      "description": "Trace averaging count.",
+      "arg": {
+        "kind": "numeric"
+      },
+      "args": [
+        "count_int"
+      ],
+      "subsystem": "Trace",
+      "notes": "The trace index sits in the MIDDLE: ':SENSe:AVERage:TRACe<n>:COUNt'. Eight spellings with it elsewhere — :TRACe:AVERage:COUNt, :SENSe:AVERage:COUNt, :AVERage:COUNt, :TRACe1:AVERage:COUNt and friends — all return -171 'Invalid expression', which is what made this look unsupported. Verified on CN03480580 2026-08-07: set 25 -> reads +25, set 100 -> reads +100."
+    },
+    "Set_Averaging_State": {
+      "scpi": ":SENSe:AVERage:TRACe<trace_number>:STATe <state_bool>",
+      "scpiFast": ":SENS:AVER:TRAC<trace_number>:STAT <state_bool>",
+      "description": "Turn trace averaging on or off — the switch the count is useless without.",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "state_bool"
+      ],
+      "subsystem": "Trace",
+      "notes": "Averaging has TWO halves and the count is the lesser one. ':SENSe:AVERage:TRACe<n>:COUNt' only says how many sweeps to average over; nothing is averaged until ':SENSe:AVERage:TRACe<n>:STATe' is 1. Verified on CN03480580 2026-08-08: with COUNt at 25, STATe read 0 — setting STATe 1 read back 1 with the count untouched, and the trace mode stayed WRIT (this is NOT the AVERage trace mode). COUNt 0 does not disable it either: the instrument clamps it to +1 and leaves STATe alone."
+    },
+    "Set_RBW": {
+      "scpi": ":SENSe:BANDwidth:RESolution <hz_value>",
+      "scpiFast": ":SENS:BAND:RES <hz_value>",
+      "description": "Set RBW",
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      },
+      "group": "RIG Bandwidth Commands",
+      "args": [
+        "hz_value"
+      ],
+      "subsystem": "Bandwidth"
+    },
+    "Set_RBW_Auto": {
+      "scpi": ":SENSe:BANDwidth:RESolution:AUTO <state_bool>",
+      "scpiFast": ":SENS:BAND:RES:AUTO <state_bool>",
+      "description": "Set RBW Auto",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "group": "RIG Bandwidth Commands",
+      "args": [
+        "state_bool"
+      ],
+      "subsystem": "Bandwidth"
+    },
+    "Set_VBW": {
+      "scpi": ":SENSe:BANDwidth:VIDeo <hz_value>",
+      "scpiFast": ":SENS:BAND:VID <hz_value>",
+      "description": "Set VBW",
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      },
+      "group": "RIG Bandwidth Commands",
+      "args": [
+        "hz_value"
+      ],
+      "subsystem": "Bandwidth"
+    },
+    "Set_VBW_Auto": {
+      "scpi": ":SENSe:BANDwidth:VIDeo:AUTO <state_bool>",
+      "scpiFast": ":SENS:BAND:VID:AUTO <state_bool>",
+      "description": "Set VBW Auto",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "group": "RIG Bandwidth Commands",
+      "args": [
+        "state_bool"
+      ],
+      "subsystem": "Bandwidth"
+    },
+    "Set_Sense_Frequency_Center_Step_Increment": {
+      "scpi": ":SENSe:FREQuency:CENTer:STEP:INCRement <value>",
+      "scpiFast": ":SENS:FREQ:CENT:STEP:INCR <value>",
+      "description": "Center Frequency Step Size",
+      "arg": {
+        "kind": "unknown"
       },
       "args": [
         "value"
@@ -784,57 +866,6 @@
       ],
       "subsystem": "SENS",
       "unverified": true
-    },
-    "Set_Span_Frequency": {
-      "scpi": ":FREQuency:SPAN <hz_value>",
-      "scpiFast": ":FREQ:SPAN <hz_value>",
-      "description": "Set Span Frequency",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "RIG Frequency commands",
-      "args": [
-        "hz_value"
-      ],
-      "subsystem": "Frequency"
-    },
-    "Set_Sre": {
-      "scpi": "*SRE <value>",
-      "description": "Set sre",
-      "arg": {
-        "kind": "integer"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Set_Start_Freq_MHz": {
-      "scpi": ":FREQuency:STARt <hz_value>",
-      "scpiFast": ":FREQ:STAR <hz_value>",
-      "description": "Set Start Freq MHz",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "RIG Frequency commands",
-      "args": [
-        "hz_value"
-      ],
-      "subsystem": "Frequency"
-    },
-    "Set_Stop_Freq_MHz": {
-      "scpi": ":FREQuency:STOP <hz_value>",
-      "scpiFast": ":FREQ:STOP <hz_value>",
-      "description": "Set Stop Freq MHz",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "RIG Frequency commands",
-      "args": [
-        "hz_value"
-      ],
-      "subsystem": "Frequency"
     },
     "Set_Sweep_time": {
       "scpi": ":SENSe:SWEep:TIME <s_value>",
@@ -1152,65 +1183,48 @@
       ],
       "subsystem": "UNIT",
       "unverified": true
-    },
-    "Set_VBW": {
-      "scpi": ":SENSe:BANDwidth:VIDeo <hz_value>",
-      "scpiFast": ":SENS:BAND:VID <hz_value>",
-      "description": "Set VBW",
-      "arg": {
-        "kind": "numeric",
-        "unit": "Hz"
-      },
-      "group": "RIG Bandwidth Commands",
-      "args": [
-        "hz_value"
-      ],
-      "subsystem": "Bandwidth"
-    },
-    "Set_VBW_Auto": {
-      "scpi": ":SENSe:BANDwidth:VIDeo:AUTO <state_bool>",
-      "scpiFast": ":SENS:BAND:VID:AUTO <state_bool>",
-      "description": "Set VBW Auto",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "group": "RIG Bandwidth Commands",
-      "args": [
-        "state_bool"
-      ],
-      "subsystem": "Bandwidth"
     }
   },
   "do": {
-    "Do_Calculate_Lline": {
-      "scpi": ":CALCulate:LLINe<n>",
-      "scpiFast": ":CALC:LLIN<n>",
-      "description": "Limit Line Y-axis Value",
-      "subsystem": "CALC",
+    "Do_Cls": {
+      "scpi": "*CLS",
+      "description": "Do cls",
+      "subsystem": "Common",
       "unverified": true
     },
-    "Do_Calculate_Lline_Buzzer_Statoff": {
-      "scpi": ":CALCulate:LLINe1:BUZZer:STATe OFF",
-      "scpiFast": ":CALC:LLIN1:BUZZ:STAT OFF",
-      "description": "Turn on/off the Buzzer",
-      "subsystem": "CALC",
+    "Do_Opc": {
+      "scpi": "*OPC",
+      "description": "Do opc",
+      "subsystem": "Common",
       "unverified": true
     },
-    "Do_Calculate_Marker": {
-      "scpi": ":CALCulate:MARKer<n>",
-      "scpiFast": ":CALC:MARK<n>",
-      "description": "Do calculate marker",
-      "subsystem": "CALC",
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "Do rst",
+      "subsystem": "Common",
       "unverified": true
     },
-    "Do_Calculate_Marker_Fcount": {
-      "scpi": ":CALCulate:MARKer1:FCOunt",
-      "scpiFast": ":CALC:MARK1:FCO",
-      "description": "Frequency Counter Marker",
+    "Do_Trg": {
+      "scpi": "*TRG",
+      "description": "Do trg",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Do_Wai": {
+      "scpi": "*WAI",
+      "description": "Do wai",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Do_Calibration_Source_State": {
+      "scpi": "CAL:SOUR:STAT",
+      "description": "Using C with Marker Peak Search and Peak Excursion",
+      "subsystem": "CAL",
+      "unverified": true
+    },
+    "Do_Calculate_Marker_Phn": {
+      "scpi": "CALC:MARK1:PHN",
+      "description": "Do calculate marker phn",
       "subsystem": "CALC",
       "unverified": true
     },
@@ -1238,28 +1252,52 @@
       "subsystem": "CALC",
       "unverified": true
     },
-    "Do_Calculate_Marker_Phn": {
-      "scpi": "CALC:MARK1:PHN",
-      "description": "Do calculate marker phn",
-      "subsystem": "CALC",
-      "unverified": true
-    },
     "Do_Calculate_Phn_Offset": {
       "scpi": "CALC:PHN:OFFS",
       "description": "Do calculate phn offset",
       "subsystem": "CALC",
       "unverified": true
     },
-    "Do_Calibration_Source_State": {
-      "scpi": "CAL:SOUR:STAT",
-      "description": "Using C with Marker Peak Search and Peak Excursion",
-      "subsystem": "CAL",
+    "Do_Calculate_Lline_Buzzer_Statoff": {
+      "scpi": ":CALCulate:LLINe1:BUZZer:STATe OFF",
+      "scpiFast": ":CALC:LLIN1:BUZZ:STAT OFF",
+      "description": "Turn on/off the Buzzer",
+      "subsystem": "CALC",
       "unverified": true
     },
-    "Do_Cls": {
-      "scpi": "*CLS",
-      "description": "Do cls",
-      "subsystem": "Common",
+    "Do_Calculate_Lline": {
+      "scpi": ":CALCulate:LLINe<n>",
+      "scpiFast": ":CALC:LLIN<n>",
+      "description": "Limit Line Y-axis Value",
+      "subsystem": "CALC",
+      "unverified": true
+    },
+    "Do_Calculate_Marker_Fcount": {
+      "scpi": ":CALCulate:MARKer1:FCOunt",
+      "scpiFast": ":CALC:MARK1:FCO",
+      "description": "Frequency Counter Marker",
+      "subsystem": "CALC",
+      "unverified": true
+    },
+    "Set_All_Markers_State_ON": {
+      "scpi": ":CALCulate:MARKer1:STATe ON;:CALCulate:MARKer2:STATe ON;:CALCulate:MARKer3:STATe ON;:CALCulate:MARKer4:STATe ON;:CALCulate:MARKer5:STATe ON;:CALCulate:MARKer6:STATe ON",
+      "scpiFast": ":CALC:MARK1:STAT ON;:CALC:MARK2:STAT ON;:CALC:MARK3:STAT ON;:CALC:MARK4:STAT ON;:CALC:MARK5:STAT ON;:CALC:MARK6:STAT ON",
+      "description": "All markers ON — markers 1-6 enabled.",
+      "subsystem": "Markers",
+      "notes": "All Markers is a MODE, not a command. `:CALCulate:MARKer:AOFF` turns every marker off but has no ON counterpart, so the single entry this replaces sent AOFF for BOTH toggle positions — the ON press turned the markers off. Verified on CN03480580 2026-08-07: the six-statement ON gives 1;1;1;1;1;1 and AOFF gives 0;0;0;0;0;0, no error either way."
+    },
+    "Set_All_Markers_State_OFF": {
+      "scpi": ":CALCulate:MARKer:AOFF",
+      "scpiFast": ":CALC:MARK:AOFF",
+      "description": "All markers OFF.",
+      "subsystem": "Markers",
+      "notes": "All Markers is a MODE, not a command. `:CALCulate:MARKer:AOFF` turns every marker off but has no ON counterpart, so the single entry this replaces sent AOFF for BOTH toggle positions — the ON press turned the markers off. Verified on CN03480580 2026-08-07: the six-statement ON gives 1;1;1;1;1;1 and AOFF gives 0;0;0;0;0;0, no error either way."
+    },
+    "Do_Calculate_Marker": {
+      "scpi": ":CALCulate:MARKer<n>",
+      "scpiFast": ":CALC:MARK<n>",
+      "description": "Do calculate marker",
+      "subsystem": "CALC",
       "unverified": true
     },
     "Do_Display_Window_Trace": {
@@ -1275,13 +1313,6 @@
       "description": "Do Initiate Continuous",
       "group": "Trace Command Sets",
       "subsystem": "Trace"
-    },
-    "Do_Measure_Semask_Bandwidth": {
-      "scpi": ":MEASure:SEMask:BANDwidth",
-      "scpiFast": ":MEAS:SEM:BAND",
-      "description": "Set the Chan Integ BW",
-      "subsystem": "MEAS",
-      "unverified": true
     },
     "Do_Measure_Semask_Bandwidth_Integration": {
       "scpi": ":MEAS:SEM:BAND:INT",
@@ -1301,6 +1332,25 @@
       "subsystem": "MEAS",
       "unverified": true
     },
+    "Do_Measure_Semask_Offset_List_Stop_Absolute": {
+      "scpi": ":MEAS:SEM:OFFS:LIST:STOP:ABS",
+      "description": "Set the Abs Stop",
+      "subsystem": "MEAS",
+      "unverified": true
+    },
+    "Do_Measure_Semask_Offset_List_Stop_Rcarrier": {
+      "scpi": ":MEAS:SEM:OFFS:LIST:STOP:RCAR",
+      "description": "Do measure semask offset list stop rcarrier",
+      "subsystem": "MEAS",
+      "unverified": true
+    },
+    "Do_Measure_Semask_Bandwidth": {
+      "scpi": ":MEASure:SEMask:BANDwidth",
+      "scpiFast": ":MEAS:SEM:BAND",
+      "description": "Set the Chan Integ BW",
+      "subsystem": "MEAS",
+      "unverified": true
+    },
     "Do_Measure_Semask_Marker": {
       "scpi": "MEASure:SEMask:MARKer<n>",
       "scpiFast": "MEAS:SEM:MARK<n>",
@@ -1315,22 +1365,10 @@
       "subsystem": "MEAS",
       "unverified": true
     },
-    "Do_Measure_Semask_Offset_List_Stop_Absolute": {
-      "scpi": ":MEAS:SEM:OFFS:LIST:STOP:ABS",
-      "description": "Set the Abs Stop",
-      "subsystem": "MEAS",
-      "unverified": true
-    },
     "Do_Measure_Semask_Offset_List_Stop_Absolute_Cou": {
       "scpi": ":MEASure:SEMask:OFFSet:LIST:STOP:ABSolute:COU",
       "scpiFast": ":MEAS:SEM:OFFS:LIST:STOP:ABS:COU",
       "description": "Set the Abs Stop",
-      "subsystem": "MEAS",
-      "unverified": true
-    },
-    "Do_Measure_Semask_Offset_List_Stop_Rcarrier": {
-      "scpi": ":MEAS:SEM:OFFS:LIST:STOP:RCAR",
-      "description": "Do measure semask offset list stop rcarrier",
       "subsystem": "MEAS",
       "unverified": true
     },
@@ -1341,17 +1379,49 @@
       "subsystem": "MEAS",
       "unverified": true
     },
-    "Do_Opc": {
-      "scpi": "*OPC",
-      "description": "Do opc",
-      "subsystem": "Common",
-      "unverified": true
+    "Set_Input_Auto_Attenuation_OFF": {
+      "scpi": ":POWer:ATTenuation:AUTO OFF",
+      "scpiFast": ":POW:ATT:AUTO OFF",
+      "description": "Set Input Auto Attenuation OFF",
+      "group": "Individual Power Sets",
+      "subsystem": "Amplitude"
     },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "Do rst",
-      "subsystem": "Common",
-      "unverified": true
+    "Set_Input_Auto_Attenuation_ON": {
+      "scpi": ":POWer:ATTenuation:AUTO ON",
+      "scpiFast": ":POW:ATT:AUTO ON",
+      "description": "Set Input Auto Attenuation ON",
+      "group": "Individual Power Sets",
+      "subsystem": "Amplitude"
+    },
+    "Set_Power_Gain_OFF": {
+      "scpi": ":POWer:GAIN OFF",
+      "scpiFast": ":POW:GAIN OFF",
+      "description": "Set Power Gain OFF",
+      "group": "Individual Power Sets",
+      "subsystem": "Amplitude"
+    },
+    "Set_High_Sensitivity_OFF": {
+      "scpi": ":POWer:GAIN OFF;:POWer:ATTenuation 10",
+      "scpiFast": ":POW:GAIN OFF;:POW:ATT 10",
+      "description": "High Sensitivity OFF — preamp off, 10 dB attenuation.",
+      "group": "Individual Power Sets",
+      "subsystem": "Amplitude",
+      "notes": "High Sensitivity is a MODE, not a command: preamp on with minimum input attenuation. No single SCPI header exists for it — 11 spellings were probed on firmware A.02.07 and none answered. Verified on N9340B CN03480580 2026-08-07: 0;10 -> ':POWer:GAIN ON;:POWer:ATTenuation 0' -> 1;0, no error, and the OFF pair restores 0;10."
+    },
+    "Set_Power_Gain_ON": {
+      "scpi": ":POWer:GAIN ON",
+      "scpiFast": ":POW:GAIN ON",
+      "description": "Set Power Gain ON",
+      "group": "Individual Power Sets",
+      "subsystem": "Amplitude"
+    },
+    "Set_High_Sensitivity_ON": {
+      "scpi": ":POWer:GAIN ON;:POWer:ATTenuation 0",
+      "scpiFast": ":POW:GAIN ON;:POW:ATT 0",
+      "description": "High Sensitivity ON — preamp on, 0 dB attenuation.",
+      "group": "Individual Power Sets",
+      "subsystem": "Amplitude",
+      "notes": "High Sensitivity is a MODE, not a command: preamp on with minimum input attenuation. No single SCPI header exists for it — 11 spellings were probed on firmware A.02.07 and none answered. Verified on N9340B CN03480580 2026-08-07: 0;10 -> ':POWer:GAIN ON;:POWer:ATTenuation 0' -> 1;0, no error, and the OFF pair restores 0;10."
     },
     "Do_Sense_Average": {
       "scpi": ":SENSe:AVERage",
@@ -1430,12 +1500,26 @@
       "subsystem": "SENS",
       "unverified": true
     },
+    "Update_Display": {
+      "scpi": ":SYSTem:DISPlay:UPDate",
+      "scpiFast": ":SYST:DISP:UPD",
+      "description": "Update Display",
+      "group": "System Maintenance Controls",
+      "subsystem": "System"
+    },
     "Do_System_File_Save": {
       "scpi": ":SYSTem:FILE:SAVE",
       "scpiFast": ":SYST:FILE:SAVE",
       "description": "Screen save",
       "subsystem": "SYST",
       "unverified": true
+    },
+    "Power_Cycle": {
+      "scpi": ":SYSTem:POWer:RESet",
+      "scpiFast": ":SYST:POW:RES",
+      "description": "Power Cycle",
+      "group": "Hardware Reset and Clear",
+      "subsystem": "System"
     },
     "Do_System_Preset": {
       "scpi": ":SYSTem:PRESet",
@@ -1457,108 +1541,9 @@
       "description": "Storing as Reference",
       "subsystem": "TGEN",
       "unverified": true
-    },
-    "Do_Trg": {
-      "scpi": "*TRG",
-      "description": "Do trg",
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Do_Wai": {
-      "scpi": "*WAI",
-      "description": "Do wai",
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Power_Cycle": {
-      "scpi": ":SYSTem:POWer:RESet",
-      "scpiFast": ":SYST:POW:RES",
-      "description": "Power Cycle",
-      "group": "Hardware Reset and Clear",
-      "subsystem": "System"
-    },
-    "Set_Input_Auto_Attenuation_OFF": {
-      "scpi": ":POWer:ATTenuation:AUTO OFF",
-      "scpiFast": ":POW:ATT:AUTO OFF",
-      "description": "Set Input Auto Attenuation OFF",
-      "group": "Individual Power Sets",
-      "subsystem": "Amplitude"
-    },
-    "Set_Input_Auto_Attenuation_ON": {
-      "scpi": ":POWer:ATTenuation:AUTO ON",
-      "scpiFast": ":POW:ATT:AUTO ON",
-      "description": "Set Input Auto Attenuation ON",
-      "group": "Individual Power Sets",
-      "subsystem": "Amplitude"
-    },
-    "Set_Power_Gain_OFF": {
-      "scpi": ":POWer:GAIN OFF",
-      "scpiFast": ":POW:GAIN OFF",
-      "description": "Set Power Gain OFF",
-      "group": "Individual Power Sets",
-      "subsystem": "Amplitude"
-    },
-    "Set_Power_Gain_ON": {
-      "scpi": ":POWer:GAIN ON",
-      "scpiFast": ":POW:GAIN ON",
-      "description": "Set Power Gain ON",
-      "group": "Individual Power Sets",
-      "subsystem": "Amplitude"
-    },
-    "Update_Display": {
-      "scpi": ":SYSTem:DISPlay:UPDate",
-      "scpiFast": ":SYST:DISP:UPD",
-      "description": "Update Display",
-      "group": "System Maintenance Controls",
-      "subsystem": "System"
-    },
-    "Set_High_Sensitivity_ON": {
-      "scpi": ":POWer:GAIN ON;:POWer:ATTenuation 0",
-      "scpiFast": ":POW:GAIN ON;:POW:ATT 0",
-      "description": "High Sensitivity ON — preamp on, 0 dB attenuation.",
-      "group": "Individual Power Sets",
-      "subsystem": "Amplitude",
-      "notes": "High Sensitivity is a MODE, not a command: preamp on with minimum input attenuation. No single SCPI header exists for it — 11 spellings were probed on firmware A.02.07 and none answered. Verified on N9340B CN03480580 2026-08-07: 0;10 -> ':POWer:GAIN ON;:POWer:ATTenuation 0' -> 1;0, no error, and the OFF pair restores 0;10."
-    },
-    "Set_High_Sensitivity_OFF": {
-      "scpi": ":POWer:GAIN OFF;:POWer:ATTenuation 10",
-      "scpiFast": ":POW:GAIN OFF;:POW:ATT 10",
-      "description": "High Sensitivity OFF — preamp off, 10 dB attenuation.",
-      "group": "Individual Power Sets",
-      "subsystem": "Amplitude",
-      "notes": "High Sensitivity is a MODE, not a command: preamp on with minimum input attenuation. No single SCPI header exists for it — 11 spellings were probed on firmware A.02.07 and none answered. Verified on N9340B CN03480580 2026-08-07: 0;10 -> ':POWer:GAIN ON;:POWer:ATTenuation 0' -> 1;0, no error, and the OFF pair restores 0;10."
-    },
-    "Set_All_Markers_State_ON": {
-      "scpi": ":CALCulate:MARKer1:STATe ON;:CALCulate:MARKer2:STATe ON;:CALCulate:MARKer3:STATe ON;:CALCulate:MARKer4:STATe ON;:CALCulate:MARKer5:STATe ON;:CALCulate:MARKer6:STATe ON",
-      "scpiFast": ":CALC:MARK1:STAT ON;:CALC:MARK2:STAT ON;:CALC:MARK3:STAT ON;:CALC:MARK4:STAT ON;:CALC:MARK5:STAT ON;:CALC:MARK6:STAT ON",
-      "description": "All markers ON — markers 1-6 enabled.",
-      "subsystem": "Markers",
-      "notes": "All Markers is a MODE, not a command. `:CALCulate:MARKer:AOFF` turns every marker off but has no ON counterpart, so the single entry this replaces sent AOFF for BOTH toggle positions — the ON press turned the markers off. Verified on CN03480580 2026-08-07: the six-statement ON gives 1;1;1;1;1;1 and AOFF gives 0;0;0;0;0;0, no error either way."
-    },
-    "Set_All_Markers_State_OFF": {
-      "scpi": ":CALCulate:MARKer:AOFF",
-      "scpiFast": ":CALC:MARK:AOFF",
-      "description": "All markers OFF.",
-      "subsystem": "Markers",
-      "notes": "All Markers is a MODE, not a command. `:CALCulate:MARKer:AOFF` turns every marker off but has no ON counterpart, so the single entry this replaces sent AOFF for BOTH toggle positions — the ON press turned the markers off. Verified on CN03480580 2026-08-07: the six-statement ON gives 1;1;1;1;1;1 and AOFF gives 0;0;0;0;0;0, no error either way."
     }
   },
   "rig": {
-    "RBW_VBW_Hz": {
-      "scpi": ":SENSe:BANDwidth:RESolution <rbw_hz_value>;:SENSe:BANDwidth:VIDeo <vbw_hz_value>",
-      "scpiFast": ":SENS:BAND:RES <rbw_hz_value>;:SENS:BAND:VID <vbw_hz_value>",
-      "description": "Set Resolution and Video BW",
-      "arg": {
-        "kind": "numeric",
-        "unit": "Hz"
-      },
-      "group": "RIG Bandwidth Commands",
-      "args": [
-        "rbw_hz_value",
-        "vbw_hz_value"
-      ],
-      "subsystem": "Bandwidth"
-    },
     "Ref_Level_dBm": {
       "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel <Ref_Level_dBm>;:POWer:RF:ATTenuation <Attenuation_dB>;:POWer:GAIN <Preamp_On>",
       "scpiFast": ":DISP:WIND:TRAC:Y:RLEV <Ref_Level_dBm>;:POW:RF:ATT <Attenuation_dB>;:POW:GAIN <Preamp_On>",
@@ -1588,53 +1573,93 @@
         "stop_freq"
       ],
       "subsystem": "Frequency"
+    },
+    "RBW_VBW_Hz": {
+      "scpi": ":SENSe:BANDwidth:RESolution <rbw_hz_value>;:SENSe:BANDwidth:VIDeo <vbw_hz_value>",
+      "scpiFast": ":SENS:BAND:RES <rbw_hz_value>;:SENS:BAND:VID <vbw_hz_value>",
+      "description": "Set Resolution and Video BW",
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      },
+      "group": "RIG Bandwidth Commands",
+      "args": [
+        "rbw_hz_value",
+        "vbw_hz_value"
+      ],
+      "subsystem": "Bandwidth"
     }
   },
   "nab": {
-    "Attenuation": {
-      "scpi": ":POWer:RF:ATTenuation?",
-      "scpiFast": ":POW:RF:ATT?",
-      "description": "Attenuation",
+    "Get_Ese": {
+      "scpi": "*ESE?",
+      "description": "Get ese",
       "returns": {
         "count": 1,
-        "type": "NR3",
-        "unit": "dB"
+        "type": "NR1"
       },
-      "group": "Individual Read Queries",
-      "subsystem": "Amplitude"
+      "subsystem": "Common",
+      "unverified": true
     },
-    "Frequency_settings": {
-      "scpi": ":FREQuency:STARt?;:FREQuency:STOP?;:FREQuency:CENTer?;:FREQuency:SPAN?",
-      "scpiFast": ":FREQ:STAR?;:FREQ:STOP?;:FREQ:CENT?;:FREQ:SPAN?",
-      "description": "Primary Frequency Monitoring",
+    "Get_Esr": {
+      "scpi": "*ESR?",
+      "description": "Get esr",
       "returns": {
-        "count": 4,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "start",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "stop",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "center",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "span",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
+        "count": 1,
+        "type": "NR1"
       },
-      "group": "NAB Frequency Monitoring",
-      "subsystem": "Frequency"
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "description": "Get idn",
+      "returns": {
+        "count": 1,
+        "type": "AARD"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Opc": {
+      "scpi": "*OPC?",
+      "description": "Get opc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Sre": {
+      "scpi": "*SRE?",
+      "description": "Get sre",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Stb": {
+      "scpi": "*STB?",
+      "description": "Get stb",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Tst": {
+      "scpi": "*TST?",
+      "description": "Get tst",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
     },
     "Get_Bwidth_Integration": {
       "scpi": "BWIDth:INTegration?",
@@ -1656,16 +1681,6 @@
       "subsystem": "BWID",
       "unverified": true
     },
-    "Get_Bwidth_Video": {
-      "scpi": "BWIDth:VIDeo?",
-      "scpiFast": "BWID:VID?",
-      "description": "Video Bandwidth",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "BWID",
-      "unverified": true
-    },
     "Get_Bwidth_Video_Ratio": {
       "scpi": "BWIDth:VIDeo:RATio?",
       "scpiFast": "BWID:VID:RAT?",
@@ -1673,6 +1688,16 @@
       "returns": {
         "count": 1,
         "type": "NR3"
+      },
+      "subsystem": "BWID",
+      "unverified": true
+    },
+    "Get_Bwidth_Video": {
+      "scpi": "BWIDth:VIDeo?",
+      "scpiFast": "BWID:VID?",
+      "description": "Video Bandwidth",
+      "returns": {
+        "count": 1
       },
       "subsystem": "BWID",
       "unverified": true
@@ -1698,6 +1723,213 @@
       },
       "subsystem": "CALC",
       "unverified": true
+    },
+    "marker_states": {
+      "scpi": ":CALCulate:MARKer1:STATe?;:CALCulate:MARKer2:STATe?;:CALCulate:MARKer3:STATe?;:CALCulate:MARKer4:STATe?;:CALCulate:MARKer5:STATe?;:CALCulate:MARKer6:STATe?",
+      "scpiFast": ":CALC:MARK1:STAT?;:CALC:MARK2:STAT?;:CALC:MARK3:STAT?;:CALC:MARK4:STAT?;:CALC:MARK5:STAT?;:CALC:MARK6:STAT?",
+      "description": "Whether each of the six markers is on.",
+      "subsystem": "Markers",
+      "returns": {
+        "count": 6,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state_1",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_2",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_3",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_4",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_5",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_6",
+            "type": "BOOL"
+          }
+        ]
+      },
+      "notes": "Separate from all_marker_settings, which returns X and Y but not whether a marker is enabled. Verified on CN03480580 2026-08-07: '1;1;1;1;1;1', no error."
+    },
+    "marker_all": {
+      "scpi": ":CALCulate:MARKer1:STATe?;:CALCulate:MARKer2:STATe?;:CALCulate:MARKer3:STATe?;:CALCulate:MARKer4:STATe?;:CALCulate:MARKer5:STATe?;:CALCulate:MARKer6:STATe?;:CALCulate:MARKer1:X?;:CALCulate:MARKer2:X?;:CALCulate:MARKer3:X?;:CALCulate:MARKer4:X?;:CALCulate:MARKer5:X?;:CALCulate:MARKer6:X?;:CALCulate:MARKer1:Y?;:CALCulate:MARKer2:Y?;:CALCulate:MARKer3:Y?;:CALCulate:MARKer4:Y?;:CALCulate:MARKer5:Y?;:CALCulate:MARKer6:Y?",
+      "scpiFast": ":CALC:MARK1:STAT?;:CALC:MARK2:STAT?;:CALC:MARK3:STAT?;:CALC:MARK4:STAT?;:CALC:MARK5:STAT?;:CALC:MARK6:STAT?;:CALC:MARK1:X?;:CALC:MARK2:X?;:CALC:MARK3:X?;:CALC:MARK4:X?;:CALC:MARK5:X?;:CALC:MARK6:X?;:CALC:MARK1:Y?;:CALC:MARK2:Y?;:CALC:MARK3:Y?;:CALC:MARK4:Y?;:CALC:MARK5:Y?;:CALC:MARK6:Y?",
+      "description": "Every marker, whole: on/off, X and Y for all six, in one round trip.",
+      "subsystem": "Markers",
+      "returns": {
+        "count": 18,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state_1",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_2",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_3",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_4",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_5",
+            "type": "BOOL"
+          },
+          {
+            "name": "state_6",
+            "type": "BOOL"
+          },
+          {
+            "name": "x_1",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_2",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_3",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_4",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_5",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_6",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "y_1",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_2",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_3",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_4",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_5",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_6",
+            "type": "NR3",
+            "unit": "dBm"
+          }
+        ]
+      },
+      "notes": "18 statements in one chain, verified on CN03480580 2026-08-07 — 18 fields returned, no error. Replaces asking marker_states and all_marker_settings separately: status and values always arrive together, so the Active boxes can never disagree with the X and Y beside them."
+    },
+    "all_marker_settings": {
+      "scpi": ":CALCulate:MARKer1:Y?;:CALCulate:MARKer2:Y?;:CALCulate:MARKer3:Y?;:CALCulate:MARKer4:Y?;:CALCulate:MARKer5:Y?;:CALCulate:MARKer6:Y?;:CALCulate:MARKer1:X?;:CALCulate:MARKer2:X?;:CALCulate:MARKer3:X?;:CALCulate:MARKer4:X?;:CALCulate:MARKer5:X?;:CALCulate:MARKer6:X?",
+      "scpiFast": ":CALC:MARK1:Y?;:CALC:MARK2:Y?;:CALC:MARK3:Y?;:CALC:MARK4:Y?;:CALC:MARK5:Y?;:CALC:MARK6:Y?;:CALC:MARK1:X?;:CALC:MARK2:X?;:CALC:MARK3:X?;:CALC:MARK4:X?;:CALC:MARK5:X?;:CALC:MARK6:X?",
+      "description": "Marker Amplitude and Frequency Readbacks",
+      "returns": {
+        "count": 12,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "y_1",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_2",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_3",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_4",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_5",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "y_6",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "x_1",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_2",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_3",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_4",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_5",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "x_6",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "group": "NAB Marker Monitoring",
+      "subsystem": "Markers"
     },
     "Get_Demod_Am_State": {
       "scpi": ":DEMod:AM:STATe?",
@@ -1731,25 +1963,45 @@
       "subsystem": "DISP",
       "unverified": true
     },
-    "Get_Ese": {
-      "scpi": "*ESE?",
-      "description": "Get ese",
+    "Reference_Level": {
+      "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel?",
+      "scpiFast": ":DISP:WIND:TRAC:Y:RLEV?",
+      "description": "Reference Level",
       "returns": {
         "count": 1,
-        "type": "NR1"
+        "type": "NR3",
+        "unit": "V"
       },
-      "subsystem": "Common",
-      "unverified": true
+      "group": "Individual Read Queries",
+      "subsystem": "Amplitude"
     },
-    "Get_Esr": {
-      "scpi": "*ESR?",
-      "description": "Get esr",
+    "amplitude_settings": {
+      "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel?;:POWer:ATTenuation?;:POWer:GAIN?",
+      "scpiFast": ":DISP:WIND:TRAC:Y:RLEV?;:POW:ATT?;:POW:GAIN?",
+      "description": "Power and Attenuation Readbacks",
       "returns": {
-        "count": 1,
-        "type": "NR1"
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "rlevel",
+            "type": "NR3",
+            "unit": "dBm"
+          },
+          {
+            "name": "attenuation",
+            "type": "NR3",
+            "unit": "dB"
+          },
+          {
+            "name": "gain",
+            "type": "NR3",
+            "unit": "dB"
+          }
+        ]
       },
-      "subsystem": "Common",
-      "unverified": true
+      "group": "NAB Amplitude Monitoring",
+      "subsystem": "Amplitude"
     },
     "Get_Fcount_State": {
       "scpi": "FCOunt:STATe?",
@@ -1762,15 +2014,38 @@
       "subsystem": "FCO",
       "unverified": true
     },
-    "Read_IDN": {
-      "scpi": "*IDN?",
-      "description": "Get idn",
+    "Frequency_settings": {
+      "scpi": ":FREQuency:STARt?;:FREQuency:STOP?;:FREQuency:CENTer?;:FREQuency:SPAN?",
+      "scpiFast": ":FREQ:STAR?;:FREQ:STOP?;:FREQ:CENT?;:FREQ:SPAN?",
+      "description": "Primary Frequency Monitoring",
       "returns": {
-        "count": 1,
-        "type": "AARD"
+        "count": 4,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "start",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "stop",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "center",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "span",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
       },
-      "subsystem": "Common",
-      "unverified": true
+      "group": "NAB Frequency Monitoring",
+      "subsystem": "Frequency"
     },
     "Get_Instrument_Measure": {
       "scpi": ":INSTrument:MEASure?",
@@ -1884,16 +2159,6 @@
       "subsystem": "MEAS",
       "unverified": true
     },
-    "Get_Measure_Chpower": {
-      "scpi": ":MEASure:CHPower?",
-      "scpiFast": ":MEAS:CHP?",
-      "description": "Channel Power and Density",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "MEAS",
-      "unverified": true
-    },
     "Get_Measure_Chpower_Center": {
       "scpi": ":MEASure:CHPower:CENTer?",
       "scpiFast": ":MEAS:CHP:CENT?",
@@ -1942,6 +2207,16 @@
       "returns": {
         "count": 1,
         "type": "NR3"
+      },
+      "subsystem": "MEAS",
+      "unverified": true
+    },
+    "Get_Measure_Chpower": {
+      "scpi": ":MEASure:CHPower?",
+      "scpiFast": ":MEAS:CHP?",
+      "description": "Channel Power and Density",
+      "returns": {
+        "count": 1
       },
       "subsystem": "MEAS",
       "unverified": true
@@ -2120,15 +2395,17 @@
       "subsystem": "MEAS",
       "unverified": true
     },
-    "Get_Opc": {
-      "scpi": "*OPC?",
-      "description": "Get opc",
+    "Attenuation": {
+      "scpi": ":POWer:RF:ATTenuation?",
+      "scpiFast": ":POW:RF:ATT?",
+      "description": "Attenuation",
       "returns": {
         "count": 1,
-        "type": "NR1"
+        "type": "NR3",
+        "unit": "dB"
       },
-      "subsystem": "Common",
-      "unverified": true
+      "group": "Individual Read Queries",
+      "subsystem": "Amplitude"
     },
     "Get_Scale_Pdivision": {
       "scpi": ":SCALe:PDIVision?",
@@ -2162,6 +2439,62 @@
       "subsystem": "SCAL",
       "unverified": true
     },
+    "Get_Averaging": {
+      "scpi": ":SENSe:AVERage:TRACe<trace_number>:COUNt?",
+      "scpiFast": ":SENS:AVER:TRAC<trace_number>:COUN?",
+      "description": "Trace averaging count.",
+      "subsystem": "Trace",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "notes": "The trace index sits in the MIDDLE: ':SENSe:AVERage:TRACe<n>:COUNt'. Eight spellings with it elsewhere — :TRACe:AVERage:COUNt, :SENSe:AVERage:COUNt, :AVERage:COUNt, :TRACe1:AVERage:COUNt and friends — all return -171 'Invalid expression', which is what made this look unsupported. Verified on CN03480580 2026-08-07: set 25 -> reads +25, set 100 -> reads +100."
+    },
+    "Get_Averaging_State": {
+      "scpi": ":SENSe:AVERage:TRACe<trace_number>:STATe?",
+      "scpiFast": ":SENS:AVER:TRAC<trace_number>:STAT?",
+      "description": "Whether trace averaging is actually running.",
+      "subsystem": "Trace",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "notes": "Averaging has TWO halves and the count is the lesser one. ':SENSe:AVERage:TRACe<n>:COUNt' only says how many sweeps to average over; nothing is averaged until ':SENSe:AVERage:TRACe<n>:STATe' is 1. Verified on CN03480580 2026-08-08: with COUNt at 25, STATe read 0 — setting STATe 1 read back 1 with the count untouched, and the trace mode stayed WRIT (this is NOT the AVERage trace mode). COUNt 0 does not disable it either: the instrument clamps it to +1 and leaves STATe alone."
+    },
+    "bandwidth_settings": {
+      "scpi": ":SENSe:BANDwidth:RESolution?;:SENSe:BANDwidth:VIDeo?;:SENSe:BANDwidth:VIDeo:AUTO?;:INITiate:CONTinuous?;:SENSe:SWEep:TIME?",
+      "scpiFast": ":SENS:BAND:RES?;:SENS:BAND:VID?;:SENS:BAND:VID:AUTO?;:INIT:CONT?;:SENS:SWE:TIME?",
+      "description": "Bandwidth and Sweep Monitoring",
+      "returns": {
+        "count": 5,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "resolution",
+            "unit": "Hz"
+          },
+          {
+            "name": "video",
+            "unit": "Hz"
+          },
+          {
+            "name": "auto",
+            "type": "BOOL"
+          },
+          {
+            "name": "continuous",
+            "type": "BOOL"
+          },
+          {
+            "name": "time",
+            "type": "NR3",
+            "unit": "s"
+          }
+        ]
+      },
+      "group": "NAB Bandwidth Monitoring",
+      "subsystem": "Bandwidth"
+    },
     "Get_Sense_Detector_Function": {
       "scpi": ":SENSe:DETector:FUNCtion?",
       "scpiFast": ":SENS:DET:FUNC?",
@@ -2173,6 +2506,16 @@
       "subsystem": "SENS",
       "unverified": true
     },
+    "Get_Sense_Frequency_Center_Step_Increment": {
+      "scpi": ":SENSe:FREQuency:CENTer:STEP:INCRement?",
+      "scpiFast": ":SENS:FREQ:CENT:STEP:INCR?",
+      "description": "Center Frequency Step Size",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "SENS",
+      "unverified": true
+    },
     "Get_Sense_Frequency_Center": {
       "scpi": ":SENSe:FREQuency:CENTer?",
       "scpiFast": ":SENS:FREQ:CENT?",
@@ -2180,16 +2523,6 @@
       "returns": {
         "count": 1,
         "type": "NR3"
-      },
-      "subsystem": "SENS",
-      "unverified": true
-    },
-    "Get_Sense_Frequency_Center_Step_Increment": {
-      "scpi": ":SENSe:FREQuency:CENTer:STEP:INCRement?",
-      "scpiFast": ":SENS:FREQ:CENT:STEP:INCR?",
-      "description": "Center Frequency Step Size",
-      "returns": {
-        "count": 1
       },
       "subsystem": "SENS",
       "unverified": true
@@ -2251,6 +2584,18 @@
       "subsystem": "SENS",
       "unverified": true
     },
+    "Preamp_State": {
+      "scpi": ":SENSE:POWer:RF:GAIN:STATe?",
+      "scpiFast": ":SENS:POW:RF:GAIN:STAT?",
+      "description": "Preamp State",
+      "returns": {
+        "count": 1,
+        "type": "BOOL",
+        "unit": "dB"
+      },
+      "group": "Individual Read Queries",
+      "subsystem": "Amplitude"
+    },
     "Get_Sense_Sweep_Tdmode": {
       "scpi": ":SENSe:SWEep:TDMode?",
       "scpiFast": ":SENS:SWE:TDM?",
@@ -2259,26 +2604,6 @@
         "count": 1
       },
       "subsystem": "SENS",
-      "unverified": true
-    },
-    "Get_Sre": {
-      "scpi": "*SRE?",
-      "description": "Get sre",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Stb": {
-      "scpi": "*STB?",
-      "description": "Get stb",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_System_Channel": {
@@ -2323,6 +2648,17 @@
       "subsystem": "SYST",
       "unverified": true
     },
+    "error_information": {
+      "scpi": ":SYSTem:ERRor?",
+      "scpiFast": ":SYST:ERR?",
+      "description": "System Error Check",
+      "returns": {
+        "count": 1,
+        "type": "NR2"
+      },
+      "group": "System Status and Identification",
+      "subsystem": "System"
+    },
     "Get_System_Time": {
       "scpi": ":SYSTem:TIME?",
       "scpiFast": ":SYST:TIME?",
@@ -2333,16 +2669,6 @@
         "unit": "s"
       },
       "subsystem": "SYST",
-      "unverified": true
-    },
-    "Get_Tgenerator_Amplitude": {
-      "scpi": ":TGENerator:AMPLitude?",
-      "scpiFast": ":TGEN:AMPL?",
-      "description": "Output Amplitdue",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "TGEN",
       "unverified": true
     },
     "Get_Tgenerator_Amplitude_State": {
@@ -2363,6 +2689,16 @@
       "returns": {
         "count": 1,
         "type": "NR1"
+      },
+      "subsystem": "TGEN",
+      "unverified": true
+    },
+    "Get_Tgenerator_Amplitude": {
+      "scpi": ":TGENerator:AMPLitude?",
+      "scpiFast": ":TGEN:AMPL?",
+      "description": "Output Amplitdue",
+      "returns": {
+        "count": 1
       },
       "subsystem": "TGEN",
       "unverified": true
@@ -2411,262 +2747,76 @@
       "subsystem": "TGEN",
       "unverified": true
     },
-    "Get_Trace_Format": {
-      "scpi": ":TRACe:FORMat?",
-      "scpiFast": ":TRAC:FORM?",
-      "description": "Trace format",
-      "returns": {
-        "count": 1,
-        "type": "CRD"
-      },
-      "subsystem": "TRAC",
-      "unverified": true
-    },
-    "Get_Trigger_Sequence_Delaytime": {
-      "scpi": ":TRIGger:SEQuence:DELaytime?",
-      "scpiFast": ":TRIG:SEQ:DEL?",
-      "description": "Trigger Delay Time",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "s"
-      },
-      "subsystem": "TRIG",
-      "unverified": true
-    },
-    "Get_Trigger_Sequence_External_Slope": {
-      "scpi": ":TRIGger:SEQuence:EXTernal1:SLOPe?",
-      "scpiFast": ":TRIG:SEQ:EXT1:SLOP?",
-      "description": "External Trigger Slope",
-      "returns": {
-        "count": 1,
-        "type": "CRD"
-      },
-      "subsystem": "TRIG",
-      "unverified": true
-    },
-    "Get_Trigger_Sequence_Source": {
-      "scpi": ":TRIGger:SEQuence:SOURce?",
-      "scpiFast": ":TRIG:SEQ:SOUR?",
-      "description": "Trigger Source",
-      "returns": {
-        "count": 1,
-        "type": "CRD"
-      },
-      "subsystem": "TRIG",
-      "unverified": true
-    },
-    "Get_Trigger_Sequence_Video_Level": {
-      "scpi": ":TRIGger:SEQuence:VIDeo:LEVel?",
-      "scpiFast": ":TRIG:SEQ:VID:LEV?",
-      "description": "Video Trigger Level Amplitude",
-      "returns": {
-        "count": 1,
-        "type": "NR3"
-      },
-      "subsystem": "TRIG",
-      "unverified": true
-    },
-    "Get_Tst": {
-      "scpi": "*TST?",
-      "description": "Get tst",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Unit_Power": {
-      "scpi": ":UNIT:POWer?",
-      "scpiFast": ":UNIT:POW?",
-      "description": "Select Power Units of Measure",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "UNIT",
-      "unverified": true
-    },
-    "Get_Unit_Power_Emf": {
-      "scpi": ":UNIT:POWer:EMF?",
-      "scpiFast": ":UNIT:POW:EMF?",
-      "description": "EMF Mode",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "subsystem": "UNIT",
-      "unverified": true
-    },
-    "Preamp_State": {
-      "scpi": ":SENSE:POWer:RF:GAIN:STATe?",
-      "scpiFast": ":SENS:POW:RF:GAIN:STAT?",
-      "description": "Preamp State",
-      "returns": {
-        "count": 1,
-        "type": "BOOL",
-        "unit": "dB"
-      },
-      "group": "Individual Read Queries",
-      "subsystem": "Amplitude"
-    },
-    "Reference_Level": {
-      "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel?",
-      "scpiFast": ":DISP:WIND:TRAC:Y:RLEV?",
-      "description": "Reference Level",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "group": "Individual Read Queries",
-      "subsystem": "Amplitude"
-    },
-    "all_marker_settings": {
-      "scpi": ":CALCulate:MARKer1:Y?;:CALCulate:MARKer2:Y?;:CALCulate:MARKer3:Y?;:CALCulate:MARKer4:Y?;:CALCulate:MARKer5:Y?;:CALCulate:MARKer6:Y?;:CALCulate:MARKer1:X?;:CALCulate:MARKer2:X?;:CALCulate:MARKer3:X?;:CALCulate:MARKer4:X?;:CALCulate:MARKer5:X?;:CALCulate:MARKer6:X?",
-      "scpiFast": ":CALC:MARK1:Y?;:CALC:MARK2:Y?;:CALC:MARK3:Y?;:CALC:MARK4:Y?;:CALC:MARK5:Y?;:CALC:MARK6:Y?;:CALC:MARK1:X?;:CALC:MARK2:X?;:CALC:MARK3:X?;:CALC:MARK4:X?;:CALC:MARK5:X?;:CALC:MARK6:X?",
-      "description": "Marker Amplitude and Frequency Readbacks",
-      "returns": {
-        "count": 12,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "y_1",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_2",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_3",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_4",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_5",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_6",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "x_1",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_2",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_3",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_4",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_5",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_6",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "group": "NAB Marker Monitoring",
-      "subsystem": "Markers"
-    },
-    "amplitude_settings": {
-      "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel?;:POWer:ATTenuation?;:POWer:GAIN?",
-      "scpiFast": ":DISP:WIND:TRAC:Y:RLEV?;:POW:ATT?;:POW:GAIN?",
-      "description": "Power and Attenuation Readbacks",
+    "trace_data_1": {
+      "scpi": ":TRACe1:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
+      "scpiFast": ":TRAC1:DATA?;:FREQ:STAR?;:FREQ:STOP?",
+      "description": "Trace 1's samples, with the span they were measured over.",
+      "subsystem": "Trace",
       "returns": {
         "count": 3,
         "separator": ";",
         "fields": [
           {
-            "name": "rlevel",
-            "type": "NR3",
+            "name": "samples_1",
+            "type": "CSV",
             "unit": "dBm"
           },
           {
-            "name": "attenuation",
+            "name": "start",
             "type": "NR3",
-            "unit": "dB"
+            "unit": "Hz"
           },
           {
-            "name": "gain",
+            "name": "stop",
             "type": "NR3",
-            "unit": "dB"
+            "unit": "Hz"
           }
         ]
       },
-      "group": "NAB Amplitude Monitoring",
-      "subsystem": "Amplitude"
+      "notes": "Same query as `trace_data`, but the trace number is IN THE COMMAND rather than a parameter, so the reply lands on `Reading/trace_data_1/samples_1`. The parameterised verb answers under the single name `trace_data/samples` whichever trace it fetched, which no display can bind to: a graph listening there cannot tell trace 1 from trace 4. A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
     },
-    "bandwidth_settings": {
-      "scpi": ":SENSe:BANDwidth:RESolution?;:SENSe:BANDwidth:VIDeo?;:SENSe:BANDwidth:VIDeo:AUTO?;:INITiate:CONTinuous?;:SENSe:SWEep:TIME?",
-      "scpiFast": ":SENS:BAND:RES?;:SENS:BAND:VID?;:SENS:BAND:VID:AUTO?;:INIT:CONT?;:SENS:SWE:TIME?",
-      "description": "Bandwidth and Sweep Monitoring",
+    "trace_data_all": {
+      "scpi": ":TRACe1:DATA?;:TRACe2:DATA?;:TRACe3:DATA?;:TRACe4:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
+      "scpiFast": ":TRAC1:DATA?;:TRAC2:DATA?;:TRAC3:DATA?;:TRAC4:DATA?;:FREQ:STAR?;:FREQ:STOP?",
+      "description": "All four traces plus the span, in one round trip.",
+      "subsystem": "Trace",
       "returns": {
-        "count": 5,
+        "count": 6,
         "separator": ";",
         "fields": [
           {
-            "name": "resolution",
-            "unit": "Hz"
+            "name": "samples_1",
+            "type": "CSV",
+            "unit": "dBm"
           },
           {
-            "name": "video",
-            "unit": "Hz"
+            "name": "samples_2",
+            "type": "CSV",
+            "unit": "dBm"
           },
           {
-            "name": "auto",
-            "type": "BOOL"
+            "name": "samples_3",
+            "type": "CSV",
+            "unit": "dBm"
           },
           {
-            "name": "continuous",
-            "type": "BOOL"
+            "name": "samples_4",
+            "type": "CSV",
+            "unit": "dBm"
           },
           {
-            "name": "time",
+            "name": "start",
             "type": "NR3",
-            "unit": "s"
+            "unit": "Hz"
+          },
+          {
+            "name": "stop",
+            "type": "NR3",
+            "unit": "Hz"
           }
         ]
       },
-      "group": "NAB Bandwidth Monitoring",
-      "subsystem": "Bandwidth"
-    },
-    "error_information": {
-      "scpi": ":SYSTem:ERRor?",
-      "scpiFast": ":SYST:ERR?",
-      "description": "System Error Check",
-      "returns": {
-        "count": 1,
-        "type": "NR2"
-      },
-      "group": "System Status and Identification",
-      "subsystem": "System"
+      "notes": "A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
     },
     "trace_settings": {
       "scpi": ":TRACe1:MODE?;:TRACe2:MODE?;:TRACe3:MODE?;:TRACe4:MODE?;:INITiate:CONTinuous?;:SENSe:AVERage:TRACe1:STATe?;:SENSe:AVERage:TRACe1:COUNt?",
@@ -2709,218 +2859,6 @@
       },
       "notes": "Averaging DOES belong here, contrary to the earlier note. What does not answer on firmware A.02.07 is ':TRACe:AVERage:COUNt?' — the spelling with the trace index on TRACe. The working pair puts the index in the middle of SENSe:AVERage: ':SENSe:AVERage:TRACe1:STATe?' and ':SENSe:AVERage:TRACe1:COUNt?', and both chain cleanly onto the mode queries. Verified on CN03480580 2026-08-08: the seven-statement chain answered 'MAXH;MAXH;MINH;BLAN;1;0;+25'. One dead statement still kills the whole chained reply, so nothing unverified may be appended here."
     },
-    "marker_states": {
-      "scpi": ":CALCulate:MARKer1:STATe?;:CALCulate:MARKer2:STATe?;:CALCulate:MARKer3:STATe?;:CALCulate:MARKer4:STATe?;:CALCulate:MARKer5:STATe?;:CALCulate:MARKer6:STATe?",
-      "scpiFast": ":CALC:MARK1:STAT?;:CALC:MARK2:STAT?;:CALC:MARK3:STAT?;:CALC:MARK4:STAT?;:CALC:MARK5:STAT?;:CALC:MARK6:STAT?",
-      "description": "Whether each of the six markers is on.",
-      "subsystem": "Markers",
-      "returns": {
-        "count": 6,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state_1",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_2",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_3",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_4",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_5",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_6",
-            "type": "BOOL"
-          }
-        ]
-      },
-      "notes": "Separate from all_marker_settings, which returns X and Y but not whether a marker is enabled. Verified on CN03480580 2026-08-07: '1;1;1;1;1;1', no error."
-    },
-    "marker_all": {
-      "scpi": ":CALCulate:MARKer1:STATe?;:CALCulate:MARKer2:STATe?;:CALCulate:MARKer3:STATe?;:CALCulate:MARKer4:STATe?;:CALCulate:MARKer5:STATe?;:CALCulate:MARKer6:STATe?;:CALCulate:MARKer1:X?;:CALCulate:MARKer2:X?;:CALCulate:MARKer3:X?;:CALCulate:MARKer4:X?;:CALCulate:MARKer5:X?;:CALCulate:MARKer6:X?;:CALCulate:MARKer1:Y?;:CALCulate:MARKer2:Y?;:CALCulate:MARKer3:Y?;:CALCulate:MARKer4:Y?;:CALCulate:MARKer5:Y?;:CALCulate:MARKer6:Y?",
-      "scpiFast": ":CALC:MARK1:STAT?;:CALC:MARK2:STAT?;:CALC:MARK3:STAT?;:CALC:MARK4:STAT?;:CALC:MARK5:STAT?;:CALC:MARK6:STAT?;:CALC:MARK1:X?;:CALC:MARK2:X?;:CALC:MARK3:X?;:CALC:MARK4:X?;:CALC:MARK5:X?;:CALC:MARK6:X?;:CALC:MARK1:Y?;:CALC:MARK2:Y?;:CALC:MARK3:Y?;:CALC:MARK4:Y?;:CALC:MARK5:Y?;:CALC:MARK6:Y?",
-      "description": "Every marker, whole: on/off, X and Y for all six, in one round trip.",
-      "subsystem": "Markers",
-      "returns": {
-        "count": 18,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state_1",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_2",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_3",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_4",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_5",
-            "type": "BOOL"
-          },
-          {
-            "name": "state_6",
-            "type": "BOOL"
-          },
-          {
-            "name": "x_1",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_2",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_3",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_4",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_5",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "x_6",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "y_1",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_2",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_3",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_4",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_5",
-            "type": "NR3",
-            "unit": "dBm"
-          },
-          {
-            "name": "y_6",
-            "type": "NR3",
-            "unit": "dBm"
-          }
-        ]
-      },
-      "notes": "18 statements in one chain, verified on CN03480580 2026-08-07 — 18 fields returned, no error. Replaces asking marker_states and all_marker_settings separately: status and values always arrive together, so the Active boxes can never disagree with the X and Y beside them."
-    },
-    "Get_Averaging": {
-      "scpi": ":SENSe:AVERage:TRACe<trace_number>:COUNt?",
-      "scpiFast": ":SENS:AVER:TRAC<trace_number>:COUN?",
-      "description": "Trace averaging count.",
-      "subsystem": "Trace",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "notes": "The trace index sits in the MIDDLE: ':SENSe:AVERage:TRACe<n>:COUNt'. Eight spellings with it elsewhere — :TRACe:AVERage:COUNt, :SENSe:AVERage:COUNt, :AVERage:COUNt, :TRACe1:AVERage:COUNt and friends — all return -171 'Invalid expression', which is what made this look unsupported. Verified on CN03480580 2026-08-07: set 25 -> reads +25, set 100 -> reads +100."
-    },
-    "Get_Averaging_State": {
-      "scpi": ":SENSe:AVERage:TRACe<trace_number>:STATe?",
-      "scpiFast": ":SENS:AVER:TRAC<trace_number>:STAT?",
-      "description": "Whether trace averaging is actually running.",
-      "subsystem": "Trace",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "notes": "Averaging has TWO halves and the count is the lesser one. ':SENSe:AVERage:TRACe<n>:COUNt' only says how many sweeps to average over; nothing is averaged until ':SENSe:AVERage:TRACe<n>:STATe' is 1. Verified on CN03480580 2026-08-08: with COUNt at 25, STATe read 0 — setting STATe 1 read back 1 with the count untouched, and the trace mode stayed WRIT (this is NOT the AVERage trace mode). COUNt 0 does not disable it either: the instrument clamps it to +1 and leaves STATe alone."
-    },
-    "trace_data": {
-      "scpi": ":TRACe<trace_number>:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
-      "scpiFast": ":TRAC<trace_number>:DATA?;:FREQ:STAR?;:FREQ:STOP?",
-      "description": "One trace's samples, with the span they were measured over.",
-      "subsystem": "Trace",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "samples",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "start",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "stop",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "notes": "A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
-    },
-    "trace_data_1": {
-      "scpi": ":TRACe1:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
-      "scpiFast": ":TRAC1:DATA?;:FREQ:STAR?;:FREQ:STOP?",
-      "description": "Trace 1's samples, with the span they were measured over.",
-      "subsystem": "Trace",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "samples_1",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "start",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "stop",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "notes": "Same query as `trace_data`, but the trace number is IN THE COMMAND rather than a parameter, so the reply lands on `Reading/trace_data_1/samples_1`. The parameterised verb answers under the single name `trace_data/samples` whichever trace it fetched, which no display can bind to: a graph listening there cannot tell trace 1 from trace 4. A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
-    },
     "trace_data_2": {
       "scpi": ":TRACe2:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
       "scpiFast": ":TRAC2:DATA?;:FREQ:STAR?;:FREQ:STOP?",
@@ -2948,6 +2886,44 @@
         ]
       },
       "notes": "Same query as `trace_data`, but the trace number is IN THE COMMAND rather than a parameter, so the reply lands on `Reading/trace_data_2/samples_2`. The parameterised verb answers under the single name `trace_data/samples` whichever trace it fetched, which no display can bind to: a graph listening there cannot tell trace 1 from trace 4. A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
+    },
+    "trace_data_234": {
+      "scpi": ":TRACe2:DATA?;:TRACe3:DATA?;:TRACe4:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
+      "scpiFast": ":TRAC2:DATA?;:TRAC3:DATA?;:TRAC4:DATA?;:FREQ:STAR?;:FREQ:STOP?",
+      "description": "Traces 2, 3 and 4 plus the span — the held traces, without the live one.",
+      "subsystem": "Trace",
+      "returns": {
+        "count": 5,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "samples_2",
+            "type": "CSV",
+            "unit": "dBm"
+          },
+          {
+            "name": "samples_3",
+            "type": "CSV",
+            "unit": "dBm"
+          },
+          {
+            "name": "samples_4",
+            "type": "CSV",
+            "unit": "dBm"
+          },
+          {
+            "name": "start",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "stop",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "notes": "A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
     },
     "trace_data_3": {
       "scpi": ":TRACe3:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
@@ -3005,32 +2981,28 @@
       },
       "notes": "Same query as `trace_data`, but the trace number is IN THE COMMAND rather than a parameter, so the reply lands on `Reading/trace_data_4/samples_4`. The parameterised verb answers under the single name `trace_data/samples` whichever trace it fetched, which no display can bind to: a graph listening there cannot tell trace 1 from trace 4. A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
     },
-    "trace_data_all": {
-      "scpi": ":TRACe1:DATA?;:TRACe2:DATA?;:TRACe3:DATA?;:TRACe4:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
-      "scpiFast": ":TRAC1:DATA?;:TRAC2:DATA?;:TRAC3:DATA?;:TRAC4:DATA?;:FREQ:STAR?;:FREQ:STOP?",
-      "description": "All four traces plus the span, in one round trip.",
+    "Get_Trace_Format": {
+      "scpi": ":TRACe:FORMat?",
+      "scpiFast": ":TRAC:FORM?",
+      "description": "Trace format",
+      "returns": {
+        "count": 1,
+        "type": "CRD"
+      },
+      "subsystem": "TRAC",
+      "unverified": true
+    },
+    "trace_data": {
+      "scpi": ":TRACe<trace_number>:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
+      "scpiFast": ":TRAC<trace_number>:DATA?;:FREQ:STAR?;:FREQ:STOP?",
+      "description": "One trace's samples, with the span they were measured over.",
       "subsystem": "Trace",
       "returns": {
-        "count": 6,
+        "count": 3,
         "separator": ";",
         "fields": [
           {
-            "name": "samples_1",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "samples_2",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "samples_3",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "samples_4",
+            "name": "samples",
             "type": "CSV",
             "unit": "dBm"
           },
@@ -3048,43 +3020,71 @@
       },
       "notes": "A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
     },
-    "trace_data_234": {
-      "scpi": ":TRACe2:DATA?;:TRACe3:DATA?;:TRACe4:DATA?;:FREQuency:STARt?;:FREQuency:STOP?",
-      "scpiFast": ":TRAC2:DATA?;:TRAC3:DATA?;:TRAC4:DATA?;:FREQ:STAR?;:FREQ:STOP?",
-      "description": "Traces 2, 3 and 4 plus the span — the held traces, without the live one.",
-      "subsystem": "Trace",
+    "Get_Trigger_Sequence_Delaytime": {
+      "scpi": ":TRIGger:SEQuence:DELaytime?",
+      "scpiFast": ":TRIG:SEQ:DEL?",
+      "description": "Trigger Delay Time",
       "returns": {
-        "count": 5,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "samples_2",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "samples_3",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "samples_4",
-            "type": "CSV",
-            "unit": "dBm"
-          },
-          {
-            "name": "start",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "stop",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
+        "count": 1,
+        "type": "NR3",
+        "unit": "s"
       },
-      "notes": "A trace without its frequency axis cannot be plotted, and fetching the two separately lets them disagree — the span can move between the reads. Start and stop therefore ride in the SAME reply as the samples. Verified on CN03480580 2026-08-07: 461 points per trace, 3 fields for one trace and 6 for all four. Note ':TRACe<n>:DATA?' — ':TRACe:DATA? TRACE1' does not answer on this firmware."
+      "subsystem": "TRIG",
+      "unverified": true
+    },
+    "Get_Trigger_Sequence_External_Slope": {
+      "scpi": ":TRIGger:SEQuence:EXTernal1:SLOPe?",
+      "scpiFast": ":TRIG:SEQ:EXT1:SLOP?",
+      "description": "External Trigger Slope",
+      "returns": {
+        "count": 1,
+        "type": "CRD"
+      },
+      "subsystem": "TRIG",
+      "unverified": true
+    },
+    "Get_Trigger_Sequence_Source": {
+      "scpi": ":TRIGger:SEQuence:SOURce?",
+      "scpiFast": ":TRIG:SEQ:SOUR?",
+      "description": "Trigger Source",
+      "returns": {
+        "count": 1,
+        "type": "CRD"
+      },
+      "subsystem": "TRIG",
+      "unverified": true
+    },
+    "Get_Trigger_Sequence_Video_Level": {
+      "scpi": ":TRIGger:SEQuence:VIDeo:LEVel?",
+      "scpiFast": ":TRIG:SEQ:VID:LEV?",
+      "description": "Video Trigger Level Amplitude",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "subsystem": "TRIG",
+      "unverified": true
+    },
+    "Get_Unit_Power_Emf": {
+      "scpi": ":UNIT:POWer:EMF?",
+      "scpiFast": ":UNIT:POW:EMF?",
+      "description": "EMF Mode",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "subsystem": "UNIT",
+      "unverified": true
+    },
+    "Get_Unit_Power": {
+      "scpi": ":UNIT:POWer?",
+      "scpiFast": ":UNIT:POW?",
+      "description": "Select Power Units of Measure",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "UNIT",
+      "unverified": true
     }
   }
 }

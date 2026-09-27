@@ -66,9 +66,9 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
@@ -82,101 +82,6 @@
   },
   "endpoints": {
     "get": {
-      "Fetch_Scan": {
-        "command": "Fetch_Scan",
-        "verb": "get",
-        "description": "Fetch reading buffer contents from memory",
-        "scpi": ":FETCh?",
-        "scpi_fast": ":FETC?",
-        "subsystem": "SENSe",
-        "group": "Data Acquisition",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "readings"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Fetch_Scan",
-          "direction": "in",
-          "payload_format": {
-            "command": "Fetch_Scan"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Scan",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Query_Error": {
-        "command": "Query_Error",
-        "verb": "get",
-        "description": "Query next error code and message",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "SYSTem",
-        "group": "System Utilities",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "code"
-            },
-            {
-              "name": "message"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Query_Error",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_Error"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Query_Scan_Size": {
-        "command": "Query_Scan_Size",
-        "verb": "get",
-        "description": "Query number of readings currently stored in volatile memory",
-        "scpi": ":DATA:POINts?",
-        "scpi_fast": ":DATA:POIN?",
-        "subsystem": "DATA",
-        "group": "Memory System",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "fields": [
-            {
-              "name": "count"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Query_Scan_Size",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_Scan_Size"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Scan_Size",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "Read_IDN": {
         "command": "Read_IDN",
         "verb": "get",
@@ -216,14 +121,14 @@
         },
         "unverified": false
       },
-      "Read_Monitor_Data": {
-        "command": "Read_Monitor_Data",
+      "Query_Scan_Size": {
+        "command": "Query_Scan_Size",
         "verb": "get",
-        "description": "Read latest measurement from monitored channel",
-        "scpi": ":ROUTe:MONItor:DATA?",
-        "scpi_fast": ":ROUT:MON:DATA?",
-        "subsystem": "ROUTe",
-        "group": "Channel Monitor",
+        "description": "Query number of readings currently stored in volatile memory",
+        "scpi": ":DATA:POINts?",
+        "scpi_fast": ":DATA:POIN?",
+        "subsystem": "DATA",
+        "group": "Memory System",
         "args": [],
         "arg": {
           "kind": "none"
@@ -231,17 +136,48 @@
         "returns": {
           "fields": [
             {
-              "name": "reading"
+              "name": "count"
             }
           ]
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Read_Monitor_Data",
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Scan_Size",
           "direction": "in",
           "payload_format": {
-            "command": "Read_Monitor_Data"
+            "command": "Query_Scan_Size"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Monitor_Data",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Scan_Size",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Fetch_Scan": {
+        "command": "Fetch_Scan",
+        "verb": "get",
+        "description": "Fetch reading buffer contents from memory",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "readings"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Fetch_Scan",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Scan"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Scan",
           "reading_direction": "out"
         },
         "unverified": false
@@ -276,6 +212,36 @@
         },
         "unverified": false
       },
+      "Read_Monitor_Data": {
+        "command": "Read_Monitor_Data",
+        "verb": "get",
+        "description": "Read latest measurement from monitored channel",
+        "scpi": ":ROUTe:MONItor:DATA?",
+        "scpi_fast": ":ROUT:MON:DATA?",
+        "subsystem": "ROUTe",
+        "group": "Channel Monitor",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "reading"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Monitor_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Monitor_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Monitor_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Read_Scan_List": {
         "command": "Read_Scan_List",
         "verb": "get",
@@ -305,6 +271,40 @@
           "reading_direction": "out"
         },
         "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "get",
+        "description": "Query next error code and message",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_direction": "out"
+        },
+        "unverified": false
       }
     },
     "set": {
@@ -331,33 +331,6 @@
             "command": "Set_Channel_Delay",
             "value": "<value>",
             "input_name": "seconds"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Integration_NPLC": {
-        "command": "Set_Integration_NPLC",
-        "verb": "set",
-        "description": "Set integration time in power line cycles for DC measurements",
-        "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>, (@<channels>)",
-        "scpi_fast": ":SENS:VOLT:DC:NPLC <nplc>, (@<channels>)",
-        "subsystem": "SENSe",
-        "group": "Measurement Parameters",
-        "args": [
-          "nplc",
-          "channels"
-        ],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Set_Integration_NPLC",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Integration_NPLC",
-            "value": "<value>",
-            "input_name": "nplc"
           }
         },
         "unverified": false
@@ -418,6 +391,32 @@
         },
         "unverified": false
       },
+      "Set_Scan_List": {
+        "command": "Set_Scan_List",
+        "verb": "set",
+        "description": "Define channels included in automatic scan sweep",
+        "scpi": ":ROUTe:SCAN (@<channels>)",
+        "scpi_fast": ":ROUT:SCAN (@<channels>)",
+        "subsystem": "ROUTe",
+        "group": "Route Configuration",
+        "args": [
+          "channels"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Scan_List",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Scan_List",
+            "value": "<value>",
+            "input_name": "channels"
+          }
+        },
+        "unverified": false
+      },
       "Set_Scan_Interval": {
         "command": "Set_Scan_Interval",
         "verb": "set",
@@ -447,28 +446,29 @@
         },
         "unverified": false
       },
-      "Set_Scan_List": {
-        "command": "Set_Scan_List",
+      "Set_Integration_NPLC": {
+        "command": "Set_Integration_NPLC",
         "verb": "set",
-        "description": "Define channels included in automatic scan sweep",
-        "scpi": ":ROUTe:SCAN (@<channels>)",
-        "scpi_fast": ":ROUT:SCAN (@<channels>)",
-        "subsystem": "ROUTe",
-        "group": "Route Configuration",
+        "description": "Set integration time in power line cycles for DC measurements",
+        "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>, (@<channels>)",
+        "scpi_fast": ":SENS:VOLT:DC:NPLC <nplc>, (@<channels>)",
+        "subsystem": "SENSe",
+        "group": "Measurement Parameters",
         "args": [
+          "nplc",
           "channels"
         ],
         "arg": {
-          "kind": "string"
+          "kind": "none"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Set_Scan_List",
+          "topic": "APK.audio/Gui/Komands/DAQ/Set_Integration_NPLC",
           "direction": "in",
           "payload_format": {
-            "command": "Set_Scan_List",
+            "command": "Set_Integration_NPLC",
             "value": "<value>",
-            "input_name": "channels"
+            "input_name": "nplc"
           }
         },
         "unverified": false
@@ -537,101 +537,6 @@
       }
     },
     "nab": {
-      "Fetch_Scan": {
-        "command": "Fetch_Scan",
-        "verb": "nab",
-        "description": "Fetch reading buffer contents from memory",
-        "scpi": ":FETCh?",
-        "scpi_fast": ":FETC?",
-        "subsystem": "SENSe",
-        "group": "Data Acquisition",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "readings"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Fetch_Scan",
-          "direction": "in",
-          "payload_format": {
-            "command": "Fetch_Scan"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Scan",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Query_Error": {
-        "command": "Query_Error",
-        "verb": "nab",
-        "description": "Query next error code and message",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "SYSTem",
-        "group": "System Utilities",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "code"
-            },
-            {
-              "name": "message"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Query_Error",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_Error"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Query_Scan_Size": {
-        "command": "Query_Scan_Size",
-        "verb": "nab",
-        "description": "Query number of readings currently stored in volatile memory",
-        "scpi": ":DATA:POINts?",
-        "scpi_fast": ":DATA:POIN?",
-        "subsystem": "DATA",
-        "group": "Memory System",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "fields": [
-            {
-              "name": "count"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Query_Scan_Size",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_Scan_Size"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Scan_Size",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "Read_IDN": {
         "command": "Read_IDN",
         "verb": "nab",
@@ -671,14 +576,14 @@
         },
         "unverified": false
       },
-      "Read_Monitor_Data": {
-        "command": "Read_Monitor_Data",
+      "Query_Scan_Size": {
+        "command": "Query_Scan_Size",
         "verb": "nab",
-        "description": "Read latest measurement from monitored channel",
-        "scpi": ":ROUTe:MONItor:DATA?",
-        "scpi_fast": ":ROUT:MON:DATA?",
-        "subsystem": "ROUTe",
-        "group": "Channel Monitor",
+        "description": "Query number of readings currently stored in volatile memory",
+        "scpi": ":DATA:POINts?",
+        "scpi_fast": ":DATA:POIN?",
+        "subsystem": "DATA",
+        "group": "Memory System",
         "args": [],
         "arg": {
           "kind": "none"
@@ -686,17 +591,48 @@
         "returns": {
           "fields": [
             {
-              "name": "reading"
+              "name": "count"
             }
           ]
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Read_Monitor_Data",
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Scan_Size",
           "direction": "in",
           "payload_format": {
-            "command": "Read_Monitor_Data"
+            "command": "Query_Scan_Size"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Monitor_Data",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Scan_Size",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Fetch_Scan": {
+        "command": "Fetch_Scan",
+        "verb": "nab",
+        "description": "Fetch reading buffer contents from memory",
+        "scpi": ":FETCh?",
+        "scpi_fast": ":FETC?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "readings"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Fetch_Scan",
+          "direction": "in",
+          "payload_format": {
+            "command": "Fetch_Scan"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Scan",
           "reading_direction": "out"
         },
         "unverified": false
@@ -731,6 +667,36 @@
         },
         "unverified": false
       },
+      "Read_Monitor_Data": {
+        "command": "Read_Monitor_Data",
+        "verb": "nab",
+        "description": "Read latest measurement from monitored channel",
+        "scpi": ":ROUTe:MONItor:DATA?",
+        "scpi_fast": ":ROUT:MON:DATA?",
+        "subsystem": "ROUTe",
+        "group": "Channel Monitor",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "reading"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Read_Monitor_Data",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Monitor_Data"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Monitor_Data",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Read_Scan_List": {
         "command": "Read_Scan_List",
         "verb": "nab",
@@ -757,6 +723,40 @@
             "command": "Read_Scan_List"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Read_Scan_List",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "nab",
+        "description": "Query next error code and message",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -823,6 +823,48 @@
       }
     },
     "do": {
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear all status registers and error queue",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Reset": {
+        "command": "Reset",
+        "verb": "do",
+        "description": "Reset DAQ mainframe and installed modules",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/DAQ/Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset"
+          }
+        },
+        "unverified": false
+      },
       "Abort": {
         "command": "Abort",
         "verb": "do",
@@ -867,23 +909,24 @@
         },
         "unverified": false
       },
-      "Clear_Status": {
-        "command": "Clear_Status",
+      "Start_Scan": {
+        "command": "Start_Scan",
         "verb": "do",
-        "description": "Clear all status registers and error queue",
-        "scpi": "*CLS",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
+        "description": "Initiate scan sequence",
+        "scpi": ":INITiate",
+        "scpi_fast": ":INIT",
+        "subsystem": "TRIGger",
+        "group": "Trigger System",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Clear_Status",
+          "topic": "APK.audio/Gui/Komands/DAQ/Start_Scan",
           "direction": "in",
           "payload_format": {
-            "command": "Clear_Status"
+            "command": "Start_Scan"
           }
         },
         "unverified": false
@@ -906,49 +949,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Open_All"
-          }
-        },
-        "unverified": false
-      },
-      "Reset": {
-        "command": "Reset",
-        "verb": "do",
-        "description": "Reset DAQ mainframe and installed modules",
-        "scpi": "*RST",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Reset",
-          "direction": "in",
-          "payload_format": {
-            "command": "Reset"
-          }
-        },
-        "unverified": false
-      },
-      "Start_Scan": {
-        "command": "Start_Scan",
-        "verb": "do",
-        "description": "Initiate scan sequence",
-        "scpi": ":INITiate",
-        "scpi_fast": ":INIT",
-        "subsystem": "TRIGger",
-        "group": "Trigger System",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DAQ/Start_Scan",
-          "direction": "in",
-          "payload_format": {
-            "command": "Start_Scan"
           }
         },
         "unverified": false

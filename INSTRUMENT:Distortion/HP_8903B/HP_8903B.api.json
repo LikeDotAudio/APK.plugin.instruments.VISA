@@ -69,15 +69,15 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
     "total_commands": 610,
-    "get_count": 289,
+    "get_count": 288,
     "set_count": 276,
     "nab_count": 289,
     "rig_count": 0,
@@ -5360,6 +5360,56 @@
         },
         "unverified": true
       },
+      "Read_Ch_A_Only": {
+        "command": "Read_Ch_A_Only",
+        "verb": "get",
+        "description": "Read Ch A Only",
+        "scpi": "M1?",
+        "subsystem": "Measurements",
+        "group": "Read Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_A_Only",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Ch_A_Only"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_A_Only",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Ch_B_Only": {
+        "command": "Read_Ch_B_Only",
+        "verb": "get",
+        "description": "Read Ch B Only",
+        "scpi": "M2?",
+        "subsystem": "Measurements",
+        "group": "Read Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_B_Only",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Ch_B_Only"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_B_Only",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Get_Nois_Amax": {
         "command": "Get_Nois_Amax",
         "verb": "get",
@@ -7784,90 +7834,6 @@
           "reading_direction": "out"
         },
         "unverified": true
-      },
-      "Read_Ch_A_Only": {
-        "command": "Read_Ch_A_Only",
-        "verb": "get",
-        "description": "Read Ch A Only",
-        "scpi": "M1?",
-        "subsystem": "Measurements",
-        "group": "Read Commands",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_A_Only",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Ch_A_Only"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_A_Only",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_Ch_B_Only": {
-        "command": "Read_Ch_B_Only",
-        "verb": "get",
-        "description": "Read Ch B Only",
-        "scpi": "M2?",
-        "subsystem": "Measurements",
-        "group": "Read Commands",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_B_Only",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Ch_B_Only"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_B_Only",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_Stereo_AB": {
-        "command": "Read_Stereo_AB",
-        "verb": "get",
-        "description": "Read Stereo AB",
-        "scpi": "M1?;M2?",
-        "subsystem": "Measurements",
-        "group": "Read Commands",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 2,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "m_1"
-            },
-            {
-              "name": "m_2"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Read_Stereo_AB",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Stereo_AB"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Stereo_AB",
-          "reading_direction": "out"
-        },
-        "unverified": false
       }
     },
     "set": {
@@ -8437,34 +8403,6 @@
           }
         },
         "unverified": true
-      },
-      "Set_Amplitude": {
-        "command": "Set_Amplitude",
-        "verb": "set",
-        "description": "Set Amplitude",
-        "scpi": ":GAMPlitude <amp>",
-        "scpi_fast": ":GAMP <amp>",
-        "subsystem": "Signal_Generator",
-        "group": "Set Signal Parameters",
-        "args": [
-          "amp"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "default": "1 VRMS",
-          "unit": "V"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_Amplitude",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Amplitude",
-            "value": "<value>",
-            "input_name": "amp"
-          }
-        },
-        "unverified": false
       },
       "Set_Damp_Amax": {
         "command": "Set_Damp_Amax",
@@ -12507,29 +12445,30 @@
         },
         "unverified": true
       },
-      "Set_Frequency": {
-        "command": "Set_Frequency",
+      "Set_Amplitude": {
+        "command": "Set_Amplitude",
         "verb": "set",
-        "description": "Set Frequency",
-        "scpi": ":GFREquency <freq>",
-        "scpi_fast": ":GFRE <freq>",
+        "description": "Set Amplitude",
+        "scpi": ":GAMPlitude <amp>",
+        "scpi_fast": ":GAMP <amp>",
         "subsystem": "Signal_Generator",
         "group": "Set Signal Parameters",
         "args": [
-          "freq"
+          "amp"
         ],
         "arg": {
           "kind": "numeric",
-          "default": "1 KHZ"
+          "default": "1 VRMS",
+          "unit": "V"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_Frequency",
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_Amplitude",
           "direction": "in",
           "payload_format": {
-            "command": "Set_Frequency",
+            "command": "Set_Amplitude",
             "value": "<value>",
-            "input_name": "freq"
+            "input_name": "amp"
           }
         },
         "unverified": false
@@ -12731,6 +12670,33 @@
           }
         },
         "unverified": true
+      },
+      "Set_Frequency": {
+        "command": "Set_Frequency",
+        "verb": "set",
+        "description": "Set Frequency",
+        "scpi": ":GFREquency <freq>",
+        "scpi_fast": ":GFRE <freq>",
+        "subsystem": "Signal_Generator",
+        "group": "Set Signal Parameters",
+        "args": [
+          "freq"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "default": "1 KHZ"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_Frequency",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Frequency",
+            "value": "<value>",
+            "input_name": "freq"
+          }
+        },
+        "unverified": false
       },
       "Set_Imd_Amax": {
         "command": "Set_Imd_Amax",
@@ -21223,6 +21189,90 @@
         },
         "unverified": true
       },
+      "Read_Ch_A_Only": {
+        "command": "Read_Ch_A_Only",
+        "verb": "nab",
+        "description": "Read Ch A Only",
+        "scpi": "M1?",
+        "subsystem": "Measurements",
+        "group": "Read Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_A_Only",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Ch_A_Only"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_A_Only",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Stereo_AB": {
+        "command": "Read_Stereo_AB",
+        "verb": "nab",
+        "description": "Read Stereo AB",
+        "scpi": "M1?;M2?",
+        "subsystem": "Measurements",
+        "group": "Read Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 2,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "m_1"
+            },
+            {
+              "name": "m_2"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Read_Stereo_AB",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Stereo_AB"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Stereo_AB",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_Ch_B_Only": {
+        "command": "Read_Ch_B_Only",
+        "verb": "nab",
+        "description": "Read Ch B Only",
+        "scpi": "M2?",
+        "subsystem": "Measurements",
+        "group": "Read Commands",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_B_Only",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Ch_B_Only"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_B_Only",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Get_Nois_Amax": {
         "command": "Get_Nois_Amax",
         "verb": "nab",
@@ -23647,94 +23697,52 @@
           "reading_direction": "out"
         },
         "unverified": true
-      },
-      "Read_Ch_A_Only": {
-        "command": "Read_Ch_A_Only",
-        "verb": "nab",
-        "description": "Read Ch A Only",
-        "scpi": "M1?",
-        "subsystem": "Measurements",
-        "group": "Read Commands",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_A_Only",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Ch_A_Only"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_A_Only",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_Ch_B_Only": {
-        "command": "Read_Ch_B_Only",
-        "verb": "nab",
-        "description": "Read Ch B Only",
-        "scpi": "M2?",
-        "subsystem": "Measurements",
-        "group": "Read Commands",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Read_Ch_B_Only",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Ch_B_Only"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Ch_B_Only",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_Stereo_AB": {
-        "command": "Read_Stereo_AB",
-        "verb": "nab",
-        "description": "Read Stereo AB",
-        "scpi": "M1?;M2?",
-        "subsystem": "Measurements",
-        "group": "Read Commands",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 2,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "m_1"
-            },
-            {
-              "name": "m_2"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Read_Stereo_AB",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Stereo_AB"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Stereo_AB",
-          "reading_direction": "out"
-        },
-        "unverified": false
       }
     },
     "rig": {},
     "do": {
+      "Do_Clear_Status": {
+        "command": "Do_Clear_Status",
+        "verb": "do",
+        "description": "Do Clear Status",
+        "scpi": "*CLS",
+        "subsystem": "System",
+        "group": "Global Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Do_Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Reset_Device": {
+        "command": "Reset_Device",
+        "verb": "do",
+        "description": "Do Reset",
+        "scpi": "*RST",
+        "subsystem": "System",
+        "group": "Global Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Reset_Device",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset_Device"
+          }
+        },
+        "unverified": false
+      },
       "Do_Ampl_Step": {
         "command": "Do_Ampl_Step",
         "verb": "do",
@@ -23779,23 +23787,112 @@
         },
         "unverified": true
       },
-      "Do_Clear_Status": {
-        "command": "Do_Clear_Status",
+      "Set_Unit_dBm": {
+        "command": "Set_Unit_dBm",
         "verb": "do",
-        "description": "Do Clear Status",
-        "scpi": "*CLS",
-        "subsystem": "System",
-        "group": "Global Utilities",
+        "description": "Set Unit dBm",
+        "scpi": ":AUNits DBM",
+        "scpi_fast": ":AUN DBM",
+        "subsystem": "Measurements",
+        "group": "Select Output Unit (M1/M2)",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Do_Clear_Status",
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_dBm",
           "direction": "in",
           "payload_format": {
-            "command": "Do_Clear_Status"
+            "command": "Set_Unit_dBm"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Unit_dBu": {
+        "command": "Set_Unit_dBu",
+        "verb": "do",
+        "description": "Set Unit dBu",
+        "scpi": ":AUNits DBU",
+        "scpi_fast": ":AUN DBU",
+        "subsystem": "Measurements",
+        "group": "Select Output Unit (M1/M2)",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_dBu",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Unit_dBu"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Unit_dBV": {
+        "command": "Set_Unit_dBV",
+        "verb": "do",
+        "description": "Set Unit dBV",
+        "scpi": ":AUNits DBV",
+        "scpi_fast": ":AUN DBV",
+        "subsystem": "Measurements",
+        "group": "Select Output Unit (M1/M2)",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_dBV",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Unit_dBV"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Unit_Volts": {
+        "command": "Set_Unit_Volts",
+        "verb": "do",
+        "description": "Set Unit Volts",
+        "scpi": ":AUNits V",
+        "scpi_fast": ":AUN V",
+        "subsystem": "Measurements",
+        "group": "Select Output Unit (M1/M2)",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_Volts",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Unit_Volts"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Unit_Watts": {
+        "command": "Set_Unit_Watts",
+        "verb": "do",
+        "description": "Set Unit Watts",
+        "scpi": ":AUNits W",
+        "scpi_fast": ":AUN W",
+        "subsystem": "Measurements",
+        "group": "Select Output Unit (M1/M2)",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_Watts",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Unit_Watts"
           }
         },
         "unverified": false
@@ -23864,6 +23961,94 @@
         },
         "unverified": true
       },
+      "Select_DIN_BNC": {
+        "command": "Select_DIN_BNC",
+        "verb": "do",
+        "description": "Select DIN BNC",
+        "scpi": ":DINPut BNC",
+        "scpi_fast": ":DINP BNC",
+        "subsystem": "Digital",
+        "group": "Select Digital Input Connector",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_BNC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_DIN_BNC"
+          }
+        },
+        "unverified": false
+      },
+      "Select_DIN_Generator": {
+        "command": "Select_DIN_Generator",
+        "verb": "do",
+        "description": "Select DIN Generator",
+        "scpi": ":DINPut GENerator",
+        "scpi_fast": ":DINP GENerator",
+        "subsystem": "Digital",
+        "group": "Select Digital Input Connector",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_Generator",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_DIN_Generator"
+          }
+        },
+        "unverified": false
+      },
+      "Select_DIN_Optical": {
+        "command": "Select_DIN_Optical",
+        "verb": "do",
+        "description": "Select DIN Optical",
+        "scpi": ":DINPut OPTical",
+        "scpi_fast": ":DINP OPTical",
+        "subsystem": "Digital",
+        "group": "Select Digital Input Connector",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_Optical",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_DIN_Optical"
+          }
+        },
+        "unverified": false
+      },
+      "Select_DIN_XLR": {
+        "command": "Select_DIN_XLR",
+        "verb": "do",
+        "description": "Select DIN XLR",
+        "scpi": ":DINPut XLR",
+        "scpi_fast": ":DINP XLR",
+        "subsystem": "Digital",
+        "group": "Select Digital Input Connector",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_XLR",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_DIN_XLR"
+          }
+        },
+        "unverified": false
+      },
       "Do_Display_Panel": {
         "command": "Do_Display_Panel",
         "verb": "do",
@@ -23908,6 +24093,50 @@
         },
         "unverified": true
       },
+      "Set_DOUT_OFF": {
+        "command": "Set_DOUT_OFF",
+        "verb": "do",
+        "description": "Set DOUT OFF",
+        "scpi": ":DOUTput OFF",
+        "scpi_fast": ":DOUT OFF",
+        "subsystem": "Digital",
+        "group": "Digital Output State",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_DOUT_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_DOUT_OFF"
+          }
+        },
+        "unverified": false
+      },
+      "Set_DOUT_ON": {
+        "command": "Set_DOUT_ON",
+        "verb": "do",
+        "description": "Set DOUT ON",
+        "scpi": ":DOUTput ON",
+        "scpi_fast": ":DOUT ON",
+        "subsystem": "Digital",
+        "group": "Digital Output State",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Set_DOUT_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_DOUT_ON"
+          }
+        },
+        "unverified": false
+      },
       "Do_Dthd_Medium": {
         "command": "Do_Dthd_Medium",
         "verb": "do",
@@ -23929,6 +24158,160 @@
           }
         },
         "unverified": true
+      },
+      "Mode_Amplitude": {
+        "command": "Mode_Amplitude",
+        "verb": "do",
+        "description": "Mode Amplitude",
+        "scpi": ":FUNCtion AMPLitude",
+        "scpi_fast": ":FUNC AMPLitude",
+        "subsystem": "Channel_AB",
+        "group": "Select Measurement Mode",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Amplitude",
+          "direction": "in",
+          "payload_format": {
+            "command": "Mode_Amplitude"
+          }
+        },
+        "unverified": false
+      },
+      "Mode_Level_Stereo": {
+        "command": "Mode_Level_Stereo",
+        "verb": "do",
+        "description": "Mode Level Stereo",
+        "scpi": ":FUNCtion LEVel",
+        "scpi_fast": ":FUNC LEVel",
+        "subsystem": "Channel_AB",
+        "group": "Select Measurement Mode",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Level_Stereo",
+          "direction": "in",
+          "payload_format": {
+            "command": "Mode_Level_Stereo"
+          }
+        },
+        "unverified": false
+      },
+      "Mode_Noise": {
+        "command": "Mode_Noise",
+        "verb": "do",
+        "description": "Mode Noise",
+        "scpi": ":FUNCtion NOISE",
+        "scpi_fast": ":FUNC NOISE",
+        "subsystem": "Channel_AB",
+        "group": "Select Measurement Mode",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Noise",
+          "direction": "in",
+          "payload_format": {
+            "command": "Mode_Noise"
+          }
+        },
+        "unverified": false
+      },
+      "Mode_Phase": {
+        "command": "Mode_Phase",
+        "verb": "do",
+        "description": "Mode Phase",
+        "scpi": ":FUNCtion PHASE",
+        "scpi_fast": ":FUNC PHASE",
+        "subsystem": "Channel_AB",
+        "group": "Select Measurement Mode",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Phase",
+          "direction": "in",
+          "payload_format": {
+            "command": "Mode_Phase"
+          }
+        },
+        "unverified": false
+      },
+      "Mode_SINAD": {
+        "command": "Mode_SINAD",
+        "verb": "do",
+        "description": "Mode SINAD",
+        "scpi": ":FUNCtion SINad",
+        "scpi_fast": ":FUNC SINad",
+        "subsystem": "Channel_AB",
+        "group": "Select Measurement Mode",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Mode_SINAD",
+          "direction": "in",
+          "payload_format": {
+            "command": "Mode_SINAD"
+          }
+        },
+        "unverified": false
+      },
+      "Mode_THD_N": {
+        "command": "Mode_THD_N",
+        "verb": "do",
+        "description": "Mode THD N",
+        "scpi": ":FUNCtion THD",
+        "scpi_fast": ":FUNC THD",
+        "subsystem": "Channel_AB",
+        "group": "Select Measurement Mode",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Mode_THD_N",
+          "direction": "in",
+          "payload_format": {
+            "command": "Mode_THD_N"
+          }
+        },
+        "unverified": false
+      },
+      "Mode_Crosstalk": {
+        "command": "Mode_Crosstalk",
+        "verb": "do",
+        "description": "Mode Crosstalk",
+        "scpi": ":FUNCtion XTALK",
+        "scpi_fast": ":FUNC XTALK",
+        "subsystem": "Channel_AB",
+        "group": "Select Measurement Mode",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Crosstalk",
+          "direction": "in",
+          "payload_format": {
+            "command": "Mode_Crosstalk"
+          }
+        },
+        "unverified": false
       },
       "Do_Gen_Dig": {
         "command": "Do_Gen_Dig",
@@ -24015,6 +24398,94 @@
           }
         },
         "unverified": true
+      },
+      "Select_Input_Analog_A": {
+        "command": "Select_Input_Analog_A",
+        "verb": "do",
+        "description": "Select Input Analog A",
+        "scpi": ":INPut A",
+        "scpi_fast": ":INP A",
+        "subsystem": "Channel_A",
+        "group": "Route signals to Analyzer A",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Analog_A",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Input_Analog_A"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Input_Analog_B": {
+        "command": "Select_Input_Analog_B",
+        "verb": "do",
+        "description": "Select Input Analog B",
+        "scpi": ":INPut B",
+        "scpi_fast": ":INP B",
+        "subsystem": "Channel_B",
+        "group": "Route signals to Analyzer B",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Analog_B",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Input_Analog_B"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Input_Gen_Monitor_A": {
+        "command": "Select_Input_Gen_Monitor_A",
+        "verb": "do",
+        "description": "Select Input Gen Monitor A",
+        "scpi": ":INPut GENA",
+        "scpi_fast": ":INP GENA",
+        "subsystem": "Channel_A",
+        "group": "Route signals to Analyzer A",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Gen_Monitor_A",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Input_Gen_Monitor_A"
+          }
+        },
+        "unverified": false
+      },
+      "Select_Input_Gen_Monitor_B": {
+        "command": "Select_Input_Gen_Monitor_B",
+        "verb": "do",
+        "description": "Select Input Gen Monitor B",
+        "scpi": ":INPut GENB",
+        "scpi_fast": ":INP GENB",
+        "subsystem": "Channel_B",
+        "group": "Route signals to Analyzer B",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Gen_Monitor_B",
+          "direction": "in",
+          "payload_format": {
+            "command": "Select_Input_Gen_Monitor_B"
+          }
+        },
+        "unverified": false
       },
       "Do_Lev_Fm": {
         "command": "Do_Lev_Fm",
@@ -24146,511 +24617,6 @@
           }
         },
         "unverified": true
-      },
-      "Mode_Amplitude": {
-        "command": "Mode_Amplitude",
-        "verb": "do",
-        "description": "Mode Amplitude",
-        "scpi": ":FUNCtion AMPLitude",
-        "scpi_fast": ":FUNC AMPLitude",
-        "subsystem": "Channel_AB",
-        "group": "Select Measurement Mode",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Amplitude",
-          "direction": "in",
-          "payload_format": {
-            "command": "Mode_Amplitude"
-          }
-        },
-        "unverified": false
-      },
-      "Mode_Crosstalk": {
-        "command": "Mode_Crosstalk",
-        "verb": "do",
-        "description": "Mode Crosstalk",
-        "scpi": ":FUNCtion XTALK",
-        "scpi_fast": ":FUNC XTALK",
-        "subsystem": "Channel_AB",
-        "group": "Select Measurement Mode",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Crosstalk",
-          "direction": "in",
-          "payload_format": {
-            "command": "Mode_Crosstalk"
-          }
-        },
-        "unverified": false
-      },
-      "Mode_Level_Stereo": {
-        "command": "Mode_Level_Stereo",
-        "verb": "do",
-        "description": "Mode Level Stereo",
-        "scpi": ":FUNCtion LEVel",
-        "scpi_fast": ":FUNC LEVel",
-        "subsystem": "Channel_AB",
-        "group": "Select Measurement Mode",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Level_Stereo",
-          "direction": "in",
-          "payload_format": {
-            "command": "Mode_Level_Stereo"
-          }
-        },
-        "unverified": false
-      },
-      "Mode_Noise": {
-        "command": "Mode_Noise",
-        "verb": "do",
-        "description": "Mode Noise",
-        "scpi": ":FUNCtion NOISE",
-        "scpi_fast": ":FUNC NOISE",
-        "subsystem": "Channel_AB",
-        "group": "Select Measurement Mode",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Noise",
-          "direction": "in",
-          "payload_format": {
-            "command": "Mode_Noise"
-          }
-        },
-        "unverified": false
-      },
-      "Mode_Phase": {
-        "command": "Mode_Phase",
-        "verb": "do",
-        "description": "Mode Phase",
-        "scpi": ":FUNCtion PHASE",
-        "scpi_fast": ":FUNC PHASE",
-        "subsystem": "Channel_AB",
-        "group": "Select Measurement Mode",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Mode_Phase",
-          "direction": "in",
-          "payload_format": {
-            "command": "Mode_Phase"
-          }
-        },
-        "unverified": false
-      },
-      "Mode_SINAD": {
-        "command": "Mode_SINAD",
-        "verb": "do",
-        "description": "Mode SINAD",
-        "scpi": ":FUNCtion SINad",
-        "scpi_fast": ":FUNC SINad",
-        "subsystem": "Channel_AB",
-        "group": "Select Measurement Mode",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Mode_SINAD",
-          "direction": "in",
-          "payload_format": {
-            "command": "Mode_SINAD"
-          }
-        },
-        "unverified": false
-      },
-      "Mode_THD_N": {
-        "command": "Mode_THD_N",
-        "verb": "do",
-        "description": "Mode THD N",
-        "scpi": ":FUNCtion THD",
-        "scpi_fast": ":FUNC THD",
-        "subsystem": "Channel_AB",
-        "group": "Select Measurement Mode",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Mode_THD_N",
-          "direction": "in",
-          "payload_format": {
-            "command": "Mode_THD_N"
-          }
-        },
-        "unverified": false
-      },
-      "Reset_Device": {
-        "command": "Reset_Device",
-        "verb": "do",
-        "description": "Do Reset",
-        "scpi": "*RST",
-        "subsystem": "System",
-        "group": "Global Utilities",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Reset_Device",
-          "direction": "in",
-          "payload_format": {
-            "command": "Reset_Device"
-          }
-        },
-        "unverified": false
-      },
-      "Select_DIN_BNC": {
-        "command": "Select_DIN_BNC",
-        "verb": "do",
-        "description": "Select DIN BNC",
-        "scpi": ":DINPut BNC",
-        "scpi_fast": ":DINP BNC",
-        "subsystem": "Digital",
-        "group": "Select Digital Input Connector",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_BNC",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_DIN_BNC"
-          }
-        },
-        "unverified": false
-      },
-      "Select_DIN_Generator": {
-        "command": "Select_DIN_Generator",
-        "verb": "do",
-        "description": "Select DIN Generator",
-        "scpi": ":DINPut GENerator",
-        "scpi_fast": ":DINP GENerator",
-        "subsystem": "Digital",
-        "group": "Select Digital Input Connector",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_Generator",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_DIN_Generator"
-          }
-        },
-        "unverified": false
-      },
-      "Select_DIN_Optical": {
-        "command": "Select_DIN_Optical",
-        "verb": "do",
-        "description": "Select DIN Optical",
-        "scpi": ":DINPut OPTical",
-        "scpi_fast": ":DINP OPTical",
-        "subsystem": "Digital",
-        "group": "Select Digital Input Connector",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_Optical",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_DIN_Optical"
-          }
-        },
-        "unverified": false
-      },
-      "Select_DIN_XLR": {
-        "command": "Select_DIN_XLR",
-        "verb": "do",
-        "description": "Select DIN XLR",
-        "scpi": ":DINPut XLR",
-        "scpi_fast": ":DINP XLR",
-        "subsystem": "Digital",
-        "group": "Select Digital Input Connector",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_DIN_XLR",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_DIN_XLR"
-          }
-        },
-        "unverified": false
-      },
-      "Select_Input_Analog_A": {
-        "command": "Select_Input_Analog_A",
-        "verb": "do",
-        "description": "Select Input Analog A",
-        "scpi": ":INPut A",
-        "scpi_fast": ":INP A",
-        "subsystem": "Channel_A",
-        "group": "Route signals to Analyzer A",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Analog_A",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_Input_Analog_A"
-          }
-        },
-        "unverified": false
-      },
-      "Select_Input_Analog_B": {
-        "command": "Select_Input_Analog_B",
-        "verb": "do",
-        "description": "Select Input Analog B",
-        "scpi": ":INPut B",
-        "scpi_fast": ":INP B",
-        "subsystem": "Channel_B",
-        "group": "Route signals to Analyzer B",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Analog_B",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_Input_Analog_B"
-          }
-        },
-        "unverified": false
-      },
-      "Select_Input_Gen_Monitor_A": {
-        "command": "Select_Input_Gen_Monitor_A",
-        "verb": "do",
-        "description": "Select Input Gen Monitor A",
-        "scpi": ":INPut GENA",
-        "scpi_fast": ":INP GENA",
-        "subsystem": "Channel_A",
-        "group": "Route signals to Analyzer A",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Gen_Monitor_A",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_Input_Gen_Monitor_A"
-          }
-        },
-        "unverified": false
-      },
-      "Select_Input_Gen_Monitor_B": {
-        "command": "Select_Input_Gen_Monitor_B",
-        "verb": "do",
-        "description": "Select Input Gen Monitor B",
-        "scpi": ":INPut GENB",
-        "scpi_fast": ":INP GENB",
-        "subsystem": "Channel_B",
-        "group": "Route signals to Analyzer B",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Select_Input_Gen_Monitor_B",
-          "direction": "in",
-          "payload_format": {
-            "command": "Select_Input_Gen_Monitor_B"
-          }
-        },
-        "unverified": false
-      },
-      "Set_DOUT_OFF": {
-        "command": "Set_DOUT_OFF",
-        "verb": "do",
-        "description": "Set DOUT OFF",
-        "scpi": ":DOUTput OFF",
-        "scpi_fast": ":DOUT OFF",
-        "subsystem": "Digital",
-        "group": "Digital Output State",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_DOUT_OFF",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_DOUT_OFF"
-          }
-        },
-        "unverified": false
-      },
-      "Set_DOUT_ON": {
-        "command": "Set_DOUT_ON",
-        "verb": "do",
-        "description": "Set DOUT ON",
-        "scpi": ":DOUTput ON",
-        "scpi_fast": ":DOUT ON",
-        "subsystem": "Digital",
-        "group": "Digital Output State",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_DOUT_ON",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_DOUT_ON"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Unit_Volts": {
-        "command": "Set_Unit_Volts",
-        "verb": "do",
-        "description": "Set Unit Volts",
-        "scpi": ":AUNits V",
-        "scpi_fast": ":AUN V",
-        "subsystem": "Measurements",
-        "group": "Select Output Unit (M1/M2)",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_Volts",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Unit_Volts"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Unit_Watts": {
-        "command": "Set_Unit_Watts",
-        "verb": "do",
-        "description": "Set Unit Watts",
-        "scpi": ":AUNits W",
-        "scpi_fast": ":AUN W",
-        "subsystem": "Measurements",
-        "group": "Select Output Unit (M1/M2)",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_Watts",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Unit_Watts"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Unit_dBV": {
-        "command": "Set_Unit_dBV",
-        "verb": "do",
-        "description": "Set Unit dBV",
-        "scpi": ":AUNits DBV",
-        "scpi_fast": ":AUN DBV",
-        "subsystem": "Measurements",
-        "group": "Select Output Unit (M1/M2)",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_dBV",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Unit_dBV"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Unit_dBm": {
-        "command": "Set_Unit_dBm",
-        "verb": "do",
-        "description": "Set Unit dBm",
-        "scpi": ":AUNits DBM",
-        "scpi_fast": ":AUN DBM",
-        "subsystem": "Measurements",
-        "group": "Select Output Unit (M1/M2)",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_dBm",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Unit_dBm"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Unit_dBu": {
-        "command": "Set_Unit_dBu",
-        "verb": "do",
-        "description": "Set Unit dBu",
-        "scpi": ":AUNits DBU",
-        "scpi_fast": ":AUN DBU",
-        "subsystem": "Measurements",
-        "group": "Select Output Unit (M1/M2)",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Distortion/Set_Unit_dBu",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Unit_dBu"
-          }
-        },
-        "unverified": false
       },
       "Set_Wave_IMD": {
         "command": "Set_Wave_IMD",

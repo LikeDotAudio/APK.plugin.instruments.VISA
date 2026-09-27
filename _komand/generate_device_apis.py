@@ -1196,6 +1196,39 @@ def load_all_authored_komands():
     return komands
 
 
+def command_order(item):
+    """Sort key for one `(name, command)` pair in a verb bucket.
+
+    IEEE-488.2 common commands (`*IDN?`, `*RST`, `*ESR?`…) are the special
+    system commands every instrument shares, so they come first. Everything
+    after them is alphabetical by SCPI, with the optional leading `:` and the
+    long-form capitals ignored, so `BWIDth:VIDeo?` sorts beside `:BWIDth…`.
+    The name breaks ties between commands that send the same SCPI.
+    """
+    name, raw_cmd = item
+    scpi = raw_cmd.get('scpi', '') if isinstance(raw_cmd, dict) else ''
+    scpi = scpi.lstrip(':').strip()
+    return (not scpi.startswith('*'), scpi.lower(), name)
+
+
+def sorted_commands(verb_cmds):
+    """A verb bucket's commands in display order — see `command_order`."""
+    return sorted(verb_cmds.items(), key=command_order)
+
+
+def returns_one_thing(raw_cmd):
+    """True when a query answers with a single value.
+
+    The declared `returns.count` decides; with none declared, a template that
+    chains more than one `?` query answers more than once.
+    """
+    returns = raw_cmd.get('returns') or {}
+    count = returns.get('count')
+    if isinstance(count, int):
+        return count <= 1
+    return raw_cmd.get('scpi', '').count('?') <= 1
+
+
 def build_endpoint_entry(family, cmd_name, raw_cmd, verb):
     """Normalize a raw command dict into a clean API endpoint representation."""
     scpi = raw_cmd.get('scpi', '')
@@ -1292,13 +1325,15 @@ def generate_device_api(family, model, authored_komands, known_devices,
     # Populate endpoints for canonical verbs
     for verb in ("set", "nab", "rig", "do"):
         verb_cmds = source_komand.get(verb, {})
-        for cname, raw_cmd in sorted(verb_cmds.items()):
+        for cname, raw_cmd in sorted_commands(verb_cmds):
             if not isinstance(raw_cmd, dict):
                 continue
             item = build_endpoint_entry(family, cname, raw_cmd, verb)
             endpoints[verb][cname] = item
-            # NAB commands are also exposed directly under GET for REST/query equivalence
-            if verb == "nab":
+            # A single-value NAB is also exposed under GET for REST/query
+            # equivalence. Anything that returns more than one thing is a NAB
+            # and only a NAB — a chained readback is not a plain GET.
+            if verb == "nab" and returns_one_thing(raw_cmd):
                 get_item = dict(item)
                 get_item["verb"] = "get"
                 endpoints["get"][cname] = get_item
@@ -1332,9 +1367,9 @@ def generate_device_api(family, model, authored_komands, known_devices,
     api_doc["transport"] = build_transport_block()
 
     api_doc["verb_mapping"] = {
-        "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+        "get": "Single-value queries (each one also a NAB)",
         "set": "Single parameter mutation and write commands",
-        "nab": "Observation and telemetry acquisition queries",
+        "nab": "Observation and telemetry acquisition queries — anything that returns more than one thing is a NAB only",
         "rig": "Multi-argument system configuration setup commands",
         "do": "Zero-argument execution actions and trigger commands",
     }

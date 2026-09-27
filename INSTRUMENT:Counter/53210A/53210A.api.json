@@ -66,9 +66,9 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
@@ -82,6 +82,103 @@
   },
   "endpoints": {
     "get": {
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Read instrument identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_OPC": {
+        "command": "Query_OPC",
+        "verb": "get",
+        "description": "Query operation complete state",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "complete"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Query_OPC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_OPC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_OPC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_STB": {
+        "command": "Read_STB",
+        "verb": "get",
+        "description": "Read status byte register",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "status_byte"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_STB",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_STB"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_STB",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Fetch_Data": {
         "command": "Fetch_Data",
         "verb": "get",
@@ -243,6 +340,38 @@
         },
         "unverified": false
       },
+      "Read_Next": {
+        "command": "Read_Next",
+        "verb": "get",
+        "description": "Trigger counter and fetch next reading",
+        "scpi": ":READ?",
+        "subsystem": "SENSe",
+        "group": "Data Acquisition",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ";",
+          "fields": [
+            {
+              "name": "reading",
+              "unit": "Hz"
+            }
+          ],
+          "unit": "Hz"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_Next"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Query_Error": {
         "command": "Query_Error",
         "verb": "get",
@@ -276,230 +405,9 @@
           "reading_direction": "out"
         },
         "unverified": false
-      },
-      "Query_OPC": {
-        "command": "Query_OPC",
-        "verb": "get",
-        "description": "Query operation complete state",
-        "scpi": "*OPC?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "fields": [
-            {
-              "name": "complete"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Query_OPC",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_OPC"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_OPC",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "get",
-        "description": "Read instrument identification string",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "manufacturer"
-            },
-            {
-              "name": "model"
-            },
-            {
-              "name": "serial"
-            },
-            {
-              "name": "firmware"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_Next": {
-        "command": "Read_Next",
-        "verb": "get",
-        "description": "Trigger counter and fetch next reading",
-        "scpi": ":READ?",
-        "subsystem": "SENSe",
-        "group": "Data Acquisition",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ";",
-          "fields": [
-            {
-              "name": "reading",
-              "unit": "Hz"
-            }
-          ],
-          "unit": "Hz"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Read_Next",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_Next"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Next",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_STB": {
-        "command": "Read_STB",
-        "verb": "get",
-        "description": "Read status byte register",
-        "scpi": "*STB?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "fields": [
-            {
-              "name": "status_byte"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Read_STB",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_STB"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_STB",
-          "reading_direction": "out"
-        },
-        "unverified": false
       }
     },
     "set": {
-      "Set_Frequency_Arm_Start": {
-        "command": "Set_Frequency_Arm_Start",
-        "verb": "set",
-        "description": "Set start arm source for frequency measurements",
-        "scpi": ":SENSe:FREQuency:ARM:STARt:SOURce <source>",
-        "scpi_fast": ":SENS:FREQ:ARM:STAR:SOUR <source>",
-        "subsystem": "SENSe",
-        "group": "Arming and Triggering",
-        "args": [
-          "source"
-        ],
-        "arg": {
-          "kind": "enum",
-          "values": [
-            "IMMediate",
-            "EXTernal"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Set_Frequency_Arm_Start",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Frequency_Arm_Start",
-            "value": "<value>",
-            "input_name": "source"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Function": {
-        "command": "Set_Function",
-        "verb": "set",
-        "description": "Set active measurement function",
-        "scpi": ":SENSe:FUNCtion '<function>'",
-        "scpi_fast": ":SENS:FUNC '<function>'",
-        "subsystem": "SENSe",
-        "group": "Measurement Setup",
-        "args": [
-          "function"
-        ],
-        "arg": {
-          "kind": "enum",
-          "values": [
-            "FREQuency 1",
-            "PERiod 1",
-            "TINTerval 1,2",
-            "PWIDth 1",
-            "NWIDth 1"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Set_Function",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Function",
-            "value": "<value>",
-            "input_name": "function"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Gate_Time": {
-        "command": "Set_Gate_Time",
-        "verb": "set",
-        "description": "Set gate time in seconds",
-        "scpi": ":SENSe:FREQuency:ARM:STOP:TIMer <seconds>",
-        "scpi_fast": ":SENS:FREQ:ARM:STOP:TIM <seconds>",
-        "subsystem": "SENSe",
-        "group": "Gate Control",
-        "args": [
-          "seconds"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "s",
-          "min": 0.001,
-          "max": 100.0
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Set_Gate_Time",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Gate_Time",
-            "value": "<value>",
-            "input_name": "seconds"
-          }
-        },
-        "unverified": false
-      },
       "Set_Input1_Coupling": {
         "command": "Set_Input1_Coupling",
         "verb": "set",
@@ -676,9 +584,198 @@
           }
         },
         "unverified": false
+      },
+      "Set_Frequency_Arm_Start": {
+        "command": "Set_Frequency_Arm_Start",
+        "verb": "set",
+        "description": "Set start arm source for frequency measurements",
+        "scpi": ":SENSe:FREQuency:ARM:STARt:SOURce <source>",
+        "scpi_fast": ":SENS:FREQ:ARM:STAR:SOUR <source>",
+        "subsystem": "SENSe",
+        "group": "Arming and Triggering",
+        "args": [
+          "source"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "IMMediate",
+            "EXTernal"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Frequency_Arm_Start",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Frequency_Arm_Start",
+            "value": "<value>",
+            "input_name": "source"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Gate_Time": {
+        "command": "Set_Gate_Time",
+        "verb": "set",
+        "description": "Set gate time in seconds",
+        "scpi": ":SENSe:FREQuency:ARM:STOP:TIMer <seconds>",
+        "scpi_fast": ":SENS:FREQ:ARM:STOP:TIM <seconds>",
+        "subsystem": "SENSe",
+        "group": "Gate Control",
+        "args": [
+          "seconds"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "s",
+          "min": 0.001,
+          "max": 100.0
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Gate_Time",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Gate_Time",
+            "value": "<value>",
+            "input_name": "seconds"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Function": {
+        "command": "Set_Function",
+        "verb": "set",
+        "description": "Set active measurement function",
+        "scpi": ":SENSe:FUNCtion '<function>'",
+        "scpi_fast": ":SENS:FUNC '<function>'",
+        "subsystem": "SENSe",
+        "group": "Measurement Setup",
+        "args": [
+          "function"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "FREQuency 1",
+            "PERiod 1",
+            "TINTerval 1,2",
+            "PWIDth 1",
+            "NWIDth 1"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Set_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Function",
+            "value": "<value>",
+            "input_name": "function"
+          }
+        },
+        "unverified": false
       }
     },
     "nab": {
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Read instrument identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_OPC": {
+        "command": "Query_OPC",
+        "verb": "nab",
+        "description": "Query operation complete state",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "complete"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Query_OPC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_OPC"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_OPC",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Read_STB": {
+        "command": "Read_STB",
+        "verb": "nab",
+        "description": "Read status byte register",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "fields": [
+            {
+              "name": "status_byte"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Read_STB",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_STB"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_STB",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Fetch_Data": {
         "command": "Fetch_Data",
         "verb": "nab",
@@ -840,108 +937,6 @@
         },
         "unverified": false
       },
-      "Query_Error": {
-        "command": "Query_Error",
-        "verb": "nab",
-        "description": "Query next error code and message from queue",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "SYSTem",
-        "group": "System Utilities",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "code"
-            },
-            {
-              "name": "message"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Query_Error",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_Error"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Query_OPC": {
-        "command": "Query_OPC",
-        "verb": "nab",
-        "description": "Query operation complete state",
-        "scpi": "*OPC?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "fields": [
-            {
-              "name": "complete"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Query_OPC",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_OPC"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_OPC",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "nab",
-        "description": "Read instrument identification string",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "manufacturer"
-            },
-            {
-              "name": "model"
-            },
-            {
-              "name": "serial"
-            },
-            {
-              "name": "firmware"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "Read_Next": {
         "command": "Read_Next",
         "verb": "nab",
@@ -974,31 +969,36 @@
         },
         "unverified": false
       },
-      "Read_STB": {
-        "command": "Read_STB",
+      "Query_Error": {
+        "command": "Query_Error",
         "verb": "nab",
-        "description": "Read status byte register",
-        "scpi": "*STB?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
+        "description": "Query next error code and message from queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": {
+          "separator": ",",
           "fields": [
             {
-              "name": "status_byte"
+              "name": "code"
+            },
+            {
+              "name": "message"
             }
           ]
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Read_STB",
+          "topic": "APK.audio/Gui/Komands/Counter/Query_Error",
           "direction": "in",
           "payload_format": {
-            "command": "Read_STB"
+            "command": "Query_Error"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_STB",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -1103,6 +1103,48 @@
       }
     },
     "do": {
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear status registers and error queue",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Reset": {
+        "command": "Reset",
+        "verb": "do",
+        "description": "Reset counter to factory default settings",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Counter/Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset"
+          }
+        },
+        "unverified": false
+      },
       "Abort": {
         "command": "Abort",
         "verb": "do",
@@ -1121,49 +1163,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Abort"
-          }
-        },
-        "unverified": false
-      },
-      "Auto_Trigger": {
-        "command": "Auto_Trigger",
-        "verb": "do",
-        "description": "Automatically set trigger levels",
-        "scpi": ":SENSe:EVENt1:LEVel:AUTO ON",
-        "scpi_fast": ":SENS:EVEN1:LEV:AUTO ON",
-        "subsystem": "SENSe",
-        "group": "Trigger Setup",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Auto_Trigger",
-          "direction": "in",
-          "payload_format": {
-            "command": "Auto_Trigger"
-          }
-        },
-        "unverified": false
-      },
-      "Clear_Status": {
-        "command": "Clear_Status",
-        "verb": "do",
-        "description": "Clear status registers and error queue",
-        "scpi": "*CLS",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Clear_Status",
-          "direction": "in",
-          "payload_format": {
-            "command": "Clear_Status"
           }
         },
         "unverified": false
@@ -1190,23 +1189,24 @@
         },
         "unverified": false
       },
-      "Reset": {
-        "command": "Reset",
+      "Auto_Trigger": {
+        "command": "Auto_Trigger",
         "verb": "do",
-        "description": "Reset counter to factory default settings",
-        "scpi": "*RST",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
+        "description": "Automatically set trigger levels",
+        "scpi": ":SENSe:EVENt1:LEVel:AUTO ON",
+        "scpi_fast": ":SENS:EVEN1:LEV:AUTO ON",
+        "subsystem": "SENSe",
+        "group": "Trigger Setup",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Counter/Reset",
+          "topic": "APK.audio/Gui/Komands/Counter/Auto_Trigger",
           "direction": "in",
           "payload_format": {
-            "command": "Reset"
+            "command": "Auto_Trigger"
           }
         },
         "unverified": false

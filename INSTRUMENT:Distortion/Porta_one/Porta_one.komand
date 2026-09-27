@@ -322,21 +322,6 @@
       "subsystem": "AMPL",
       "unverified": true
     },
-    "Set_Amplitude": {
-      "scpi": ":GAMPlitude <amp>",
-      "scpiFast": ":GAMP <amp>",
-      "description": "Set Amplitude",
-      "arg": {
-        "kind": "numeric",
-        "default": "1 VRMS",
-        "unit": "V"
-      },
-      "group": "Set Signal Parameters",
-      "args": [
-        "amp"
-      ],
-      "subsystem": "Signal_Generator"
-    },
     "Set_Damp_Amax": {
       "scpi": ":DAMP:AMAX <value>",
       "description": "This command sets the maximum amplitude level for an amplitude sweep of the analog generator, the digital generator, or the jitter generator when the SWPType command is set to AMPL",
@@ -2558,17 +2543,18 @@
       "subsystem": "DXT",
       "unverified": true
     },
-    "Set_Frequency": {
-      "scpi": ":GFREquency <freq>",
-      "scpiFast": ":GFRE <freq>",
-      "description": "Set Frequency",
+    "Set_Amplitude": {
+      "scpi": ":GAMPlitude <amp>",
+      "scpiFast": ":GAMP <amp>",
+      "description": "Set Amplitude",
       "arg": {
         "kind": "numeric",
-        "default": "1 KHZ"
+        "default": "1 VRMS",
+        "unit": "V"
       },
       "group": "Set Signal Parameters",
       "args": [
-        "freq"
+        "amp"
       ],
       "subsystem": "Signal_Generator"
     },
@@ -2678,6 +2664,20 @@
       ],
       "subsystem": "GENL",
       "unverified": true
+    },
+    "Set_Frequency": {
+      "scpi": ":GFREquency <freq>",
+      "scpiFast": ":GFRE <freq>",
+      "description": "Set Frequency",
+      "arg": {
+        "kind": "numeric",
+        "default": "1 KHZ"
+      },
+      "group": "Set Signal Parameters",
+      "args": [
+        "freq"
+      ],
+      "subsystem": "Signal_Generator"
     },
     "Set_Imd_Amax": {
       "scpi": ":IMD:AMAX <value>",
@@ -2792,6 +2792,18 @@
       ],
       "subsystem": "IMD",
       "unverified": true
+    },
+    "Set_Input": {
+      "scpi": "INPUT <state>",
+      "description": "Authored from a panel literal in Distortion.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      }
     },
     "Set_Lev_Amax": {
       "scpi": ":LEV:AMAX <value>",
@@ -2963,6 +2975,11 @@
         "value"
       ],
       "subsystem": "LEV",
+      "unverified": true
+    },
+    "Set_Mode": {
+      "scpi": "MODE <value>",
+      "description": "Authored from a panel literal in Distortion.json; never executed before.",
       "unverified": true
     },
     "Set_Nois_Amax": {
@@ -4464,26 +4481,21 @@
       ],
       "subsystem": "XTAL",
       "unverified": true
-    },
-    "Set_Mode": {
-      "scpi": "MODE <value>",
-      "description": "Authored from a panel literal in Distortion.json; never executed before.",
-      "unverified": true
-    },
-    "Set_Input": {
-      "scpi": "INPUT <state>",
-      "description": "Authored from a panel literal in Distortion.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      }
     }
   },
   "do": {
+    "Do_Clear_Status": {
+      "scpi": "*CLS",
+      "description": "Do Clear Status",
+      "group": "Global Utilities",
+      "subsystem": "System"
+    },
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "Do Reset",
+      "group": "Global Utilities",
+      "subsystem": "System"
+    },
     "Do_Ampl_Step": {
       "scpi": "AMPLitude:STEPs",
       "scpiFast": "AMPL:STEP",
@@ -4498,11 +4510,40 @@
       "subsystem": "AT",
       "unverified": true
     },
-    "Do_Clear_Status": {
-      "scpi": "*CLS",
-      "description": "Do Clear Status",
-      "group": "Global Utilities",
-      "subsystem": "System"
+    "Set_Unit_dBm": {
+      "scpi": ":AUNits DBM",
+      "scpiFast": ":AUN DBM",
+      "description": "Set Unit dBm",
+      "group": "Select Output Unit (M1/M2)",
+      "subsystem": "Measurements"
+    },
+    "Set_Unit_dBu": {
+      "scpi": ":AUNits DBU",
+      "scpiFast": ":AUN DBU",
+      "description": "Set Unit dBu",
+      "group": "Select Output Unit (M1/M2)",
+      "subsystem": "Measurements"
+    },
+    "Set_Unit_dBV": {
+      "scpi": ":AUNits DBV",
+      "scpiFast": ":AUN DBV",
+      "description": "Set Unit dBV",
+      "group": "Select Output Unit (M1/M2)",
+      "subsystem": "Measurements"
+    },
+    "Set_Unit_Volts": {
+      "scpi": ":AUNits V",
+      "scpiFast": ":AUN V",
+      "description": "Set Unit Volts",
+      "group": "Select Output Unit (M1/M2)",
+      "subsystem": "Measurements"
+    },
+    "Set_Unit_Watts": {
+      "scpi": ":AUNits W",
+      "scpiFast": ":AUN W",
+      "description": "Set Unit Watts",
+      "group": "Select Output Unit (M1/M2)",
+      "subsystem": "Measurements"
     },
     "Do_Dimd_Ext": {
       "scpi": "DIMD:EXTernal",
@@ -4523,6 +4564,34 @@
       "subsystem": "DIMD",
       "unverified": true
     },
+    "Select_DIN_BNC": {
+      "scpi": ":DINPut BNC",
+      "scpiFast": ":DINP BNC",
+      "description": "Select DIN BNC",
+      "group": "Select Digital Input Connector",
+      "subsystem": "Digital"
+    },
+    "Select_DIN_Generator": {
+      "scpi": ":DINPut GENerator",
+      "scpiFast": ":DINP GENerator",
+      "description": "Select DIN Generator",
+      "group": "Select Digital Input Connector",
+      "subsystem": "Digital"
+    },
+    "Select_DIN_Optical": {
+      "scpi": ":DINPut OPTical",
+      "scpiFast": ":DINP OPTical",
+      "description": "Select DIN Optical",
+      "group": "Select Digital Input Connector",
+      "subsystem": "Digital"
+    },
+    "Select_DIN_XLR": {
+      "scpi": ":DINPut XLR",
+      "scpiFast": ":DINP XLR",
+      "description": "Select DIN XLR",
+      "group": "Select Digital Input Connector",
+      "subsystem": "Digital"
+    },
     "Do_Display_Panel": {
       "scpi": ":DISPlay PANel",
       "scpiFast": ":DISP PANel",
@@ -4537,6 +4606,20 @@
       "subsystem": "DLEV",
       "unverified": true
     },
+    "Set_DOUT_OFF": {
+      "scpi": ":DOUTput OFF",
+      "scpiFast": ":DOUT OFF",
+      "description": "Set DOUT OFF",
+      "group": "Digital Output State",
+      "subsystem": "Digital"
+    },
+    "Set_DOUT_ON": {
+      "scpi": ":DOUTput ON",
+      "scpiFast": ":DOUT ON",
+      "description": "Set DOUT ON",
+      "group": "Digital Output State",
+      "subsystem": "Digital"
+    },
     "Do_Dthd_Medium": {
       "scpi": "DTHD:MEDIUM",
       "scpiFast": "DTHD:MED",
@@ -4544,90 +4627,10 @@
       "subsystem": "DTHD",
       "unverified": true
     },
-    "Do_Gen_Dig": {
-      "scpi": "GEN:DIG",
-      "description": "Do gen dig",
-      "subsystem": "GEN",
-      "unverified": true
-    },
-    "Do_Gen_Jitt": {
-      "scpi": "GEN:JITT",
-      "description": "Do gen jitt",
-      "subsystem": "GEN",
-      "unverified": true
-    },
-    "Do_Imd_Ext": {
-      "scpi": "IMD:EXTernal",
-      "scpiFast": "IMD:EXT",
-      "description": "Do imd ext",
-      "subsystem": "IMD",
-      "unverified": true
-    },
-    "Do_Imd_Step": {
-      "scpi": "IMD:STEPs",
-      "scpiFast": "IMD:STEP",
-      "description": "Selects the sweep mode or the number of sweep steps",
-      "subsystem": "IMD",
-      "unverified": true
-    },
-    "Do_Lev_Fm": {
-      "scpi": "LEVel:FMin",
-      "scpiFast": "LEV:FM",
-      "description": "Do lev fm",
-      "subsystem": "LEV",
-      "unverified": true
-    },
-    "Do_Output_OFF": {
-      "scpi": ":OUTPut OFF",
-      "scpiFast": ":OUTP OFF",
-      "description": "Do Output OFF",
-      "group": "Master Generator Output",
-      "subsystem": "System"
-    },
-    "Do_Output_ON": {
-      "scpi": ":OUTPut ON",
-      "scpiFast": ":OUTP ON",
-      "description": "Do Output ON",
-      "group": "Master Generator Output",
-      "subsystem": "System"
-    },
-    "Do_Phas_Aver": {
-      "scpi": "PHASe:AVERage",
-      "scpiFast": "PHAS:AVER",
-      "description": "Selects the averaging function for the Phase meter",
-      "subsystem": "PHAS",
-      "unverified": true
-    },
-    "Do_Ref_Watt": {
-      "scpi": "REF:WATT",
-      "description": "Do ref watt",
-      "subsystem": "REF",
-      "unverified": true
-    },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "Do Reset",
-      "group": "Global Utilities",
-      "subsystem": "System"
-    },
-    "Do_Thd_Medium": {
-      "scpi": "THD:MEDIUM",
-      "scpiFast": "THD:MED",
-      "description": "Do thd medium",
-      "subsystem": "THD",
-      "unverified": true
-    },
     "Mode_Amplitude": {
       "scpi": ":FUNCtion AMPLitude",
       "scpiFast": ":FUNC AMPLitude",
       "description": "Mode Amplitude",
-      "group": "Select Measurement Mode",
-      "subsystem": "Channel_AB"
-    },
-    "Mode_Crosstalk": {
-      "scpi": ":FUNCtion XTALK",
-      "scpiFast": ":FUNC XTALK",
-      "description": "Mode Crosstalk",
       "group": "Select Measurement Mode",
       "subsystem": "Channel_AB"
     },
@@ -4666,33 +4669,38 @@
       "group": "Select Measurement Mode",
       "subsystem": "Channel_AB"
     },
-    "Select_DIN_BNC": {
-      "scpi": ":DINPut BNC",
-      "scpiFast": ":DINP BNC",
-      "description": "Select DIN BNC",
-      "group": "Select Digital Input Connector",
-      "subsystem": "Digital"
+    "Mode_Crosstalk": {
+      "scpi": ":FUNCtion XTALK",
+      "scpiFast": ":FUNC XTALK",
+      "description": "Mode Crosstalk",
+      "group": "Select Measurement Mode",
+      "subsystem": "Channel_AB"
     },
-    "Select_DIN_Generator": {
-      "scpi": ":DINPut GENerator",
-      "scpiFast": ":DINP GENerator",
-      "description": "Select DIN Generator",
-      "group": "Select Digital Input Connector",
-      "subsystem": "Digital"
+    "Do_Gen_Dig": {
+      "scpi": "GEN:DIG",
+      "description": "Do gen dig",
+      "subsystem": "GEN",
+      "unverified": true
     },
-    "Select_DIN_Optical": {
-      "scpi": ":DINPut OPTical",
-      "scpiFast": ":DINP OPTical",
-      "description": "Select DIN Optical",
-      "group": "Select Digital Input Connector",
-      "subsystem": "Digital"
+    "Do_Gen_Jitt": {
+      "scpi": "GEN:JITT",
+      "description": "Do gen jitt",
+      "subsystem": "GEN",
+      "unverified": true
     },
-    "Select_DIN_XLR": {
-      "scpi": ":DINPut XLR",
-      "scpiFast": ":DINP XLR",
-      "description": "Select DIN XLR",
-      "group": "Select Digital Input Connector",
-      "subsystem": "Digital"
+    "Do_Imd_Ext": {
+      "scpi": "IMD:EXTernal",
+      "scpiFast": "IMD:EXT",
+      "description": "Do imd ext",
+      "subsystem": "IMD",
+      "unverified": true
+    },
+    "Do_Imd_Step": {
+      "scpi": "IMD:STEPs",
+      "scpiFast": "IMD:STEP",
+      "description": "Selects the sweep mode or the number of sweep steps",
+      "subsystem": "IMD",
+      "unverified": true
     },
     "Select_Input_Analog_A": {
       "scpi": ":INPut A",
@@ -4722,54 +4730,46 @@
       "group": "Route signals to Analyzer B",
       "subsystem": "Channel_B"
     },
-    "Set_DOUT_OFF": {
-      "scpi": ":DOUTput OFF",
-      "scpiFast": ":DOUT OFF",
-      "description": "Set DOUT OFF",
-      "group": "Digital Output State",
-      "subsystem": "Digital"
+    "Do_Lev_Fm": {
+      "scpi": "LEVel:FMin",
+      "scpiFast": "LEV:FM",
+      "description": "Do lev fm",
+      "subsystem": "LEV",
+      "unverified": true
     },
-    "Set_DOUT_ON": {
-      "scpi": ":DOUTput ON",
-      "scpiFast": ":DOUT ON",
-      "description": "Set DOUT ON",
-      "group": "Digital Output State",
-      "subsystem": "Digital"
+    "Do_Output_OFF": {
+      "scpi": ":OUTPut OFF",
+      "scpiFast": ":OUTP OFF",
+      "description": "Do Output OFF",
+      "group": "Master Generator Output",
+      "subsystem": "System"
     },
-    "Set_Unit_Volts": {
-      "scpi": ":AUNits V",
-      "scpiFast": ":AUN V",
-      "description": "Set Unit Volts",
-      "group": "Select Output Unit (M1/M2)",
-      "subsystem": "Measurements"
+    "Do_Output_ON": {
+      "scpi": ":OUTPut ON",
+      "scpiFast": ":OUTP ON",
+      "description": "Do Output ON",
+      "group": "Master Generator Output",
+      "subsystem": "System"
     },
-    "Set_Unit_Watts": {
-      "scpi": ":AUNits W",
-      "scpiFast": ":AUN W",
-      "description": "Set Unit Watts",
-      "group": "Select Output Unit (M1/M2)",
-      "subsystem": "Measurements"
+    "Do_Phas_Aver": {
+      "scpi": "PHASe:AVERage",
+      "scpiFast": "PHAS:AVER",
+      "description": "Selects the averaging function for the Phase meter",
+      "subsystem": "PHAS",
+      "unverified": true
     },
-    "Set_Unit_dBV": {
-      "scpi": ":AUNits DBV",
-      "scpiFast": ":AUN DBV",
-      "description": "Set Unit dBV",
-      "group": "Select Output Unit (M1/M2)",
-      "subsystem": "Measurements"
+    "Do_Ref_Watt": {
+      "scpi": "REF:WATT",
+      "description": "Do ref watt",
+      "subsystem": "REF",
+      "unverified": true
     },
-    "Set_Unit_dBm": {
-      "scpi": ":AUNits DBM",
-      "scpiFast": ":AUN DBM",
-      "description": "Set Unit dBm",
-      "group": "Select Output Unit (M1/M2)",
-      "subsystem": "Measurements"
-    },
-    "Set_Unit_dBu": {
-      "scpi": ":AUNits DBU",
-      "scpiFast": ":AUN DBU",
-      "description": "Set Unit dBu",
-      "group": "Select Output Unit (M1/M2)",
-      "subsystem": "Measurements"
+    "Do_Thd_Medium": {
+      "scpi": "THD:MEDIUM",
+      "scpiFast": "THD:MED",
+      "description": "Do thd medium",
+      "subsystem": "THD",
+      "unverified": true
     },
     "Set_Wave_IMD": {
       "scpi": ":WAVeform IMD",
@@ -6934,6 +6934,42 @@
       "subsystem": "LEV",
       "unverified": true
     },
+    "Read_Ch_A_Only": {
+      "scpi": "M1?",
+      "description": "Read Ch A Only",
+      "returns": {
+        "count": 1
+      },
+      "group": "Read Commands",
+      "subsystem": "Measurements"
+    },
+    "Read_Stereo_AB": {
+      "scpi": "M1?;M2?",
+      "description": "Read Stereo AB",
+      "returns": {
+        "count": 2,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "m_1"
+          },
+          {
+            "name": "m_2"
+          }
+        ]
+      },
+      "group": "Read Commands",
+      "subsystem": "Measurements"
+    },
+    "Read_Ch_B_Only": {
+      "scpi": "M2?",
+      "description": "Read Ch B Only",
+      "returns": {
+        "count": 1
+      },
+      "group": "Read Commands",
+      "subsystem": "Measurements"
+    },
     "Get_Nois_Amax": {
       "scpi": "NOISe:AMAX?",
       "scpiFast": "NOIS:AMAX?",
@@ -7918,42 +7954,6 @@
       },
       "subsystem": "XTAL",
       "unverified": true
-    },
-    "Read_Ch_A_Only": {
-      "scpi": "M1?",
-      "description": "Read Ch A Only",
-      "returns": {
-        "count": 1
-      },
-      "group": "Read Commands",
-      "subsystem": "Measurements"
-    },
-    "Read_Ch_B_Only": {
-      "scpi": "M2?",
-      "description": "Read Ch B Only",
-      "returns": {
-        "count": 1
-      },
-      "group": "Read Commands",
-      "subsystem": "Measurements"
-    },
-    "Read_Stereo_AB": {
-      "scpi": "M1?;M2?",
-      "description": "Read Stereo AB",
-      "returns": {
-        "count": 2,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "m_1"
-          },
-          {
-            "name": "m_2"
-          }
-        ]
-      },
-      "group": "Read Commands",
-      "subsystem": "Measurements"
     }
   }
 }

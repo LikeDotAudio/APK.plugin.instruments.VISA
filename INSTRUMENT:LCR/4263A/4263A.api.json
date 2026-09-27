@@ -65,9 +65,9 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
@@ -81,6 +81,58 @@
   },
   "endpoints": {
     "get": {
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Queries the instrument identification (Manufacturer, Model, Serial, Firmware).",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Operation_Complete": {
+        "command": "Get_Operation_Complete",
+        "verb": "get",
+        "description": "Returns '1' once all pending operations are completed.",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Get_Operation_Complete",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Operation_Complete"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Operation_Complete",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
       "Fetch_Existing": {
         "command": "Fetch_Existing",
         "verb": "get",
@@ -103,33 +155,6 @@
             "command": "Fetch_Existing"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Existing",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Error_Queue": {
-        "command": "Get_Error_Queue",
-        "verb": "get",
-        "description": "Queries the next entry in the error queue.",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "SYSTem",
-        "group": "SYSTem",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR2"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Error_Queue",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Error_Queue"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
           "reading_direction": "out"
         },
         "unverified": true
@@ -226,32 +251,6 @@
         },
         "unverified": true
       },
-      "Get_Operation_Complete": {
-        "command": "Get_Operation_Complete",
-        "verb": "get",
-        "description": "Returns '1' once all pending operations are completed.",
-        "scpi": "*OPC?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Operation_Complete",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Operation_Complete"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Operation_Complete",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Measure": {
         "command": "Measure",
         "verb": "get",
@@ -274,32 +273,6 @@
             "command": "Measure"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Measure",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "get",
-        "description": "Queries the instrument identification (Manufacturer, Model, Serial, Firmware).",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "AARD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
           "reading_direction": "out"
         },
         "unverified": true
@@ -328,121 +301,36 @@
           "reading_direction": "out"
         },
         "unverified": true
+      },
+      "Get_Error_Queue": {
+        "command": "Get_Error_Queue",
+        "verb": "get",
+        "description": "Queries the next entry in the error queue.",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR2"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Get_Error_Queue",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Error_Queue"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
+          "reading_direction": "out"
+        },
+        "unverified": true
       }
     },
     "set": {
-      "Average_Count": {
-        "command": "Average_Count",
-        "verb": "set",
-        "description": "Sets the number of measurement averages (1 to 256).",
-        "scpi": ":SENSe:AVERage:COUNt <count>",
-        "scpi_fast": ":SENS:AVER:COUN <count>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "count"
-        ],
-        "arg": {
-          "kind": "integer"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Average_Count",
-          "direction": "in",
-          "payload_format": {
-            "command": "Average_Count",
-            "value": "<value>",
-            "input_name": "count"
-          }
-        },
-        "unverified": true
-      },
-      "Current_Range": {
-        "command": "Current_Range",
-        "verb": "set",
-        "description": "Sets the current measurement range.",
-        "scpi": ":SENSe:CURRent:RANGe <range>",
-        "scpi_fast": ":SENS:CURR:RANG <range>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "range"
-        ],
-        "arg": {
-          "kind": "numeric"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Current_Range",
-          "direction": "in",
-          "payload_format": {
-            "command": "Current_Range",
-            "value": "<value>",
-            "input_name": "range"
-          }
-        },
-        "unverified": true
-      },
-      "Display_State": {
-        "command": "Display_State",
-        "verb": "set",
-        "description": "Turns the display ON or OFF.",
-        "scpi": ":DISPlay:STATe <state>",
-        "scpi_fast": ":DISP:STAT <state>",
-        "subsystem": "DISPlay",
-        "group": "DISPlay",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Display_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Display_State",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
-      "Key_Lock": {
-        "command": "Key_Lock",
-        "verb": "set",
-        "description": "Locks or unlocks the front-panel keys.",
-        "scpi": ":SYSTem:KLOCk <state>",
-        "scpi_fast": ":SYST:KLOC <state>",
-        "subsystem": "SYSTem",
-        "group": "SYSTem",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Key_Lock",
-          "direction": "in",
-          "payload_format": {
-            "command": "Key_Lock",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
       "Limit_Lower": {
         "command": "Limit_Lower",
         "verb": "set",
@@ -521,119 +409,6 @@
             "command": "Limit_Upper",
             "value": "<value>",
             "input_name": "limit"
-          }
-        },
-        "unverified": true
-      },
-      "Measurement_Function": {
-        "command": "Measurement_Function",
-        "verb": "set",
-        "description": "Selects measurement parameters (e.g., CP-D, LS-Q).",
-        "scpi": ":SENSe:FUNCtion <function>",
-        "scpi_fast": ":SENS:FUNC <function>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "function"
-        ],
-        "arg": {
-          "kind": "enum"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Measurement_Function",
-          "direction": "in",
-          "payload_format": {
-            "command": "Measurement_Function",
-            "value": "<value>",
-            "input_name": "function"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Beeper": {
-        "command": "Set_Beeper",
-        "verb": "set",
-        "description": "Turns the front-panel beeper ON or OFF.",
-        "scpi": ":SYSTem:BEEPer:STATe <state>",
-        "scpi_fast": ":SYST:BEEP:STAT <state>",
-        "subsystem": "SYSTem",
-        "group": "SYSTem",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Beeper",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Beeper",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Bias_State": {
-        "command": "Set_Bias_State",
-        "verb": "set",
-        "description": "Turns the DC bias ON or OFF.",
-        "scpi": ":SOURce:BIAS:STATe <state>",
-        "scpi_fast": ":SOUR:BIAS:STAT <state>",
-        "subsystem": "SOURce",
-        "group": "SOURce",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Bias_State",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Bias_Voltage": {
-        "command": "Set_Bias_Voltage",
-        "verb": "set",
-        "description": "Sets the internal DC bias voltage level.",
-        "scpi": ":SOURce:BIAS:VOLTage <volt>",
-        "scpi_fast": ":SOUR:BIAS:VOLT <volt>",
-        "subsystem": "SOURce",
-        "group": "SOURce",
-        "args": [
-          "volt"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "V"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_Voltage",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Bias_Voltage",
-            "value": "<value>",
-            "input_name": "volt"
           }
         },
         "unverified": true
@@ -738,6 +513,36 @@
         },
         "unverified": true
       },
+      "Display_State": {
+        "command": "Display_State",
+        "verb": "set",
+        "description": "Turns the display ON or OFF.",
+        "scpi": ":DISPlay:STATe <state>",
+        "scpi_fast": ":DISP:STAT <state>",
+        "subsystem": "DISPlay",
+        "group": "DISPlay",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Display_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Display_State",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
       "Set_Inp": {
         "command": "Set_Inp",
         "verb": "set",
@@ -813,6 +618,58 @@
         },
         "unverified": true
       },
+      "Average_Count": {
+        "command": "Average_Count",
+        "verb": "set",
+        "description": "Sets the number of measurement averages (1 to 256).",
+        "scpi": ":SENSe:AVERage:COUNt <count>",
+        "scpi_fast": ":SENS:AVER:COUN <count>",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [
+          "count"
+        ],
+        "arg": {
+          "kind": "integer"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Average_Count",
+          "direction": "in",
+          "payload_format": {
+            "command": "Average_Count",
+            "value": "<value>",
+            "input_name": "count"
+          }
+        },
+        "unverified": true
+      },
+      "Current_Range": {
+        "command": "Current_Range",
+        "verb": "set",
+        "description": "Sets the current measurement range.",
+        "scpi": ":SENSe:CURRent:RANGe <range>",
+        "scpi_fast": ":SENS:CURR:RANG <range>",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [
+          "range"
+        ],
+        "arg": {
+          "kind": "numeric"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Current_Range",
+          "direction": "in",
+          "payload_format": {
+            "command": "Current_Range",
+            "value": "<value>",
+            "input_name": "range"
+          }
+        },
+        "unverified": true
+      },
       "Set_Test_Frequency": {
         "command": "Set_Test_Frequency",
         "verb": "set",
@@ -840,6 +697,119 @@
         },
         "unverified": true
       },
+      "Measurement_Function": {
+        "command": "Measurement_Function",
+        "verb": "set",
+        "description": "Selects measurement parameters (e.g., CP-D, LS-Q).",
+        "scpi": ":SENSe:FUNCtion <function>",
+        "scpi_fast": ":SENS:FUNC <function>",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [
+          "function"
+        ],
+        "arg": {
+          "kind": "enum"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Measurement_Function",
+          "direction": "in",
+          "payload_format": {
+            "command": "Measurement_Function",
+            "value": "<value>",
+            "input_name": "function"
+          }
+        },
+        "unverified": true
+      },
+      "Voltage_Range_Auto": {
+        "command": "Voltage_Range_Auto",
+        "verb": "set",
+        "description": "Enables or disables auto-ranging.",
+        "scpi": ":SENSe:VOLTage:RANGe:AUTO <state>",
+        "scpi_fast": ":SENS:VOLT:RANG:AUTO <state>",
+        "subsystem": "SENSe",
+        "group": "SENSe",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Voltage_Range_Auto",
+          "direction": "in",
+          "payload_format": {
+            "command": "Voltage_Range_Auto",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Bias_State": {
+        "command": "Set_Bias_State",
+        "verb": "set",
+        "description": "Turns the DC bias ON or OFF.",
+        "scpi": ":SOURce:BIAS:STATe <state>",
+        "scpi_fast": ":SOUR:BIAS:STAT <state>",
+        "subsystem": "SOURce",
+        "group": "SOURce",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Bias_State",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Bias_Voltage": {
+        "command": "Set_Bias_Voltage",
+        "verb": "set",
+        "description": "Sets the internal DC bias voltage level.",
+        "scpi": ":SOURce:BIAS:VOLTage <volt>",
+        "scpi_fast": ":SOUR:BIAS:VOLT <volt>",
+        "subsystem": "SOURce",
+        "group": "SOURce",
+        "args": [
+          "volt"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Bias_Voltage",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Bias_Voltage",
+            "value": "<value>",
+            "input_name": "volt"
+          }
+        },
+        "unverified": true
+      },
       "Set_Test_Level": {
         "command": "Set_Test_Level",
         "verb": "set",
@@ -863,6 +833,66 @@
             "command": "Set_Test_Level",
             "value": "<value>",
             "input_name": "level"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Beeper": {
+        "command": "Set_Beeper",
+        "verb": "set",
+        "description": "Turns the front-panel beeper ON or OFF.",
+        "scpi": ":SYSTem:BEEPer:STATe <state>",
+        "scpi_fast": ":SYST:BEEP:STAT <state>",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Beeper",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Beeper",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
+      "Key_Lock": {
+        "command": "Key_Lock",
+        "verb": "set",
+        "description": "Locks or unlocks the front-panel keys.",
+        "scpi": ":SYSTem:KLOCk <state>",
+        "scpi_fast": ":SYST:KLOC <state>",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Key_Lock",
+          "direction": "in",
+          "payload_format": {
+            "command": "Key_Lock",
+            "value": "<value>",
+            "input_name": "state"
           }
         },
         "unverified": true
@@ -944,31 +974,6 @@
         },
         "unverified": true
       },
-      "Set_Volt": {
-        "command": "Set_Volt",
-        "verb": "set",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "VOLT <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "numeric",
-          "unit": "V",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Set_Volt",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Volt",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Trigger_Delay": {
         "command": "Trigger_Delay",
         "verb": "set",
@@ -1022,38 +1027,85 @@
         },
         "unverified": true
       },
-      "Voltage_Range_Auto": {
-        "command": "Voltage_Range_Auto",
+      "Set_Volt": {
+        "command": "Set_Volt",
         "verb": "set",
-        "description": "Enables or disables auto-ranging.",
-        "scpi": ":SENSe:VOLTage:RANGe:AUTO <state>",
-        "scpi_fast": ":SENS:VOLT:RANG:AUTO <state>",
-        "subsystem": "SENSe",
-        "group": "SENSe",
-        "args": [
-          "state"
-        ],
+        "description": "Authored from a panel literal in LCR.json; never executed before.",
+        "scpi": "VOLT <value>",
+        "subsystem": "General",
+        "group": "General",
+        "args": [],
         "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
+          "kind": "numeric",
+          "unit": "V",
+          "limits": "query"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Voltage_Range_Auto",
+          "topic": "APK.audio/Gui/Komands/LCR/Set_Volt",
           "direction": "in",
           "payload_format": {
-            "command": "Voltage_Range_Auto",
+            "command": "Set_Volt",
             "value": "<value>",
-            "input_name": "state"
+            "input_name": "value"
           }
         },
         "unverified": true
       }
     },
     "nab": {
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Queries the instrument identification (Manufacturer, Model, Serial, Firmware).",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Operation_Complete": {
+        "command": "Get_Operation_Complete",
+        "verb": "nab",
+        "description": "Returns '1' once all pending operations are completed.",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Get_Operation_Complete",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Operation_Complete"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Operation_Complete",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
       "Fetch_Existing": {
         "command": "Fetch_Existing",
         "verb": "nab",
@@ -1076,33 +1128,6 @@
             "command": "Fetch_Existing"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Fetch_Existing",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Error_Queue": {
-        "command": "Get_Error_Queue",
-        "verb": "nab",
-        "description": "Queries the next entry in the error queue.",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "SYSTem",
-        "group": "SYSTem",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR2"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Error_Queue",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Error_Queue"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1199,32 +1224,6 @@
         },
         "unverified": true
       },
-      "Get_Operation_Complete": {
-        "command": "Get_Operation_Complete",
-        "verb": "nab",
-        "description": "Returns '1' once all pending operations are completed.",
-        "scpi": "*OPC?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Operation_Complete",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Operation_Complete"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Operation_Complete",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Measure": {
         "command": "Measure",
         "verb": "nab",
@@ -1247,32 +1246,6 @@
             "command": "Measure"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Measure",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "nab",
-        "description": "Queries the instrument identification (Manufacturer, Model, Serial, Firmware).",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "AARD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1301,6 +1274,33 @@
           "reading_direction": "out"
         },
         "unverified": true
+      },
+      "Get_Error_Queue": {
+        "command": "Get_Error_Queue",
+        "verb": "nab",
+        "description": "Queries the next entry in the error queue.",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "SYSTem",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR2"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Get_Error_Queue",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Error_Queue"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
+          "reading_direction": "out"
+        },
+        "unverified": true
       }
     },
     "rig": {},
@@ -1322,6 +1322,48 @@
           "direction": "in",
           "payload_format": {
             "command": "Clear_Status"
+          }
+        },
+        "unverified": true
+      },
+      "Reset_Device": {
+        "command": "Reset_Device",
+        "verb": "do",
+        "description": "Resets the unit to its factory default settings.",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Reset_Device",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset_Device"
+          }
+        },
+        "unverified": true
+      },
+      "Trigger_Bus": {
+        "command": "Trigger_Bus",
+        "verb": "do",
+        "description": "Triggers the unit (equivalent to the Bus trigger).",
+        "scpi": "*TRG",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/LCR/Trigger_Bus",
+          "direction": "in",
+          "payload_format": {
+            "command": "Trigger_Bus"
           }
         },
         "unverified": true
@@ -1366,48 +1408,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Correction_Short"
-          }
-        },
-        "unverified": true
-      },
-      "Reset_Device": {
-        "command": "Reset_Device",
-        "verb": "do",
-        "description": "Resets the unit to its factory default settings.",
-        "scpi": "*RST",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Reset_Device",
-          "direction": "in",
-          "payload_format": {
-            "command": "Reset_Device"
-          }
-        },
-        "unverified": true
-      },
-      "Trigger_Bus": {
-        "command": "Trigger_Bus",
-        "verb": "do",
-        "description": "Triggers the unit (equivalent to the Bus trigger).",
-        "scpi": "*TRG",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Trigger_Bus",
-          "direction": "in",
-          "payload_format": {
-            "command": "Trigger_Bus"
           }
         },
         "unverified": true

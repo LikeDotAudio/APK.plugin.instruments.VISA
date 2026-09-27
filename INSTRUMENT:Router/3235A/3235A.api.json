@@ -66,9 +66,9 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
@@ -242,6 +242,27 @@
     },
     "rig": {},
     "do": {
+      "Clear_State": {
+        "command": "Clear_State",
+        "verb": "do",
+        "description": "Clear State",
+        "scpi": "CLR",
+        "subsystem": "General",
+        "group": "System Reset & Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Router/Clear_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_State"
+          }
+        },
+        "unverified": false
+      },
       "Card_Reset": {
         "command": "Card_Reset",
         "verb": "do",
@@ -260,27 +281,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Card_Reset"
-          }
-        },
-        "unverified": false
-      },
-      "Clear_State": {
-        "command": "Clear_State",
-        "verb": "do",
-        "description": "Clear State",
-        "scpi": "CLR",
-        "subsystem": "General",
-        "group": "System Reset & Control",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Router/Clear_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Clear_State"
           }
         },
         "unverified": false

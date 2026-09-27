@@ -66,15 +66,15 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
     "total_commands": 262,
-    "get_count": 119,
+    "get_count": 114,
     "set_count": 80,
     "nab_count": 119,
     "rig_count": 4,
@@ -82,6 +82,240 @@
   },
   "endpoints": {
     "get": {
+      "Get_Ese": {
+        "command": "Get_Ese",
+        "verb": "get",
+        "description": "Get ese",
+        "scpi": "*ESE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Ese",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Ese"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Esr": {
+        "command": "Get_Esr",
+        "verb": "get",
+        "description": "Get esr",
+        "scpi": "*ESR?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Esr",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Esr"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Get idn",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Lrn": {
+        "command": "Get_Lrn",
+        "verb": "get",
+        "description": "Get lrn",
+        "scpi": "*LRN?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Lrn",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Lrn"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Lrn",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Opc": {
+        "command": "Get_Opc",
+        "verb": "get",
+        "description": "Get opc",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Opc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Opc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Psc": {
+        "command": "Get_Psc",
+        "verb": "get",
+        "description": "Get psc",
+        "scpi": "*PSC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Psc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Psc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Psc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Sre": {
+        "command": "Get_Sre",
+        "verb": "get",
+        "description": "Get sre",
+        "scpi": "*SRE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Sre",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Sre"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Stb": {
+        "command": "Get_Stb",
+        "verb": "get",
+        "description": "Get stb",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Stb",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Stb"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Tst": {
+        "command": "Get_Tst",
+        "verb": "get",
+        "description": "Get tst",
+        "scpi": "*TST?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Tst",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Tst"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
       "Get_Am_Depth": {
         "command": "Get_Am_Depth",
         "verb": "get",
@@ -863,85 +1097,6 @@
         },
         "unverified": true
       },
-      "Get_Error_Queue": {
-        "command": "Get_Error_Queue",
-        "verb": "get",
-        "description": "Get Error Queue",
-        "scpi": "SYSTem:ERRor?",
-        "scpi_fast": "SYST:ERR?",
-        "subsystem": "System",
-        "group": "System Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR2"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Error_Queue",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Error_Queue"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Get_Ese": {
-        "command": "Get_Ese",
-        "verb": "get",
-        "description": "Get ese",
-        "scpi": "*ESE?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Ese",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Ese"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Esr": {
-        "command": "Get_Esr",
-        "verb": "get",
-        "description": "Get esr",
-        "scpi": "*ESR?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Esr",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Esr"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Fm_Deviation": {
         "command": "Get_Fm_Deviation",
         "verb": "get",
@@ -1554,32 +1709,6 @@
         },
         "unverified": true
       },
-      "Get_Lrn": {
-        "command": "Get_Lrn",
-        "verb": "get",
-        "description": "Get lrn",
-        "scpi": "*LRN?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "AARD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Lrn",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Lrn"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Lrn",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Marker_Frequency": {
         "command": "Get_Marker_Frequency",
         "verb": "get",
@@ -1763,32 +1892,6 @@
         },
         "unverified": true
       },
-      "Get_Opc": {
-        "command": "Get_Opc",
-        "verb": "get",
-        "description": "Get opc",
-        "scpi": "*OPC?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Opc",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Opc"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Output_Load": {
         "command": "Get_Output_Load",
         "verb": "get",
@@ -1842,32 +1945,6 @@
         },
         "unverified": true
       },
-      "Get_Output_State": {
-        "command": "Get_Output_State",
-        "verb": "get",
-        "description": "Get Output State",
-        "scpi": "OUTPut?",
-        "scpi_fast": "OUTP?",
-        "subsystem": "OUTPut",
-        "group": "Output Status",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Output_State"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_State",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "Get_Output_Sync": {
         "command": "Get_Output_Sync",
         "verb": "get",
@@ -1891,32 +1968,6 @@
             "command": "Get_Output_Sync"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_Sync",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Output_Trigger": {
-        "command": "Get_Output_Trigger",
-        "verb": "get",
-        "description": "Trigger Out Signal",
-        "scpi": "OUTPut:TRIGger?",
-        "scpi_fast": "OUTP:TRIG?",
-        "subsystem": "OUTP",
-        "group": "OUTP",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_Trigger",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Output_Trigger"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1947,6 +1998,58 @@
           "reading_direction": "out"
         },
         "unverified": true
+      },
+      "Get_Output_Trigger": {
+        "command": "Get_Output_Trigger",
+        "verb": "get",
+        "description": "Trigger Out Signal",
+        "scpi": "OUTPut:TRIGger?",
+        "scpi_fast": "OUTP:TRIG?",
+        "subsystem": "OUTP",
+        "group": "OUTP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_Trigger",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Output_Trigger"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_Trigger",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Output_State": {
+        "command": "Get_Output_State",
+        "verb": "get",
+        "description": "Get Output State",
+        "scpi": "OUTPut?",
+        "scpi_fast": "OUTP?",
+        "subsystem": "OUTPut",
+        "group": "Output Status",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Output_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_State",
+          "reading_direction": "out"
+        },
+        "unverified": false
       },
       "Get_Phase_Unlock_Error_State": {
         "command": "Get_Phase_Unlock_Error_State",
@@ -2081,32 +2184,6 @@
         },
         "unverified": true
       },
-      "Get_Psc": {
-        "command": "Get_Psc",
-        "verb": "get",
-        "description": "Get psc",
-        "scpi": "*PSC?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Psc",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Psc"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Psc",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Pulse_Period": {
         "command": "Get_Pulse_Period",
         "verb": "get",
@@ -2135,32 +2212,6 @@
         },
         "unverified": true
       },
-      "Get_Pwm_Deviation": {
-        "command": "Get_Pwm_Deviation",
-        "verb": "get",
-        "description": "PWM Commands",
-        "scpi": "PWM:DEViation?",
-        "scpi_fast": "PWM:DEV?",
-        "subsystem": "PWM",
-        "group": "PWM",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Pwm_Deviation",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Pwm_Deviation"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Pwm_Deviation",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Pwm_Deviation_Dcycle": {
         "command": "Get_Pwm_Deviation_Dcycle",
         "verb": "get",
@@ -2185,6 +2236,32 @@
             "command": "Get_Pwm_Deviation_Dcycle"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Pwm_Deviation_Dcycle",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Pwm_Deviation": {
+        "command": "Get_Pwm_Deviation",
+        "verb": "get",
+        "description": "PWM Commands",
+        "scpi": "PWM:DEViation?",
+        "scpi_fast": "PWM:DEV?",
+        "subsystem": "PWM",
+        "group": "PWM",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Pwm_Deviation",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Pwm_Deviation"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Pwm_Deviation",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2405,13 +2482,13 @@
         },
         "unverified": true
       },
-      "Get_Sre": {
-        "command": "Get_Sre",
+      "Get_State_Questionable_Event": {
+        "command": "Get_State_Questionable_Event",
         "verb": "get",
-        "description": "Get sre",
-        "scpi": "*SRE?",
-        "subsystem": "Common",
-        "group": "Common",
+        "description": "What is an Event Register?",
+        "scpi": "STAT:QUES:EVEN?",
+        "subsystem": "STAT",
+        "group": "STAT",
         "args": [],
         "arg": {
           "kind": "none"
@@ -2421,12 +2498,12 @@
           "type": "NR1"
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Sre",
+          "topic": "APK.audio/Gui/Komands/Generator/Get_State_Questionable_Event",
           "direction": "in",
           "payload_format": {
-            "command": "Get_Sre"
+            "command": "Get_State_Questionable_Event"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Event",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2481,110 +2558,6 @@
             "command": "Get_State_Questionable_Enable"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Enable",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_State_Questionable_Event": {
-        "command": "Get_State_Questionable_Event",
-        "verb": "get",
-        "description": "What is an Event Register?",
-        "scpi": "STAT:QUES:EVEN?",
-        "subsystem": "STAT",
-        "group": "STAT",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_State_Questionable_Event",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_State_Questionable_Event"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Event",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Stb": {
-        "command": "Get_Stb",
-        "verb": "get",
-        "description": "Get stb",
-        "scpi": "*STB?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Stb",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Stb"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Sweep_Config": {
-        "command": "Get_Sweep_Config",
-        "verb": "get",
-        "description": "Read the whole sweep setup in one transaction",
-        "scpi": ":SWEep:STATe?;:SWEep:TIME?;:SWEep:SPACing?;:FREQuency:STARt?;:FREQuency:STOP?",
-        "scpi_fast": ":SWE:STAT?;:SWE:TIME?;:SWE:SPAC?;:FREQ:STAR?;:FREQ:STOP?",
-        "subsystem": "SWEep",
-        "group": "Sweep Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 5,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "state",
-              "type": "BOOL"
-            },
-            {
-              "name": "time",
-              "type": "NR3",
-              "unit": "s"
-            },
-            {
-              "name": "spacing",
-              "type": "CRD"
-            },
-            {
-              "name": "start",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "stop",
-              "type": "NR3",
-              "unit": "Hz"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Sweep_Config",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Sweep_Config"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sweep_Config",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2879,6 +2852,33 @@
         },
         "unverified": true
       },
+      "Get_Error_Queue": {
+        "command": "Get_Error_Queue",
+        "verb": "get",
+        "description": "Get Error Queue",
+        "scpi": "SYSTem:ERRor?",
+        "scpi_fast": "SYST:ERR?",
+        "subsystem": "System",
+        "group": "System Readbacks",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR2"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Error_Queue",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Error_Queue"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Get_System_Klock_Exclude": {
         "command": "Get_System_Klock_Exclude",
         "verb": "get",
@@ -3037,32 +3037,6 @@
         },
         "unverified": true
       },
-      "Get_Tst": {
-        "command": "Get_Tst",
-        "verb": "get",
-        "description": "Get tst",
-        "scpi": "*TST?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Tst",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Tst"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Unit_Angle": {
         "command": "Get_Unit_Angle",
         "verb": "get",
@@ -3144,264 +3118,142 @@
           "reading_direction": "out"
         },
         "unverified": true
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "get",
-        "description": "Get idn",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "AARD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "burst_settings": {
-        "command": "burst_settings",
-        "verb": "get",
-        "description": "The whole burst setup in one transaction.",
-        "scpi": ":BURSt:STATe?;:BURSt:MODE?;:BURSt:NCYCles?;:BURSt:PHASe?;:BURSt:INTernal:PERiod?;:BURSt:GATE:POLarity?",
-        "scpi_fast": ":BURS:STAT?;:BURS:MODE?;:BURS:NCYC?;:BURS:PHAS?;:BURS:INT:PER?;:BURS:GATE:POL?",
-        "subsystem": "BURSt",
-        "group": "Burst Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 6,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "state",
-              "type": "BOOL"
-            },
-            {
-              "name": "mode",
-              "type": "CRD"
-            },
-            {
-              "name": "ncycles",
-              "type": "NR1"
-            },
-            {
-              "name": "phase",
-              "type": "NR3",
-              "unit": "deg"
-            },
-            {
-              "name": "period",
-              "type": "NR3",
-              "unit": "s"
-            },
-            {
-              "name": "gate_polarity",
-              "type": "CRD"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/burst_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "burst_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/burst_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "generator_settings": {
-        "command": "generator_settings",
-        "verb": "get",
-        "description": "Shape, frequency, amplitude, offset and the output state, in one round trip.",
-        "scpi": "FUNCtion?;:FREQuency?;:VOLTage?;:VOLTage:OFFSet?;:OUTPut?",
-        "scpi_fast": "FUNC?;:FREQ?;:VOLT?;:VOLT:OFFS?;:OUTP?",
-        "subsystem": "SOURce",
-        "group": "APPLy Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 5,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "function",
-              "type": "CRD"
-            },
-            {
-              "name": "frequency",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "amplitude",
-              "type": "NR3",
-              "unit": "V"
-            },
-            {
-              "name": "offset",
-              "type": "NR3",
-              "unit": "V"
-            },
-            {
-              "name": "output",
-              "type": "BOOL"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/generator_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "generator_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/generator_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "modulation_settings": {
-        "command": "modulation_settings",
-        "verb": "get",
-        "description": "Both modulators, whole: state, source and depth/deviation together.",
-        "scpi": ":AM:STATe?;:AM:SOURce?;:AM:DEPTh?;:FM:STATe?;:FM:SOURce?;:FM:DEViation?;:FM:INTernal:FREQuency?",
-        "scpi_fast": ":AM:STAT?;:AM:SOUR?;:AM:DEPT?;:FM:STAT?;:FM:SOUR?;:FM:DEV?;:FM:INT:FREQ?",
-        "subsystem": "AM",
-        "group": "Modulation Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 7,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "am_state",
-              "type": "BOOL"
-            },
-            {
-              "name": "am_source",
-              "type": "CRD"
-            },
-            {
-              "name": "am_depth",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "fm_state",
-              "type": "BOOL"
-            },
-            {
-              "name": "fm_source",
-              "type": "CRD"
-            },
-            {
-              "name": "fm_deviation",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "fm_rate",
-              "type": "NR3",
-              "unit": "Hz"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/modulation_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "modulation_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/modulation_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "shape_settings": {
-        "command": "shape_settings",
-        "verb": "get",
-        "description": "Every shape parameter and the load it drives, in one round trip.",
-        "scpi": ":FUNCtion:RAMP:SYMMetry?;:FUNCtion:SQUare:DCYCle?;:FUNCtion:PULSe:DCYCle?;:FUNCtion:PULSe:WIDTh?;:OUTPut:LOAD?;:VOLTage:UNIT?;:OUTPut:POLarity?",
-        "scpi_fast": ":FUNC:RAMP:SYMM?;:FUNC:SQU:DCYC?;:FUNC:PULS:DCYC?;:FUNC:PULS:WIDT?;:OUTP:LOAD?;:VOLT:UNIT?;:OUTP:POL?",
-        "subsystem": "SOURce",
-        "group": "Shape Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 7,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "ramp_symmetry",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "square_dcycle",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "pulse_dcycle",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "pulse_width",
-              "type": "NR3",
-              "unit": "s"
-            },
-            {
-              "name": "output_load",
-              "type": "NR3",
-              "unit": "Ohm"
-            },
-            {
-              "name": "voltage_unit",
-              "type": "CRD"
-            },
-            {
-              "name": "output_polarity",
-              "type": "CRD"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/shape_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "shape_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/shape_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
       }
     },
     "set": {
+      "Set_Ese": {
+        "command": "Set_Ese",
+        "verb": "set",
+        "description": "Set ese",
+        "scpi": "*ESE <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Ese",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Ese",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Psc": {
+        "command": "Set_Psc",
+        "verb": "set",
+        "description": "Set psc",
+        "scpi": "*PSC <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "0",
+            "1"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Psc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Psc",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Rcl": {
+        "command": "Set_Rcl",
+        "verb": "set",
+        "description": "Set rcl",
+        "scpi": "*RCL <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "min": 0
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Rcl",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Rcl",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Sav": {
+        "command": "Set_Sav",
+        "verb": "set",
+        "description": "Set sav",
+        "scpi": "*SAV <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "min": 0
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Sav",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sav",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Sre": {
+        "command": "Set_Sre",
+        "verb": "set",
+        "description": "Set sre",
+        "scpi": "*SRE <value>",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "integer",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Sre",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sre",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Set_Am_Source": {
         "command": "Set_Am_Source",
         "verb": "set",
@@ -3461,34 +3313,6 @@
         },
         "unverified": false
       },
-      "Set_Amplitude": {
-        "command": "Set_Amplitude",
-        "verb": "set",
-        "description": "Set Amplitude",
-        "scpi": "VOLTage <amp>",
-        "scpi_fast": "VOLT <amp>",
-        "subsystem": "SOURce",
-        "group": "SOURce Configuration",
-        "args": [
-          "amp"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "V",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Amplitude",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Amplitude",
-            "value": "<value>",
-            "input_name": "amp"
-          }
-        },
-        "unverified": false
-      },
       "Set_Beeper_State": {
         "command": "Set_Beeper_State",
         "verb": "set",
@@ -3513,36 +3337,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Beeper_State",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Burst_Gate_Polarity": {
-        "command": "Set_Burst_Gate_Polarity",
-        "verb": "set",
-        "description": "Burst Commands",
-        "scpi": "BURSt:GATE:POLarity <value>",
-        "scpi_fast": "BURS:GATE:POL <value>",
-        "subsystem": "BURS",
-        "group": "BURS",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "enum",
-          "values": [
-            "NORM",
-            "INV"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Burst_Gate_Polarity",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Burst_Gate_Polarity",
             "value": "<value>",
             "input_name": "value"
           }
@@ -3651,6 +3445,36 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Burst_Phase",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Burst_Gate_Polarity": {
+        "command": "Set_Burst_Gate_Polarity",
+        "verb": "set",
+        "description": "Burst Commands",
+        "scpi": "BURSt:GATE:POLarity <value>",
+        "scpi_fast": "BURS:GATE:POL <value>",
+        "subsystem": "BURS",
+        "group": "BURS",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "NORM",
+            "INV"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Burst_Gate_Polarity",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Burst_Gate_Polarity",
             "value": "<value>",
             "input_name": "value"
           }
@@ -3814,32 +3638,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Display_Text",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Ese": {
-        "command": "Set_Ese",
-        "verb": "set",
-        "description": "Set ese",
-        "scpi": "*ESE <value>",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "integer",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Ese",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Ese",
             "value": "<value>",
             "input_name": "value"
           }
@@ -4118,6 +3916,35 @@
         },
         "unverified": true
       },
+      "Set_Fskey_Source": {
+        "command": "Set_Fskey_Source",
+        "verb": "set",
+        "description": "FSK Commands",
+        "scpi": "FSK:SOUR <value>",
+        "subsystem": "FSK",
+        "group": "FSK",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "INT",
+            "EXT"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Fskey_Source",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Fskey_Source",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Set_Fskey_Frequency": {
         "command": "Set_Fskey_Frequency",
         "verb": "set",
@@ -4171,35 +3998,6 @@
         },
         "unverified": true
       },
-      "Set_Fskey_Source": {
-        "command": "Set_Fskey_Source",
-        "verb": "set",
-        "description": "FSK Commands",
-        "scpi": "FSK:SOUR <value>",
-        "subsystem": "FSK",
-        "group": "FSK",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "enum",
-          "values": [
-            "INT",
-            "EXT"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Fskey_Source",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Fskey_Source",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Set_Fskey_State": {
         "command": "Set_Fskey_State",
         "verb": "set",
@@ -4224,34 +4022,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Fskey_State",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Function_Pulse_Dcycle": {
-        "command": "Set_Function_Pulse_Dcycle",
-        "verb": "set",
-        "description": "Pulse Configuration Commands",
-        "scpi": "FUNCtion:PULSe:DCYCle <value>",
-        "scpi_fast": "FUNC:PULS:DCYC <value>",
-        "subsystem": "FUNC",
-        "group": "FUNC",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "%",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_Pulse_Dcycle",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Function_Pulse_Dcycle",
             "value": "<value>",
             "input_name": "value"
           }
@@ -4287,12 +4057,11 @@
         },
         "unverified": true
       },
-      "Set_Function_Pulse_Transition": {
-        "command": "Set_Function_Pulse_Transition",
+      "Set_Function_User": {
+        "command": "Set_Function_User",
         "verb": "set",
-        "description": "Edge Time",
-        "scpi": "FUNCtion:PULSe:TRANsition <value>",
-        "scpi_fast": "FUNC:PULS:TRAN <value>",
+        "description": "Arbitrary Waveform Commands",
+        "scpi": "FUNC:USER <value>",
         "subsystem": "FUNC",
         "group": "FUNC",
         "args": [
@@ -4303,36 +4072,10 @@
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_Pulse_Transition",
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_User",
           "direction": "in",
           "payload_format": {
-            "command": "Set_Function_Pulse_Transition",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Function_Ramp_Symmetry": {
-        "command": "Set_Function_Ramp_Symmetry",
-        "verb": "set",
-        "description": "Output Configuration Commands",
-        "scpi": "FUNCtion:RAMP:SYMMetry <value>",
-        "scpi_fast": "FUNC:RAMP:SYMM <value>",
-        "subsystem": "FUNC",
-        "group": "FUNC",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "unknown"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_Ramp_Symmetry",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Function_Ramp_Symmetry",
+            "command": "Set_Function_User",
             "value": "<value>",
             "input_name": "value"
           }
@@ -4374,6 +4117,113 @@
         },
         "unverified": false
       },
+      "Set_Function_Pulse_Dcycle": {
+        "command": "Set_Function_Pulse_Dcycle",
+        "verb": "set",
+        "description": "Pulse Configuration Commands",
+        "scpi": "FUNCtion:PULSe:DCYCle <value>",
+        "scpi_fast": "FUNC:PULS:DCYC <value>",
+        "subsystem": "FUNC",
+        "group": "FUNC",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "%",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_Pulse_Dcycle",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Function_Pulse_Dcycle",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Function_Pulse_Transition": {
+        "command": "Set_Function_Pulse_Transition",
+        "verb": "set",
+        "description": "Edge Time",
+        "scpi": "FUNCtion:PULSe:TRANsition <value>",
+        "scpi_fast": "FUNC:PULS:TRAN <value>",
+        "subsystem": "FUNC",
+        "group": "FUNC",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_Pulse_Transition",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Function_Pulse_Transition",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Setup_Pulse_Width": {
+        "command": "Setup_Pulse_Width",
+        "verb": "set",
+        "description": "Setup Pulse Width",
+        "scpi": "FUNCtion:PULSe:WIDTh <width_sec>",
+        "scpi_fast": "FUNC:PULS:WIDT <width_sec>",
+        "subsystem": "PULSe",
+        "group": "PULSe Configuration",
+        "args": [
+          "width_sec"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Setup_Pulse_Width",
+          "direction": "in",
+          "payload_format": {
+            "command": "Setup_Pulse_Width",
+            "value": "<value>",
+            "input_name": "width_sec"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Function_Ramp_Symmetry": {
+        "command": "Set_Function_Ramp_Symmetry",
+        "verb": "set",
+        "description": "Output Configuration Commands",
+        "scpi": "FUNCtion:RAMP:SYMMetry <value>",
+        "scpi_fast": "FUNC:RAMP:SYMM <value>",
+        "subsystem": "FUNC",
+        "group": "FUNC",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "unknown"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_Ramp_Symmetry",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Function_Ramp_Symmetry",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
       "Set_Function_Square_Dcycle": {
         "command": "Set_Function_Square_Dcycle",
         "verb": "set",
@@ -4396,31 +4246,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Function_Square_Dcycle",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Function_User": {
-        "command": "Set_Function_User",
-        "verb": "set",
-        "description": "Arbitrary Waveform Commands",
-        "scpi": "FUNC:USER <value>",
-        "subsystem": "FUNC",
-        "group": "FUNC",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "unknown"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Function_User",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Function_User",
             "value": "<value>",
             "input_name": "value"
           }
@@ -4505,30 +4330,32 @@
         },
         "unverified": true
       },
-      "Set_Offset": {
-        "command": "Set_Offset",
+      "Set_Output_State": {
+        "command": "Set_Output_State",
         "verb": "set",
-        "description": "Set Offset",
-        "scpi": "VOLTage:OFFSet <offset>",
-        "scpi_fast": "VOLT:OFFS <offset>",
-        "subsystem": "SOURce",
-        "group": "SOURce Configuration",
+        "description": "Set Output State",
+        "scpi": "OUTPut <state>",
+        "scpi_fast": "OUTP <state>",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
         "args": [
-          "offset"
+          "state"
         ],
         "arg": {
-          "kind": "numeric",
-          "unit": "V",
-          "limits": "query"
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Offset",
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Output_State",
           "direction": "in",
           "payload_format": {
-            "command": "Set_Offset",
+            "command": "Set_Output_State",
             "value": "<value>",
-            "input_name": "offset"
+            "input_name": "state"
           }
         },
         "unverified": false
@@ -4589,36 +4416,6 @@
           }
         },
         "unverified": true
-      },
-      "Set_Output_State": {
-        "command": "Set_Output_State",
-        "verb": "set",
-        "description": "Set Output State",
-        "scpi": "OUTPut <state>",
-        "scpi_fast": "OUTP <state>",
-        "subsystem": "OUTPut",
-        "group": "Output Control",
-        "args": [
-          "state"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Output_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Output_State",
-            "value": "<value>",
-            "input_name": "state"
-          }
-        },
-        "unverified": false
       },
       "Set_Output_Trigger": {
         "command": "Set_Output_Trigger",
@@ -4807,35 +4604,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Pm_State",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Psc": {
-        "command": "Set_Psc",
-        "verb": "set",
-        "description": "Set psc",
-        "scpi": "*PSC <value>",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "0",
-            "1"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Psc",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Psc",
             "value": "<value>",
             "input_name": "value"
           }
@@ -5036,58 +4804,6 @@
         },
         "unverified": true
       },
-      "Set_Rcl": {
-        "command": "Set_Rcl",
-        "verb": "set",
-        "description": "Set rcl",
-        "scpi": "*RCL <value>",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "integer",
-          "min": 0
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Rcl",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Rcl",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Sav": {
-        "command": "Set_Sav",
-        "verb": "set",
-        "description": "Set sav",
-        "scpi": "*SAV <value>",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "integer",
-          "min": 0
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Sav",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Sav",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Set_Secure_State": {
         "command": "Set_Secure_State",
         "verb": "set",
@@ -5118,32 +4834,6 @@
         },
         "unverified": true
       },
-      "Set_Sre": {
-        "command": "Set_Sre",
-        "verb": "set",
-        "description": "Set sre",
-        "scpi": "*SRE <value>",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "integer",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Sre",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Sre",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Set_State_Questionable_Enable": {
         "command": "Set_State_Questionable_Enable",
         "verb": "set",
@@ -5164,6 +4854,33 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_State_Questionable_Enable",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Sweep_Time": {
+        "command": "Set_Sweep_Time",
+        "verb": "set",
+        "description": "Sweep Time",
+        "scpi": "SWE:TIME <value>",
+        "subsystem": "SWE",
+        "group": "SWE",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "s",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Sweep_Time",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Sweep_Time",
             "value": "<value>",
             "input_name": "value"
           }
@@ -5224,33 +4941,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Sweep_State",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Sweep_Time": {
-        "command": "Set_Sweep_Time",
-        "verb": "set",
-        "description": "Sweep Time",
-        "scpi": "SWE:TIME <value>",
-        "subsystem": "SWE",
-        "group": "SWE",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "s",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Sweep_Time",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Sweep_Time",
             "value": "<value>",
             "input_name": "value"
           }
@@ -5468,36 +5158,6 @@
         },
         "unverified": true
       },
-      "Set_Trigger_Slope": {
-        "command": "Set_Trigger_Slope",
-        "verb": "set",
-        "description": "Burst Commands",
-        "scpi": "TRIGger:SLOPe <value>",
-        "scpi_fast": "TRIG:SLOP <value>",
-        "subsystem": "TRIG",
-        "group": "TRIG",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "enum",
-          "values": [
-            "POS",
-            "NEG"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Set_Trigger_Slope",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Trigger_Slope",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Set_Trigger_Source": {
         "command": "Set_Trigger_Source",
         "verb": "set",
@@ -5522,6 +5182,36 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Trigger_Source",
+            "value": "<value>",
+            "input_name": "value"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Trigger_Slope": {
+        "command": "Set_Trigger_Slope",
+        "verb": "set",
+        "description": "Burst Commands",
+        "scpi": "TRIGger:SLOPe <value>",
+        "scpi_fast": "TRIG:SLOP <value>",
+        "subsystem": "TRIG",
+        "group": "TRIG",
+        "args": [
+          "value"
+        ],
+        "arg": {
+          "kind": "enum",
+          "values": [
+            "POS",
+            "NEG"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Trigger_Slope",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Trigger_Slope",
             "value": "<value>",
             "input_name": "value"
           }
@@ -5554,6 +5244,62 @@
         },
         "unverified": true
       },
+      "Set_Amplitude": {
+        "command": "Set_Amplitude",
+        "verb": "set",
+        "description": "Set Amplitude",
+        "scpi": "VOLTage <amp>",
+        "scpi_fast": "VOLT <amp>",
+        "subsystem": "SOURce",
+        "group": "SOURce Configuration",
+        "args": [
+          "amp"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Amplitude",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Amplitude",
+            "value": "<value>",
+            "input_name": "amp"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Offset": {
+        "command": "Set_Offset",
+        "verb": "set",
+        "description": "Set Offset",
+        "scpi": "VOLTage:OFFSet <offset>",
+        "scpi_fast": "VOLT:OFFS <offset>",
+        "subsystem": "SOURce",
+        "group": "SOURce Configuration",
+        "args": [
+          "offset"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V",
+          "limits": "query"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Set_Offset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Offset",
+            "value": "<value>",
+            "input_name": "offset"
+          }
+        },
+        "unverified": false
+      },
       "Set_Voltage_Unit": {
         "command": "Set_Voltage_Unit",
         "verb": "set",
@@ -5584,36 +5330,243 @@
           }
         },
         "unverified": false
-      },
-      "Setup_Pulse_Width": {
-        "command": "Setup_Pulse_Width",
-        "verb": "set",
-        "description": "Setup Pulse Width",
-        "scpi": "FUNCtion:PULSe:WIDTh <width_sec>",
-        "scpi_fast": "FUNC:PULS:WIDT <width_sec>",
-        "subsystem": "PULSe",
-        "group": "PULSe Configuration",
-        "args": [
-          "width_sec"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "limits": "query"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Setup_Pulse_Width",
-          "direction": "in",
-          "payload_format": {
-            "command": "Setup_Pulse_Width",
-            "value": "<value>",
-            "input_name": "width_sec"
-          }
-        },
-        "unverified": false
       }
     },
     "nab": {
+      "Get_Ese": {
+        "command": "Get_Ese",
+        "verb": "nab",
+        "description": "Get ese",
+        "scpi": "*ESE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Ese",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Ese"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Esr": {
+        "command": "Get_Esr",
+        "verb": "nab",
+        "description": "Get esr",
+        "scpi": "*ESR?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Esr",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Esr"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Get idn",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Lrn": {
+        "command": "Get_Lrn",
+        "verb": "nab",
+        "description": "Get lrn",
+        "scpi": "*LRN?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "AARD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Lrn",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Lrn"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Lrn",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Opc": {
+        "command": "Get_Opc",
+        "verb": "nab",
+        "description": "Get opc",
+        "scpi": "*OPC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Opc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Opc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Psc": {
+        "command": "Get_Psc",
+        "verb": "nab",
+        "description": "Get psc",
+        "scpi": "*PSC?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Psc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Psc"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Psc",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Sre": {
+        "command": "Get_Sre",
+        "verb": "nab",
+        "description": "Get sre",
+        "scpi": "*SRE?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Sre",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Sre"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Stb": {
+        "command": "Get_Stb",
+        "verb": "nab",
+        "description": "Get stb",
+        "scpi": "*STB?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Stb",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Stb"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Tst": {
+        "command": "Get_Tst",
+        "verb": "nab",
+        "description": "Get tst",
+        "scpi": "*TST?",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR1"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Tst",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Tst"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
       "Get_Am_Depth": {
         "command": "Get_Am_Depth",
         "verb": "nab",
@@ -5716,6 +5669,66 @@
             "command": "Get_Am_State"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Am_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "modulation_settings": {
+        "command": "modulation_settings",
+        "verb": "nab",
+        "description": "Both modulators, whole: state, source and depth/deviation together.",
+        "scpi": ":AM:STATe?;:AM:SOURce?;:AM:DEPTh?;:FM:STATe?;:FM:SOURce?;:FM:DEViation?;:FM:INTernal:FREQuency?",
+        "scpi_fast": ":AM:STAT?;:AM:SOUR?;:AM:DEPT?;:FM:STAT?;:FM:SOUR?;:FM:DEV?;:FM:INT:FREQ?",
+        "subsystem": "AM",
+        "group": "Modulation Readbacks",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 7,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "am_state",
+              "type": "BOOL"
+            },
+            {
+              "name": "am_source",
+              "type": "CRD"
+            },
+            {
+              "name": "am_depth",
+              "type": "NR3",
+              "unit": "%"
+            },
+            {
+              "name": "fm_state",
+              "type": "BOOL"
+            },
+            {
+              "name": "fm_source",
+              "type": "CRD"
+            },
+            {
+              "name": "fm_deviation",
+              "type": "NR3",
+              "unit": "Hz"
+            },
+            {
+              "name": "fm_rate",
+              "type": "NR3",
+              "unit": "Hz"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/modulation_settings",
+          "direction": "in",
+          "payload_format": {
+            "command": "modulation_settings"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/modulation_settings",
           "reading_direction": "out"
         },
         "unverified": true
@@ -6042,6 +6055,61 @@
             "command": "Get_Burst_State"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Burst_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "burst_settings": {
+        "command": "burst_settings",
+        "verb": "nab",
+        "description": "The whole burst setup in one transaction.",
+        "scpi": ":BURSt:STATe?;:BURSt:MODE?;:BURSt:NCYCles?;:BURSt:PHASe?;:BURSt:INTernal:PERiod?;:BURSt:GATE:POLarity?",
+        "scpi_fast": ":BURS:STAT?;:BURS:MODE?;:BURS:NCYC?;:BURS:PHAS?;:BURS:INT:PER?;:BURS:GATE:POL?",
+        "subsystem": "BURSt",
+        "group": "Burst Readbacks",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 6,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "state",
+              "type": "BOOL"
+            },
+            {
+              "name": "mode",
+              "type": "CRD"
+            },
+            {
+              "name": "ncycles",
+              "type": "NR1"
+            },
+            {
+              "name": "phase",
+              "type": "NR3",
+              "unit": "deg"
+            },
+            {
+              "name": "period",
+              "type": "NR3",
+              "unit": "s"
+            },
+            {
+              "name": "gate_polarity",
+              "type": "CRD"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/burst_settings",
+          "direction": "in",
+          "payload_format": {
+            "command": "burst_settings"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/burst_settings",
           "reading_direction": "out"
         },
         "unverified": true
@@ -6391,85 +6459,6 @@
             "command": "Get_Display_Text"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Text",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Error_Queue": {
-        "command": "Get_Error_Queue",
-        "verb": "nab",
-        "description": "Get Error Queue",
-        "scpi": "SYSTem:ERRor?",
-        "scpi_fast": "SYST:ERR?",
-        "subsystem": "System",
-        "group": "System Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR2"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Error_Queue",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Error_Queue"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Get_Ese": {
-        "command": "Get_Ese",
-        "verb": "nab",
-        "description": "Get ese",
-        "scpi": "*ESE?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Ese",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Ese"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Esr": {
-        "command": "Get_Esr",
-        "verb": "nab",
-        "description": "Get esr",
-        "scpi": "*ESR?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Esr",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Esr"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
           "reading_direction": "out"
         },
         "unverified": true
@@ -6955,6 +6944,68 @@
         },
         "unverified": true
       },
+      "shape_settings": {
+        "command": "shape_settings",
+        "verb": "nab",
+        "description": "Every shape parameter and the load it drives, in one round trip.",
+        "scpi": ":FUNCtion:RAMP:SYMMetry?;:FUNCtion:SQUare:DCYCle?;:FUNCtion:PULSe:DCYCle?;:FUNCtion:PULSe:WIDTh?;:OUTPut:LOAD?;:VOLTage:UNIT?;:OUTPut:POLarity?",
+        "scpi_fast": ":FUNC:RAMP:SYMM?;:FUNC:SQU:DCYC?;:FUNC:PULS:DCYC?;:FUNC:PULS:WIDT?;:OUTP:LOAD?;:VOLT:UNIT?;:OUTP:POL?",
+        "subsystem": "SOURce",
+        "group": "Shape Readbacks",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 7,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "ramp_symmetry",
+              "type": "NR3",
+              "unit": "%"
+            },
+            {
+              "name": "square_dcycle",
+              "type": "NR3",
+              "unit": "%"
+            },
+            {
+              "name": "pulse_dcycle",
+              "type": "NR3",
+              "unit": "%"
+            },
+            {
+              "name": "pulse_width",
+              "type": "NR3",
+              "unit": "s"
+            },
+            {
+              "name": "output_load",
+              "type": "NR3",
+              "unit": "Ohm"
+            },
+            {
+              "name": "voltage_unit",
+              "type": "CRD"
+            },
+            {
+              "name": "output_polarity",
+              "type": "CRD"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/shape_settings",
+          "direction": "in",
+          "payload_format": {
+            "command": "shape_settings"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/shape_settings",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
       "Get_Function_Square_Dcycle": {
         "command": "Get_Function_Square_Dcycle",
         "verb": "nab",
@@ -7005,6 +7056,58 @@
             "command": "Get_Function_User"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_User",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "generator_settings": {
+        "command": "generator_settings",
+        "verb": "nab",
+        "description": "Shape, frequency, amplitude, offset and the output state, in one round trip.",
+        "scpi": "FUNCtion?;:FREQuency?;:VOLTage?;:VOLTage:OFFSet?;:OUTPut?",
+        "scpi_fast": "FUNC?;:FREQ?;:VOLT?;:VOLT:OFFS?;:OUTP?",
+        "subsystem": "SOURce",
+        "group": "APPLy Readbacks",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 5,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "function",
+              "type": "CRD"
+            },
+            {
+              "name": "frequency",
+              "type": "NR3",
+              "unit": "Hz"
+            },
+            {
+              "name": "amplitude",
+              "type": "NR3",
+              "unit": "V"
+            },
+            {
+              "name": "offset",
+              "type": "NR3",
+              "unit": "V"
+            },
+            {
+              "name": "output",
+              "type": "BOOL"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/generator_settings",
+          "direction": "in",
+          "payload_format": {
+            "command": "generator_settings"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/generator_settings",
           "reading_direction": "out"
         },
         "unverified": true
@@ -7082,32 +7185,6 @@
             "command": "Get_Lan_Mac"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Lan_Mac",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Lrn": {
-        "command": "Get_Lrn",
-        "verb": "nab",
-        "description": "Get lrn",
-        "scpi": "*LRN?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "AARD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Lrn",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Lrn"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Lrn",
           "reading_direction": "out"
         },
         "unverified": true
@@ -7295,32 +7372,6 @@
         },
         "unverified": true
       },
-      "Get_Opc": {
-        "command": "Get_Opc",
-        "verb": "nab",
-        "description": "Get opc",
-        "scpi": "*OPC?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Opc",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Opc"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Output_Load": {
         "command": "Get_Output_Load",
         "verb": "nab",
@@ -7374,32 +7425,6 @@
         },
         "unverified": true
       },
-      "Get_Output_State": {
-        "command": "Get_Output_State",
-        "verb": "nab",
-        "description": "Get Output State",
-        "scpi": "OUTPut?",
-        "scpi_fast": "OUTP?",
-        "subsystem": "OUTPut",
-        "group": "Output Status",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Output_State"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_State",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "Get_Output_Sync": {
         "command": "Get_Output_Sync",
         "verb": "nab",
@@ -7423,32 +7448,6 @@
             "command": "Get_Output_Sync"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_Sync",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Output_Trigger": {
-        "command": "Get_Output_Trigger",
-        "verb": "nab",
-        "description": "Trigger Out Signal",
-        "scpi": "OUTPut:TRIGger?",
-        "scpi_fast": "OUTP:TRIG?",
-        "subsystem": "OUTP",
-        "group": "OUTP",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_Trigger",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Output_Trigger"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -7479,6 +7478,58 @@
           "reading_direction": "out"
         },
         "unverified": true
+      },
+      "Get_Output_Trigger": {
+        "command": "Get_Output_Trigger",
+        "verb": "nab",
+        "description": "Trigger Out Signal",
+        "scpi": "OUTPut:TRIGger?",
+        "scpi_fast": "OUTP:TRIG?",
+        "subsystem": "OUTP",
+        "group": "OUTP",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_Trigger",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Output_Trigger"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_Trigger",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Output_State": {
+        "command": "Get_Output_State",
+        "verb": "nab",
+        "description": "Get Output State",
+        "scpi": "OUTPut?",
+        "scpi_fast": "OUTP?",
+        "subsystem": "OUTPut",
+        "group": "Output Status",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Output_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Output_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Output_State",
+          "reading_direction": "out"
+        },
+        "unverified": false
       },
       "Get_Phase_Unlock_Error_State": {
         "command": "Get_Phase_Unlock_Error_State",
@@ -7613,32 +7664,6 @@
         },
         "unverified": true
       },
-      "Get_Psc": {
-        "command": "Get_Psc",
-        "verb": "nab",
-        "description": "Get psc",
-        "scpi": "*PSC?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Psc",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Psc"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Psc",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Pulse_Period": {
         "command": "Get_Pulse_Period",
         "verb": "nab",
@@ -7667,32 +7692,6 @@
         },
         "unverified": true
       },
-      "Get_Pwm_Deviation": {
-        "command": "Get_Pwm_Deviation",
-        "verb": "nab",
-        "description": "PWM Commands",
-        "scpi": "PWM:DEViation?",
-        "scpi_fast": "PWM:DEV?",
-        "subsystem": "PWM",
-        "group": "PWM",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Pwm_Deviation",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Pwm_Deviation"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Pwm_Deviation",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Pwm_Deviation_Dcycle": {
         "command": "Get_Pwm_Deviation_Dcycle",
         "verb": "nab",
@@ -7717,6 +7716,32 @@
             "command": "Get_Pwm_Deviation_Dcycle"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Pwm_Deviation_Dcycle",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Pwm_Deviation": {
+        "command": "Get_Pwm_Deviation",
+        "verb": "nab",
+        "description": "PWM Commands",
+        "scpi": "PWM:DEViation?",
+        "scpi_fast": "PWM:DEV?",
+        "subsystem": "PWM",
+        "group": "PWM",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Pwm_Deviation",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Pwm_Deviation"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Pwm_Deviation",
           "reading_direction": "out"
         },
         "unverified": true
@@ -7937,13 +7962,13 @@
         },
         "unverified": true
       },
-      "Get_Sre": {
-        "command": "Get_Sre",
+      "Get_State_Questionable_Event": {
+        "command": "Get_State_Questionable_Event",
         "verb": "nab",
-        "description": "Get sre",
-        "scpi": "*SRE?",
-        "subsystem": "Common",
-        "group": "Common",
+        "description": "What is an Event Register?",
+        "scpi": "STAT:QUES:EVEN?",
+        "subsystem": "STAT",
+        "group": "STAT",
         "args": [],
         "arg": {
           "kind": "none"
@@ -7953,12 +7978,12 @@
           "type": "NR1"
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Sre",
+          "topic": "APK.audio/Gui/Komands/Generator/Get_State_Questionable_Event",
           "direction": "in",
           "payload_format": {
-            "command": "Get_Sre"
+            "command": "Get_State_Questionable_Event"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Event",
           "reading_direction": "out"
         },
         "unverified": true
@@ -8017,54 +8042,55 @@
         },
         "unverified": true
       },
-      "Get_State_Questionable_Event": {
-        "command": "Get_State_Questionable_Event",
+      "Get_Sweep_Spacing": {
+        "command": "Get_Sweep_Spacing",
         "verb": "nab",
-        "description": "What is an Event Register?",
-        "scpi": "STAT:QUES:EVEN?",
-        "subsystem": "STAT",
-        "group": "STAT",
+        "description": "Sweep Mode",
+        "scpi": "SWEep:SPACing?",
+        "scpi_fast": "SWE:SPAC?",
+        "subsystem": "SWE",
+        "group": "SWE",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": {
-          "count": 1,
-          "type": "NR1"
+          "count": 1
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_State_Questionable_Event",
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Sweep_Spacing",
           "direction": "in",
           "payload_format": {
-            "command": "Get_State_Questionable_Event"
+            "command": "Get_Sweep_Spacing"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_State_Questionable_Event",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sweep_Spacing",
           "reading_direction": "out"
         },
         "unverified": true
       },
-      "Get_Stb": {
-        "command": "Get_Stb",
+      "Get_Sweep_State": {
+        "command": "Get_Sweep_State",
         "verb": "nab",
-        "description": "Get stb",
-        "scpi": "*STB?",
-        "subsystem": "Common",
-        "group": "Common",
+        "description": "Sweep Commands",
+        "scpi": "SWEep:STATe?",
+        "scpi_fast": "SWE:STAT?",
+        "subsystem": "SWE",
+        "group": "SWE",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": {
           "count": 1,
-          "type": "NR1"
+          "type": "BOOL"
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Stb",
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Sweep_State",
           "direction": "in",
           "payload_format": {
-            "command": "Get_Stb"
+            "command": "Get_Sweep_State"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sweep_State",
           "reading_direction": "out"
         },
         "unverified": true
@@ -8117,59 +8143,6 @@
             "command": "Get_Sweep_Config"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sweep_Config",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Sweep_Spacing": {
-        "command": "Get_Sweep_Spacing",
-        "verb": "nab",
-        "description": "Sweep Mode",
-        "scpi": "SWEep:SPACing?",
-        "scpi_fast": "SWE:SPAC?",
-        "subsystem": "SWE",
-        "group": "SWE",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Sweep_Spacing",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Sweep_Spacing"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sweep_Spacing",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Sweep_State": {
-        "command": "Get_Sweep_State",
-        "verb": "nab",
-        "description": "Sweep Commands",
-        "scpi": "SWEep:STATe?",
-        "scpi_fast": "SWE:STAT?",
-        "subsystem": "SWE",
-        "group": "SWE",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "BOOL"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Sweep_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Sweep_State"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sweep_State",
           "reading_direction": "out"
         },
         "unverified": true
@@ -8411,6 +8384,33 @@
         },
         "unverified": true
       },
+      "Get_Error_Queue": {
+        "command": "Get_Error_Queue",
+        "verb": "nab",
+        "description": "Get Error Queue",
+        "scpi": "SYSTem:ERRor?",
+        "scpi_fast": "SYST:ERR?",
+        "subsystem": "System",
+        "group": "System Readbacks",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR2"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Get_Error_Queue",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Error_Queue"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error_Queue",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Get_System_Klock_Exclude": {
         "command": "Get_System_Klock_Exclude",
         "verb": "nab",
@@ -8569,32 +8569,6 @@
         },
         "unverified": true
       },
-      "Get_Tst": {
-        "command": "Get_Tst",
-        "verb": "nab",
-        "description": "Get tst",
-        "scpi": "*TST?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR1"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Get_Tst",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Tst"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Get_Unit_Angle": {
         "command": "Get_Unit_Angle",
         "verb": "nab",
@@ -8676,264 +8650,38 @@
           "reading_direction": "out"
         },
         "unverified": true
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "nab",
-        "description": "Get idn",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "AARD"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "burst_settings": {
-        "command": "burst_settings",
-        "verb": "nab",
-        "description": "The whole burst setup in one transaction.",
-        "scpi": ":BURSt:STATe?;:BURSt:MODE?;:BURSt:NCYCles?;:BURSt:PHASe?;:BURSt:INTernal:PERiod?;:BURSt:GATE:POLarity?",
-        "scpi_fast": ":BURS:STAT?;:BURS:MODE?;:BURS:NCYC?;:BURS:PHAS?;:BURS:INT:PER?;:BURS:GATE:POL?",
-        "subsystem": "BURSt",
-        "group": "Burst Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 6,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "state",
-              "type": "BOOL"
-            },
-            {
-              "name": "mode",
-              "type": "CRD"
-            },
-            {
-              "name": "ncycles",
-              "type": "NR1"
-            },
-            {
-              "name": "phase",
-              "type": "NR3",
-              "unit": "deg"
-            },
-            {
-              "name": "period",
-              "type": "NR3",
-              "unit": "s"
-            },
-            {
-              "name": "gate_polarity",
-              "type": "CRD"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/burst_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "burst_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/burst_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "generator_settings": {
-        "command": "generator_settings",
-        "verb": "nab",
-        "description": "Shape, frequency, amplitude, offset and the output state, in one round trip.",
-        "scpi": "FUNCtion?;:FREQuency?;:VOLTage?;:VOLTage:OFFSet?;:OUTPut?",
-        "scpi_fast": "FUNC?;:FREQ?;:VOLT?;:VOLT:OFFS?;:OUTP?",
-        "subsystem": "SOURce",
-        "group": "APPLy Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 5,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "function",
-              "type": "CRD"
-            },
-            {
-              "name": "frequency",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "amplitude",
-              "type": "NR3",
-              "unit": "V"
-            },
-            {
-              "name": "offset",
-              "type": "NR3",
-              "unit": "V"
-            },
-            {
-              "name": "output",
-              "type": "BOOL"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/generator_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "generator_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/generator_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "modulation_settings": {
-        "command": "modulation_settings",
-        "verb": "nab",
-        "description": "Both modulators, whole: state, source and depth/deviation together.",
-        "scpi": ":AM:STATe?;:AM:SOURce?;:AM:DEPTh?;:FM:STATe?;:FM:SOURce?;:FM:DEViation?;:FM:INTernal:FREQuency?",
-        "scpi_fast": ":AM:STAT?;:AM:SOUR?;:AM:DEPT?;:FM:STAT?;:FM:SOUR?;:FM:DEV?;:FM:INT:FREQ?",
-        "subsystem": "AM",
-        "group": "Modulation Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 7,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "am_state",
-              "type": "BOOL"
-            },
-            {
-              "name": "am_source",
-              "type": "CRD"
-            },
-            {
-              "name": "am_depth",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "fm_state",
-              "type": "BOOL"
-            },
-            {
-              "name": "fm_source",
-              "type": "CRD"
-            },
-            {
-              "name": "fm_deviation",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "fm_rate",
-              "type": "NR3",
-              "unit": "Hz"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/modulation_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "modulation_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/modulation_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "shape_settings": {
-        "command": "shape_settings",
-        "verb": "nab",
-        "description": "Every shape parameter and the load it drives, in one round trip.",
-        "scpi": ":FUNCtion:RAMP:SYMMetry?;:FUNCtion:SQUare:DCYCle?;:FUNCtion:PULSe:DCYCle?;:FUNCtion:PULSe:WIDTh?;:OUTPut:LOAD?;:VOLTage:UNIT?;:OUTPut:POLarity?",
-        "scpi_fast": ":FUNC:RAMP:SYMM?;:FUNC:SQU:DCYC?;:FUNC:PULS:DCYC?;:FUNC:PULS:WIDT?;:OUTP:LOAD?;:VOLT:UNIT?;:OUTP:POL?",
-        "subsystem": "SOURce",
-        "group": "Shape Readbacks",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 7,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "ramp_symmetry",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "square_dcycle",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "pulse_dcycle",
-              "type": "NR3",
-              "unit": "%"
-            },
-            {
-              "name": "pulse_width",
-              "type": "NR3",
-              "unit": "s"
-            },
-            {
-              "name": "output_load",
-              "type": "NR3",
-              "unit": "Ohm"
-            },
-            {
-              "name": "voltage_unit",
-              "type": "CRD"
-            },
-            {
-              "name": "output_polarity",
-              "type": "CRD"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/shape_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "shape_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/shape_settings",
-          "reading_direction": "out"
-        },
-        "unverified": true
       }
     },
     "rig": {
+      "Setup_AM": {
+        "command": "Setup_AM",
+        "verb": "rig",
+        "description": "Setup AM",
+        "scpi": "AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>",
+        "scpi_fast": "AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>",
+        "subsystem": "Modulation",
+        "group": "Modulation Setup",
+        "args": [
+          "shape",
+          "freq",
+          "depth"
+        ],
+        "arg": {
+          "kind": "enum"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Setup_AM",
+          "direction": "in",
+          "payload_format": {
+            "command": "Setup_AM",
+            "shape": "<shape>",
+            "freq": "<freq>",
+            "depth": "<depth>"
+          }
+        },
+        "unverified": false
+      },
       "Apply_Pulse": {
         "command": "Apply_Pulse",
         "verb": "rig",
@@ -9023,38 +8771,136 @@
           }
         },
         "unverified": false
-      },
-      "Setup_AM": {
-        "command": "Setup_AM",
-        "verb": "rig",
-        "description": "Setup AM",
-        "scpi": "AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>",
-        "scpi_fast": "AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>",
-        "subsystem": "Modulation",
-        "group": "Modulation Setup",
-        "args": [
-          "shape",
-          "freq",
-          "depth"
-        ],
-        "arg": {
-          "kind": "enum"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Setup_AM",
-          "direction": "in",
-          "payload_format": {
-            "command": "Setup_AM",
-            "shape": "<shape>",
-            "freq": "<freq>",
-            "depth": "<depth>"
-          }
-        },
-        "unverified": false
       }
     },
     "do": {
+      "Do_Cls": {
+        "command": "Do_Cls",
+        "verb": "do",
+        "description": "Do cls",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Do_Cls",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Cls"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Opc": {
+        "command": "Do_Opc",
+        "verb": "do",
+        "description": "Do opc",
+        "scpi": "*OPC",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Do_Opc",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Opc"
+          }
+        },
+        "unverified": true
+      },
+      "Reset_Device": {
+        "command": "Reset_Device",
+        "verb": "do",
+        "description": "Reset Device",
+        "scpi": "*RST",
+        "subsystem": "System",
+        "group": "System Actions",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Reset_Device",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset_Device"
+          }
+        },
+        "unverified": false
+      },
+      "Trigger_Immediate": {
+        "command": "Trigger_Immediate",
+        "verb": "do",
+        "description": "Trigger Immediate",
+        "scpi": "*TRG",
+        "subsystem": "System",
+        "group": "System Actions",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Trigger_Immediate",
+          "direction": "in",
+          "payload_format": {
+            "command": "Trigger_Immediate"
+          }
+        },
+        "unverified": false
+      },
+      "Do_Wai": {
+        "command": "Do_Wai",
+        "verb": "do",
+        "description": "Do wai",
+        "scpi": "*WAI",
+        "subsystem": "Common",
+        "group": "Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Do_Wai",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Wai"
+          }
+        },
+        "unverified": true
+      },
+      "Do_Am_Internal": {
+        "command": "Do_Am_Internal",
+        "verb": "do",
+        "description": "AM Commands",
+        "scpi": "AM:INTernal",
+        "scpi_fast": "AM:INT",
+        "subsystem": "AM",
+        "group": "AM",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Do_Am_Internal",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Am_Internal"
+          }
+        },
+        "unverified": true
+      },
       "AM_State_OFF": {
         "command": "AM_State_OFF",
         "verb": "do",
@@ -9099,72 +8945,6 @@
         },
         "unverified": false
       },
-      "Clear_Text": {
-        "command": "Clear_Text",
-        "verb": "do",
-        "description": "Clear Text",
-        "scpi": "DISPlay:TEXT:CLEar",
-        "scpi_fast": "DISP:TEXT:CLE",
-        "subsystem": "System",
-        "group": "System Actions",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Clear_Text",
-          "direction": "in",
-          "payload_format": {
-            "command": "Clear_Text"
-          }
-        },
-        "unverified": false
-      },
-      "Do_Am_Internal": {
-        "command": "Do_Am_Internal",
-        "verb": "do",
-        "description": "AM Commands",
-        "scpi": "AM:INTernal",
-        "scpi_fast": "AM:INT",
-        "subsystem": "AM",
-        "group": "AM",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Do_Am_Internal",
-          "direction": "in",
-          "payload_format": {
-            "command": "Do_Am_Internal"
-          }
-        },
-        "unverified": true
-      },
-      "Do_Apply_Noise": {
-        "command": "Do_Apply_Noise",
-        "verb": "do",
-        "description": "Using the APPLy Command",
-        "scpi": "APPLy:NOISe",
-        "scpi_fast": "APPL:NOIS",
-        "subsystem": "APPL",
-        "group": "APPL",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Do_Apply_Noise",
-          "direction": "in",
-          "payload_format": {
-            "command": "Do_Apply_Noise"
-          }
-        },
-        "unverified": true
-      },
       "Do_Apply_Ramp": {
         "command": "Do_Apply_Ramp",
         "verb": "do",
@@ -9207,6 +8987,28 @@
         },
         "unverified": true
       },
+      "Do_Apply_Noise": {
+        "command": "Do_Apply_Noise",
+        "verb": "do",
+        "description": "Using the APPLy Command",
+        "scpi": "APPLy:NOISe",
+        "scpi_fast": "APPL:NOIS",
+        "subsystem": "APPL",
+        "group": "APPL",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Do_Apply_Noise",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Apply_Noise"
+          }
+        },
+        "unverified": true
+      },
       "Do_Calibration_Secure_Code": {
         "command": "Do_Calibration_Secure_Code",
         "verb": "do",
@@ -9225,27 +9027,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Do_Calibration_Secure_Code"
-          }
-        },
-        "unverified": true
-      },
-      "Do_Cls": {
-        "command": "Do_Cls",
-        "verb": "do",
-        "description": "Do cls",
-        "scpi": "*CLS",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Do_Cls",
-          "direction": "in",
-          "payload_format": {
-            "command": "Do_Cls"
           }
         },
         "unverified": true
@@ -9313,6 +9094,28 @@
         },
         "unverified": true
       },
+      "Clear_Text": {
+        "command": "Clear_Text",
+        "verb": "do",
+        "description": "Clear Text",
+        "scpi": "DISPlay:TEXT:CLEar",
+        "scpi_fast": "DISP:TEXT:CLE",
+        "subsystem": "System",
+        "group": "System Actions",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Clear_Text",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Text"
+          }
+        },
+        "unverified": false
+      },
       "Do_Fm_Internal": {
         "command": "Do_Fm_Internal",
         "verb": "do",
@@ -9356,6 +9159,50 @@
           }
         },
         "unverified": true
+      },
+      "FM_State_OFF": {
+        "command": "FM_State_OFF",
+        "verb": "do",
+        "description": "FM State OFF",
+        "scpi": "FM:STATe OFF",
+        "scpi_fast": "FM:STAT OFF",
+        "subsystem": "Modulation",
+        "group": "Modulation Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/FM_State_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "FM_State_OFF"
+          }
+        },
+        "unverified": false
+      },
+      "FM_State_ON": {
+        "command": "FM_State_ON",
+        "verb": "do",
+        "description": "FM State ON",
+        "scpi": "FM:STATe ON",
+        "scpi_fast": "FM:STAT ON",
+        "subsystem": "Modulation",
+        "group": "Modulation Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/FM_State_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "FM_State_ON"
+          }
+        },
+        "unverified": false
       },
       "Do_Function_Pulse": {
         "command": "Do_Function_Pulse",
@@ -9641,26 +9488,93 @@
         },
         "unverified": true
       },
-      "Do_Opc": {
-        "command": "Do_Opc",
+      "Output_OFF": {
+        "command": "Output_OFF",
         "verb": "do",
-        "description": "Do opc",
-        "scpi": "*OPC",
-        "subsystem": "Common",
-        "group": "Common",
+        "description": "Output OFF",
+        "scpi": "OUTPut OFF",
+        "scpi_fast": "OUTP OFF",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Do_Opc",
+          "topic": "APK.audio/Gui/Komands/Generator/Output_OFF",
           "direction": "in",
           "payload_format": {
-            "command": "Do_Opc"
+            "command": "Output_OFF"
           }
         },
-        "unverified": true
+        "unverified": false
+      },
+      "Output_ON": {
+        "command": "Output_ON",
+        "verb": "do",
+        "description": "Output ON",
+        "scpi": "OUTPut ON",
+        "scpi_fast": "OUTP ON",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Output_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Output_ON"
+          }
+        },
+        "unverified": false
+      },
+      "Sync_OFF": {
+        "command": "Sync_OFF",
+        "verb": "do",
+        "description": "Sync OFF",
+        "scpi": "OUTPut:SYNC OFF",
+        "scpi_fast": "OUTP:SYNC OFF",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Sync_OFF",
+          "direction": "in",
+          "payload_format": {
+            "command": "Sync_OFF"
+          }
+        },
+        "unverified": false
+      },
+      "Sync_ON": {
+        "command": "Sync_ON",
+        "verb": "do",
+        "description": "Sync ON",
+        "scpi": "OUTPut:SYNC ON",
+        "scpi_fast": "OUTP:SYNC ON",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Generator/Sync_ON",
+          "direction": "in",
+          "payload_format": {
+            "command": "Sync_ON"
+          }
+        },
+        "unverified": false
       },
       "Do_Phase_Reference": {
         "command": "Do_Phase_Reference",
@@ -10145,201 +10059,6 @@
           }
         },
         "unverified": true
-      },
-      "Do_Wai": {
-        "command": "Do_Wai",
-        "verb": "do",
-        "description": "Do wai",
-        "scpi": "*WAI",
-        "subsystem": "Common",
-        "group": "Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Do_Wai",
-          "direction": "in",
-          "payload_format": {
-            "command": "Do_Wai"
-          }
-        },
-        "unverified": true
-      },
-      "FM_State_OFF": {
-        "command": "FM_State_OFF",
-        "verb": "do",
-        "description": "FM State OFF",
-        "scpi": "FM:STATe OFF",
-        "scpi_fast": "FM:STAT OFF",
-        "subsystem": "Modulation",
-        "group": "Modulation Control",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/FM_State_OFF",
-          "direction": "in",
-          "payload_format": {
-            "command": "FM_State_OFF"
-          }
-        },
-        "unverified": false
-      },
-      "FM_State_ON": {
-        "command": "FM_State_ON",
-        "verb": "do",
-        "description": "FM State ON",
-        "scpi": "FM:STATe ON",
-        "scpi_fast": "FM:STAT ON",
-        "subsystem": "Modulation",
-        "group": "Modulation Control",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/FM_State_ON",
-          "direction": "in",
-          "payload_format": {
-            "command": "FM_State_ON"
-          }
-        },
-        "unverified": false
-      },
-      "Output_OFF": {
-        "command": "Output_OFF",
-        "verb": "do",
-        "description": "Output OFF",
-        "scpi": "OUTPut OFF",
-        "scpi_fast": "OUTP OFF",
-        "subsystem": "OUTPut",
-        "group": "Output Control",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Output_OFF",
-          "direction": "in",
-          "payload_format": {
-            "command": "Output_OFF"
-          }
-        },
-        "unverified": false
-      },
-      "Output_ON": {
-        "command": "Output_ON",
-        "verb": "do",
-        "description": "Output ON",
-        "scpi": "OUTPut ON",
-        "scpi_fast": "OUTP ON",
-        "subsystem": "OUTPut",
-        "group": "Output Control",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Output_ON",
-          "direction": "in",
-          "payload_format": {
-            "command": "Output_ON"
-          }
-        },
-        "unverified": false
-      },
-      "Reset_Device": {
-        "command": "Reset_Device",
-        "verb": "do",
-        "description": "Reset Device",
-        "scpi": "*RST",
-        "subsystem": "System",
-        "group": "System Actions",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Reset_Device",
-          "direction": "in",
-          "payload_format": {
-            "command": "Reset_Device"
-          }
-        },
-        "unverified": false
-      },
-      "Sync_OFF": {
-        "command": "Sync_OFF",
-        "verb": "do",
-        "description": "Sync OFF",
-        "scpi": "OUTPut:SYNC OFF",
-        "scpi_fast": "OUTP:SYNC OFF",
-        "subsystem": "OUTPut",
-        "group": "Output Control",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Sync_OFF",
-          "direction": "in",
-          "payload_format": {
-            "command": "Sync_OFF"
-          }
-        },
-        "unverified": false
-      },
-      "Sync_ON": {
-        "command": "Sync_ON",
-        "verb": "do",
-        "description": "Sync ON",
-        "scpi": "OUTPut:SYNC ON",
-        "scpi_fast": "OUTP:SYNC ON",
-        "subsystem": "OUTPut",
-        "group": "Output Control",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Sync_ON",
-          "direction": "in",
-          "payload_format": {
-            "command": "Sync_ON"
-          }
-        },
-        "unverified": false
-      },
-      "Trigger_Immediate": {
-        "command": "Trigger_Immediate",
-        "verb": "do",
-        "description": "Trigger Immediate",
-        "scpi": "*TRG",
-        "subsystem": "System",
-        "group": "System Actions",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Generator/Trigger_Immediate",
-          "direction": "in",
-          "payload_format": {
-            "command": "Trigger_Immediate"
-          }
-        },
-        "unverified": false
       }
     }
   }

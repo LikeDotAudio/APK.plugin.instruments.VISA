@@ -2,6 +2,74 @@
   "model": "33220A",
   "family": "Generator",
   "set": {
+    "Set_Ese": {
+      "scpi": "*ESE <value>",
+      "description": "Set ese",
+      "arg": {
+        "kind": "integer",
+        "limits": "query"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Psc": {
+      "scpi": "*PSC <value>",
+      "description": "Set psc",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "0",
+          "1"
+        ]
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Rcl": {
+      "scpi": "*RCL <value>",
+      "description": "Set rcl",
+      "arg": {
+        "kind": "integer",
+        "min": 0
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sav": {
+      "scpi": "*SAV <value>",
+      "description": "Set sav",
+      "arg": {
+        "kind": "integer",
+        "min": 0
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sre": {
+      "scpi": "*SRE <value>",
+      "description": "Set sre",
+      "arg": {
+        "kind": "integer",
+        "limits": "query"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
     "Set_Am_Source": {
       "scpi": "AM:SOUR <value>",
       "description": "AM Commands",
@@ -36,21 +104,6 @@
       "subsystem": "AM",
       "notes": "The two-way form of the pair `AM_State_ON` / `AM_State_OFF`, which stay for the momentary buttons that use them. A LATCHING control cannot drive a pair: one widget publishes one value to one command, so a AM switch bound to `AM_State_ON` could only ever turn AM on. Same bytes on the wire that `AM_State_ON` already proves the instrument accepts — only the keyword is a placeholder."
     },
-    "Set_Amplitude": {
-      "scpi": "VOLTage <amp>",
-      "scpiFast": "VOLT <amp>",
-      "description": "Set Amplitude",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "limits": "query"
-      },
-      "group": "SOURce Configuration",
-      "args": [
-        "amp"
-      ],
-      "subsystem": "SOURce"
-    },
     "Set_Beeper_State": {
       "scpi": ":BEEPer:STATe <value>",
       "scpiFast": ":BEEP:STAT <value>",
@@ -66,23 +119,6 @@
         "value"
       ],
       "subsystem": "BEEP",
-      "unverified": true
-    },
-    "Set_Burst_Gate_Polarity": {
-      "scpi": "BURSt:GATE:POLarity <value>",
-      "scpiFast": "BURS:GATE:POL <value>",
-      "description": "Burst Commands",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "NORM",
-          "INV"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "BURS",
       "unverified": true
     },
     "Set_Burst_Internal_Period": {
@@ -134,6 +170,23 @@
         "kind": "numeric",
         "unit": "deg",
         "limits": "query"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "BURS",
+      "unverified": true
+    },
+    "Set_Burst_Gate_Polarity": {
+      "scpi": "BURSt:GATE:POLarity <value>",
+      "scpiFast": "BURS:GATE:POL <value>",
+      "description": "Burst Commands",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "NORM",
+          "INV"
+        ]
       },
       "args": [
         "value"
@@ -224,19 +277,6 @@
         "value"
       ],
       "subsystem": "DISP",
-      "unverified": true
-    },
-    "Set_Ese": {
-      "scpi": "*ESE <value>",
-      "description": "Set ese",
-      "arg": {
-        "kind": "integer",
-        "limits": "query"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
       "unverified": true
     },
     "Set_Fm_Deviation": {
@@ -382,6 +422,22 @@
       "subsystem": "FREQ",
       "unverified": true
     },
+    "Set_Fskey_Source": {
+      "scpi": "FSK:SOUR <value>",
+      "description": "FSK Commands",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "INT",
+          "EXT"
+        ]
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "FSK",
+      "unverified": true
+    },
     "Set_Fskey_Frequency": {
       "scpi": "FSKey:FREQuency <value>",
       "scpiFast": "FSK:FREQ <value>",
@@ -409,22 +465,6 @@
       "subsystem": "FSK",
       "unverified": true
     },
-    "Set_Fskey_Source": {
-      "scpi": "FSK:SOUR <value>",
-      "description": "FSK Commands",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "INT",
-          "EXT"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "FSK",
-      "unverified": true
-    },
     "Set_Fskey_State": {
       "scpi": "FSKey:STATe <value>",
       "scpiFast": "FSK:STAT <value>",
@@ -440,21 +480,6 @@
         "value"
       ],
       "subsystem": "FSK",
-      "unverified": true
-    },
-    "Set_Function_Pulse_Dcycle": {
-      "scpi": "FUNCtion:PULSe:DCYCle <value>",
-      "scpiFast": "FUNC:PULS:DCYC <value>",
-      "description": "Pulse Configuration Commands",
-      "arg": {
-        "kind": "numeric",
-        "unit": "%",
-        "limits": "query"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "FUNC",
       "unverified": true
     },
     "Set_Function_Pulse_Hold": {
@@ -473,23 +498,9 @@
       "subsystem": "FUNC",
       "unverified": true
     },
-    "Set_Function_Pulse_Transition": {
-      "scpi": "FUNCtion:PULSe:TRANsition <value>",
-      "scpiFast": "FUNC:PULS:TRAN <value>",
-      "description": "Edge Time",
-      "arg": {
-        "kind": "unknown"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "FUNC",
-      "unverified": true
-    },
-    "Set_Function_Ramp_Symmetry": {
-      "scpi": "FUNCtion:RAMP:SYMMetry <value>",
-      "scpiFast": "FUNC:RAMP:SYMM <value>",
-      "description": "Output Configuration Commands",
+    "Set_Function_User": {
+      "scpi": "FUNC:USER <value>",
+      "description": "Arbitrary Waveform Commands",
       "arg": {
         "kind": "unknown"
       },
@@ -521,10 +532,10 @@
       ],
       "subsystem": "SOURce"
     },
-    "Set_Function_Square_Dcycle": {
-      "scpi": "FUNCtion:SQUare:DCYCle <value>",
-      "scpiFast": "FUNC:SQU:DCYC <value>",
-      "description": "Output Configuration Commands",
+    "Set_Function_Pulse_Dcycle": {
+      "scpi": "FUNCtion:PULSe:DCYCle <value>",
+      "scpiFast": "FUNC:PULS:DCYC <value>",
+      "description": "Pulse Configuration Commands",
       "arg": {
         "kind": "numeric",
         "unit": "%",
@@ -536,11 +547,54 @@
       "subsystem": "FUNC",
       "unverified": true
     },
-    "Set_Function_User": {
-      "scpi": "FUNC:USER <value>",
-      "description": "Arbitrary Waveform Commands",
+    "Set_Function_Pulse_Transition": {
+      "scpi": "FUNCtion:PULSe:TRANsition <value>",
+      "scpiFast": "FUNC:PULS:TRAN <value>",
+      "description": "Edge Time",
       "arg": {
         "kind": "unknown"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "FUNC",
+      "unverified": true
+    },
+    "Setup_Pulse_Width": {
+      "scpi": "FUNCtion:PULSe:WIDTh <width_sec>",
+      "scpiFast": "FUNC:PULS:WIDT <width_sec>",
+      "description": "Setup Pulse Width",
+      "arg": {
+        "kind": "numeric",
+        "limits": "query"
+      },
+      "group": "PULSe Configuration",
+      "args": [
+        "width_sec"
+      ],
+      "subsystem": "PULSe"
+    },
+    "Set_Function_Ramp_Symmetry": {
+      "scpi": "FUNCtion:RAMP:SYMMetry <value>",
+      "scpiFast": "FUNC:RAMP:SYMM <value>",
+      "description": "Output Configuration Commands",
+      "arg": {
+        "kind": "unknown"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "FUNC",
+      "unverified": true
+    },
+    "Set_Function_Square_Dcycle": {
+      "scpi": "FUNCtion:SQUare:DCYCle <value>",
+      "scpiFast": "FUNC:SQU:DCYC <value>",
+      "description": "Output Configuration Commands",
+      "arg": {
+        "kind": "numeric",
+        "unit": "%",
+        "limits": "query"
       },
       "args": [
         "value"
@@ -587,20 +641,23 @@
       "subsystem": "MEM",
       "unverified": true
     },
-    "Set_Offset": {
-      "scpi": "VOLTage:OFFSet <offset>",
-      "scpiFast": "VOLT:OFFS <offset>",
-      "description": "Set Offset",
+    "Set_Output_State": {
+      "scpi": "OUTPut <state>",
+      "scpiFast": "OUTP <state>",
+      "description": "Set Output State",
       "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "limits": "query"
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
       },
-      "group": "SOURce Configuration",
+      "group": "Output Control",
       "args": [
-        "offset"
+        "state"
       ],
-      "subsystem": "SOURce"
+      "subsystem": "OUTPut",
+      "notes": "The two-way form of the pair `Output_ON` / `Output_OFF`, which stay for the momentary buttons that use them. A LATCHING control cannot drive a pair: one widget publishes one value to one command, so an output toggle bound to `Output_ON` could only ever turn the output on. Same bytes on the wire that `Output_ON` already proves the instrument accepts — only the keyword is a placeholder."
     },
     "Set_Output_Load": {
       "scpi": "OUTPut:LOAD <ohms>",
@@ -632,24 +689,6 @@
       ],
       "subsystem": "OUTP",
       "unverified": true
-    },
-    "Set_Output_State": {
-      "scpi": "OUTPut <state>",
-      "scpiFast": "OUTP <state>",
-      "description": "Set Output State",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "group": "Output Control",
-      "args": [
-        "state"
-      ],
-      "subsystem": "OUTPut",
-      "notes": "The two-way form of the pair `Output_ON` / `Output_OFF`, which stay for the momentary buttons that use them. A LATCHING control cannot drive a pair: one widget publishes one value to one command, so an output toggle bound to `Output_ON` could only ever turn the output on. Same bytes on the wire that `Output_ON` already proves the instrument accepts — only the keyword is a placeholder."
     },
     "Set_Output_Trigger": {
       "scpi": "OUTPut:TRIGger <value>",
@@ -751,22 +790,6 @@
         "value"
       ],
       "subsystem": "PM",
-      "unverified": true
-    },
-    "Set_Psc": {
-      "scpi": "*PSC <value>",
-      "description": "Set psc",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "0",
-          "1"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
       "unverified": true
     },
     "Set_Pulse_Period": {
@@ -872,32 +895,6 @@
       "subsystem": "QUES",
       "unverified": true
     },
-    "Set_Rcl": {
-      "scpi": "*RCL <value>",
-      "description": "Set rcl",
-      "arg": {
-        "kind": "integer",
-        "min": 0
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Set_Sav": {
-      "scpi": "*SAV <value>",
-      "description": "Set sav",
-      "arg": {
-        "kind": "integer",
-        "min": 0
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Set_Secure_State": {
       "scpi": ":SECure:STATe <value>",
       "scpiFast": ":SEC:STAT <value>",
@@ -915,19 +912,6 @@
       "subsystem": "SEC",
       "unverified": true
     },
-    "Set_Sre": {
-      "scpi": "*SRE <value>",
-      "description": "Set sre",
-      "arg": {
-        "kind": "integer",
-        "limits": "query"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Set_State_Questionable_Enable": {
       "scpi": "STAT:QUES:ENAB <value>",
       "description": "The Questionable Data Register",
@@ -939,6 +923,20 @@
         "value"
       ],
       "subsystem": "STAT",
+      "unverified": true
+    },
+    "Set_Sweep_Time": {
+      "scpi": "SWE:TIME <value>",
+      "description": "Sweep Time",
+      "arg": {
+        "kind": "numeric",
+        "unit": "s",
+        "limits": "query"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "SWE",
       "unverified": true
     },
     "Set_Sweep_Spacing": {
@@ -968,20 +966,6 @@
           "OFF",
           "ON"
         ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "SWE",
-      "unverified": true
-    },
-    "Set_Sweep_Time": {
-      "scpi": "SWE:TIME <value>",
-      "description": "Sweep Time",
-      "arg": {
-        "kind": "numeric",
-        "unit": "s",
-        "limits": "query"
       },
       "args": [
         "value"
@@ -1096,23 +1080,6 @@
       "subsystem": "TELN",
       "unverified": true
     },
-    "Set_Trigger_Slope": {
-      "scpi": "TRIGger:SLOPe <value>",
-      "scpiFast": "TRIG:SLOP <value>",
-      "description": "Burst Commands",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "POS",
-          "NEG"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "TRIG",
-      "unverified": true
-    },
     "Set_Trigger_Source": {
       "scpi": "TRIG:SOUR <value>",
       "description": "Burst Commands",
@@ -1122,6 +1089,23 @@
           "IMM",
           "EXT",
           "BUS"
+        ]
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "TRIG",
+      "unverified": true
+    },
+    "Set_Trigger_Slope": {
+      "scpi": "TRIGger:SLOPe <value>",
+      "scpiFast": "TRIG:SLOP <value>",
+      "description": "Burst Commands",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "POS",
+          "NEG"
         ]
       },
       "args": [
@@ -1143,6 +1127,36 @@
       "subsystem": "UNIT",
       "unverified": true
     },
+    "Set_Amplitude": {
+      "scpi": "VOLTage <amp>",
+      "scpiFast": "VOLT <amp>",
+      "description": "Set Amplitude",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V",
+        "limits": "query"
+      },
+      "group": "SOURce Configuration",
+      "args": [
+        "amp"
+      ],
+      "subsystem": "SOURce"
+    },
+    "Set_Offset": {
+      "scpi": "VOLTage:OFFSet <offset>",
+      "scpiFast": "VOLT:OFFS <offset>",
+      "description": "Set Offset",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V",
+        "limits": "query"
+      },
+      "group": "SOURce Configuration",
+      "args": [
+        "offset"
+      ],
+      "subsystem": "SOURce"
+    },
     "Set_Voltage_Unit": {
       "scpi": "VOLTage:UNIT <unit>",
       "scpiFast": "VOLT:UNIT <unit>",
@@ -1160,23 +1174,46 @@
         "unit"
       ],
       "subsystem": "SOURce"
-    },
-    "Setup_Pulse_Width": {
-      "scpi": "FUNCtion:PULSe:WIDTh <width_sec>",
-      "scpiFast": "FUNC:PULS:WIDT <width_sec>",
-      "description": "Setup Pulse Width",
-      "arg": {
-        "kind": "numeric",
-        "limits": "query"
-      },
-      "group": "PULSe Configuration",
-      "args": [
-        "width_sec"
-      ],
-      "subsystem": "PULSe"
     }
   },
   "do": {
+    "Do_Cls": {
+      "scpi": "*CLS",
+      "description": "Do cls",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Do_Opc": {
+      "scpi": "*OPC",
+      "description": "Do opc",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "Reset Device",
+      "group": "System Actions",
+      "subsystem": "System"
+    },
+    "Trigger_Immediate": {
+      "scpi": "*TRG",
+      "description": "Trigger Immediate",
+      "group": "System Actions",
+      "subsystem": "System"
+    },
+    "Do_Wai": {
+      "scpi": "*WAI",
+      "description": "Do wai",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Do_Am_Internal": {
+      "scpi": "AM:INTernal",
+      "scpiFast": "AM:INT",
+      "description": "AM Commands",
+      "subsystem": "AM",
+      "unverified": true
+    },
     "AM_State_OFF": {
       "scpi": "AM:STATe OFF",
       "scpiFast": "AM:STAT OFF",
@@ -1191,27 +1228,6 @@
       "group": "Modulation Control",
       "subsystem": "Modulation"
     },
-    "Clear_Text": {
-      "scpi": "DISPlay:TEXT:CLEar",
-      "scpiFast": "DISP:TEXT:CLE",
-      "description": "Clear Text",
-      "group": "System Actions",
-      "subsystem": "System"
-    },
-    "Do_Am_Internal": {
-      "scpi": "AM:INTernal",
-      "scpiFast": "AM:INT",
-      "description": "AM Commands",
-      "subsystem": "AM",
-      "unverified": true
-    },
-    "Do_Apply_Noise": {
-      "scpi": "APPLy:NOISe",
-      "scpiFast": "APPL:NOIS",
-      "description": "Using the APPLy Command",
-      "subsystem": "APPL",
-      "unverified": true
-    },
     "Do_Apply_Ramp": {
       "scpi": "APPL:RAMP",
       "description": "Output Frequency",
@@ -1224,17 +1240,18 @@
       "subsystem": "APPL",
       "unverified": true
     },
+    "Do_Apply_Noise": {
+      "scpi": "APPLy:NOISe",
+      "scpiFast": "APPL:NOIS",
+      "description": "Using the APPLy Command",
+      "subsystem": "APPL",
+      "unverified": true
+    },
     "Do_Calibration_Secure_Code": {
       "scpi": "CAL:SECure:CODE",
       "scpiFast": "CAL:SEC:CODE",
       "description": "Calibration Commands",
       "subsystem": "CAL",
-      "unverified": true
-    },
-    "Do_Cls": {
-      "scpi": "*CLS",
-      "description": "Do cls",
-      "subsystem": "Common",
       "unverified": true
     },
     "Do_Data_Copy": {
@@ -1255,6 +1272,13 @@
       "subsystem": "DATA",
       "unverified": true
     },
+    "Clear_Text": {
+      "scpi": "DISPlay:TEXT:CLEar",
+      "scpiFast": "DISP:TEXT:CLE",
+      "description": "Clear Text",
+      "group": "System Actions",
+      "subsystem": "System"
+    },
     "Do_Fm_Internal": {
       "scpi": "FM:INTernal",
       "scpiFast": "FM:INT",
@@ -1268,6 +1292,20 @@
       "description": "Modulating Waveform Shape",
       "subsystem": "FM",
       "unverified": true
+    },
+    "FM_State_OFF": {
+      "scpi": "FM:STATe OFF",
+      "scpiFast": "FM:STAT OFF",
+      "description": "FM State OFF",
+      "group": "Modulation Control",
+      "subsystem": "Modulation"
+    },
+    "FM_State_ON": {
+      "scpi": "FM:STATe ON",
+      "scpiFast": "FM:STAT ON",
+      "description": "FM State ON",
+      "group": "Modulation Control",
+      "subsystem": "Modulation"
     },
     "Do_Function_Pulse": {
       "scpi": "FUNC:PULS",
@@ -1358,11 +1396,33 @@
       "subsystem": "MEM",
       "unverified": true
     },
-    "Do_Opc": {
-      "scpi": "*OPC",
-      "description": "Do opc",
-      "subsystem": "Common",
-      "unverified": true
+    "Output_OFF": {
+      "scpi": "OUTPut OFF",
+      "scpiFast": "OUTP OFF",
+      "description": "Output OFF",
+      "group": "Output Control",
+      "subsystem": "OUTPut"
+    },
+    "Output_ON": {
+      "scpi": "OUTPut ON",
+      "scpiFast": "OUTP ON",
+      "description": "Output ON",
+      "group": "Output Control",
+      "subsystem": "OUTPut"
+    },
+    "Sync_OFF": {
+      "scpi": "OUTPut:SYNC OFF",
+      "scpiFast": "OUTP:SYNC OFF",
+      "description": "Sync OFF",
+      "group": "Output Control",
+      "subsystem": "OUTPut"
+    },
+    "Sync_ON": {
+      "scpi": "OUTPut:SYNC ON",
+      "scpiFast": "OUTP:SYNC ON",
+      "description": "Sync ON",
+      "group": "Output Control",
+      "subsystem": "OUTPut"
     },
     "Do_Phase_Reference": {
       "scpi": "PHASe:REFerence",
@@ -1517,69 +1577,24 @@
       "description": "Output Configuration",
       "subsystem": "VOLT",
       "unverified": true
-    },
-    "Do_Wai": {
-      "scpi": "*WAI",
-      "description": "Do wai",
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "FM_State_OFF": {
-      "scpi": "FM:STATe OFF",
-      "scpiFast": "FM:STAT OFF",
-      "description": "FM State OFF",
-      "group": "Modulation Control",
-      "subsystem": "Modulation"
-    },
-    "FM_State_ON": {
-      "scpi": "FM:STATe ON",
-      "scpiFast": "FM:STAT ON",
-      "description": "FM State ON",
-      "group": "Modulation Control",
-      "subsystem": "Modulation"
-    },
-    "Output_OFF": {
-      "scpi": "OUTPut OFF",
-      "scpiFast": "OUTP OFF",
-      "description": "Output OFF",
-      "group": "Output Control",
-      "subsystem": "OUTPut"
-    },
-    "Output_ON": {
-      "scpi": "OUTPut ON",
-      "scpiFast": "OUTP ON",
-      "description": "Output ON",
-      "group": "Output Control",
-      "subsystem": "OUTPut"
-    },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "Reset Device",
-      "group": "System Actions",
-      "subsystem": "System"
-    },
-    "Sync_OFF": {
-      "scpi": "OUTPut:SYNC OFF",
-      "scpiFast": "OUTP:SYNC OFF",
-      "description": "Sync OFF",
-      "group": "Output Control",
-      "subsystem": "OUTPut"
-    },
-    "Sync_ON": {
-      "scpi": "OUTPut:SYNC ON",
-      "scpiFast": "OUTP:SYNC ON",
-      "description": "Sync ON",
-      "group": "Output Control",
-      "subsystem": "OUTPut"
-    },
-    "Trigger_Immediate": {
-      "scpi": "*TRG",
-      "description": "Trigger Immediate",
-      "group": "System Actions",
-      "subsystem": "System"
     }
   },
   "rig": {
+    "Setup_AM": {
+      "scpi": "AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>",
+      "scpiFast": "AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>",
+      "description": "Setup AM",
+      "arg": {
+        "kind": "enum"
+      },
+      "group": "Modulation Setup",
+      "args": [
+        "shape",
+        "freq",
+        "depth"
+      ],
+      "subsystem": "Modulation"
+    },
     "Apply_Pulse": {
       "scpi": "APPLy:PULSe <freq>, <amp>, <offset>",
       "scpiFast": "APPL:PULS <freq>, <amp>, <offset>",
@@ -1627,24 +1642,99 @@
         "offset"
       ],
       "subsystem": "APPLy"
-    },
-    "Setup_AM": {
-      "scpi": "AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>",
-      "scpiFast": "AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>",
-      "description": "Setup AM",
-      "arg": {
-        "kind": "enum"
-      },
-      "group": "Modulation Setup",
-      "args": [
-        "shape",
-        "freq",
-        "depth"
-      ],
-      "subsystem": "Modulation"
     }
   },
   "nab": {
+    "Get_Ese": {
+      "scpi": "*ESE?",
+      "description": "Get ese",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Esr": {
+      "scpi": "*ESR?",
+      "description": "Get esr",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "description": "Get idn",
+      "returns": {
+        "count": 1,
+        "type": "AARD"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Lrn": {
+      "scpi": "*LRN?",
+      "description": "Get lrn",
+      "returns": {
+        "count": 1,
+        "type": "AARD"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Opc": {
+      "scpi": "*OPC?",
+      "description": "Get opc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Psc": {
+      "scpi": "*PSC?",
+      "description": "Get psc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Sre": {
+      "scpi": "*SRE?",
+      "description": "Get sre",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Stb": {
+      "scpi": "*STB?",
+      "description": "Get stb",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Tst": {
+      "scpi": "*TST?",
+      "description": "Get tst",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
     "Get_Am_Depth": {
       "scpi": "AM:DEPTh?",
       "scpiFast": "AM:DEPT?",
@@ -1686,6 +1776,52 @@
       },
       "subsystem": "AM",
       "unverified": true
+    },
+    "modulation_settings": {
+      "scpi": ":AM:STATe?;:AM:SOURce?;:AM:DEPTh?;:FM:STATe?;:FM:SOURce?;:FM:DEViation?;:FM:INTernal:FREQuency?",
+      "scpiFast": ":AM:STAT?;:AM:SOUR?;:AM:DEPT?;:FM:STAT?;:FM:SOUR?;:FM:DEV?;:FM:INT:FREQ?",
+      "description": "Both modulators, whole: state, source and depth/deviation together.",
+      "subsystem": "AM",
+      "group": "Modulation Readbacks",
+      "returns": {
+        "count": 7,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "am_state",
+            "type": "BOOL"
+          },
+          {
+            "name": "am_source",
+            "type": "CRD"
+          },
+          {
+            "name": "am_depth",
+            "type": "NR3",
+            "unit": "%"
+          },
+          {
+            "name": "fm_state",
+            "type": "BOOL"
+          },
+          {
+            "name": "fm_source",
+            "type": "CRD"
+          },
+          {
+            "name": "fm_deviation",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "fm_rate",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "unverified": true,
+      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
     },
     "Get_Apply_String": {
       "scpi": "APPLy?",
@@ -1820,6 +1956,47 @@
       },
       "subsystem": "BURS",
       "unverified": true
+    },
+    "burst_settings": {
+      "scpi": ":BURSt:STATe?;:BURSt:MODE?;:BURSt:NCYCles?;:BURSt:PHASe?;:BURSt:INTernal:PERiod?;:BURSt:GATE:POLarity?",
+      "scpiFast": ":BURS:STAT?;:BURS:MODE?;:BURS:NCYC?;:BURS:PHAS?;:BURS:INT:PER?;:BURS:GATE:POL?",
+      "description": "The whole burst setup in one transaction.",
+      "subsystem": "BURSt",
+      "group": "Burst Readbacks",
+      "returns": {
+        "count": 6,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state",
+            "type": "BOOL"
+          },
+          {
+            "name": "mode",
+            "type": "CRD"
+          },
+          {
+            "name": "ncycles",
+            "type": "NR1"
+          },
+          {
+            "name": "phase",
+            "type": "NR3",
+            "unit": "deg"
+          },
+          {
+            "name": "period",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "gate_polarity",
+            "type": "CRD"
+          }
+        ]
+      },
+      "unverified": true,
+      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
     },
     "Get_Calibration_Count": {
       "scpi": "CAL:COUNt?",
@@ -1960,37 +2137,6 @@
         "count": 1
       },
       "subsystem": "DISP",
-      "unverified": true
-    },
-    "Get_Error_Queue": {
-      "scpi": "SYSTem:ERRor?",
-      "scpiFast": "SYST:ERR?",
-      "description": "Get Error Queue",
-      "returns": {
-        "count": 1,
-        "type": "NR2"
-      },
-      "group": "System Readbacks",
-      "subsystem": "System"
-    },
-    "Get_Ese": {
-      "scpi": "*ESE?",
-      "description": "Get ese",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Esr": {
-      "scpi": "*ESR?",
-      "description": "Get esr",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_Fm_Deviation": {
@@ -2186,6 +2332,54 @@
       "subsystem": "FUNC",
       "unverified": true
     },
+    "shape_settings": {
+      "scpi": ":FUNCtion:RAMP:SYMMetry?;:FUNCtion:SQUare:DCYCle?;:FUNCtion:PULSe:DCYCle?;:FUNCtion:PULSe:WIDTh?;:OUTPut:LOAD?;:VOLTage:UNIT?;:OUTPut:POLarity?",
+      "scpiFast": ":FUNC:RAMP:SYMM?;:FUNC:SQU:DCYC?;:FUNC:PULS:DCYC?;:FUNC:PULS:WIDT?;:OUTP:LOAD?;:VOLT:UNIT?;:OUTP:POL?",
+      "description": "Every shape parameter and the load it drives, in one round trip.",
+      "subsystem": "SOURce",
+      "group": "Shape Readbacks",
+      "returns": {
+        "count": 7,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "ramp_symmetry",
+            "type": "NR3",
+            "unit": "%"
+          },
+          {
+            "name": "square_dcycle",
+            "type": "NR3",
+            "unit": "%"
+          },
+          {
+            "name": "pulse_dcycle",
+            "type": "NR3",
+            "unit": "%"
+          },
+          {
+            "name": "pulse_width",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "output_load",
+            "type": "NR3",
+            "unit": "Ohm"
+          },
+          {
+            "name": "voltage_unit",
+            "type": "CRD"
+          },
+          {
+            "name": "output_polarity",
+            "type": "CRD"
+          }
+        ]
+      },
+      "unverified": true,
+      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
+    },
     "Get_Function_Square_Dcycle": {
       "scpi": "FUNCtion:SQUare:DCYCle?",
       "scpiFast": "FUNC:SQU:DCYC?",
@@ -2208,53 +2402,43 @@
       "subsystem": "FUNC",
       "unverified": true
     },
-    "Get_Sweep_Config": {
-      "scpi": ":SWEep:STATe?;:SWEep:TIME?;:SWEep:SPACing?;:FREQuency:STARt?;:FREQuency:STOP?",
-      "scpiFast": ":SWE:STAT?;:SWE:TIME?;:SWE:SPAC?;:FREQ:STAR?;:FREQ:STOP?",
-      "description": "Read the whole sweep setup in one transaction",
-      "subsystem": "SWEep",
-      "group": "Sweep Readbacks",
+    "generator_settings": {
+      "scpi": "FUNCtion?;:FREQuency?;:VOLTage?;:VOLTage:OFFSet?;:OUTPut?",
+      "scpiFast": "FUNC?;:FREQ?;:VOLT?;:VOLT:OFFS?;:OUTP?",
+      "description": "Shape, frequency, amplitude, offset and the output state, in one round trip.",
+      "subsystem": "SOURce",
+      "group": "APPLy Readbacks",
       "returns": {
         "count": 5,
         "separator": ";",
         "fields": [
           {
-            "name": "state",
-            "type": "BOOL"
-          },
-          {
-            "name": "time",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "spacing",
+            "name": "function",
             "type": "CRD"
           },
           {
-            "name": "start",
+            "name": "frequency",
             "type": "NR3",
             "unit": "Hz"
           },
           {
-            "name": "stop",
+            "name": "amplitude",
             "type": "NR3",
-            "unit": "Hz"
+            "unit": "V"
+          },
+          {
+            "name": "offset",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "output",
+            "type": "BOOL"
           }
         ]
       },
       "unverified": true,
-      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
-    },
-    "Read_IDN": {
-      "scpi": "*IDN?",
-      "description": "Get idn",
-      "returns": {
-        "count": 1,
-        "type": "AARD"
-      },
-      "subsystem": "Common",
-      "unverified": true
+      "notes": "What every control on the main page hydrates from. `Get_Apply_String` answers the same facts as one quoted blob (\"SIN +1.0E+03,+3.0E+00,+0.0E+00\") with no named fields, so nothing could bind to a value inside it. UNVERIFIED on hardware: five chained statements, and one dead statement kills the whole reply — check the answer has five semicolon-separated values before trusting a readback. Every statement in it already exists here on its own."
     },
     "Get_Klock_Exclude": {
       "scpi": ":KLOCk:EXCLude?",
@@ -2283,16 +2467,6 @@
         "count": 1
       },
       "subsystem": "LAN",
-      "unverified": true
-    },
-    "Get_Lrn": {
-      "scpi": "*LRN?",
-      "description": "Get lrn",
-      "returns": {
-        "count": 1,
-        "type": "AARD"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_Marker_Frequency": {
@@ -2366,16 +2540,6 @@
       "subsystem": "NVOL",
       "unverified": true
     },
-    "Get_Opc": {
-      "scpi": "*OPC?",
-      "description": "Get opc",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Output_Load": {
       "scpi": "OUTPut:LOAD?",
       "scpiFast": "OUTP:LOAD?",
@@ -2397,16 +2561,6 @@
       "subsystem": "OUTP",
       "unverified": true
     },
-    "Get_Output_State": {
-      "scpi": "OUTPut?",
-      "scpiFast": "OUTP?",
-      "description": "Get Output State",
-      "returns": {
-        "count": 1
-      },
-      "group": "Output Status",
-      "subsystem": "OUTPut"
-    },
     "Get_Output_Sync": {
       "scpi": "OUTPut:SYNC?",
       "scpiFast": "OUTP:SYNC?",
@@ -2414,16 +2568,6 @@
       "returns": {
         "count": 1,
         "type": "BOOL"
-      },
-      "subsystem": "OUTP",
-      "unverified": true
-    },
-    "Get_Output_Trigger": {
-      "scpi": "OUTPut:TRIGger?",
-      "scpiFast": "OUTP:TRIG?",
-      "description": "Trigger Out Signal",
-      "returns": {
-        "count": 1
       },
       "subsystem": "OUTP",
       "unverified": true
@@ -2438,6 +2582,26 @@
       },
       "subsystem": "OUTP",
       "unverified": true
+    },
+    "Get_Output_Trigger": {
+      "scpi": "OUTPut:TRIGger?",
+      "scpiFast": "OUTP:TRIG?",
+      "description": "Trigger Out Signal",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "OUTP",
+      "unverified": true
+    },
+    "Get_Output_State": {
+      "scpi": "OUTPut?",
+      "scpiFast": "OUTP?",
+      "description": "Get Output State",
+      "returns": {
+        "count": 1
+      },
+      "group": "Output Status",
+      "subsystem": "OUTPut"
     },
     "Get_Phase_Unlock_Error_State": {
       "scpi": "PHASe:UNLock:ERRor:STATe?",
@@ -2492,16 +2656,6 @@
       "subsystem": "PM",
       "unverified": true
     },
-    "Get_Psc": {
-      "scpi": "*PSC?",
-      "description": "Get psc",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Pulse_Period": {
       "scpi": "PULSe:PERiod?",
       "scpiFast": "PULS:PER?",
@@ -2514,16 +2668,6 @@
       "subsystem": "PULS",
       "unverified": true
     },
-    "Get_Pwm_Deviation": {
-      "scpi": "PWM:DEViation?",
-      "scpiFast": "PWM:DEV?",
-      "description": "PWM Commands",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "PWM",
-      "unverified": true
-    },
     "Get_Pwm_Deviation_Dcycle": {
       "scpi": "PWM:DEViation:DCYCle?",
       "scpiFast": "PWM:DEV:DCYC?",
@@ -2532,6 +2676,16 @@
         "count": 1,
         "type": "NR3",
         "unit": "%"
+      },
+      "subsystem": "PWM",
+      "unverified": true
+    },
+    "Get_Pwm_Deviation": {
+      "scpi": "PWM:DEViation?",
+      "scpiFast": "PWM:DEV?",
+      "description": "PWM Commands",
+      "returns": {
+        "count": 1
       },
       "subsystem": "PWM",
       "unverified": true
@@ -2624,14 +2778,14 @@
       "subsystem": "SQU",
       "unverified": true
     },
-    "Get_Sre": {
-      "scpi": "*SRE?",
-      "description": "Get sre",
+    "Get_State_Questionable_Event": {
+      "scpi": "STAT:QUES:EVEN?",
+      "description": "What is an Event Register?",
       "returns": {
         "count": 1,
         "type": "NR1"
       },
-      "subsystem": "Common",
+      "subsystem": "STAT",
       "unverified": true
     },
     "Get_State_Questionable_Condition": {
@@ -2656,26 +2810,6 @@
       "subsystem": "STAT",
       "unverified": true
     },
-    "Get_State_Questionable_Event": {
-      "scpi": "STAT:QUES:EVEN?",
-      "description": "What is an Event Register?",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "STAT",
-      "unverified": true
-    },
-    "Get_Stb": {
-      "scpi": "*STB?",
-      "description": "Get stb",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Sweep_Spacing": {
       "scpi": "SWEep:SPACing?",
       "scpiFast": "SWE:SPAC?",
@@ -2696,6 +2830,44 @@
       },
       "subsystem": "SWE",
       "unverified": true
+    },
+    "Get_Sweep_Config": {
+      "scpi": ":SWEep:STATe?;:SWEep:TIME?;:SWEep:SPACing?;:FREQuency:STARt?;:FREQuency:STOP?",
+      "scpiFast": ":SWE:STAT?;:SWE:TIME?;:SWE:SPAC?;:FREQ:STAR?;:FREQ:STOP?",
+      "description": "Read the whole sweep setup in one transaction",
+      "subsystem": "SWEep",
+      "group": "Sweep Readbacks",
+      "returns": {
+        "count": 5,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state",
+            "type": "BOOL"
+          },
+          {
+            "name": "time",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "spacing",
+            "type": "CRD"
+          },
+          {
+            "name": "start",
+            "type": "NR3",
+            "unit": "Hz"
+          },
+          {
+            "name": "stop",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "unverified": true,
+      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
     },
     "Get_Sweep_Time": {
       "scpi": "SWEep:TIME?",
@@ -2790,6 +2962,17 @@
       "subsystem": "SYST",
       "unverified": true
     },
+    "Get_Error_Queue": {
+      "scpi": "SYSTem:ERRor?",
+      "scpiFast": "SYST:ERR?",
+      "description": "Get Error Queue",
+      "returns": {
+        "count": 1,
+        "type": "NR2"
+      },
+      "group": "System Readbacks",
+      "subsystem": "System"
+    },
     "Get_System_Klock_Exclude": {
       "scpi": "SYSTem:KLOCk:EXCLude?",
       "scpiFast": "SYST:KLOC:EXCL?",
@@ -2852,16 +3035,6 @@
       "subsystem": "TRIG",
       "unverified": true
     },
-    "Get_Tst": {
-      "scpi": "*TST?",
-      "description": "Get tst",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Unit_Angle": {
       "scpi": "UNIT:ANGLe?",
       "scpiFast": "UNIT:ANGL?",
@@ -2895,179 +3068,6 @@
       },
       "subsystem": "VOLT",
       "unverified": true
-    },
-    "burst_settings": {
-      "scpi": ":BURSt:STATe?;:BURSt:MODE?;:BURSt:NCYCles?;:BURSt:PHASe?;:BURSt:INTernal:PERiod?;:BURSt:GATE:POLarity?",
-      "scpiFast": ":BURS:STAT?;:BURS:MODE?;:BURS:NCYC?;:BURS:PHAS?;:BURS:INT:PER?;:BURS:GATE:POL?",
-      "description": "The whole burst setup in one transaction.",
-      "subsystem": "BURSt",
-      "group": "Burst Readbacks",
-      "returns": {
-        "count": 6,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state",
-            "type": "BOOL"
-          },
-          {
-            "name": "mode",
-            "type": "CRD"
-          },
-          {
-            "name": "ncycles",
-            "type": "NR1"
-          },
-          {
-            "name": "phase",
-            "type": "NR3",
-            "unit": "deg"
-          },
-          {
-            "name": "period",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "gate_polarity",
-            "type": "CRD"
-          }
-        ]
-      },
-      "unverified": true,
-      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
-    },
-    "generator_settings": {
-      "scpi": "FUNCtion?;:FREQuency?;:VOLTage?;:VOLTage:OFFSet?;:OUTPut?",
-      "scpiFast": "FUNC?;:FREQ?;:VOLT?;:VOLT:OFFS?;:OUTP?",
-      "description": "Shape, frequency, amplitude, offset and the output state, in one round trip.",
-      "subsystem": "SOURce",
-      "group": "APPLy Readbacks",
-      "returns": {
-        "count": 5,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "function",
-            "type": "CRD"
-          },
-          {
-            "name": "frequency",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "amplitude",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "offset",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "output",
-            "type": "BOOL"
-          }
-        ]
-      },
-      "unverified": true,
-      "notes": "What every control on the main page hydrates from. `Get_Apply_String` answers the same facts as one quoted blob (\"SIN +1.0E+03,+3.0E+00,+0.0E+00\") with no named fields, so nothing could bind to a value inside it. UNVERIFIED on hardware: five chained statements, and one dead statement kills the whole reply — check the answer has five semicolon-separated values before trusting a readback. Every statement in it already exists here on its own."
-    },
-    "modulation_settings": {
-      "scpi": ":AM:STATe?;:AM:SOURce?;:AM:DEPTh?;:FM:STATe?;:FM:SOURce?;:FM:DEViation?;:FM:INTernal:FREQuency?",
-      "scpiFast": ":AM:STAT?;:AM:SOUR?;:AM:DEPT?;:FM:STAT?;:FM:SOUR?;:FM:DEV?;:FM:INT:FREQ?",
-      "description": "Both modulators, whole: state, source and depth/deviation together.",
-      "subsystem": "AM",
-      "group": "Modulation Readbacks",
-      "returns": {
-        "count": 7,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "am_state",
-            "type": "BOOL"
-          },
-          {
-            "name": "am_source",
-            "type": "CRD"
-          },
-          {
-            "name": "am_depth",
-            "type": "NR3",
-            "unit": "%"
-          },
-          {
-            "name": "fm_state",
-            "type": "BOOL"
-          },
-          {
-            "name": "fm_source",
-            "type": "CRD"
-          },
-          {
-            "name": "fm_deviation",
-            "type": "NR3",
-            "unit": "Hz"
-          },
-          {
-            "name": "fm_rate",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "unverified": true,
-      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
-    },
-    "shape_settings": {
-      "scpi": ":FUNCtion:RAMP:SYMMetry?;:FUNCtion:SQUare:DCYCle?;:FUNCtion:PULSe:DCYCle?;:FUNCtion:PULSe:WIDTh?;:OUTPut:LOAD?;:VOLTage:UNIT?;:OUTPut:POLarity?",
-      "scpiFast": ":FUNC:RAMP:SYMM?;:FUNC:SQU:DCYC?;:FUNC:PULS:DCYC?;:FUNC:PULS:WIDT?;:OUTP:LOAD?;:VOLT:UNIT?;:OUTP:POL?",
-      "description": "Every shape parameter and the load it drives, in one round trip.",
-      "subsystem": "SOURce",
-      "group": "Shape Readbacks",
-      "returns": {
-        "count": 7,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "ramp_symmetry",
-            "type": "NR3",
-            "unit": "%"
-          },
-          {
-            "name": "square_dcycle",
-            "type": "NR3",
-            "unit": "%"
-          },
-          {
-            "name": "pulse_dcycle",
-            "type": "NR3",
-            "unit": "%"
-          },
-          {
-            "name": "pulse_width",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "output_load",
-            "type": "NR3",
-            "unit": "Ohm"
-          },
-          {
-            "name": "voltage_unit",
-            "type": "CRD"
-          },
-          {
-            "name": "output_polarity",
-            "type": "CRD"
-          }
-        ]
-      },
-      "unverified": true,
-      "notes": "UNVERIFIED on hardware. One dead statement kills a chained reply outright, so confirm the answer has the full count of semicolon-separated values before trusting a readback from it. Every statement in the chain already exists here on its own."
     }
   }
 }

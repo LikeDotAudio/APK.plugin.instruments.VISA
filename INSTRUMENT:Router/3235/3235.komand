@@ -27,16 +27,23 @@
     }
   },
   "do": {
+    "Clear_State": {
+      "scpi": "CLR",
+      "description": "Clear State",
+      "group": "System Reset & Control"
+    },
     "Card_Reset": {
       "scpi": "CRESET <slot>",
       "scpiFast": "CRES <slot>",
       "description": "Card Reset",
       "group": "System Reset & Control"
     },
-    "Clear_State": {
-      "scpi": "CLR",
-      "description": "Clear State",
-      "group": "System Reset & Control"
+    "Open_All": {
+      "scpi": "OPEN 000-999",
+      "description": "Open every relay in the frame — nothing connected to anything.",
+      "group": "System Reset & Control",
+      "subsystem": "Root",
+      "notes": "The 3235 has no clear-all: `CLR` clears the STATE, `RESET` restarts the unit, and neither is defined as leaving every crosspoint open. A range across the whole address space is, and it says exactly what it does. Sent as the panel comes up so the matrix starts from a known state rather than from whatever was left closed. Verified on the bench 2026-08-08 against TCPIP::44.44.44.222::gpib7,10::INSTR."
     },
     "Reset_Device": {
       "scpi": "RESET",
@@ -49,13 +56,6 @@
       "scpiFast": "SEL <chan>",
       "description": "Select Channel",
       "group": "Break-Before-Make"
-    },
-    "Open_All": {
-      "scpi": "OPEN 000-999",
-      "description": "Open every relay in the frame — nothing connected to anything.",
-      "group": "System Reset & Control",
-      "subsystem": "Root",
-      "notes": "The 3235 has no clear-all: `CLR` clears the STATE, `RESET` restarts the unit, and neither is defined as leaving every crosspoint open. A range across the whole address space is, and it says exactly what it does. Sent as the panel comes up so the matrix starts from a known state rather than from whatever was left closed. Verified on the bench 2026-08-08 against TCPIP::44.44.44.222::gpib7,10::INSTR."
     }
   },
   "rig": {},

@@ -2,6 +2,58 @@
   "model": "6060B",
   "family": "Load",
   "set": {
+    "Set_Ese": {
+      "scpi": "*ESE <value>",
+      "description": "Set ese",
+      "arg": {
+        "kind": "integer",
+        "limits": "query"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Rcl": {
+      "scpi": "*RCL <value>",
+      "description": "Set rcl",
+      "arg": {
+        "kind": "integer",
+        "min": 0
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sav": {
+      "scpi": "*SAV <value>",
+      "description": "Set sav",
+      "arg": {
+        "kind": "integer",
+        "min": 0
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sre": {
+      "scpi": "*SRE <value>",
+      "description": "Set sre",
+      "arg": {
+        "kind": "integer",
+        "limits": "query"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
     "Set_Chan": {
       "scpi": "CHAN <value>",
       "description": "Select the electronic load channel this command stream addresses (INST is an alias)",
@@ -13,6 +65,34 @@
         "value"
       ],
       "unverified": true
+    },
+    "Set_Current_Level": {
+      "scpi": "CURR <value>",
+      "description": "Set Current Level",
+      "arg": {
+        "kind": "numeric",
+        "unit": "A",
+        "limits": "query"
+      },
+      "group": "Constant Current Parameters",
+      "args": [
+        "value"
+      ],
+      "subsystem": "CURRent"
+    },
+    "Set_Transient_Level_A": {
+      "scpi": "CURR:LEV <value>",
+      "description": "Set Transient Level A",
+      "arg": {
+        "kind": "numeric",
+        "unit": "A",
+        "limits": "query"
+      },
+      "group": "Pulse & Dynamic Loading",
+      "args": [
+        "value"
+      ],
+      "subsystem": "TRANsient"
     },
     "Set_Curr_Lev_Trig": {
       "scpi": "CURR:LEV:TRIG <value>",
@@ -72,20 +152,6 @@
       ],
       "unverified": true
     },
-    "Set_Current_Level": {
-      "scpi": "CURR <value>",
-      "description": "Set Current Level",
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      },
-      "group": "Constant Current Parameters",
-      "args": [
-        "value"
-      ],
-      "subsystem": "CURRent"
-    },
     "Set_Current_Range": {
       "scpi": "CURR:RANG <value>",
       "description": "Set Current Range",
@@ -114,18 +180,19 @@
       ],
       "subsystem": "CURRent"
     },
-    "Set_Ese": {
-      "scpi": "*ESE <value>",
-      "description": "Set ese",
+    "Set_Transient_Level_B": {
+      "scpi": "CURR:TLEV <value>",
+      "description": "Set Transient Level B",
       "arg": {
-        "kind": "integer",
+        "kind": "numeric",
+        "unit": "A",
         "limits": "query"
       },
+      "group": "Pulse & Dynamic Loading",
       "args": [
         "value"
       ],
-      "subsystem": "Common",
-      "unverified": true
+      "subsystem": "TRANsient"
     },
     "Set_Inp": {
       "scpi": "INP <state>",
@@ -192,18 +259,19 @@
       ],
       "unverified": true
     },
-    "Set_Rcl": {
-      "scpi": "*RCL <value>",
-      "description": "Set rcl",
+    "Set_Resistance_Level": {
+      "scpi": "RES <value>",
+      "description": "Set Resistance Level",
       "arg": {
-        "kind": "integer",
-        "min": 0
+        "kind": "numeric",
+        "unit": "Ohm",
+        "limits": "query"
       },
+      "group": "Constant Resistance Parameters",
       "args": [
         "value"
       ],
-      "subsystem": "Common",
-      "unverified": true
+      "subsystem": "RESistance"
     },
     "Set_Res_Lev_Trig": {
       "scpi": "RES:LEV:TRIG <value>",
@@ -219,34 +287,6 @@
       ],
       "unverified": true
     },
-    "Set_Res_Tlev": {
-      "scpi": "RES:TLEV <value>",
-      "description": "Set the transient resistance level",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "limits": "query"
-      },
-      "subsystem": "RES",
-      "args": [
-        "value"
-      ],
-      "unverified": true
-    },
-    "Set_Resistance_Level": {
-      "scpi": "RES <value>",
-      "description": "Set Resistance Level",
-      "arg": {
-        "kind": "numeric",
-        "unit": "Ohm",
-        "limits": "query"
-      },
-      "group": "Constant Resistance Parameters",
-      "args": [
-        "value"
-      ],
-      "subsystem": "RESistance"
-    },
     "Set_Resistance_Range": {
       "scpi": "RES:RANG <value>",
       "description": "Set Resistance Range",
@@ -261,30 +301,18 @@
       ],
       "subsystem": "RESistance"
     },
-    "Set_Sav": {
-      "scpi": "*SAV <value>",
-      "description": "Set sav",
+    "Set_Res_Tlev": {
+      "scpi": "RES:TLEV <value>",
+      "description": "Set the transient resistance level",
       "arg": {
-        "kind": "integer",
-        "min": 0
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Set_Sre": {
-      "scpi": "*SRE <value>",
-      "description": "Set sre",
-      "arg": {
-        "kind": "integer",
+        "kind": "numeric",
+        "unit": "V",
         "limits": "query"
       },
+      "subsystem": "RES",
       "args": [
         "value"
       ],
-      "subsystem": "Common",
       "unverified": true
     },
     "Set_Stat_Chan_Enab": {
@@ -365,6 +393,46 @@
       ],
       "unverified": true
     },
+    "Set_Transient_Duty": {
+      "scpi": "TRAN:DCYC <value>",
+      "description": "Set Transient Duty",
+      "arg": {
+        "kind": "numeric",
+        "unit": "%",
+        "limits": "query"
+      },
+      "group": "Pulse & Dynamic Loading",
+      "args": [
+        "value"
+      ],
+      "subsystem": "TRANsient"
+    },
+    "Set_Transient_Freq": {
+      "scpi": "TRAN:FREQ <value>",
+      "description": "Set Transient Freq",
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz",
+        "limits": "query"
+      },
+      "group": "Pulse & Dynamic Loading",
+      "args": [
+        "value"
+      ],
+      "subsystem": "TRANsient"
+    },
+    "Set_Transient_Mode": {
+      "scpi": "TRAN:MODE <mode>",
+      "description": "Set Transient Mode",
+      "arg": {
+        "kind": "enum"
+      },
+      "group": "Pulse & Dynamic Loading",
+      "args": [
+        "mode"
+      ],
+      "subsystem": "TRANsient"
+    },
     "Set_Tran_Stat": {
       "scpi": "TRAN:STAT <value>",
       "scpiFast": "TRAN:STAT <value>",
@@ -397,74 +465,6 @@
       ],
       "unverified": true
     },
-    "Set_Transient_Duty": {
-      "scpi": "TRAN:DCYC <value>",
-      "description": "Set Transient Duty",
-      "arg": {
-        "kind": "numeric",
-        "unit": "%",
-        "limits": "query"
-      },
-      "group": "Pulse & Dynamic Loading",
-      "args": [
-        "value"
-      ],
-      "subsystem": "TRANsient"
-    },
-    "Set_Transient_Freq": {
-      "scpi": "TRAN:FREQ <value>",
-      "description": "Set Transient Freq",
-      "arg": {
-        "kind": "numeric",
-        "unit": "Hz",
-        "limits": "query"
-      },
-      "group": "Pulse & Dynamic Loading",
-      "args": [
-        "value"
-      ],
-      "subsystem": "TRANsient"
-    },
-    "Set_Transient_Level_A": {
-      "scpi": "CURR:LEV <value>",
-      "description": "Set Transient Level A",
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      },
-      "group": "Pulse & Dynamic Loading",
-      "args": [
-        "value"
-      ],
-      "subsystem": "TRANsient"
-    },
-    "Set_Transient_Level_B": {
-      "scpi": "CURR:TLEV <value>",
-      "description": "Set Transient Level B",
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      },
-      "group": "Pulse & Dynamic Loading",
-      "args": [
-        "value"
-      ],
-      "subsystem": "TRANsient"
-    },
-    "Set_Transient_Mode": {
-      "scpi": "TRAN:MODE <mode>",
-      "description": "Set Transient Mode",
-      "arg": {
-        "kind": "enum"
-      },
-      "group": "Pulse & Dynamic Loading",
-      "args": [
-        "mode"
-      ],
-      "subsystem": "TRANsient"
-    },
     "Set_Trig_Sour": {
       "scpi": "TRIG:SOUR <value>",
       "description": "Select the trigger source — BUS, EXT, HOLD, LINE or TIM",
@@ -491,20 +491,6 @@
       ],
       "unverified": true
     },
-    "Set_Volt_Lev_Trig": {
-      "scpi": "VOLT:LEV:TRIG <value>",
-      "description": "Set the voltage level the load takes on when triggered",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "limits": "query"
-      },
-      "subsystem": "VOLT",
-      "args": [
-        "value"
-      ],
-      "unverified": true
-    },
     "Set_Voltage_Level": {
       "scpi": "VOLT <value>",
       "description": "Set Voltage Level",
@@ -518,6 +504,20 @@
         "value"
       ],
       "subsystem": "VOLTage"
+    },
+    "Set_Volt_Lev_Trig": {
+      "scpi": "VOLT:LEV:TRIG <value>",
+      "description": "Set the voltage level the load takes on when triggered",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V",
+        "limits": "query"
+      },
+      "subsystem": "VOLT",
+      "args": [
+        "value"
+      ],
+      "unverified": true
     },
     "Set_Voltage_Range": {
       "scpi": "VOLT:RANG <value>",
@@ -535,17 +535,28 @@
     }
   },
   "do": {
-    "Clear_Protection": {
-      "scpi": "PROT:CLE",
-      "description": "Clear Protection",
-      "group": "Input Control",
-      "subsystem": "INPut"
-    },
     "Clear_Status": {
       "scpi": "*CLS",
       "description": "Clear Status",
       "group": "Common Commands",
       "subsystem": "Common"
+    },
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "Reset Device",
+      "group": "Common Commands",
+      "subsystem": "Common"
+    },
+    "Trigger": {
+      "scpi": "*TRG",
+      "description": "Trigger",
+      "group": "Actions and Toggles"
+    },
+    "Trigger_Immediate": {
+      "scpi": "*TRG",
+      "description": "Trigger Immediate",
+      "group": "Trigger System",
+      "subsystem": "TRIGger"
     },
     "Do_Abor": {
       "scpi": "ABOR",
@@ -649,6 +660,18 @@
       "subsystem": "DIAG",
       "unverified": true
     },
+    "Input_OFF": {
+      "scpi": "INP OFF",
+      "description": "Input OFF",
+      "group": "Input Control",
+      "subsystem": "INPut"
+    },
+    "Input_ON": {
+      "scpi": "INP ON",
+      "description": "Input ON",
+      "group": "Input Control",
+      "subsystem": "INPut"
+    },
     "Do_Input_Prot_Cle": {
       "scpi": "INP:PROT:CLE",
       "description": "Resetting Latched Protection",
@@ -662,6 +685,30 @@
       "subsystem": "INPUT",
       "unverified": true
     },
+    "Set_Mode_Current": {
+      "scpi": "MODE:CURR",
+      "description": "Set Mode Current",
+      "group": "CC / CV / CR",
+      "subsystem": "MODE"
+    },
+    "Set_Mode_Resistance": {
+      "scpi": "MODE:RES",
+      "description": "Set Mode Resistance",
+      "group": "CC / CV / CR",
+      "subsystem": "MODE"
+    },
+    "Set_Mode_Voltage": {
+      "scpi": "MODE:VOLT",
+      "description": "Set Mode Voltage",
+      "group": "CC / CV / CR",
+      "subsystem": "MODE"
+    },
+    "Clear_Protection": {
+      "scpi": "PROT:CLE",
+      "description": "Clear Protection",
+      "group": "Input Control",
+      "subsystem": "INPut"
+    },
     "Do_Res_Tlev": {
       "scpi": "RES:TLEV",
       "description": "Transient Resistance Level",
@@ -673,6 +720,18 @@
       "description": "Triggered Resistance Level",
       "subsystem": "RES",
       "unverified": true
+    },
+    "Transient_OFF": {
+      "scpi": "TRAN:STAT OFF",
+      "description": "Transient OFF",
+      "group": "Pulse & Dynamic Loading",
+      "subsystem": "TRANsient"
+    },
+    "Transient_ON": {
+      "scpi": "TRAN:STAT ON",
+      "description": "Transient ON",
+      "group": "Pulse & Dynamic Loading",
+      "subsystem": "TRANsient"
     },
     "Do_Tran_Togg": {
       "scpi": "TRAN:TOGG",
@@ -715,65 +774,6 @@
       "description": "Triggered Voltage Level",
       "subsystem": "VOLT",
       "unverified": true
-    },
-    "Input_OFF": {
-      "scpi": "INP OFF",
-      "description": "Input OFF",
-      "group": "Input Control",
-      "subsystem": "INPut"
-    },
-    "Input_ON": {
-      "scpi": "INP ON",
-      "description": "Input ON",
-      "group": "Input Control",
-      "subsystem": "INPut"
-    },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "Reset Device",
-      "group": "Common Commands",
-      "subsystem": "Common"
-    },
-    "Set_Mode_Current": {
-      "scpi": "MODE:CURR",
-      "description": "Set Mode Current",
-      "group": "CC / CV / CR",
-      "subsystem": "MODE"
-    },
-    "Set_Mode_Resistance": {
-      "scpi": "MODE:RES",
-      "description": "Set Mode Resistance",
-      "group": "CC / CV / CR",
-      "subsystem": "MODE"
-    },
-    "Set_Mode_Voltage": {
-      "scpi": "MODE:VOLT",
-      "description": "Set Mode Voltage",
-      "group": "CC / CV / CR",
-      "subsystem": "MODE"
-    },
-    "Transient_OFF": {
-      "scpi": "TRAN:STAT OFF",
-      "description": "Transient OFF",
-      "group": "Pulse & Dynamic Loading",
-      "subsystem": "TRANsient"
-    },
-    "Transient_ON": {
-      "scpi": "TRAN:STAT ON",
-      "description": "Transient ON",
-      "group": "Pulse & Dynamic Loading",
-      "subsystem": "TRANsient"
-    },
-    "Trigger": {
-      "scpi": "*TRG",
-      "description": "Trigger",
-      "group": "Actions and Toggles"
-    },
-    "Trigger_Immediate": {
-      "scpi": "*TRG",
-      "description": "Trigger Immediate",
-      "group": "Trigger System",
-      "subsystem": "TRIGger"
     }
   },
   "rig": {
@@ -797,15 +797,34 @@
     }
   },
   "nab": {
-    "Error": {
-      "scpi": "SYST:ERR?",
-      "description": "Error",
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "description": "IDN",
       "returns": {
         "count": 1,
-        "type": "NR2"
+        "type": "AARD"
       },
-      "group": "System Utilities",
-      "subsystem": "SYSTem"
+      "group": "Common Commands",
+      "subsystem": "Common"
+    },
+    "Get_Rdt": {
+      "scpi": "*RDT?",
+      "description": "Return the device identification / topology string",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "RDT",
+      "unverified": true
+    },
+    "Status_Byte": {
+      "scpi": "*STB?",
+      "description": "Status Byte",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "group": "Status Registers",
+      "subsystem": "STATus"
     },
     "Get_Chan": {
       "scpi": "CHAN?",
@@ -817,16 +836,6 @@
       "subsystem": "CHAN",
       "unverified": true
     },
-    "Get_Curr": {
-      "scpi": "CURR?",
-      "description": "Query the programmed main current level",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "A"
-      },
-      "subsystem": "CURR"
-    },
     "Get_Curr_Lev_Trig": {
       "scpi": "CURR:LEV:TRIG?",
       "description": "Query the triggered current level",
@@ -836,6 +845,34 @@
         "unit": "V"
       },
       "subsystem": "CURR",
+      "unverified": true
+    },
+    "Get_OCP_Config": {
+      "scpi": ":CURR:PROT:STAT?;:CURR:PROT:LEV?;:CURR:PROT:DEL?",
+      "description": "Read overcurrent protection state, level and delay in one transaction",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "stat",
+            "type": "BOOL",
+            "unit": "A"
+          },
+          {
+            "name": "lev",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "del",
+            "type": "NR3",
+            "unit": "A"
+          }
+        ]
+      },
+      "group": "Readback Queries",
+      "subsystem": "CURRent",
       "unverified": true
     },
     "Get_Curr_Rang": {
@@ -869,6 +906,16 @@
       },
       "subsystem": "CURR"
     },
+    "Get_Curr": {
+      "scpi": "CURR?",
+      "description": "Query the programmed main current level",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "A"
+      },
+      "subsystem": "CURR"
+    },
     "Get_Inp_Shor_Stat": {
       "scpi": "INP:SHOR:STAT?",
       "description": "Query the input short state",
@@ -888,6 +935,11 @@
       },
       "subsystem": "INP"
     },
+    "Get_Meas_All": {
+      "scpi": "MEAS:ALL?",
+      "description": "Authored from a panel literal in Load.json; never executed before.",
+      "unverified": true
+    },
     "Get_Meas_Curr_Dc": {
       "scpi": "MEAS:CURR:DC?",
       "description": "Measure the DC current flowing into the load",
@@ -897,6 +949,11 @@
         "unit": "A"
       },
       "subsystem": "MEAS",
+      "unverified": true
+    },
+    "Get_Meas_Curr": {
+      "scpi": "MEAS:CURR?",
+      "description": "Authored from a panel literal in Load.json; never executed before.",
       "unverified": true
     },
     "Get_Meas_Pow_Dc": {
@@ -910,6 +967,11 @@
       "subsystem": "MEAS",
       "unverified": true
     },
+    "Get_Meas_Pow": {
+      "scpi": "MEAS:POW?",
+      "description": "Authored from a panel literal in Load.json; never executed before.",
+      "unverified": true
+    },
     "Get_Meas_Volt_Dc": {
       "scpi": "MEAS:VOLT:DC?",
       "description": "Measure the DC voltage across the load input",
@@ -921,6 +983,11 @@
       "subsystem": "MEAS",
       "unverified": true
     },
+    "Get_Meas_Volt": {
+      "scpi": "MEAS:VOLT?",
+      "description": "Authored from a panel literal in Load.json; never executed before.",
+      "unverified": true
+    },
     "Get_Mode": {
       "scpi": "MODE?",
       "description": "Query the operating mode — CURR, RES or VOLT (FUNC is an alias)",
@@ -930,52 +997,37 @@
       },
       "subsystem": "MODE"
     },
-    "Get_OCP_Config": {
-      "scpi": ":CURR:PROT:STAT?;:CURR:PROT:LEV?;:CURR:PROT:DEL?",
-      "description": "Read overcurrent protection state, level and delay in one transaction",
+    "Measure_All": {
+      "scpi": "MODE?;:MEAS:VOLT?;:MEAS:CURR?;:MEAS:POW?",
+      "description": "Measure All",
       "returns": {
-        "count": 3,
+        "count": 4,
         "separator": ";",
         "fields": [
           {
-            "name": "stat",
-            "type": "BOOL",
-            "unit": "A"
+            "name": "mode",
+            "type": "CRD"
           },
           {
-            "name": "lev",
+            "name": "voltage",
             "type": "NR3",
             "unit": "V"
           },
           {
-            "name": "del",
+            "name": "current",
             "type": "NR3",
             "unit": "A"
+          },
+          {
+            "name": "power",
+            "type": "NR3",
+            "unit": "W"
           }
         ]
       },
       "group": "Readback Queries",
-      "subsystem": "CURRent",
-      "unverified": true
-    },
-    "Get_Rdt": {
-      "scpi": "*RDT?",
-      "description": "Return the device identification / topology string",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "RDT",
-      "unverified": true
-    },
-    "Get_Res": {
-      "scpi": "RES?",
-      "description": "Query the programmed main resistance level",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "Ohm"
-      },
-      "subsystem": "RES"
+      "subsystem": "MEASure",
+      "notes": "Each chained query restarts at the ROOT. Without the colons the 6060B parses the second one relative to where the first left the path — MEAS:VOLT?;MEAS:CURR? asks for MEAS:MEAS:CURR? — and answers the whole message with an I/O error rather than a partial reply. Verified on 44.44.44.111 gpib7,22 and gpib7,23: the colon form answers CURR;-3.0E-3;0.0E-3;-0.0E-5, the form without it fails every time."
     },
     "Get_Res_Lev_Trig": {
       "scpi": "RES:LEV:TRIG?",
@@ -1010,6 +1062,26 @@
       "subsystem": "RES",
       "unverified": true
     },
+    "Get_Res": {
+      "scpi": "RES?",
+      "description": "Query the programmed main resistance level",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "Ohm"
+      },
+      "subsystem": "RES"
+    },
+    "Get_Stat_Channel_Cond": {
+      "scpi": "STAT:CHAN:COND?",
+      "description": "Overpower Circuit Troubleshooting (Figure 3-10)",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "STAT",
+      "unverified": true
+    },
     "Get_Stat_Chan_Enab": {
       "scpi": "STAT:CHAN:ENAB?",
       "description": "Query the Channel Status enable mask",
@@ -1023,16 +1095,6 @@
     "Get_Stat_Chan_Even": {
       "scpi": "STAT:CHAN:EVEN?",
       "description": "Read and clear the Channel Status event register",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "STAT",
-      "unverified": true
-    },
-    "Get_Stat_Channel_Cond": {
-      "scpi": "STAT:CHAN:COND?",
-      "description": "Overpower Circuit Troubleshooting (Figure 3-10)",
       "returns": {
         "count": 1,
         "type": "NR1"
@@ -1140,6 +1202,16 @@
       "subsystem": "STAT",
       "unverified": true
     },
+    "Error": {
+      "scpi": "SYST:ERR?",
+      "description": "Error",
+      "returns": {
+        "count": 1,
+        "type": "NR2"
+      },
+      "group": "System Utilities",
+      "subsystem": "SYSTem"
+    },
     "Get_Tran_Dcyc": {
       "scpi": "TRAN:DCYC?",
       "description": "Query the transient duty cycle",
@@ -1210,16 +1282,6 @@
       "subsystem": "TRIG",
       "unverified": true
     },
-    "Get_Volt": {
-      "scpi": "VOLT?",
-      "description": "Query the programmed main voltage level",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "subsystem": "VOLT"
-    },
     "Get_Volt_Lev_Trig": {
       "scpi": "VOLT:LEV:TRIG?",
       "description": "Query the triggered voltage level",
@@ -1253,77 +1315,15 @@
       "subsystem": "VOLT",
       "unverified": true
     },
-    "Read_IDN": {
-      "scpi": "*IDN?",
-      "description": "IDN",
+    "Get_Volt": {
+      "scpi": "VOLT?",
+      "description": "Query the programmed main voltage level",
       "returns": {
         "count": 1,
-        "type": "AARD"
+        "type": "NR3",
+        "unit": "V"
       },
-      "group": "Common Commands",
-      "subsystem": "Common"
-    },
-    "Measure_All": {
-      "scpi": "MODE?;:MEAS:VOLT?;:MEAS:CURR?;:MEAS:POW?",
-      "description": "Measure All",
-      "returns": {
-        "count": 4,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "mode",
-            "type": "CRD"
-          },
-          {
-            "name": "voltage",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "current",
-            "type": "NR3",
-            "unit": "A"
-          },
-          {
-            "name": "power",
-            "type": "NR3",
-            "unit": "W"
-          }
-        ]
-      },
-      "group": "Readback Queries",
-      "subsystem": "MEASure",
-      "notes": "Each chained query restarts at the ROOT. Without the colons the 6060B parses the second one relative to where the first left the path — MEAS:VOLT?;MEAS:CURR? asks for MEAS:MEAS:CURR? — and answers the whole message with an I/O error rather than a partial reply. Verified on 44.44.44.111 gpib7,22 and gpib7,23: the colon form answers CURR;-3.0E-3;0.0E-3;-0.0E-5, the form without it fails every time."
-    },
-    "Status_Byte": {
-      "scpi": "*STB?",
-      "description": "Status Byte",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "group": "Status Registers",
-      "subsystem": "STATus"
-    },
-    "Get_Meas_Volt": {
-      "scpi": "MEAS:VOLT?",
-      "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
-    },
-    "Get_Meas_Curr": {
-      "scpi": "MEAS:CURR?",
-      "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
-    },
-    "Get_Meas_Pow": {
-      "scpi": "MEAS:POW?",
-      "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
-    },
-    "Get_Meas_All": {
-      "scpi": "MEAS:ALL?",
-      "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
+      "subsystem": "VOLT"
     }
   }
 }

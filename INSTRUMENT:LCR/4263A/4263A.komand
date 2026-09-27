@@ -2,66 +2,6 @@
   "model": "4263A",
   "family": "LCR",
   "set": {
-    "Average_Count": {
-      "scpi": ":SENSe:AVERage:COUNt <count>",
-      "scpiFast": ":SENS:AVER:COUN <count>",
-      "description": "Sets the number of measurement averages (1 to 256).",
-      "arg": {
-        "kind": "integer"
-      },
-      "args": [
-        "count"
-      ],
-      "subsystem": "SENSe",
-      "unverified": true
-    },
-    "Current_Range": {
-      "scpi": ":SENSe:CURRent:RANGe <range>",
-      "scpiFast": ":SENS:CURR:RANG <range>",
-      "description": "Sets the current measurement range.",
-      "arg": {
-        "kind": "numeric"
-      },
-      "args": [
-        "range"
-      ],
-      "subsystem": "SENSe",
-      "unverified": true
-    },
-    "Display_State": {
-      "scpi": ":DISPlay:STATe <state>",
-      "scpiFast": ":DISP:STAT <state>",
-      "description": "Turns the display ON or OFF.",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "args": [
-        "state"
-      ],
-      "subsystem": "DISPlay",
-      "unverified": true
-    },
-    "Key_Lock": {
-      "scpi": ":SYSTem:KLOCk <state>",
-      "scpiFast": ":SYST:KLOC <state>",
-      "description": "Locks or unlocks the front-panel keys.",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "args": [
-        "state"
-      ],
-      "subsystem": "SYSTem",
-      "unverified": true
-    },
     "Limit_Lower": {
       "scpi": ":CALCulate:LIMit:LOWer <limit>",
       "scpiFast": ":CALC:LIM:LOW <limit>",
@@ -105,6 +45,130 @@
       "subsystem": "CALCulate",
       "unverified": true
     },
+    "Set_Curr": {
+      "scpi": "CURR <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "numeric",
+        "unit": "A",
+        "limits": "query"
+      }
+    },
+    "Set_Curr_Lev": {
+      "scpi": "CURR:LEV <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "numeric",
+        "unit": "A",
+        "limits": "query"
+      }
+    },
+    "Set_Curr_Slew": {
+      "scpi": "CURR:SLEW <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "numeric",
+        "unit": "A/s",
+        "limits": "query"
+      }
+    },
+    "Set_Curr_Tlev": {
+      "scpi": "CURR:TLEV <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "numeric",
+        "unit": "A",
+        "limits": "query"
+      }
+    },
+    "Display_State": {
+      "scpi": ":DISPlay:STATe <state>",
+      "scpiFast": ":DISP:STAT <state>",
+      "description": "Turns the display ON or OFF.",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "state"
+      ],
+      "subsystem": "DISPlay",
+      "unverified": true
+    },
+    "Set_Inp": {
+      "scpi": "INP <state>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      }
+    },
+    "Set_Mode": {
+      "scpi": "MODE <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true
+    },
+    "Set_Res": {
+      "scpi": "RES <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "numeric",
+        "unit": "Ohm",
+        "limits": "query"
+      }
+    },
+    "Average_Count": {
+      "scpi": ":SENSe:AVERage:COUNt <count>",
+      "scpiFast": ":SENS:AVER:COUN <count>",
+      "description": "Sets the number of measurement averages (1 to 256).",
+      "arg": {
+        "kind": "integer"
+      },
+      "args": [
+        "count"
+      ],
+      "subsystem": "SENSe",
+      "unverified": true
+    },
+    "Current_Range": {
+      "scpi": ":SENSe:CURRent:RANGe <range>",
+      "scpiFast": ":SENS:CURR:RANG <range>",
+      "description": "Sets the current measurement range.",
+      "arg": {
+        "kind": "numeric"
+      },
+      "args": [
+        "range"
+      ],
+      "subsystem": "SENSe",
+      "unverified": true
+    },
+    "Set_Test_Frequency": {
+      "scpi": ":SENSe:FREQuency <freq>",
+      "scpiFast": ":SENS:FREQ <freq>",
+      "description": "Sets the test signal frequency (100, 1k, 10k, 100k Hz).",
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      },
+      "args": [
+        "freq"
+      ],
+      "subsystem": "SENSe",
+      "unverified": true
+    },
     "Measurement_Function": {
       "scpi": ":SENSe:FUNCtion <function>",
       "scpiFast": ":SENS:FUNC <function>",
@@ -118,10 +182,10 @@
       "subsystem": "SENSe",
       "unverified": true
     },
-    "Set_Beeper": {
-      "scpi": ":SYSTem:BEEPer:STATe <state>",
-      "scpiFast": ":SYST:BEEP:STAT <state>",
-      "description": "Turns the front-panel beeper ON or OFF.",
+    "Voltage_Range_Auto": {
+      "scpi": ":SENSe:VOLTage:RANGe:AUTO <state>",
+      "scpiFast": ":SENS:VOLT:RANG:AUTO <state>",
+      "description": "Enables or disables auto-ranging.",
       "arg": {
         "kind": "bool",
         "values": [
@@ -132,7 +196,7 @@
       "args": [
         "state"
       ],
-      "subsystem": "SYSTem",
+      "subsystem": "SENSe",
       "unverified": true
     },
     "Set_Bias_State": {
@@ -166,20 +230,6 @@
       "subsystem": "SOURce",
       "unverified": true
     },
-    "Set_Test_Frequency": {
-      "scpi": ":SENSe:FREQuency <freq>",
-      "scpiFast": ":SENS:FREQ <freq>",
-      "description": "Sets the test signal frequency (100, 1k, 10k, 100k Hz).",
-      "arg": {
-        "kind": "numeric",
-        "unit": "Hz"
-      },
-      "args": [
-        "freq"
-      ],
-      "subsystem": "SENSe",
-      "unverified": true
-    },
     "Set_Test_Level": {
       "scpi": ":SOURce:VOLTage <level>",
       "scpiFast": ":SOUR:VOLT <level>",
@@ -193,6 +243,72 @@
       ],
       "subsystem": "SOURce",
       "unverified": true
+    },
+    "Set_Beeper": {
+      "scpi": ":SYSTem:BEEPer:STATe <state>",
+      "scpiFast": ":SYST:BEEP:STAT <state>",
+      "description": "Turns the front-panel beeper ON or OFF.",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "state"
+      ],
+      "subsystem": "SYSTem",
+      "unverified": true
+    },
+    "Key_Lock": {
+      "scpi": ":SYSTem:KLOCk <state>",
+      "scpiFast": ":SYST:KLOC <state>",
+      "description": "Locks or unlocks the front-panel keys.",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "state"
+      ],
+      "subsystem": "SYSTem",
+      "unverified": true
+    },
+    "Set_Tran_Dcyc": {
+      "scpi": "TRAN:DCYC <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "numeric",
+        "unit": "%",
+        "limits": "query"
+      }
+    },
+    "Set_Tran_Freq": {
+      "scpi": "TRAN:FREQ <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz",
+        "limits": "query"
+      }
+    },
+    "Set_Tran_Stat": {
+      "scpi": "TRAN:STAT <value>",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true,
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      }
     },
     "Trigger_Delay": {
       "scpi": ":TRIGger:DELay <seconds>",
@@ -221,60 +337,6 @@
       "subsystem": "TRIGger",
       "unverified": true
     },
-    "Voltage_Range_Auto": {
-      "scpi": ":SENSe:VOLTage:RANGe:AUTO <state>",
-      "scpiFast": ":SENS:VOLT:RANG:AUTO <state>",
-      "description": "Enables or disables auto-ranging.",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "args": [
-        "state"
-      ],
-      "subsystem": "SENSe",
-      "unverified": true
-    },
-    "Set_Inp": {
-      "scpi": "INP <state>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      }
-    },
-    "Set_Mode": {
-      "scpi": "MODE <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
-    },
-    "Set_Curr": {
-      "scpi": "CURR <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      }
-    },
-    "Set_Curr_Slew": {
-      "scpi": "CURR:SLEW <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "A/s",
-        "limits": "query"
-      }
-    },
     "Set_Volt": {
       "scpi": "VOLT <value>",
       "description": "Authored from a panel literal in LCR.json; never executed before.",
@@ -284,74 +346,24 @@
         "unit": "V",
         "limits": "query"
       }
-    },
-    "Set_Res": {
-      "scpi": "RES <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "Ohm",
-        "limits": "query"
-      }
-    },
-    "Set_Tran_Stat": {
-      "scpi": "TRAN:STAT <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      }
-    },
-    "Set_Curr_Lev": {
-      "scpi": "CURR:LEV <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      }
-    },
-    "Set_Curr_Tlev": {
-      "scpi": "CURR:TLEV <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "A",
-        "limits": "query"
-      }
-    },
-    "Set_Tran_Freq": {
-      "scpi": "TRAN:FREQ <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "Hz",
-        "limits": "query"
-      }
-    },
-    "Set_Tran_Dcyc": {
-      "scpi": "TRAN:DCYC <value>",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true,
-      "arg": {
-        "kind": "numeric",
-        "unit": "%",
-        "limits": "query"
-      }
     }
   },
   "do": {
     "Clear_Status": {
       "scpi": "*CLS",
       "description": "Clears the status byte and error queue.",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "Resets the unit to its factory default settings.",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Trigger_Bus": {
+      "scpi": "*TRG",
+      "description": "Triggers the unit (equivalent to the Bus trigger).",
       "subsystem": "Common",
       "unverified": true
     },
@@ -369,18 +381,6 @@
       "subsystem": "SENSe",
       "unverified": true
     },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "Resets the unit to its factory default settings.",
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Trigger_Bus": {
-      "scpi": "*TRG",
-      "description": "Triggers the unit (equivalent to the Bus trigger).",
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Trigger_Immediate": {
       "scpi": ":TRIGger",
       "scpiFast": ":TRIG",
@@ -390,27 +390,6 @@
     }
   },
   "nab": {
-    "Fetch_Existing": {
-      "scpi": ":FETCh?",
-      "scpiFast": ":FETC?",
-      "description": "Retrieves the most recent measurement data.",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "MEASure",
-      "unverified": true
-    },
-    "Get_Error_Queue": {
-      "scpi": ":SYSTem:ERRor?",
-      "scpiFast": ":SYST:ERR?",
-      "description": "Queries the next entry in the error queue.",
-      "returns": {
-        "count": 1,
-        "type": "NR2"
-      },
-      "subsystem": "SYSTem",
-      "unverified": true
-    },
     "Read_IDN": {
       "scpi": "*IDN?",
       "description": "Queries the instrument identification (Manufacturer, Model, Serial, Firmware).",
@@ -429,6 +408,36 @@
         "type": "NR1"
       },
       "subsystem": "Common",
+      "unverified": true
+    },
+    "Fetch_Existing": {
+      "scpi": ":FETCh?",
+      "scpiFast": ":FETC?",
+      "description": "Retrieves the most recent measurement data.",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "MEASure",
+      "unverified": true
+    },
+    "Get_Meas_All": {
+      "scpi": "MEAS:ALL?",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true
+    },
+    "Get_Meas_Curr": {
+      "scpi": "MEAS:CURR?",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true
+    },
+    "Get_Meas_Pow": {
+      "scpi": "MEAS:POW?",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
+      "unverified": true
+    },
+    "Get_Meas_Volt": {
+      "scpi": "MEAS:VOLT?",
+      "description": "Authored from a panel literal in LCR.json; never executed before.",
       "unverified": true
     },
     "Measure": {
@@ -450,24 +459,15 @@
       "subsystem": "MEASure",
       "unverified": true
     },
-    "Get_Meas_Volt": {
-      "scpi": "MEAS:VOLT?",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
-    },
-    "Get_Meas_Curr": {
-      "scpi": "MEAS:CURR?",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
-    },
-    "Get_Meas_Pow": {
-      "scpi": "MEAS:POW?",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
-    },
-    "Get_Meas_All": {
-      "scpi": "MEAS:ALL?",
-      "description": "Authored from a panel literal in LCR.json; never executed before.",
+    "Get_Error_Queue": {
+      "scpi": ":SYSTem:ERRor?",
+      "scpiFast": ":SYST:ERR?",
+      "description": "Queries the next entry in the error queue.",
+      "returns": {
+        "count": 1,
+        "type": "NR2"
+      },
+      "subsystem": "SYSTem",
       "unverified": true
     }
   },

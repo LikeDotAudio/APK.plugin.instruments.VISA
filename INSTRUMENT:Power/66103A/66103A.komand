@@ -2,6 +2,72 @@
   "model": "66103A",
   "family": "Power",
   "set": {
+    "Set_Ese": {
+      "scpi": "*ESE <value>",
+      "description": "Set ese",
+      "arg": {
+        "kind": "integer"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Psc": {
+      "scpi": "*PSC <value>",
+      "description": "Set psc",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "0",
+          "1"
+        ]
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Rcl": {
+      "scpi": "*RCL <value>",
+      "description": "Set rcl",
+      "arg": {
+        "kind": "integer",
+        "min": 0
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sav": {
+      "scpi": "*SAV <value>",
+      "description": "Set sav",
+      "arg": {
+        "kind": "integer",
+        "min": 0
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sre": {
+      "scpi": "*SRE <value>",
+      "description": "Set sre",
+      "arg": {
+        "kind": "integer"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
     "Set_Calibrate_Status": {
       "scpi": "CAL:STAT <value>",
       "description": "RST Value OFF",
@@ -17,6 +83,20 @@
       ],
       "subsystem": "CAL",
       "unverified": true
+    },
+    "Set_Current": {
+      "scpi": "CURR <value>",
+      "description": "Current limit.",
+      "arg": {
+        "kind": "numeric",
+        "unit": "A"
+      },
+      "args": [
+        "value"
+      ],
+      "group": "Configuration",
+      "subsystem": "SOURce",
+      "notes": "The module holds this limit and drops into CC when it is reached, which is what `module_settings/oper_condition` bit 10 reports. Verified on the 66101A at gpib7,30,0, 2026-08-08."
     },
     "Set_Current_Trigger": {
       "scpi": "CURR:TRIG <value>",
@@ -48,18 +128,6 @@
       "subsystem": "DISP",
       "unverified": true
     },
-    "Set_Ese": {
-      "scpi": "*ESE <value>",
-      "description": "Set ese",
-      "arg": {
-        "kind": "integer"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Set_Initiate_Continuous": {
       "scpi": "INIT:CONT <value>",
       "description": "Set initiate continuous",
@@ -75,6 +143,23 @@
       ],
       "subsystem": "INIT",
       "unverified": true
+    },
+    "Set_Output": {
+      "scpi": "OUTP <state>",
+      "description": "Output on or off.",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "state"
+      ],
+      "group": "Output Control",
+      "subsystem": "OUTPut",
+      "notes": "`OUTP?` answers 1 or 0, so the panel's toggle is keyed 1/0 and sends what it reads back. Verified on the 66101A at gpib7,30,0, 2026-08-08."
     },
     "Set_Output_Dfi_Link": {
       "scpi": "OUTP:DFI:LINK <value>",
@@ -233,48 +318,6 @@
       "subsystem": "OUTP",
       "unverified": true
     },
-    "Set_Psc": {
-      "scpi": "*PSC <value>",
-      "description": "Set psc",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "0",
-          "1"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Set_Rcl": {
-      "scpi": "*RCL <value>",
-      "description": "Set rcl",
-      "arg": {
-        "kind": "integer",
-        "min": 0
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Set_Sav": {
-      "scpi": "*SAV <value>",
-      "description": "Set sav",
-      "arg": {
-        "kind": "integer",
-        "min": 0
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Set_Source_Current_Level_Immediate_Amplitude": {
       "scpi": "SOUR:CURR:LEV:IMM:AMPL <value>",
       "description": "Set source current level immediate amplitude",
@@ -292,6 +335,46 @@
     "Set_Source_Current_Level_Trigger_Amplitude": {
       "scpi": "SOUR:CURR:LEV:TRIG:AMPL <value>",
       "description": "Set source current level trigger amplitude",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V",
+        "domain": "volt"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Set_Source_List_Step": {
+      "scpi": "SOUR:LIST:STEP <value>",
+      "description": "In either mode, triggers that occur during a dwell interval are ignored",
+      "arg": {
+        "kind": "integer"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Set_Source_Voltage_Level_Trigger_Amplitude": {
+      "scpi": "SOUR:VOLT:LEV:TRIG:AMPL <value>",
+      "description": "Set source voltage level trigger amplitude",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V",
+        "domain": "volt"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Set_Source_Voltage_Protection_Level": {
+      "scpi": "SOUR:VOLT:PROT:LEV <value>",
+      "description": "Set source voltage protection level",
       "arg": {
         "kind": "numeric",
         "unit": "V",
@@ -359,32 +442,6 @@
       "subsystem": "SOUR",
       "unverified": true
     },
-    "Set_Source_List_Step": {
-      "scpi": "SOUR:LIST:STEP <value>",
-      "description": "In either mode, triggers that occur during a dwell interval are ignored",
-      "arg": {
-        "kind": "integer"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "SOUR",
-      "unverified": true
-    },
-    "Set_Source_Voltage_Level_Trigger_Amplitude": {
-      "scpi": "SOUR:VOLT:LEV:TRIG:AMPL <value>",
-      "description": "Set source voltage level trigger amplitude",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "domain": "volt"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "SOUR",
-      "unverified": true
-    },
     "Set_Source_Voltage_Mode": {
       "scpi": "SOURce:VOLTage:MODE <value>",
       "scpiFast": "SOUR:VOLT:MODE <value>",
@@ -396,32 +453,6 @@
         "value"
       ],
       "subsystem": "SOUR",
-      "unverified": true
-    },
-    "Set_Source_Voltage_Protection_Level": {
-      "scpi": "SOUR:VOLT:PROT:LEV <value>",
-      "description": "Set source voltage protection level",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "domain": "volt"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "SOUR",
-      "unverified": true
-    },
-    "Set_Sre": {
-      "scpi": "*SRE <value>",
-      "description": "Set sre",
-      "arg": {
-        "kind": "integer"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
       "unverified": true
     },
     "Set_Status_Operation": {
@@ -573,20 +604,6 @@
       "subsystem": "TRIG",
       "unverified": true
     },
-    "Set_Trigger_Start_Delay": {
-      "scpi": "TRIGger:STARt:DELay <value>",
-      "scpiFast": "TRIG:STAR:DEL <value>",
-      "description": "This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output",
-      "arg": {
-        "kind": "numeric",
-        "unit": "s"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "TRIG",
-      "unverified": true
-    },
     "Set_Trigger_Start_Link": {
       "scpi": "TRIG:STAR:LINK <value>",
       "description": "This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command",
@@ -596,6 +613,20 @@
           "OFF",
           "ON"
         ]
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "TRIG",
+      "unverified": true
+    },
+    "Set_Trigger_Start_Delay": {
+      "scpi": "TRIGger:STARt:DELay <value>",
+      "scpiFast": "TRIG:STAR:DEL <value>",
+      "description": "This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output",
+      "arg": {
+        "kind": "numeric",
+        "unit": "s"
       },
       "args": [
         "value"
@@ -615,6 +646,20 @@
       ],
       "subsystem": "TRIG",
       "unverified": true
+    },
+    "Set_Voltage": {
+      "scpi": "VOLT <value>",
+      "description": "Output voltage setpoint.",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V"
+      },
+      "args": [
+        "value"
+      ],
+      "group": "Configuration",
+      "subsystem": "SOURce",
+      "notes": "No `INST:NSEL` — see the module docstring. Verified on the 66101A at gpib7,30,0, 2026-08-08."
     },
     "Set_Voltage_Alc_Source": {
       "scpi": "VOLT:ALC:SOUR <value>",
@@ -653,66 +698,38 @@
       ],
       "subsystem": "VOLT",
       "unverified": true
-    },
-    "Set_Voltage": {
-      "scpi": "VOLT <value>",
-      "description": "Output voltage setpoint.",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V"
-      },
-      "args": [
-        "value"
-      ],
-      "group": "Configuration",
-      "subsystem": "SOURce",
-      "notes": "No `INST:NSEL` — see the module docstring. Verified on the 66101A at gpib7,30,0, 2026-08-08."
-    },
-    "Set_Current": {
-      "scpi": "CURR <value>",
-      "description": "Current limit.",
-      "arg": {
-        "kind": "numeric",
-        "unit": "A"
-      },
-      "args": [
-        "value"
-      ],
-      "group": "Configuration",
-      "subsystem": "SOURce",
-      "notes": "The module holds this limit and drops into CC when it is reached, which is what `module_settings/oper_condition` bit 10 reports. Verified on the 66101A at gpib7,30,0, 2026-08-08."
-    },
-    "Set_Output": {
-      "scpi": "OUTP <state>",
-      "description": "Output on or off.",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "args": [
-        "state"
-      ],
-      "group": "Output Control",
-      "subsystem": "OUTPut",
-      "notes": "`OUTP?` answers 1 or 0, so the panel's toggle is keyed 1/0 and sends what it reads back. Verified on the 66101A at gpib7,30,0, 2026-08-08."
     }
   },
   "do": {
-    "Clear_Protection": {
-      "scpi": "INST:NSEL <chan>;OUTP:PROT:CLE",
-      "description": "Clear Protection",
-      "group": "Output Control",
-      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
-      "unverified": true
-    },
     "Clear_Status": {
       "scpi": "*CLS",
       "description": "Clear Status",
       "group": "Common Commands",
       "subsystem": "Common"
+    },
+    "Do_Opc": {
+      "scpi": "*OPC",
+      "description": "Do opc",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "System Reset",
+      "group": "Common Commands",
+      "subsystem": "Common"
+    },
+    "Trigger_Immediate": {
+      "scpi": "*TRG",
+      "description": "Trigger Immediate",
+      "group": "Trigger System",
+      "subsystem": "TRIGger"
+    },
+    "Do_Wai": {
+      "scpi": "*WAI",
+      "description": "Do wai",
+      "subsystem": "Common",
+      "unverified": true
     },
     "Do_Calibrate_Aut": {
       "scpi": "CAL:AUT",
@@ -842,6 +859,42 @@
       "subsystem": "INIT",
       "unverified": true
     },
+    "S1_OFF": {
+      "scpi": "INST:NSEL 1;OUTP OFF",
+      "description": "S1 OFF",
+      "group": "Individual Output Control",
+      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
+      "unverified": true
+    },
+    "S1_ON": {
+      "scpi": "INST:NSEL 1;OUTP ON",
+      "description": "S1 ON",
+      "group": "Individual Output Control",
+      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
+      "unverified": true
+    },
+    "Select_Channel": {
+      "scpi": "INST:NSEL <chan>",
+      "description": "Select Channel",
+      "group": "Channel Selection",
+      "subsystem": "INSTrument",
+      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
+      "unverified": true
+    },
+    "Reset_Module": {
+      "scpi": "INST:NSEL <chan>;*RST",
+      "description": "Reset Module",
+      "group": "Output Control",
+      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
+      "unverified": true
+    },
+    "Clear_Protection": {
+      "scpi": "INST:NSEL <chan>;OUTP:PROT:CLE",
+      "description": "Clear Protection",
+      "group": "Output Control",
+      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
+      "unverified": true
+    },
     "Do_List_Count": {
       "scpi": "LIST:COUN",
       "description": "Do list count",
@@ -872,11 +925,19 @@
       "subsystem": "LIST",
       "unverified": true
     },
-    "Do_Opc": {
-      "scpi": "*OPC",
-      "description": "Do opc",
-      "subsystem": "Common",
-      "unverified": true
+    "Output_OFF": {
+      "scpi": "OUTP OFF",
+      "description": "Output off.",
+      "group": "Output Control",
+      "subsystem": "OUTPut",
+      "notes": "Was `INST:NSEL <chan>;OUTP OFF`. Verified on the 66101A at gpib7,30,0, 2026-08-08."
+    },
+    "Output_ON": {
+      "scpi": "OUTP ON",
+      "description": "Output on.",
+      "group": "Output Control",
+      "subsystem": "OUTPut",
+      "notes": "Was `INST:NSEL <chan>;OUTP ON`. Verified on the 66101A at gpib7,30,0, 2026-08-08."
     },
     "Do_Output_Dfi": {
       "scpi": "OUTP:DFI",
@@ -901,6 +962,12 @@
       "scpiFast": "PROT:CLE",
       "description": "The Effect of Optional Headers",
       "subsystem": "PROTECTION",
+      "unverified": true
+    },
+    "Do_Source_Voltage_Level_Immediate_Amplitude": {
+      "scpi": "SOUR:VOLT:LEV:IMM:AMPL",
+      "description": "Do source voltage level immediate amplitude",
+      "subsystem": "SOUR",
       "unverified": true
     },
     "Do_Source_Current_Level": {
@@ -952,12 +1019,6 @@
       "subsystem": "SOUR",
       "unverified": true
     },
-    "Do_Source_Voltage_Level_Immediate_Amplitude": {
-      "scpi": "SOUR:VOLT:LEV:IMM:AMPL",
-      "description": "Do source voltage level immediate amplitude",
-      "subsystem": "SOUR",
-      "unverified": true
-    },
     "Do_Source_Voltage_Level_Trigger": {
       "scpi": "SOURce:VOLTage:LEVel:TRIGgered",
       "scpiFast": "SOUR:VOLT:LEV:TRIG",
@@ -965,17 +1026,17 @@
       "subsystem": "SOUR",
       "unverified": true
     },
-    "Do_Source_Voltage_Protection": {
-      "scpi": "SOURce:VOLTage:PROTection",
-      "scpiFast": "SOUR:VOLT:PROT",
-      "description": "- Status Reporting\")",
-      "subsystem": "SOUR",
-      "unverified": true
-    },
     "Do_Source_Voltlev_Trigger": {
       "scpi": "SOURce:VOLTage:LEVel:TRIGgered",
       "scpiFast": "SOUR:VOLT:LEV:TRIG",
       "description": "Do source voltlev trigger",
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Do_Source_Voltage_Protection": {
+      "scpi": "SOURce:VOLTage:PROTection",
+      "scpiFast": "SOUR:VOLT:PROT",
+      "description": "- Status Reporting\")",
       "subsystem": "SOUR",
       "unverified": true
     },
@@ -1051,100 +1112,9 @@
       "description": "Do voltage tiug",
       "subsystem": "VOLT",
       "unverified": true
-    },
-    "Do_Wai": {
-      "scpi": "*WAI",
-      "description": "Do wai",
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Output_OFF": {
-      "scpi": "OUTP OFF",
-      "description": "Output off.",
-      "group": "Output Control",
-      "subsystem": "OUTPut",
-      "notes": "Was `INST:NSEL <chan>;OUTP OFF`. Verified on the 66101A at gpib7,30,0, 2026-08-08."
-    },
-    "Output_ON": {
-      "scpi": "OUTP ON",
-      "description": "Output on.",
-      "group": "Output Control",
-      "subsystem": "OUTPut",
-      "notes": "Was `INST:NSEL <chan>;OUTP ON`. Verified on the 66101A at gpib7,30,0, 2026-08-08."
-    },
-    "Reset_Module": {
-      "scpi": "INST:NSEL <chan>;*RST",
-      "description": "Reset Module",
-      "group": "Output Control",
-      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
-      "unverified": true
-    },
-    "S1_OFF": {
-      "scpi": "INST:NSEL 1;OUTP OFF",
-      "description": "S1 OFF",
-      "group": "Individual Output Control",
-      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
-      "unverified": true
-    },
-    "S1_ON": {
-      "scpi": "INST:NSEL 1;OUTP ON",
-      "description": "S1 ON",
-      "group": "Individual Output Control",
-      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
-      "unverified": true
-    },
-    "Select_Channel": {
-      "scpi": "INST:NSEL <chan>",
-      "description": "Select Channel",
-      "group": "Channel Selection",
-      "subsystem": "INSTrument",
-      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
-      "unverified": true
-    },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "System Reset",
-      "group": "Common Commands",
-      "subsystem": "Common"
-    },
-    "Trigger_Immediate": {
-      "scpi": "*TRG",
-      "description": "Trigger Immediate",
-      "group": "Trigger System",
-      "subsystem": "TRIGger"
     }
   },
   "rig": {
-    "Set_Levels": {
-      "scpi": "VOLT <voltage>;:CURR <current>",
-      "description": "Voltage and current limit together, in one message.",
-      "args": [
-        "voltage",
-        "current"
-      ],
-      "group": "Configuration",
-      "subsystem": "SOURce",
-      "notes": "Was `INST:NSEL <chan>;VOLT <volt>;CURR <curr>`, which answered nothing on this bench — the leading header does not exist on a module addressed at its own secondary address. This is the panel's SET button: the two sliders are its arguments, so a supply moves to a new operating point in ONE write rather than passing through the corner where the old limit meets the new voltage. Verified on the 66101A at gpib7,30,0, 2026-08-08.",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "limits": "query"
-      }
-    },
-    "Set_Protection": {
-      "scpi": "INST:NSEL <chan>;VOLT:PROT <ovp_level>;CURR:PROT:STAT <ocp_state>",
-      "description": "Set Protection",
-      "arg": {
-        "kind": "integer"
-      },
-      "group": "MPS Settings",
-      "args": [
-        "ovp_level",
-        "ocp_state"
-      ],
-      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
-      "unverified": true
-    },
     "Set_S1_Levels": {
       "scpi": "INST:NSEL 1;VOLT <volt>;CURR <curr>",
       "description": "Set S1 Levels",
@@ -1173,9 +1143,129 @@
       ],
       "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
       "unverified": true
+    },
+    "Set_Protection": {
+      "scpi": "INST:NSEL <chan>;VOLT:PROT <ovp_level>;CURR:PROT:STAT <ocp_state>",
+      "description": "Set Protection",
+      "arg": {
+        "kind": "integer"
+      },
+      "group": "MPS Settings",
+      "args": [
+        "ovp_level",
+        "ocp_state"
+      ],
+      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
+      "unverified": true
+    },
+    "Set_Levels": {
+      "scpi": "VOLT <voltage>;:CURR <current>",
+      "description": "Voltage and current limit together, in one message.",
+      "args": [
+        "voltage",
+        "current"
+      ],
+      "group": "Configuration",
+      "subsystem": "SOURce",
+      "notes": "Was `INST:NSEL <chan>;VOLT <volt>;CURR <curr>`, which answered nothing on this bench — the leading header does not exist on a module addressed at its own secondary address. This is the panel's SET button: the two sliders are its arguments, so a supply moves to a new operating point in ONE write rather than passing through the corner where the old limit meets the new voltage. Verified on the 66101A at gpib7,30,0, 2026-08-08.",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V",
+        "limits": "query"
+      }
     }
   },
   "nab": {
+    "Get_Ese": {
+      "scpi": "*ESE?",
+      "description": "Get ese",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Esr": {
+      "scpi": "*ESR?",
+      "description": "Get esr",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "description": "Get idn",
+      "returns": {
+        "count": 1,
+        "type": "AARD"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Opc": {
+      "scpi": "*OPC?",
+      "description": "Get opc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Opt": {
+      "scpi": "*OPT?",
+      "description": "Get opt",
+      "returns": {
+        "count": 1,
+        "type": "AARD"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Psc": {
+      "scpi": "*PSC?",
+      "description": "Get psc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Sre": {
+      "scpi": "*SRE?",
+      "description": "Get sre",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Stb": {
+      "scpi": "*STB?",
+      "description": "Get stb",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Tst": {
+      "scpi": "*TST?",
+      "description": "Get tst",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
     "Get_Calibrate_Status": {
       "scpi": "CALibrate:STATe?",
       "scpiFast": "CAL:STAT?",
@@ -1209,36 +1299,6 @@
       "subsystem": "DISP",
       "unverified": true
     },
-    "Get_Ese": {
-      "scpi": "*ESE?",
-      "description": "Get ese",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Esr": {
-      "scpi": "*ESR?",
-      "description": "Get esr",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Read_IDN": {
-      "scpi": "*IDN?",
-      "description": "Get idn",
-      "returns": {
-        "count": 1,
-        "type": "AARD"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Immediate_Amplitude": {
       "scpi": ":IMMediate:AMPlitude?",
       "scpiFast": ":IMM:AMP?",
@@ -1258,6 +1318,29 @@
         "type": "NR3"
       },
       "subsystem": "INIT",
+      "unverified": true
+    },
+    "Read_Values": {
+      "scpi": "INST:NSEL <chan>;MEAS:VOLT?;MEAS:CURR?",
+      "description": "Read Voltage and Current",
+      "returns": {
+        "count": 2,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "voltage",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "current",
+            "type": "NR3",
+            "unit": "A"
+          }
+        ]
+      },
+      "group": "MPS Metering",
+      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
       "unverified": true
     },
     "Get_List_Current_Points": {
@@ -1292,24 +1375,77 @@
       "subsystem": "LIST",
       "unverified": true
     },
-    "Get_Opc": {
-      "scpi": "*OPC?",
-      "description": "Get opc",
+    "Get_Values": {
+      "scpi": "MEAS:VOLT?;:MEAS:CURR?",
+      "description": "Measured output voltage and current.",
+      "group": "Readback Queries",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 2,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "voltage",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "current",
+            "type": "NR3",
+            "unit": "A"
+          }
+        ]
+      },
+      "notes": "Was `INST:NSEL <chan>;MEAS:VOLT?;MEAS:CURR?` — see the module docstring; it answered nothing here on either count. Verified on the 66101A at gpib7,30,0, 2026-08-08."
+    },
+    "Get_Output_Relay_Status": {
+      "scpi": "OUTP:REL:STAT?",
+      "description": "This command is valid only if the power module is configured for the optional relay connector",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "subsystem": "OUTP",
+      "unverified": true
+    },
+    "Get_Output_Relay": {
+      "scpi": "OUTP:REL?",
+      "description": "Output Subsystem",
       "returns": {
         "count": 1,
         "type": "NR1"
       },
-      "subsystem": "Common",
+      "subsystem": "OUTP",
       "unverified": true
     },
-    "Get_Opt": {
-      "scpi": "*OPT?",
-      "description": "Get opt",
+    "Get_Output_Ttltrg_Link": {
+      "scpi": "OUTP:TTLT:LINK?",
+      "description": "Get output ttltrg link",
       "returns": {
         "count": 1,
-        "type": "AARD"
+        "type": "BOOL"
       },
-      "subsystem": "Common",
+      "subsystem": "OUTP",
+      "unverified": true
+    },
+    "Get_Output_Ttltrg_Source": {
+      "scpi": "OUTP:TTLT:SOUR?",
+      "description": "Get output ttltrg source",
+      "returns": {
+        "count": 1,
+        "type": "CRD"
+      },
+      "subsystem": "OUTP",
+      "unverified": true
+    },
+    "Get_Output_Ttltrg_Status": {
+      "scpi": "OUTP:TTLT:STAT?",
+      "description": "This command enables or disables the power module Trigger Out signal, which is available at a BNC connector on the rear of the mainframe",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "subsystem": "OUTP",
       "unverified": true
     },
     "Get_Output_Dfi_Link": {
@@ -1357,16 +1493,6 @@
       "subsystem": "OUTP",
       "unverified": true
     },
-    "Get_Output_Relay": {
-      "scpi": "OUTP:REL?",
-      "description": "Output Subsystem",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "OUTP",
-      "unverified": true
-    },
     "Get_Output_Relay_Polarity": {
       "scpi": "OUTPut:RELay:POLarity?",
       "scpiFast": "OUTP:REL:POL?",
@@ -1374,16 +1500,6 @@
       "returns": {
         "count": 1,
         "type": "NR1"
-      },
-      "subsystem": "OUTP",
-      "unverified": true
-    },
-    "Get_Output_Relay_Status": {
-      "scpi": "OUTP:REL:STAT?",
-      "description": "This command is valid only if the power module is configured for the optional relay connector",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
       },
       "subsystem": "OUTP",
       "unverified": true
@@ -1397,46 +1513,6 @@
         "type": "NR3"
       },
       "subsystem": "OUTP",
-      "unverified": true
-    },
-    "Get_Output_Ttltrg_Link": {
-      "scpi": "OUTP:TTLT:LINK?",
-      "description": "Get output ttltrg link",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "subsystem": "OUTP",
-      "unverified": true
-    },
-    "Get_Output_Ttltrg_Source": {
-      "scpi": "OUTP:TTLT:SOUR?",
-      "description": "Get output ttltrg source",
-      "returns": {
-        "count": 1,
-        "type": "CRD"
-      },
-      "subsystem": "OUTP",
-      "unverified": true
-    },
-    "Get_Output_Ttltrg_Status": {
-      "scpi": "OUTP:TTLT:STAT?",
-      "description": "This command enables or disables the power module Trigger Out signal, which is available at a BNC connector on the rear of the mainframe",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "subsystem": "OUTP",
-      "unverified": true
-    },
-    "Get_Psc": {
-      "scpi": "*PSC?",
-      "description": "Get psc",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_Questionable_Event": {
@@ -1463,6 +1539,68 @@
     "Get_Source_Current_Level_Trigger_Amplitude": {
       "scpi": "SOUR:CURR:LEV:TRIG:AMPL?",
       "description": "Get source current level trigger amplitude",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      },
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Get_Source_List_Dwel_Points": {
+      "scpi": "SOUR:LIST:DWEL:POIN?",
+      "description": "Get source list dwel points",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Get_Source_List_Dwel": {
+      "scpi": "SOUR:LIST:DWEL?",
+      "description": "- If LIST:STEP ONCE has been programmed, the output remains at the present level until a trigger sequences the next point in the list",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Get_Source_List_Step": {
+      "scpi": "SOUR:LIST:STEP?",
+      "description": "In either mode, triggers that occur during a dwell interval are ignored",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Get_Source_Voltage_Level_Trigger_Amplitude": {
+      "scpi": "SOUR:VOLT:LEV:TRIG:AMPL?",
+      "description": "Get source voltage level trigger amplitude",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      },
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Get_Source_Voltage_Protection_Level": {
+      "scpi": "SOUR:VOLT:PROT:LEV?",
+      "description": "Get source voltage protection level",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      },
+      "subsystem": "SOUR",
+      "unverified": true
+    },
+    "Get_Source_Voltage_Sense": {
+      "scpi": "SOUR:VOLT:SENS?",
+      "description": "Get source voltage sense",
       "returns": {
         "count": 1,
         "type": "NR3",
@@ -1515,39 +1653,10 @@
       "subsystem": "SOUR",
       "unverified": true
     },
-    "Get_Source_List_Dwel": {
-      "scpi": "SOUR:LIST:DWEL?",
-      "description": "- If LIST:STEP ONCE has been programmed, the output remains at the present level until a trigger sequences the next point in the list",
-      "returns": {
-        "count": 1
-      },
-      "subsystem": "SOUR",
-      "unverified": true
-    },
-    "Get_Source_List_Dwel_Points": {
-      "scpi": "SOUR:LIST:DWEL:POIN?",
-      "description": "Get source list dwel points",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "SOUR",
-      "unverified": true
-    },
     "Get_Source_List_Dwfl_Points": {
       "scpi": "SOURce:LIST:DWFL1:POINts?",
       "scpiFast": "SOUR:LIST:DWFL1:POIN?",
       "description": "This query returns the number of points specified in LIST:DWEL",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "SOUR",
-      "unverified": true
-    },
-    "Get_Source_List_Step": {
-      "scpi": "SOUR:LIST:STEP?",
-      "description": "In either mode, triggers that occur during a dwell interval are ignored",
       "returns": {
         "count": 1,
         "type": "NR1"
@@ -1567,17 +1676,6 @@
       "subsystem": "SOUR",
       "unverified": true
     },
-    "Get_Source_Voltage_Level_Trigger_Amplitude": {
-      "scpi": "SOUR:VOLT:LEV:TRIG:AMPL?",
-      "description": "Get source voltage level trigger amplitude",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "subsystem": "SOUR",
-      "unverified": true
-    },
     "Get_Source_Voltage_Mode": {
       "scpi": "SOURce:VOLTage:MODE?",
       "scpiFast": "SOUR:VOLT:MODE?",
@@ -1585,28 +1683,6 @@
       "returns": {
         "count": 1,
         "type": "CRD",
-        "unit": "V"
-      },
-      "subsystem": "SOUR",
-      "unverified": true
-    },
-    "Get_Source_Voltage_Protection_Level": {
-      "scpi": "SOUR:VOLT:PROT:LEV?",
-      "description": "Get source voltage protection level",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "subsystem": "SOUR",
-      "unverified": true
-    },
-    "Get_Source_Voltage_Sense": {
-      "scpi": "SOUR:VOLT:SENS?",
-      "description": "Get source voltage sense",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
         "unit": "V"
       },
       "subsystem": "SOUR",
@@ -1634,26 +1710,6 @@
         "unit": "V"
       },
       "subsystem": "SOURI",
-      "unverified": true
-    },
-    "Get_Sre": {
-      "scpi": "*SRE?",
-      "description": "Get sre",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Status_Operation": {
-      "scpi": "STAT:OPER?",
-      "description": "Register Commands",
-      "returns": {
-        "count": 1,
-        "type": "CRD"
-      },
-      "subsystem": "STAT",
       "unverified": true
     },
     "Get_Status_Operation_Condition": {
@@ -1706,14 +1762,25 @@
       "subsystem": "STAT",
       "unverified": true
     },
-    "Get_Status_Questionable": {
-      "scpi": "STAT:QUES?",
+    "Get_Status_Operation": {
+      "scpi": "STAT:OPER?",
       "description": "Register Commands",
       "returns": {
-        "count": 1
+        "count": 1,
+        "type": "CRD"
       },
       "subsystem": "STAT",
       "unverified": true
+    },
+    "Questionable_Condition": {
+      "scpi": "STAT:QUES:COND?",
+      "description": "Questionable Condition",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "group": "Status Registers",
+      "subsystem": "STATus"
     },
     "Get_Status_Questionable_Enable": {
       "scpi": "STAT:QUES:ENAB?",
@@ -1731,6 +1798,15 @@
       "returns": {
         "count": 1,
         "type": "NR1"
+      },
+      "subsystem": "STAT",
+      "unverified": true
+    },
+    "Get_Status_Questionable": {
+      "scpi": "STAT:QUES?",
+      "description": "Register Commands",
+      "returns": {
+        "count": 1
       },
       "subsystem": "STAT",
       "unverified": true
@@ -1757,15 +1833,15 @@
       "subsystem": "STAT",
       "unverified": true
     },
-    "Get_Stb": {
-      "scpi": "*STB?",
-      "description": "Get stb",
+    "Read_Error": {
+      "scpi": "SYST:ERR?",
+      "description": "Read Error",
       "returns": {
         "count": 1,
-        "type": "NR1"
+        "type": "NR2"
       },
-      "subsystem": "Common",
-      "unverified": true
+      "group": "System Utilities",
+      "subsystem": "SYSTem"
     },
     "Get_System_Version": {
       "scpi": "SYST:VERS?",
@@ -1841,39 +1917,6 @@
       "subsystem": "TRIG",
       "unverified": true
     },
-    "Get_Tst": {
-      "scpi": "*TST?",
-      "description": "Get tst",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Values": {
-      "scpi": "MEAS:VOLT?;:MEAS:CURR?",
-      "description": "Measured output voltage and current.",
-      "group": "Readback Queries",
-      "subsystem": "MEASure",
-      "returns": {
-        "count": 2,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "voltage",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "current",
-            "type": "NR3",
-            "unit": "A"
-          }
-        ]
-      },
-      "notes": "Was `INST:NSEL <chan>;MEAS:VOLT?;MEAS:CURR?` — see the module docstring; it answered nothing here on either count. Verified on the 66101A at gpib7,30,0, 2026-08-08."
-    },
     "Get_Voltage_Alc_Source": {
       "scpi": "VOLT:ALC:SOUR?",
       "description": "Get voltage alc source",
@@ -1916,49 +1959,6 @@
         "unit": "V"
       },
       "subsystem": "VOLT",
-      "unverified": true
-    },
-    "Questionable_Condition": {
-      "scpi": "STAT:QUES:COND?",
-      "description": "Questionable Condition",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "group": "Status Registers",
-      "subsystem": "STATus"
-    },
-    "Read_Error": {
-      "scpi": "SYST:ERR?",
-      "description": "Read Error",
-      "returns": {
-        "count": 1,
-        "type": "NR2"
-      },
-      "group": "System Utilities",
-      "subsystem": "SYSTem"
-    },
-    "Read_Values": {
-      "scpi": "INST:NSEL <chan>;MEAS:VOLT?;MEAS:CURR?",
-      "description": "Read Voltage and Current",
-      "returns": {
-        "count": 2,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "voltage",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "current",
-            "type": "NR3",
-            "unit": "A"
-          }
-        ]
-      },
-      "group": "MPS Metering",
-      "notes": "Undefined on a module addressed at its own GPIB secondary address, which is how all seven on this bench are wired — `SYST:ERR?` answers -113 after it, and it silently kills any reply chained behind it. Correct only for a mainframe addressed as one instrument. Checked 2026-08-08.",
       "unverified": true
     },
     "module_settings": {

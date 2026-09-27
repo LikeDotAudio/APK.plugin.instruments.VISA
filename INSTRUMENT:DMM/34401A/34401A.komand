@@ -2,68 +2,47 @@
   "model": "34401A",
   "family": "DMM",
   "set": {
-    "Display_Text": {
-      "scpi": ":DISPlay:TEXT <string>",
-      "scpiFast": ":DISP:TEXT <string>",
-      "description": "Display Text",
+    "Set_Ese": {
+      "scpi": "*ESE <value>",
+      "description": "Set ese",
       "arg": {
-        "kind": "string"
-      },
-      "group": "System Utilities",
-      "args": [
-        "string"
-      ],
-      "subsystem": "SYSTem"
-    },
-    "Enable_Math": {
-      "scpi": ":CALCulate:STATe <state>",
-      "scpiFast": ":CALC:STAT <state>",
-      "description": "Enable Math",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "group": "Math and Limits Setup",
-      "args": [
-        "state"
-      ],
-      "subsystem": "CALCulate"
-    },
-    "Set_AC_Bandwidth": {
-      "scpi": ":SENSe:VOLTage:AC:BANDwidth <filter>",
-      "scpiFast": ":SENS:VOLT:AC:BAND <filter>",
-      "description": "Set AC Bandwidth",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "domain": "volt",
+        "kind": "integer",
         "limits": "query"
       },
-      "group": "Measurement Parameters",
       "args": [
-        "filter"
+        "value"
       ],
-      "subsystem": "SENSe"
+      "subsystem": "Common",
+      "unverified": true
     },
-    "Set_Autorange": {
-      "scpi": ":SENSe:VOLTage:DC:RANGe:AUTO <state>",
-      "scpiFast": ":SENS:VOLT:DC:RANG:AUTO <state>",
-      "description": "Set Autorange",
+    "Set_Psc": {
+      "scpi": "*PSC <value>",
+      "description": "Set psc",
       "arg": {
         "kind": "bool",
         "values": [
-          "OFF",
-          "ON"
+          "0",
+          "1"
         ]
       },
-      "group": "SCOPED TO DC VOLTS on purpose: the 34401A has no function-agnostic autorange command, so :SENSe:VOLTage:DC:RANGe:AUTO is what a panel AUTO RANGE control can address. Selecting another function turns its own autorange on by default, which is why this is adequate for a bench panel and would not be for a test sequence.",
       "args": [
-        "state"
+        "value"
       ],
-      "subsystem": "Panel"
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sre": {
+      "scpi": "*SRE <value>",
+      "description": "Set sre",
+      "arg": {
+        "kind": "integer",
+        "limits": "query"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
     },
     "Set_Beeper_State": {
       "scpi": ":BEEPer:STATe <value>",
@@ -81,6 +60,83 @@
       ],
       "subsystem": "BEEP",
       "unverified": true
+    },
+    "Set_dB_Ref": {
+      "scpi": ":CALCulate:DB:REFerence <value>",
+      "scpiFast": ":CALC:DB:REF <value>",
+      "description": "Set dB Ref",
+      "arg": {
+        "kind": "enum"
+      },
+      "group": "Math and Limits Setup",
+      "args": [
+        "value"
+      ],
+      "subsystem": "CALCulate"
+    },
+    "Set_dBm_Ref": {
+      "scpi": ":CALCulate:DBM:REFerence <value>",
+      "scpiFast": ":CALC:DBM:REF <value>",
+      "description": "Set dBm Ref",
+      "arg": {
+        "kind": "enum"
+      },
+      "group": "Math and Limits Setup",
+      "args": [
+        "value"
+      ],
+      "subsystem": "CALCulate"
+    },
+    "Set_Math_Function": {
+      "scpi": ":CALCulate:FUNCtion <function>",
+      "scpiFast": ":CALC:FUNC <function>",
+      "description": "Set Math Function",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "NULL",
+          "DB",
+          "DBM",
+          "AVER",
+          "LIM"
+        ]
+      },
+      "group": "Math and Limits Setup",
+      "args": [
+        "function"
+      ],
+      "subsystem": "CALCulate"
+    },
+    "Set_Null_Offset": {
+      "scpi": ":CALCulate:NULL:OFFSet <value>",
+      "scpiFast": ":CALC:NULL:OFFS <value>",
+      "description": "Set Null Offset",
+      "arg": {
+        "kind": "numeric",
+        "limits": "query"
+      },
+      "group": "Math and Limits Setup",
+      "args": [
+        "value"
+      ],
+      "subsystem": "CALCulate"
+    },
+    "Enable_Math": {
+      "scpi": ":CALCulate:STATe <state>",
+      "scpiFast": ":CALC:STAT <state>",
+      "description": "Enable Math",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "group": "Math and Limits Setup",
+      "args": [
+        "state"
+      ],
+      "subsystem": "CALCulate"
     },
     "Set_Calibration_Secure_State": {
       "scpi": "CALibration:SECure:STATe <value>",
@@ -126,22 +182,6 @@
       "subsystem": "CAL",
       "unverified": true
     },
-    "Set_DCV_Range": {
-      "scpi": ":SENSe:VOLTage:DC:RANGe <range>",
-      "scpiFast": ":SENS:VOLT:DC:RANG <range>",
-      "description": "Set DCV Range",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V",
-        "domain": "volt",
-        "limits": "query"
-      },
-      "group": "Measurement Parameters",
-      "args": [
-        "range"
-      ],
-      "subsystem": "SENSe"
-    },
     "Set_Data_Feed": {
       "scpi": "DATA:FEED <value>",
       "description": "Math Operations",
@@ -180,18 +220,18 @@
       "subsystem": "DET",
       "unverified": true
     },
-    "Set_Ese": {
-      "scpi": "*ESE <value>",
-      "description": "Set ese",
+    "Display_Text": {
+      "scpi": ":DISPlay:TEXT <string>",
+      "scpiFast": ":DISP:TEXT <string>",
+      "description": "Display Text",
       "arg": {
-        "kind": "integer",
-        "limits": "query"
+        "kind": "string"
       },
+      "group": "System Utilities",
       "args": [
-        "value"
+        "string"
       ],
-      "subsystem": "Common",
-      "unverified": true
+      "subsystem": "SYSTem"
     },
     "Set_Frequency_Aperture": {
       "scpi": "FREQuency:APERture <value>",
@@ -306,22 +346,6 @@
       ],
       "subsystem": "SENSe"
     },
-    "Set_Integration_NPLC": {
-      "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>",
-      "scpiFast": ":SENS:VOLT:DC:NPLC <nplc>",
-      "description": "Set Integration NPLC",
-      "arg": {
-        "kind": "integer",
-        "unit": "V",
-        "domain": "volt",
-        "limits": "query"
-      },
-      "group": "Measurement Parameters",
-      "args": [
-        "nplc"
-      ],
-      "subsystem": "SENSe"
-    },
     "Set_Limit_Lower": {
       "scpi": ":LIMit:LOWer <value>",
       "scpiFast": ":LIM:LOW <value>",
@@ -347,40 +371,6 @@
       ],
       "subsystem": "LIM",
       "unverified": true
-    },
-    "Set_Math_Function": {
-      "scpi": ":CALCulate:FUNCtion <function>",
-      "scpiFast": ":CALC:FUNC <function>",
-      "description": "Set Math Function",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "NULL",
-          "DB",
-          "DBM",
-          "AVER",
-          "LIM"
-        ]
-      },
-      "group": "Math and Limits Setup",
-      "args": [
-        "function"
-      ],
-      "subsystem": "CALCulate"
-    },
-    "Set_Null_Offset": {
-      "scpi": ":CALCulate:NULL:OFFSet <value>",
-      "scpiFast": ":CALC:NULL:OFFS <value>",
-      "description": "Set Null Offset",
-      "arg": {
-        "kind": "numeric",
-        "limits": "query"
-      },
-      "group": "Math and Limits Setup",
-      "args": [
-        "value"
-      ],
-      "subsystem": "CALCulate"
     },
     "Set_Null_Offset_Alt": {
       "scpi": ":NULL:OFFSet <value>",
@@ -425,22 +415,6 @@
         "value"
       ],
       "subsystem": "PER",
-      "unverified": true
-    },
-    "Set_Psc": {
-      "scpi": "*PSC <value>",
-      "description": "Set psc",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "0",
-          "1"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
       "unverified": true
     },
     "Set_Questionable_Enable": {
@@ -544,18 +518,70 @@
       "description": "Authored from a panel literal in DMM.json; never executed before.",
       "unverified": true
     },
-    "Set_Sre": {
-      "scpi": "*SRE <value>",
-      "description": "Set sre",
+    "Set_AC_Bandwidth": {
+      "scpi": ":SENSe:VOLTage:AC:BANDwidth <filter>",
+      "scpiFast": ":SENS:VOLT:AC:BAND <filter>",
+      "description": "Set AC Bandwidth",
       "arg": {
-        "kind": "integer",
+        "kind": "numeric",
+        "unit": "V",
+        "domain": "volt",
         "limits": "query"
       },
+      "group": "Measurement Parameters",
       "args": [
-        "value"
+        "filter"
       ],
-      "subsystem": "Common",
-      "unverified": true
+      "subsystem": "SENSe"
+    },
+    "Set_Integration_NPLC": {
+      "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>",
+      "scpiFast": ":SENS:VOLT:DC:NPLC <nplc>",
+      "description": "Set Integration NPLC",
+      "arg": {
+        "kind": "integer",
+        "unit": "V",
+        "domain": "volt",
+        "limits": "query"
+      },
+      "group": "Measurement Parameters",
+      "args": [
+        "nplc"
+      ],
+      "subsystem": "SENSe"
+    },
+    "Set_DCV_Range": {
+      "scpi": ":SENSe:VOLTage:DC:RANGe <range>",
+      "scpiFast": ":SENS:VOLT:DC:RANG <range>",
+      "description": "Set DCV Range",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V",
+        "domain": "volt",
+        "limits": "query"
+      },
+      "group": "Measurement Parameters",
+      "args": [
+        "range"
+      ],
+      "subsystem": "SENSe"
+    },
+    "Set_Autorange": {
+      "scpi": ":SENSe:VOLTage:DC:RANGe:AUTO <state>",
+      "scpiFast": ":SENS:VOLT:DC:RANG:AUTO <state>",
+      "description": "Set Autorange",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "group": "SCOPED TO DC VOLTS on purpose: the 34401A has no function-agnostic autorange command, so :SENSe:VOLTage:DC:RANGe:AUTO is what a panel AUTO RANGE control can address. Selecting another function turns its own autorange on by default, which is why this is adequate for a bench panel and would not be for a test sequence.",
+      "args": [
+        "state"
+      ],
+      "subsystem": "Panel"
     },
     "Set_State_Questionable_Enable": {
       "scpi": "STATus:QUEStionable:ENABle <value>",
@@ -650,68 +676,39 @@
       ],
       "subsystem": "VOLT",
       "unverified": true
-    },
-    "Set_dB_Ref": {
-      "scpi": ":CALCulate:DB:REFerence <value>",
-      "scpiFast": ":CALC:DB:REF <value>",
-      "description": "Set dB Ref",
-      "arg": {
-        "kind": "enum"
-      },
-      "group": "Math and Limits Setup",
-      "args": [
-        "value"
-      ],
-      "subsystem": "CALCulate"
-    },
-    "Set_dBm_Ref": {
-      "scpi": ":CALCulate:DBM:REFerence <value>",
-      "scpiFast": ":CALC:DBM:REF <value>",
-      "description": "Set dBm Ref",
-      "arg": {
-        "kind": "enum"
-      },
-      "group": "Math and Limits Setup",
-      "args": [
-        "value"
-      ],
-      "subsystem": "CALCulate"
     }
   },
   "do": {
+    "Clear_Status": {
+      "scpi": "*CLS",
+      "description": "Clear Status",
+      "group": "Common Commands",
+      "subsystem": "Common"
+    },
+    "Do_Opc": {
+      "scpi": "*OPC",
+      "description": "Do opc",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "Reset Device",
+      "group": "Common Commands",
+      "subsystem": "Common"
+    },
+    "Do_Trg": {
+      "scpi": "*TRG",
+      "description": "Do trg",
+      "subsystem": "Common",
+      "unverified": true
+    },
     "Abort": {
       "scpi": ":ABORt",
       "scpiFast": ":ABOR",
       "description": "Abort",
       "group": "Trigger System",
       "subsystem": "TRIGger"
-    },
-    "Auto_Zero_OFF": {
-      "scpi": ":SENSe:ZERO:AUTO OFF",
-      "scpiFast": ":SENS:ZERO:AUTO OFF",
-      "description": "Auto Zero OFF",
-      "group": "Measurement Parameters",
-      "subsystem": "SENSe"
-    },
-    "Auto_Zero_ON": {
-      "scpi": ":SENSe:ZERO:AUTO ON",
-      "scpiFast": ":SENS:ZERO:AUTO ON",
-      "description": "Auto Zero ON",
-      "group": "Measurement Parameters",
-      "subsystem": "SENSe"
-    },
-    "Clear_Display": {
-      "scpi": ":DISPlay:TEXT:CLEar",
-      "scpiFast": ":DISP:TEXT:CLE",
-      "description": "Clear Display",
-      "group": "System Utilities",
-      "subsystem": "SYSTem"
-    },
-    "Clear_Status": {
-      "scpi": "*CLS",
-      "description": "Clear Status",
-      "group": "Common Commands",
-      "subsystem": "Common"
     },
     "Do_Back_Goto": {
       "scpi": "BACK:GOTO",
@@ -739,6 +736,47 @@
       "subsystem": "CONF",
       "unverified": true
     },
+    "Do_Configure_Voltage": {
+      "scpi": "CONF:VOLT",
+      "description": "Do configure voltage",
+      "subsystem": "CONF",
+      "unverified": true
+    },
+    "Select_Continuity": {
+      "scpi": ":CONFigure:CONTinuity",
+      "scpiFast": ":CONF:CONT",
+      "description": "Fixed 1 kOhm range, beeper on threshold — no range argument exists for this function",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
+    "Select_AC_Current": {
+      "scpi": ":CONFigure:CURRent:AC",
+      "scpiFast": ":CONF:CURR:AC",
+      "description": "Select AC Current",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
+    "Select_DC_Current": {
+      "scpi": ":CONFigure:CURRent:DC",
+      "scpiFast": ":CONF:CURR:DC",
+      "description": "Select DC Current",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
+    "Select_Diode": {
+      "scpi": ":CONFigure:DIODe",
+      "scpiFast": ":CONF:DIOD",
+      "description": "Fixed 1 mA / 1 V test, likewise argument-free",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
+    "Select_Resistance_4W": {
+      "scpi": ":CONFigure:FRESistance",
+      "scpiFast": ":CONF:FRES",
+      "description": "Select Resistance 4W",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
     "Do_Configure_Period": {
       "scpi": "CONFigure:PERiod",
       "scpiFast": "CONF:PER",
@@ -746,10 +784,30 @@
       "subsystem": "CONF",
       "unverified": true
     },
-    "Do_Configure_Voltage": {
-      "scpi": "CONF:VOLT",
-      "description": "Do configure voltage",
-      "subsystem": "CONF",
+    "Select_Resistance_2W": {
+      "scpi": ":CONFigure:RESistance",
+      "scpiFast": ":CONF:RES",
+      "description": "Select Resistance 2W",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
+    "Select_AC_Volts": {
+      "scpi": ":CONFigure:VOLTage:AC",
+      "scpiFast": ":CONF:VOLT:AC",
+      "description": "Select AC Volts",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
+    "Select_DC_Volts": {
+      "scpi": ":CONFigure:VOLTage:DC",
+      "scpiFast": ":CONF:VOLT:DC",
+      "description": "Select DC Volts",
+      "group": "One command per measurement function",
+      "subsystem": "Panel"
+    },
+    "Do_Data_Points?_All": {
+      "scpi": "DATA:POINts? ALL",
+      "description": "Authored from a panel literal in DMM.json; never executed before.",
       "unverified": true
     },
     "Do_Dcv_Dcv": {
@@ -758,6 +816,13 @@
       "subsystem": "DCV",
       "unverified": true
     },
+    "Clear_Display": {
+      "scpi": ":DISPlay:TEXT:CLEar",
+      "scpiFast": ":DISP:TEXT:CLE",
+      "description": "Clear Display",
+      "group": "System Utilities",
+      "subsystem": "SYSTem"
+    },
     "Do_Frequency_Voltage": {
       "scpi": "FREQuency:VOLTage",
       "scpiFast": "FREQ:VOLT",
@@ -765,11 +830,12 @@
       "subsystem": "FREQ",
       "unverified": true
     },
-    "Do_Opc": {
-      "scpi": "*OPC",
-      "description": "Do opc",
-      "subsystem": "Common",
-      "unverified": true
+    "Initiate": {
+      "scpi": ":INITiate",
+      "scpiFast": ":INIT",
+      "description": "Initiate",
+      "group": "Trigger System",
+      "subsystem": "TRIGger"
     },
     "Do_Period_Voltage": {
       "scpi": "PERiod:VOLTage",
@@ -791,6 +857,20 @@
       "description": "Using the CONFigure Command",
       "subsystem": "SENS",
       "unverified": true
+    },
+    "Auto_Zero_OFF": {
+      "scpi": ":SENSe:ZERO:AUTO OFF",
+      "scpiFast": ":SENS:ZERO:AUTO OFF",
+      "description": "Auto Zero OFF",
+      "group": "Measurement Parameters",
+      "subsystem": "SENSe"
+    },
+    "Auto_Zero_ON": {
+      "scpi": ":SENSe:ZERO:AUTO ON",
+      "scpiFast": ":SENS:ZERO:AUTO ON",
+      "description": "Auto Zero ON",
+      "group": "Measurement Parameters",
+      "subsystem": "SENSe"
     },
     "Do_State_Preset": {
       "scpi": "STATus:PRESet",
@@ -834,95 +914,58 @@
       "subsystem": "TEXT",
       "unverified": true
     },
-    "Do_Trg": {
-      "scpi": "*TRG",
-      "description": "Do trg",
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Do_Trigger_Source_Immediate": {
       "scpi": "TRIGger:SOURce:IMMediate",
       "scpiFast": "TRIG:SOUR:IMM",
       "description": "How to Use the Message Available Bit (MAV)",
       "subsystem": "TRIG",
       "unverified": true
-    },
-    "Initiate": {
-      "scpi": ":INITiate",
-      "scpiFast": ":INIT",
-      "description": "Initiate",
-      "group": "Trigger System",
-      "subsystem": "TRIGger"
-    },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "Reset Device",
-      "group": "Common Commands",
-      "subsystem": "Common"
-    },
-    "Select_AC_Current": {
-      "scpi": ":CONFigure:CURRent:AC",
-      "scpiFast": ":CONF:CURR:AC",
-      "description": "Select AC Current",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Select_AC_Volts": {
-      "scpi": ":CONFigure:VOLTage:AC",
-      "scpiFast": ":CONF:VOLT:AC",
-      "description": "Select AC Volts",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Select_Continuity": {
-      "scpi": ":CONFigure:CONTinuity",
-      "scpiFast": ":CONF:CONT",
-      "description": "Fixed 1 kOhm range, beeper on threshold — no range argument exists for this function",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Select_DC_Current": {
-      "scpi": ":CONFigure:CURRent:DC",
-      "scpiFast": ":CONF:CURR:DC",
-      "description": "Select DC Current",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Select_DC_Volts": {
-      "scpi": ":CONFigure:VOLTage:DC",
-      "scpiFast": ":CONF:VOLT:DC",
-      "description": "Select DC Volts",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Select_Diode": {
-      "scpi": ":CONFigure:DIODe",
-      "scpiFast": ":CONF:DIOD",
-      "description": "Fixed 1 mA / 1 V test, likewise argument-free",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Select_Resistance_2W": {
-      "scpi": ":CONFigure:RESistance",
-      "scpiFast": ":CONF:RES",
-      "description": "Select Resistance 2W",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Select_Resistance_4W": {
-      "scpi": ":CONFigure:FRESistance",
-      "scpiFast": ":CONF:FRES",
-      "description": "Select Resistance 4W",
-      "group": "One command per measurement function",
-      "subsystem": "Panel"
-    },
-    "Do_Data_Points?_All": {
-      "scpi": "DATA:POINts? ALL",
-      "description": "Authored from a panel literal in DMM.json; never executed before.",
-      "unverified": true
     }
   },
   "rig": {
+    "Setup_Limits": {
+      "scpi": ":CALCulate:LIMit:LOWer <lower>;:CALCulate:LIMit:UPPer <upper>",
+      "scpiFast": ":CALC:LIM:LOW <lower>;:CALC:LIM:UPP <upper>",
+      "description": "Set both comparator limits in one transaction",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "Math and Limits Setup",
+      "args": [
+        "lower",
+        "upper"
+      ],
+      "subsystem": "CALCulate",
+      "unverified": true
+    },
+    "Config_Resistance_4Wire": {
+      "scpi": ":CONFigure:FRESistance <range>,<resolution>",
+      "scpiFast": ":CONF:FRES <range>,<resolution>",
+      "description": "Config Resistance 4Wire",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "Preset meter for specific function",
+      "args": [
+        "range",
+        "resolution"
+      ],
+      "subsystem": "CONFigure"
+    },
+    "Config_Temperature": {
+      "scpi": ":CONFigure:TEMPerature <probe_type>,<sensor_type>",
+      "scpiFast": ":CONF:TEMP <probe_type>,<sensor_type>",
+      "description": "Config Temperature",
+      "arg": {
+        "kind": "unknown"
+      },
+      "group": "Preset meter for specific function",
+      "args": [
+        "probe_type",
+        "sensor_type"
+      ],
+      "subsystem": "CONFigure"
+    },
     "Config_AC_Volts": {
       "scpi": ":CONFigure:VOLTage:AC <range>,<resolution>",
       "scpiFast": ":CONF:VOLT:AC <range>,<resolution>",
@@ -956,61 +999,88 @@
         "resolution"
       ],
       "subsystem": "CONFigure"
-    },
-    "Config_Resistance_4Wire": {
-      "scpi": ":CONFigure:FRESistance <range>,<resolution>",
-      "scpiFast": ":CONF:FRES <range>,<resolution>",
-      "description": "Config Resistance 4Wire",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "Preset meter for specific function",
-      "args": [
-        "range",
-        "resolution"
-      ],
-      "subsystem": "CONFigure"
-    },
-    "Config_Temperature": {
-      "scpi": ":CONFigure:TEMPerature <probe_type>,<sensor_type>",
-      "scpiFast": ":CONF:TEMP <probe_type>,<sensor_type>",
-      "description": "Config Temperature",
-      "arg": {
-        "kind": "unknown"
-      },
-      "group": "Preset meter for specific function",
-      "args": [
-        "probe_type",
-        "sensor_type"
-      ],
-      "subsystem": "CONFigure"
-    },
-    "Setup_Limits": {
-      "scpi": ":CALCulate:LIMit:LOWer <lower>;:CALCulate:LIMit:UPPer <upper>",
-      "scpiFast": ":CALC:LIM:LOW <lower>;:CALC:LIM:UPP <upper>",
-      "description": "Set both comparator limits in one transaction",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "Math and Limits Setup",
-      "args": [
-        "lower",
-        "upper"
-      ],
-      "subsystem": "CALCulate",
-      "unverified": true
     }
   },
   "nab": {
-    "Fetch_Existing": {
-      "scpi": ":FETCh?",
-      "scpiFast": ":FETC?",
-      "description": "Fetch Existing",
+    "Get_Ese": {
+      "scpi": "*ESE?",
+      "description": "Get ese",
       "returns": {
-        "count": 1
+        "count": 1,
+        "type": "NR1"
       },
-      "group": "Fetch data after INITiate",
-      "subsystem": "MEASure"
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Esr": {
+      "scpi": "*ESR?",
+      "description": "Get esr",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "description": "Read IDN",
+      "returns": {
+        "count": 1,
+        "type": "AARD"
+      },
+      "group": "Common Commands",
+      "subsystem": "Common"
+    },
+    "Get_Opc": {
+      "scpi": "*OPC?",
+      "description": "Get opc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Psc": {
+      "scpi": "*PSC?",
+      "description": "Get psc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Sre": {
+      "scpi": "*SRE?",
+      "description": "Get sre",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Stb": {
+      "scpi": "*STB?",
+      "description": "Get stb",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Tst": {
+      "scpi": "*TST?",
+      "description": "Get tst",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
     },
     "Get_Average_Average": {
       "scpi": ":AVERage:AVERage?",
@@ -1045,6 +1115,17 @@
       "subsystem": "BEEP",
       "unverified": true
     },
+    "Query_Average": {
+      "scpi": ":CALCulate:AVERage:AVERage?",
+      "scpiFast": ":CALC:AVER:AVER?",
+      "description": "Query Average",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "group": "Statistics and Calc Results",
+      "subsystem": "CALCulate"
+    },
     "Get_Calculate_Average_Count": {
       "scpi": "CALCulate:AVERage:COUNt?",
       "scpiFast": "CALC:AVER:COUN?",
@@ -1054,6 +1135,50 @@
         "type": "NR1"
       },
       "subsystem": "CALC",
+      "unverified": true
+    },
+    "Query_Max": {
+      "scpi": ":CALCulate:AVERage:MAXimum?",
+      "scpiFast": ":CALC:AVER:MAX?",
+      "description": "Query Max",
+      "returns": {
+        "count": 1
+      },
+      "group": "Statistics and Calc Results",
+      "subsystem": "CALCulate"
+    },
+    "Query_Min": {
+      "scpi": ":CALCulate:AVERage:MINimum?",
+      "scpiFast": ":CALC:AVER:MIN?",
+      "description": "Query Min",
+      "returns": {
+        "count": 1
+      },
+      "group": "Statistics and Calc Results",
+      "subsystem": "CALCulate"
+    },
+    "Get_Math_Stats": {
+      "scpi": ":CALCulate:AVERage:MINimum?;:CALCulate:AVERage:MAXimum?;:CALCulate:AVERage:AVERage?",
+      "scpiFast": ":CALC:AVER:MIN?;:CALC:AVER:MAX?;:CALC:AVER:AVER?",
+      "description": "Read min, max and average in one transaction",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "minimum"
+          },
+          {
+            "name": "maximum"
+          },
+          {
+            "name": "average",
+            "type": "NR1"
+          }
+        ]
+      },
+      "group": "Statistics and Calc Results",
+      "subsystem": "CALCulate",
       "unverified": true
     },
     "Get_Calculate_Db_Reference": {
@@ -1214,25 +1339,15 @@
       "subsystem": "DISP",
       "unverified": true
     },
-    "Get_Ese": {
-      "scpi": "*ESE?",
-      "description": "Get ese",
+    "Fetch_Existing": {
+      "scpi": ":FETCh?",
+      "scpiFast": ":FETC?",
+      "description": "Fetch Existing",
       "returns": {
-        "count": 1,
-        "type": "NR1"
+        "count": 1
       },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Esr": {
-      "scpi": "*ESR?",
-      "description": "Get esr",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
+      "group": "Fetch data after INITiate",
+      "subsystem": "MEASure"
     },
     "Get_Frequency_Aperture": {
       "scpi": "FREQuency:APERture?",
@@ -1299,6 +1414,28 @@
       "group": "One command per measurement function",
       "subsystem": "Panel"
     },
+    "meter_reading": {
+      "scpi": "FUNCtion?;:READ?",
+      "scpiFast": "FUNC?;:READ?",
+      "description": "What the meter is measuring, and the measurement, together.",
+      "group": "Fetch data after INITiate",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 2,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "function",
+            "type": "CRD"
+          },
+          {
+            "name": "value",
+            "type": "NR3"
+          }
+        ]
+      },
+      "notes": "One round trip, because the two facts have to agree: asking the function and the value separately lets the function change between them, and a number labelled with the previous function is worse than an unlabelled one. The chained query restarts at the root — see Measure_All on the 6060B for what happens when it does not. Verified on the 34401A at 44.44.44.111 gpib7,4: answers \"VOLT\";+1.00199800E-03 with a clean error queue. Note the reply is the SHORT form — DC volts answers \"VOLT\", not \"VOLT:DC\" — while FUNCtion accepts either when setting."
+    },
     "Get_Limit_Lower": {
       "scpi": ":LIMit:LOWer?",
       "scpiFast": ":LIM:LOW?",
@@ -1319,30 +1456,6 @@
       "subsystem": "LIM",
       "unverified": true
     },
-    "Get_Math_Stats": {
-      "scpi": ":CALCulate:AVERage:MINimum?;:CALCulate:AVERage:MAXimum?;:CALCulate:AVERage:AVERage?",
-      "scpiFast": ":CALC:AVER:MIN?;:CALC:AVER:MAX?;:CALC:AVER:AVER?",
-      "description": "Read min, max and average in one transaction",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "minimum"
-          },
-          {
-            "name": "maximum"
-          },
-          {
-            "name": "average",
-            "type": "NR1"
-          }
-        ]
-      },
-      "group": "Statistics and Calc Results",
-      "subsystem": "CALCulate",
-      "unverified": true
-    },
     "Get_Measure_Continuity": {
       "scpi": "MEASure:CONTinuity?",
       "scpiFast": "MEAS:CONT?",
@@ -1354,6 +1467,24 @@
       "subsystem": "MEAS",
       "unverified": true
     },
+    "Measure_DC_Current": {
+      "scpi": ":MEASure:CURRent:DC? <range>,<resolution>",
+      "scpiFast": ":MEAS:CURR:DC? <range>,<resolution>",
+      "description": "Measure DC Current",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "group": "Configure and Measure immediately",
+      "args": [
+        "range",
+        "resolution"
+      ],
+      "subsystem": "MEASure",
+      "arg": {
+        "kind": "numeric"
+      }
+    },
     "Get_Measure_Diode": {
       "scpi": "MEASure:DIODe?",
       "scpiFast": "MEAS:DIOD?",
@@ -1363,6 +1494,23 @@
       },
       "subsystem": "MEAS",
       "unverified": true
+    },
+    "Measure_Frequency": {
+      "scpi": ":MEASure:FREQuency? <range>,<resolution>",
+      "scpiFast": ":MEAS:FREQ? <range>,<resolution>",
+      "description": "Measure Frequency",
+      "returns": {
+        "count": 1
+      },
+      "group": "Configure and Measure immediately",
+      "args": [
+        "range",
+        "resolution"
+      ],
+      "subsystem": "MEASure",
+      "arg": {
+        "kind": "numeric"
+      }
     },
     "Get_Measure_Fresistance": {
       "scpi": "MEASure:FRESistance?",
@@ -1386,6 +1534,95 @@
       "subsystem": "MEAS",
       "unverified": true
     },
+    "MEASure_Resistance": {
+      "scpi": "MEASure:RESistance?",
+      "scpiFast": "MEAS:RES?",
+      "description": "MEASure Resistance",
+      "returns": {
+        "count": 1
+      },
+      "group": "MEASure Queries",
+      "subsystem": "MEASure"
+    },
+    "Measure_Resistance_2Wire": {
+      "scpi": ":MEASure:RESistance? <range>,<resolution>",
+      "scpiFast": ":MEAS:RES? <range>,<resolution>",
+      "description": "Measure Resistance (2W)",
+      "returns": {
+        "count": 1
+      },
+      "group": "Configure and Measure immediately",
+      "args": [
+        "range",
+        "resolution"
+      ],
+      "subsystem": "MEASure",
+      "arg": {
+        "kind": "numeric"
+      }
+    },
+    "MEASure_Voltage_AC": {
+      "scpi": "MEASure:VOLTage:AC?",
+      "scpiFast": "MEAS:VOLT:AC?",
+      "description": "MEASure Voltage AC",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      },
+      "group": "MEASure Queries",
+      "subsystem": "MEASure"
+    },
+    "Measure_AC_Voltage": {
+      "scpi": ":MEASure:VOLTage:AC? <range>,<resolution>",
+      "scpiFast": ":MEAS:VOLT:AC? <range>,<resolution>",
+      "description": "Measure AC Voltage",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      },
+      "group": "Configure and Measure immediately",
+      "args": [
+        "range",
+        "resolution"
+      ],
+      "subsystem": "MEASure",
+      "arg": {
+        "kind": "numeric"
+      }
+    },
+    "MEASure_Voltage_DC": {
+      "scpi": "MEASure:VOLTage:DC?",
+      "scpiFast": "MEAS:VOLT:DC?",
+      "description": "MEASure Voltage DC",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      },
+      "group": "MEASure Queries",
+      "subsystem": "MEASure"
+    },
+    "Measure_DC_Voltage": {
+      "scpi": ":MEASure:VOLTage:DC? <range>,<resolution>",
+      "scpiFast": ":MEAS:VOLT:DC? <range>,<resolution>",
+      "description": "Measure DC Voltage",
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      },
+      "group": "Configure and Measure immediately",
+      "args": [
+        "range",
+        "resolution"
+      ],
+      "subsystem": "MEASure",
+      "arg": {
+        "kind": "numeric"
+      }
+    },
     "Get_Null_Offset": {
       "scpi": ":NULL:OFFSet?",
       "scpiFast": ":NULL:OFFS?",
@@ -1395,16 +1632,6 @@
         "type": "NR3"
       },
       "subsystem": "NULL",
-      "unverified": true
-    },
-    "Get_Opc": {
-      "scpi": "*OPC?",
-      "description": "Get opc",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_Period_Aperture": {
@@ -1429,16 +1656,6 @@
         "unit": "V"
       },
       "subsystem": "PER",
-      "unverified": true
-    },
-    "Get_Psc": {
-      "scpi": "*PSC?",
-      "description": "Get psc",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_Questionable_Enable": {
@@ -1467,6 +1684,15 @@
       "scpi": "READ:ALL?",
       "description": "Authored from a panel literal in DMM_N.json; never executed before.",
       "unverified": true
+    },
+    "Read_Next": {
+      "scpi": ":READ?",
+      "description": "Read Next",
+      "returns": {
+        "count": 1
+      },
+      "group": "Fetch data after INITiate",
+      "subsystem": "MEASure"
     },
     "Get_Resolution_Nplcycles": {
       "scpi": "RESistance:NPLCycles?",
@@ -1532,16 +1758,6 @@
       "subsystem": "SEC",
       "unverified": true
     },
-    "Get_Sre": {
-      "scpi": "*SRE?",
-      "description": "Get sre",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_State_Questionable_Enable": {
       "scpi": "STATus:QUEStionable:ENABle?",
       "scpiFast": "STAT:QUES:ENAB?",
@@ -1564,16 +1780,6 @@
       "subsystem": "STAT",
       "unverified": true
     },
-    "Get_Stb": {
-      "scpi": "*STB?",
-      "description": "Get stb",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_System_Beeper_State": {
       "scpi": "SYSTem:BEEPer:STATe?",
       "scpiFast": "SYST:BEEP:STAT?",
@@ -1584,6 +1790,17 @@
       },
       "subsystem": "SYST",
       "unverified": true
+    },
+    "Read_Error": {
+      "scpi": ":SYSTem:ERRor?",
+      "scpiFast": ":SYST:ERR?",
+      "description": "Read Error",
+      "returns": {
+        "count": 1,
+        "type": "NR2"
+      },
+      "group": "System Utilities",
+      "subsystem": "SYSTem"
     },
     "Get_System_Version": {
       "scpi": "SYSTem:VERSion?",
@@ -1629,16 +1846,6 @@
       "subsystem": "TRIG",
       "unverified": true
     },
-    "Get_Tst": {
-      "scpi": "*TST?",
-      "description": "Get tst",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Voltage_Range": {
       "scpi": "VOLTage:RANGe?",
       "scpiFast": "VOLT:RANG?",
@@ -1650,213 +1857,6 @@
       },
       "subsystem": "VOLT",
       "unverified": true
-    },
-    "MEASure_Resistance": {
-      "scpi": "MEASure:RESistance?",
-      "scpiFast": "MEAS:RES?",
-      "description": "MEASure Resistance",
-      "returns": {
-        "count": 1
-      },
-      "group": "MEASure Queries",
-      "subsystem": "MEASure"
-    },
-    "MEASure_Voltage_AC": {
-      "scpi": "MEASure:VOLTage:AC?",
-      "scpiFast": "MEAS:VOLT:AC?",
-      "description": "MEASure Voltage AC",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "group": "MEASure Queries",
-      "subsystem": "MEASure"
-    },
-    "MEASure_Voltage_DC": {
-      "scpi": "MEASure:VOLTage:DC?",
-      "scpiFast": "MEAS:VOLT:DC?",
-      "description": "MEASure Voltage DC",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "group": "MEASure Queries",
-      "subsystem": "MEASure"
-    },
-    "Measure_AC_Voltage": {
-      "scpi": ":MEASure:VOLTage:AC? <range>,<resolution>",
-      "scpiFast": ":MEAS:VOLT:AC? <range>,<resolution>",
-      "description": "Measure AC Voltage",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "group": "Configure and Measure immediately",
-      "args": [
-        "range",
-        "resolution"
-      ],
-      "subsystem": "MEASure",
-      "arg": {
-        "kind": "numeric"
-      }
-    },
-    "Measure_DC_Current": {
-      "scpi": ":MEASure:CURRent:DC? <range>,<resolution>",
-      "scpiFast": ":MEAS:CURR:DC? <range>,<resolution>",
-      "description": "Measure DC Current",
-      "returns": {
-        "count": 1,
-        "type": "NR3"
-      },
-      "group": "Configure and Measure immediately",
-      "args": [
-        "range",
-        "resolution"
-      ],
-      "subsystem": "MEASure",
-      "arg": {
-        "kind": "numeric"
-      }
-    },
-    "Measure_DC_Voltage": {
-      "scpi": ":MEASure:VOLTage:DC? <range>,<resolution>",
-      "scpiFast": ":MEAS:VOLT:DC? <range>,<resolution>",
-      "description": "Measure DC Voltage",
-      "returns": {
-        "count": 1,
-        "type": "NR3",
-        "unit": "V"
-      },
-      "group": "Configure and Measure immediately",
-      "args": [
-        "range",
-        "resolution"
-      ],
-      "subsystem": "MEASure",
-      "arg": {
-        "kind": "numeric"
-      }
-    },
-    "Measure_Frequency": {
-      "scpi": ":MEASure:FREQuency? <range>,<resolution>",
-      "scpiFast": ":MEAS:FREQ? <range>,<resolution>",
-      "description": "Measure Frequency",
-      "returns": {
-        "count": 1
-      },
-      "group": "Configure and Measure immediately",
-      "args": [
-        "range",
-        "resolution"
-      ],
-      "subsystem": "MEASure",
-      "arg": {
-        "kind": "numeric"
-      }
-    },
-    "Measure_Resistance_2Wire": {
-      "scpi": ":MEASure:RESistance? <range>,<resolution>",
-      "scpiFast": ":MEAS:RES? <range>,<resolution>",
-      "description": "Measure Resistance (2W)",
-      "returns": {
-        "count": 1
-      },
-      "group": "Configure and Measure immediately",
-      "args": [
-        "range",
-        "resolution"
-      ],
-      "subsystem": "MEASure",
-      "arg": {
-        "kind": "numeric"
-      }
-    },
-    "Query_Average": {
-      "scpi": ":CALCulate:AVERage:AVERage?",
-      "scpiFast": ":CALC:AVER:AVER?",
-      "description": "Query Average",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "group": "Statistics and Calc Results",
-      "subsystem": "CALCulate"
-    },
-    "Query_Max": {
-      "scpi": ":CALCulate:AVERage:MAXimum?",
-      "scpiFast": ":CALC:AVER:MAX?",
-      "description": "Query Max",
-      "returns": {
-        "count": 1
-      },
-      "group": "Statistics and Calc Results",
-      "subsystem": "CALCulate"
-    },
-    "Query_Min": {
-      "scpi": ":CALCulate:AVERage:MINimum?",
-      "scpiFast": ":CALC:AVER:MIN?",
-      "description": "Query Min",
-      "returns": {
-        "count": 1
-      },
-      "group": "Statistics and Calc Results",
-      "subsystem": "CALCulate"
-    },
-    "Read_Error": {
-      "scpi": ":SYSTem:ERRor?",
-      "scpiFast": ":SYST:ERR?",
-      "description": "Read Error",
-      "returns": {
-        "count": 1,
-        "type": "NR2"
-      },
-      "group": "System Utilities",
-      "subsystem": "SYSTem"
-    },
-    "Read_IDN": {
-      "scpi": "*IDN?",
-      "description": "Read IDN",
-      "returns": {
-        "count": 1,
-        "type": "AARD"
-      },
-      "group": "Common Commands",
-      "subsystem": "Common"
-    },
-    "Read_Next": {
-      "scpi": ":READ?",
-      "description": "Read Next",
-      "returns": {
-        "count": 1
-      },
-      "group": "Fetch data after INITiate",
-      "subsystem": "MEASure"
-    },
-    "meter_reading": {
-      "scpi": "FUNCtion?;:READ?",
-      "scpiFast": "FUNC?;:READ?",
-      "description": "What the meter is measuring, and the measurement, together.",
-      "group": "Fetch data after INITiate",
-      "subsystem": "MEASure",
-      "returns": {
-        "count": 2,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "function",
-            "type": "CRD"
-          },
-          {
-            "name": "value",
-            "type": "NR3"
-          }
-        ]
-      },
-      "notes": "One round trip, because the two facts have to agree: asking the function and the value separately lets the function change between them, and a number labelled with the previous function is worse than an unlabelled one. The chained query restarts at the root — see Measure_All on the 6060B for what happens when it does not. Verified on the 34401A at 44.44.44.111 gpib7,4: answers \"VOLT\";+1.00199800E-03 with a clean error queue. Note the reply is the SHORT form — DC volts answers \"VOLT\", not \"VOLT:DC\" — while FUNCtion accepts either when setting."
     }
   }
 }

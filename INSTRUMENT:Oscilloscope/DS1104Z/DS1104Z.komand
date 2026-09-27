@@ -2,6 +2,59 @@
   "model": "DS1104Z",
   "family": "Oscilloscope",
   "set": {
+    "Set_Ese": {
+      "scpi": "*ESE <value>",
+      "description": "Set ese",
+      "arg": {
+        "kind": "integer"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Sre": {
+      "scpi": "*SRE <value>",
+      "description": "Set sre",
+      "arg": {
+        "kind": "integer"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Set_Acquire_Averages": {
+      "scpi": ":ACQuire:AVERages <value>",
+      "scpiFast": ":ACQ:AVER <value>",
+      "description": "Set or query the number of averages under the average acquisition mode",
+      "arg": {
+        "kind": "integer",
+        "min": 1.0,
+        "max": 10.0,
+        "default": "2"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "ACQ",
+      "unverified": true
+    },
+    "Set_Acquire_Mdepth": {
+      "scpi": ":ACQuire:MDEPth <value>",
+      "scpiFast": ":ACQ:MDEP <value>",
+      "description": "Set or query the memory depth of the oscilloscope (namely the number of waveform points that can be stored in a single trigger sample)",
+      "arg": {
+        "kind": "unknown"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "ACQ",
+      "unverified": true
+    },
     "CH1_BWLimit": {
       "scpi": ":CHANnel1:BWLimit <limit>",
       "scpiFast": ":CHAN1:BWL <limit>",
@@ -37,6 +90,23 @@
         "coupling"
       ],
       "subsystem": "Channel_1"
+    },
+    "Set_Channel_Invert": {
+      "scpi": ":CHANnel1:INVert <value>",
+      "scpiFast": ":CHAN1:INV <value>",
+      "description": "Set channel invert",
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "CHAN",
+      "unverified": true
     },
     "CH1_Offset": {
       "scpi": ":CHANnel1:OFFSet <offset>",
@@ -78,6 +148,22 @@
       ],
       "subsystem": "Channel_1"
     },
+    "Set_Channel_Range": {
+      "scpi": ":CHANnel1:RANGe <value>",
+      "scpiFast": ":CHAN1:RANG <value>",
+      "description": "Set channel range",
+      "arg": {
+        "kind": "numeric",
+        "min": 0.008,
+        "max": 80.0,
+        "unit": "V"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "CHAN",
+      "unverified": true
+    },
     "CH1_Scale": {
       "scpi": ":CHANnel1:SCALe <scale>",
       "scpiFast": ":CHAN1:SCAL <scale>",
@@ -94,6 +180,40 @@
         "scale"
       ],
       "subsystem": "Channel_1"
+    },
+    "Set_Channel_Tcalibrate": {
+      "scpi": ":CHANnel1:TCAL <value>",
+      "scpiFast": ":CHAN1:TCAL <value>",
+      "description": "Set channel tcalibrate",
+      "arg": {
+        "kind": "numeric",
+        "min": -1.0000000000000001e-07,
+        "max": 1.0000000000000001e-07,
+        "unit": "s"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "CHAN",
+      "unverified": true
+    },
+    "Set_Channel_Vernier": {
+      "scpi": ":CHANnel1:VERNier <value>",
+      "scpiFast": ":CHAN1:VERN <value>",
+      "description": "Set channel vernier",
+      "arg": {
+        "kind": "bool",
+        "default": "{0|OFF}}",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "CHAN",
+      "unverified": true
     },
     "CH2_BWLimit": {
       "scpi": ":CHANnel2:BWLimit <limit>",
@@ -374,35 +494,6 @@
       ],
       "subsystem": "Channel_4"
     },
-    "Set_Acquire_Averages": {
-      "scpi": ":ACQuire:AVERages <value>",
-      "scpiFast": ":ACQ:AVER <value>",
-      "description": "Set or query the number of averages under the average acquisition mode",
-      "arg": {
-        "kind": "integer",
-        "min": 1.0,
-        "max": 10.0,
-        "default": "2"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "ACQ",
-      "unverified": true
-    },
-    "Set_Acquire_Mdepth": {
-      "scpi": ":ACQuire:MDEPth <value>",
-      "scpiFast": ":ACQ:MDEP <value>",
-      "description": "Set or query the memory depth of the oscilloscope (namely the number of waveform points that can be stored in a single trigger sample)",
-      "arg": {
-        "kind": "unknown"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "ACQ",
-      "unverified": true
-    },
     "Set_Bandwidth_Limit": {
       "scpi": ":CHANnel<n>:BWLimit <limit>",
       "scpiFast": ":CHAN<n>:BWL <limit>",
@@ -421,22 +512,41 @@
       ],
       "subsystem": "CHANnel"
     },
-    "Set_Channel_Invert": {
-      "scpi": ":CHANnel1:INVert <value>",
-      "scpiFast": ":CHAN1:INV <value>",
-      "description": "Set channel invert",
+    "Set_Coupling": {
+      "scpi": ":CHANnel<n>:COUPling <coupling>",
+      "scpiFast": ":CHAN<n>:COUP <coupling>",
+      "description": "Set Coupling",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "AC",
+          "DC",
+          "GND"
+        ]
+      },
+      "group": "Channel Settings",
+      "args": [
+        "coupling"
+      ],
+      "subsystem": "CHANnel"
+    },
+    "Set_Display": {
+      "scpi": ":CHANnel<n>:DISPlay <state>",
+      "scpiFast": ":CHAN<n>:DISP <state>",
+      "description": "Set Display",
       "arg": {
         "kind": "bool",
+        "default": "{0|OFF}}",
         "values": [
           "OFF",
           "ON"
         ]
       },
+      "group": "Channel Settings",
       "args": [
-        "value"
+        "state"
       ],
-      "subsystem": "CHAN",
-      "unverified": true
+      "subsystem": "CHANnel"
     },
     "Set_Channel_Offset": {
       "scpi": ":CHANnel<n>:OFFSet <offset>",
@@ -452,21 +562,31 @@
       ],
       "subsystem": "CHANnel"
     },
-    "Set_Channel_Range": {
-      "scpi": ":CHANnel1:RANGe <value>",
-      "scpiFast": ":CHAN1:RANG <value>",
-      "description": "Set channel range",
+    "Set_Probe": {
+      "scpi": ":CHANnel<n>:PROBe <atten>",
+      "scpiFast": ":CHAN<n>:PROB <atten>",
+      "description": "Set Probe",
       "arg": {
-        "kind": "numeric",
-        "min": 0.008,
-        "max": 80.0,
-        "unit": "V"
+        "kind": "enum",
+        "values": [
+          "1",
+          "2",
+          "5",
+          "10",
+          "20",
+          "50",
+          "100",
+          "200",
+          "500",
+          "1000"
+        ],
+        "default": "10"
       },
+      "group": "Channel Settings",
       "args": [
-        "value"
+        "atten"
       ],
-      "subsystem": "CHAN",
-      "unverified": true
+      "subsystem": "CHANnel"
     },
     "Set_Channel_Scale": {
       "scpi": ":CHANnel<n>:SCALe <scale>",
@@ -485,39 +605,24 @@
       ],
       "subsystem": "CHANnel"
     },
-    "Set_Channel_Tcalibrate": {
-      "scpi": ":CHANnel1:TCAL <value>",
-      "scpiFast": ":CHAN1:TCAL <value>",
-      "description": "Set channel tcalibrate",
+    "Set_Units": {
+      "scpi": ":CHANnel<n>:UNITs <unit>",
+      "scpiFast": ":CHAN<n>:UNIT <unit>",
+      "description": "Set Units",
       "arg": {
-        "kind": "numeric",
-        "min": -1.0000000000000001e-07,
-        "max": 1.0000000000000001e-07,
-        "unit": "s"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "CHAN",
-      "unverified": true
-    },
-    "Set_Channel_Vernier": {
-      "scpi": ":CHANnel1:VERNier <value>",
-      "scpiFast": ":CHAN1:VERN <value>",
-      "description": "Set channel vernier",
-      "arg": {
-        "kind": "bool",
-        "default": "{0|OFF}}",
+        "kind": "enum",
         "values": [
-          "OFF",
-          "ON"
+          "VOLT",
+          "WATT",
+          "AMP",
+          "UNKN"
         ]
       },
+      "group": "Channel Settings",
       "args": [
-        "value"
+        "unit"
       ],
-      "subsystem": "CHAN",
-      "unverified": true
+      "subsystem": "CHANnel"
     },
     "Set_Config_Endian": {
       "scpi": ":CONFig:ENDian <value>",
@@ -583,24 +688,6 @@
       ],
       "subsystem": "CONF",
       "unverified": true
-    },
-    "Set_Coupling": {
-      "scpi": ":CHANnel<n>:COUPling <coupling>",
-      "scpiFast": ":CHAN<n>:COUP <coupling>",
-      "description": "Set Coupling",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "AC",
-          "DC",
-          "GND"
-        ]
-      },
-      "group": "Channel Settings",
-      "args": [
-        "coupling"
-      ],
-      "subsystem": "CHANnel"
     },
     "Set_Cursor_Manual_Ax": {
       "scpi": ":CURSor:MANual:AX <value>",
@@ -1805,24 +1892,6 @@
       "subsystem": "DEC",
       "unverified": true
     },
-    "Set_Display": {
-      "scpi": ":CHANnel<n>:DISPlay <state>",
-      "scpiFast": ":CHAN<n>:DISP <state>",
-      "description": "Set Display",
-      "arg": {
-        "kind": "bool",
-        "default": "{0|OFF}}",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "group": "Channel Settings",
-      "args": [
-        "state"
-      ],
-      "subsystem": "CHANnel"
-    },
     "Set_Display_Gbrightness": {
       "scpi": ":DISPlay:GBRightness <value>",
       "scpiFast": ":DISP:GBR <value>",
@@ -1891,87 +1960,6 @@
         "value"
       ],
       "subsystem": "DISP",
-      "unverified": true
-    },
-    "Set_Edge_Level": {
-      "scpi": ":TRIGger:EDGe:LEVel <level>",
-      "scpiFast": ":TRIG:EDG:LEV <level>",
-      "description": "Set Edge Level",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "Edge Trigger Configuration",
-      "args": [
-        "level"
-      ],
-      "subsystem": "TRIGger"
-    },
-    "Set_Edge_Slope": {
-      "scpi": ":TRIGger:EDGe:SLOPe <slope>",
-      "scpiFast": ":TRIG:EDG:SLOP <slope>",
-      "description": "Set Edge Slope",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "POS",
-          "NEG",
-          "RFAL"
-        ],
-        "default": "POSitive"
-      },
-      "group": "Edge Trigger Configuration",
-      "args": [
-        "slope"
-      ],
-      "subsystem": "TRIGger"
-    },
-    "Set_Edge_Source": {
-      "scpi": ":TRIGger:EDGe:SOURce <source>",
-      "scpiFast": ":TRIG:EDG:SOUR <source>",
-      "description": "Set Edge Source",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "D0",
-          "D1",
-          "D2",
-          "D3",
-          "D4",
-          "D5",
-          "D6",
-          "D7",
-          "D8",
-          "D9",
-          "D10",
-          "D11",
-          "D12",
-          "D13",
-          "D14",
-          "D15",
-          "CHAN1",
-          "CHAN2",
-          "CHAN3",
-          "CHAN4",
-          "AC"
-        ],
-        "default": "CHANnel1"
-      },
-      "group": "Edge Trigger Configuration",
-      "args": [
-        "source"
-      ],
-      "subsystem": "TRIGger"
-    },
-    "Set_Ese": {
-      "scpi": "*ESE <value>",
-      "description": "Set ese",
-      "arg": {
-        "kind": "integer"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
       "unverified": true
     },
     "Set_Etable_Color": {
@@ -2403,6 +2391,21 @@
       "subsystem": "LA",
       "unverified": true
     },
+    "Set_La_Digital_Positive": {
+      "scpi": ":LA:DIGital1:POSition <value>",
+      "scpiFast": ":LA:DIG1:POS <value>",
+      "description": "Set la digital positive",
+      "arg": {
+        "kind": "integer",
+        "min": 0.0,
+        "max": 15.0
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "LA",
+      "unverified": true
+    },
     "Set_La_Digital_Display": {
       "scpi": ":LA:DIGital3:DISPlay <value>",
       "scpiFast": ":LA:DIG3:DISP <value>",
@@ -2414,21 +2417,6 @@
           "OFF",
           "ON"
         ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "LA",
-      "unverified": true
-    },
-    "Set_La_Digital_Positive": {
-      "scpi": ":LA:DIGital1:POSition <value>",
-      "scpiFast": ":LA:DIG1:POS <value>",
-      "description": "Set la digital positive",
-      "arg": {
-        "kind": "integer",
-        "min": 0.0,
-        "max": 15.0
       },
       "args": [
         "value"
@@ -3175,6 +3163,24 @@
       ],
       "subsystem": "MEASure"
     },
+    "Show_Statistics": {
+      "scpi": ":MEASure:STATistic:DISPlay <state>",
+      "scpiFast": ":MEAS:STAT:DISP <state>",
+      "description": "Show Statistics",
+      "arg": {
+        "kind": "bool",
+        "default": "{0|OFF}}",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      },
+      "group": "Measurement Settings",
+      "args": [
+        "state"
+      ],
+      "subsystem": "MEASure"
+    },
     "Set_Measure_Statistic_Item": {
       "scpi": ":MEASure:STATistic:ITEM <value>",
       "scpiFast": ":MEAS:STAT:ITEM <value>",
@@ -3545,32 +3551,6 @@
       "subsystem": "PHAS",
       "unverified": true
     },
-    "Set_Probe": {
-      "scpi": ":CHANnel<n>:PROBe <atten>",
-      "scpiFast": ":CHAN<n>:PROB <atten>",
-      "description": "Set Probe",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "1",
-          "2",
-          "5",
-          "10",
-          "20",
-          "50",
-          "100",
-          "200",
-          "500",
-          "1000"
-        ],
-        "default": "10"
-      },
-      "group": "Channel Settings",
-      "args": [
-        "atten"
-      ],
-      "subsystem": "CHANnel"
-    },
     "Set_Pulse_Dcycle": {
       "scpi": ":PULSe:DCYCle <value>",
       "scpiFast": ":PULS:DCYC <value>",
@@ -3597,24 +3577,6 @@
           "LBL",
           "MAG",
           "ORAN"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "REF",
-      "unverified": true
-    },
-    "Set_Reference_Display": {
-      "scpi": ":REFerence:DISPlay <value>",
-      "scpiFast": ":REF:DISP <value>",
-      "description": "Enable or disable the REF function, or query the status of the REF function",
-      "arg": {
-        "kind": "bool",
-        "default": "{0|OFF}}",
-        "values": [
-          "OFF",
-          "ON"
         ]
       },
       "args": [
@@ -3701,6 +3663,24 @@
         "max": 10.0,
         "unit": "V",
         "default": "100mV"
+      },
+      "args": [
+        "value"
+      ],
+      "subsystem": "REF",
+      "unverified": true
+    },
+    "Set_Reference_Display": {
+      "scpi": ":REFerence:DISPlay <value>",
+      "scpiFast": ":REF:DISP <value>",
+      "description": "Enable or disable the REF function, or query the status of the REF function",
+      "arg": {
+        "kind": "bool",
+        "default": "{0|OFF}}",
+        "values": [
+          "OFF",
+          "ON"
+        ]
       },
       "args": [
         "value"
@@ -3846,18 +3826,6 @@
       "subsystem": "SPI",
       "unverified": true
     },
-    "Set_Sre": {
-      "scpi": "*SRE <value>",
-      "description": "Set sre",
-      "arg": {
-        "kind": "integer"
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Set_Storage_Image_Color": {
       "scpi": ":STORage:IMAGe:COLor <value>",
       "scpiFast": ":STOR:IMAG:COL <value>",
@@ -3892,25 +3860,6 @@
       ],
       "subsystem": "STOR",
       "unverified": true
-    },
-    "Set_Sweep": {
-      "scpi": ":TRIGger:SWEep <sweep>",
-      "scpiFast": ":TRIG:SWE <sweep>",
-      "description": "Set Sweep",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "AUTO",
-          "NORM",
-          "SING"
-        ],
-        "default": "AUTO"
-      },
-      "group": "Trigger Settings",
-      "args": [
-        "sweep"
-      ],
-      "subsystem": "TRIGger"
     },
     "Set_System_Autoscale": {
       "scpi": ":SYSTem:AUToscale <value>",
@@ -4066,6 +4015,52 @@
       ],
       "subsystem": "TIM",
       "unverified": true
+    },
+    "Set_Timebase_Delay": {
+      "scpi": ":TIMebase:MAIN:OFFSet <delay>",
+      "scpiFast": ":TIM:MAIN:OFFS <delay>",
+      "description": "Horizontal delay — where the trigger sits in the captured window.",
+      "arg": {
+        "kind": "numeric",
+        "unit": "s"
+      },
+      "args": [
+        "delay"
+      ],
+      "group": "Horizontal Timebase Settings",
+      "subsystem": "TIMebase",
+      "notes": "Rigol calls this the timebase OFFSet, Agilent the POSition. One name for one knob. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "Time_Offset": {
+      "scpi": ":TIMebase:MAIN:OFFSet <offset>",
+      "scpiFast": ":TIM:MAIN:OFFS <offset>",
+      "description": "Time Offset",
+      "arg": {
+        "kind": "numeric",
+        "default": "0"
+      },
+      "group": "Timebase",
+      "args": [
+        "offset"
+      ],
+      "subsystem": "Time"
+    },
+    "Time_Scale": {
+      "scpi": ":TIMebase:MAIN:SCALe <scale>",
+      "scpiFast": ":TIM:MAIN:SCAL <scale>",
+      "description": "Time Scale",
+      "arg": {
+        "kind": "numeric",
+        "min": 5e-09,
+        "max": 50.0,
+        "unit": "s/div"
+      },
+      "group": "Timebase",
+      "args": [
+        "scale"
+      ],
+      "subsystem": "Time"
     },
     "Set_Timebase_Mode": {
       "scpi": ":TIMebase:MODE <mode>",
@@ -4358,6 +4353,141 @@
       ],
       "subsystem": "TRIG",
       "unverified": true
+    },
+    "Set_Edge_Level": {
+      "scpi": ":TRIGger:EDGe:LEVel <level>",
+      "scpiFast": ":TRIG:EDG:LEV <level>",
+      "description": "Set Edge Level",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "Edge Trigger Configuration",
+      "args": [
+        "level"
+      ],
+      "subsystem": "TRIGger"
+    },
+    "Set_Trigger_Level": {
+      "scpi": ":TRIGger:EDGe:LEVel <level>",
+      "scpiFast": ":TRIG:EDG:LEV <level>",
+      "description": "Edge trigger threshold.",
+      "arg": {
+        "kind": "numeric",
+        "unit": "V"
+      },
+      "args": [
+        "level"
+      ],
+      "group": "Trigger Settings",
+      "subsystem": "TRIGger",
+      "notes": "The name the 54641D already uses for the same control. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "Trigger_Level": {
+      "scpi": ":TRIGger:EDGe:LEVel <level>",
+      "scpiFast": ":TRIG:EDG:LEV <level>",
+      "description": "Trigger Level",
+      "arg": {
+        "kind": "numeric"
+      },
+      "group": "Trigger System",
+      "args": [
+        "level"
+      ],
+      "subsystem": "Trigger"
+    },
+    "Set_Edge_Slope": {
+      "scpi": ":TRIGger:EDGe:SLOPe <slope>",
+      "scpiFast": ":TRIG:EDG:SLOP <slope>",
+      "description": "Set Edge Slope",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "POS",
+          "NEG",
+          "RFAL"
+        ],
+        "default": "POSitive"
+      },
+      "group": "Edge Trigger Configuration",
+      "args": [
+        "slope"
+      ],
+      "subsystem": "TRIGger"
+    },
+    "Set_Edge_Source": {
+      "scpi": ":TRIGger:EDGe:SOURce <source>",
+      "scpiFast": ":TRIG:EDG:SOUR <source>",
+      "description": "Set Edge Source",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "D0",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "D10",
+          "D11",
+          "D12",
+          "D13",
+          "D14",
+          "D15",
+          "CHAN1",
+          "CHAN2",
+          "CHAN3",
+          "CHAN4",
+          "AC"
+        ],
+        "default": "CHANnel1"
+      },
+      "group": "Edge Trigger Configuration",
+      "args": [
+        "source"
+      ],
+      "subsystem": "TRIGger"
+    },
+    "Trigger_Source": {
+      "scpi": ":TRIGger:EDGe:SOURce <source>",
+      "scpiFast": ":TRIG:EDG:SOUR <source>",
+      "description": "Trigger Source",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "D0",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "D10",
+          "D11",
+          "D12",
+          "D13",
+          "D14",
+          "D15",
+          "CHAN1",
+          "CHAN2",
+          "CHAN3",
+          "CHAN4",
+          "AC"
+        ],
+        "default": "CHANnel1"
+      },
+      "group": "Trigger System",
+      "args": [
+        "source"
+      ],
+      "subsystem": "Trigger"
     },
     "Set_Trigger_Holdoff": {
       "scpi": ":TRIGger:HOLDoff <value>",
@@ -5491,6 +5621,44 @@
       "subsystem": "TRIG",
       "unverified": true
     },
+    "Set_Sweep": {
+      "scpi": ":TRIGger:SWEep <sweep>",
+      "scpiFast": ":TRIG:SWE <sweep>",
+      "description": "Set Sweep",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "AUTO",
+          "NORM",
+          "SING"
+        ],
+        "default": "AUTO"
+      },
+      "group": "Trigger Settings",
+      "args": [
+        "sweep"
+      ],
+      "subsystem": "TRIGger"
+    },
+    "Trigger_Sweep": {
+      "scpi": ":TRIGger:SWEep <sweep>",
+      "scpiFast": ":TRIG:SWE <sweep>",
+      "description": "Trigger Sweep",
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "AUTO",
+          "NORM",
+          "SING"
+        ],
+        "default": "AUTO"
+      },
+      "group": "Trigger System",
+      "args": [
+        "sweep"
+      ],
+      "subsystem": "Trigger"
+    },
     "Set_Trigger_Timebase_Slope": {
       "scpi": ":TRIGger:TIMeout:SLOPe <value>",
       "scpiFast": ":TRIG:TIM:SLOP <value>",
@@ -5870,25 +6038,6 @@
       "subsystem": "UART",
       "unverified": true
     },
-    "Set_Units": {
-      "scpi": ":CHANnel<n>:UNITs <unit>",
-      "scpiFast": ":CHAN<n>:UNIT <unit>",
-      "description": "Set Units",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "VOLT",
-          "WATT",
-          "AMP",
-          "UNKN"
-        ]
-      },
-      "group": "Channel Settings",
-      "args": [
-        "unit"
-      ],
-      "subsystem": "CHANnel"
-    },
     "Set_Voltage_Level_Immediate_Amplitude": {
       "scpi": ":VOLTage:LEVel:IMMediate:AMPLitude <value>",
       "scpiFast": ":VOLT:LEV:IMM:AMPL <value>",
@@ -6021,158 +6170,75 @@
       ],
       "subsystem": "WAV",
       "unverified": true
-    },
-    "Show_Statistics": {
-      "scpi": ":MEASure:STATistic:DISPlay <state>",
-      "scpiFast": ":MEAS:STAT:DISP <state>",
-      "description": "Show Statistics",
-      "arg": {
-        "kind": "bool",
-        "default": "{0|OFF}}",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "group": "Measurement Settings",
-      "args": [
-        "state"
-      ],
-      "subsystem": "MEASure"
-    },
-    "Time_Offset": {
-      "scpi": ":TIMebase:MAIN:OFFSet <offset>",
-      "scpiFast": ":TIM:MAIN:OFFS <offset>",
-      "description": "Time Offset",
-      "arg": {
-        "kind": "numeric",
-        "default": "0"
-      },
-      "group": "Timebase",
-      "args": [
-        "offset"
-      ],
-      "subsystem": "Time"
-    },
-    "Time_Scale": {
-      "scpi": ":TIMebase:MAIN:SCALe <scale>",
-      "scpiFast": ":TIM:MAIN:SCAL <scale>",
-      "description": "Time Scale",
-      "arg": {
-        "kind": "numeric",
-        "min": 5e-09,
-        "max": 50.0,
-        "unit": "s/div"
-      },
-      "group": "Timebase",
-      "args": [
-        "scale"
-      ],
-      "subsystem": "Time"
-    },
-    "Trigger_Level": {
-      "scpi": ":TRIGger:EDGe:LEVel <level>",
-      "scpiFast": ":TRIG:EDG:LEV <level>",
-      "description": "Trigger Level",
-      "arg": {
-        "kind": "numeric"
-      },
-      "group": "Trigger System",
-      "args": [
-        "level"
-      ],
-      "subsystem": "Trigger"
-    },
-    "Trigger_Source": {
-      "scpi": ":TRIGger:EDGe:SOURce <source>",
-      "scpiFast": ":TRIG:EDG:SOUR <source>",
-      "description": "Trigger Source",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "D0",
-          "D1",
-          "D2",
-          "D3",
-          "D4",
-          "D5",
-          "D6",
-          "D7",
-          "D8",
-          "D9",
-          "D10",
-          "D11",
-          "D12",
-          "D13",
-          "D14",
-          "D15",
-          "CHAN1",
-          "CHAN2",
-          "CHAN3",
-          "CHAN4",
-          "AC"
-        ],
-        "default": "CHANnel1"
-      },
-      "group": "Trigger System",
-      "args": [
-        "source"
-      ],
-      "subsystem": "Trigger"
-    },
-    "Trigger_Sweep": {
-      "scpi": ":TRIGger:SWEep <sweep>",
-      "scpiFast": ":TRIG:SWE <sweep>",
-      "description": "Trigger Sweep",
-      "arg": {
-        "kind": "enum",
-        "values": [
-          "AUTO",
-          "NORM",
-          "SING"
-        ],
-        "default": "AUTO"
-      },
-      "group": "Trigger System",
-      "args": [
-        "sweep"
-      ],
-      "subsystem": "Trigger"
-    },
-    "Set_Timebase_Delay": {
-      "scpi": ":TIMebase:MAIN:OFFSet <delay>",
-      "scpiFast": ":TIM:MAIN:OFFS <delay>",
-      "description": "Horizontal delay — where the trigger sits in the captured window.",
-      "arg": {
-        "kind": "numeric",
-        "unit": "s"
-      },
-      "args": [
-        "delay"
-      ],
-      "group": "Horizontal Timebase Settings",
-      "subsystem": "TIMebase",
-      "notes": "Rigol calls this the timebase OFFSet, Agilent the POSition. One name for one knob. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "Set_Trigger_Level": {
-      "scpi": ":TRIGger:EDGe:LEVel <level>",
-      "scpiFast": ":TRIG:EDG:LEV <level>",
-      "description": "Edge trigger threshold.",
-      "arg": {
-        "kind": "numeric",
-        "unit": "V"
-      },
-      "args": [
-        "level"
-      ],
-      "group": "Trigger Settings",
-      "subsystem": "TRIGger",
-      "notes": "The name the 54641D already uses for the same control. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
     }
   },
   "do": {
+    "Do_Cls": {
+      "scpi": "*CLS",
+      "description": "Do cls",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Do_Opc": {
+      "scpi": "*OPC",
+      "description": "Do opc",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Reset_Device": {
+      "scpi": "*RST",
+      "description": "Do rst",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Do_Wai": {
+      "scpi": "*WAI",
+      "description": "Do wai",
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Do_Apply_Noise": {
+      "scpi": ":APPLy:NOISe",
+      "scpiFast": ":APPL:NOIS",
+      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
+      "subsystem": "APPL",
+      "unverified": true
+    },
+    "Do_Apply_Pulse": {
+      "scpi": ":APPLy:PULSe",
+      "scpiFast": ":APPL:PULS",
+      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
+      "subsystem": "APPL",
+      "unverified": true
+    },
+    "Do_Apply_Ramp": {
+      "scpi": ":APPLy:RAMP",
+      "scpiFast": ":APPL:RAMP",
+      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
+      "subsystem": "APPL",
+      "unverified": true
+    },
+    "Do_Apply_Sinusoid": {
+      "scpi": ":APPLy:SINusoid",
+      "scpiFast": ":APPL:SIN",
+      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
+      "subsystem": "APPL",
+      "unverified": true
+    },
+    "Do_Apply_Square": {
+      "scpi": ":APPLy:SQUare",
+      "scpiFast": ":APPL:SQU",
+      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
+      "subsystem": "APPL",
+      "unverified": true
+    },
+    "Do_Apply_User": {
+      "scpi": ":APPLy:USER",
+      "scpiFast": ":APPL:USER",
+      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
+      "subsystem": "APPL",
+      "unverified": true
+    },
     "Auto": {
       "scpi": ":AUTO",
       "description": "Auto",
@@ -6185,6 +6251,20 @@
       "description": "Auto Scale",
       "group": "Actions and Toggles",
       "subsystem": "System"
+    },
+    "Do_Calibrate_Quit": {
+      "scpi": ":CALibrate:QUIT",
+      "scpiFast": ":CAL:QUIT",
+      "description": "Exit the self-calibration at any time",
+      "subsystem": "CAL",
+      "unverified": true
+    },
+    "Do_Calibrate_Start": {
+      "scpi": ":CALibrate:STARt",
+      "scpiFast": ":CAL:STAR",
+      "description": "The oscilloscope starts to execute self-calibration",
+      "subsystem": "CAL",
+      "unverified": true
     },
     "CH1_OFF": {
       "scpi": ":CHANnel1:DISPlay OFF",
@@ -6248,68 +6328,6 @@
       "description": "Clear",
       "group": "Actions and Toggles",
       "subsystem": "System"
-    },
-    "Do_Apply_Noise": {
-      "scpi": ":APPLy:NOISe",
-      "scpiFast": ":APPL:NOIS",
-      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
-      "subsystem": "APPL",
-      "unverified": true
-    },
-    "Do_Apply_Pulse": {
-      "scpi": ":APPLy:PULSe",
-      "scpiFast": ":APPL:PULS",
-      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
-      "subsystem": "APPL",
-      "unverified": true
-    },
-    "Do_Apply_Ramp": {
-      "scpi": ":APPLy:RAMP",
-      "scpiFast": ":APPL:RAMP",
-      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
-      "subsystem": "APPL",
-      "unverified": true
-    },
-    "Do_Apply_Sinusoid": {
-      "scpi": ":APPLy:SINusoid",
-      "scpiFast": ":APPL:SIN",
-      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
-      "subsystem": "APPL",
-      "unverified": true
-    },
-    "Do_Apply_Square": {
-      "scpi": ":APPLy:SQUare",
-      "scpiFast": ":APPL:SQU",
-      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
-      "subsystem": "APPL",
-      "unverified": true
-    },
-    "Do_Apply_User": {
-      "scpi": ":APPLy:USER",
-      "scpiFast": ":APPL:USER",
-      "description": "Configure the specified source channel to output a signal with the specified waveform and parameters",
-      "subsystem": "APPL",
-      "unverified": true
-    },
-    "Do_Calibrate_Quit": {
-      "scpi": ":CALibrate:QUIT",
-      "scpiFast": ":CAL:QUIT",
-      "description": "Exit the self-calibration at any time",
-      "subsystem": "CAL",
-      "unverified": true
-    },
-    "Do_Calibrate_Start": {
-      "scpi": ":CALibrate:STARt",
-      "scpiFast": ":CAL:STAR",
-      "description": "The oscilloscope starts to execute self-calibration",
-      "subsystem": "CAL",
-      "unverified": true
-    },
-    "Do_Cls": {
-      "scpi": "*CLS",
-      "description": "Do cls",
-      "subsystem": "Common",
-      "unverified": true
     },
     "Do_Cursor_Manual": {
       "scpi": ":CURSor:MANual",
@@ -6393,6 +6411,13 @@
       "subsystem": "MATH",
       "unverified": true
     },
+    "Execute Command": {
+      "scpi": ":MEASure:CLEar",
+      "scpiFast": ":MEAS:CLE",
+      "description": "Execute Command",
+      "group": "Measurement Settings",
+      "subsystem": "MEASure"
+    },
     "Do_Measure_Recover": {
       "scpi": ":MEASure:RECover",
       "scpiFast": ":MEAS:REC",
@@ -6407,12 +6432,6 @@
       "subsystem": "MEAS",
       "unverified": true
     },
-    "Do_Opc": {
-      "scpi": "*OPC",
-      "description": "Do opc",
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Do_Phase_Initiate": {
       "scpi": ":PHASe:INITiate",
       "scpiFast": ":PHAS:INIT",
@@ -6420,11 +6439,24 @@
       "subsystem": "PHAS",
       "unverified": true
     },
-    "Reset_Device": {
-      "scpi": "*RST",
-      "description": "Do rst",
-      "subsystem": "Common",
-      "unverified": true
+    "Run": {
+      "scpi": ":RUN",
+      "description": "Run",
+      "group": "Root Action Commands",
+      "subsystem": "Root"
+    },
+    "Single": {
+      "scpi": ":SINGle",
+      "scpiFast": ":SING",
+      "description": "Single",
+      "group": "Root Action Commands",
+      "subsystem": "Root"
+    },
+    "Stop": {
+      "scpi": ":STOP",
+      "description": "Stop",
+      "group": "Root Action Commands",
+      "subsystem": "Root"
     },
     "Do_System_Option_Install": {
       "scpi": ":SYSTem:OPTion:INSTall",
@@ -6439,6 +6471,13 @@
       "description": "Uninstall the options installed",
       "subsystem": "SYST",
       "unverified": true
+    },
+    "Force_Trigger": {
+      "scpi": ":TFORce",
+      "scpiFast": ":TFOR",
+      "description": "Force Trigger",
+      "group": "Root Action Commands",
+      "subsystem": "Root"
     },
     "Do_Trigger_Delay": {
       "scpi": ":TRIGger:DELay",
@@ -6559,54 +6598,85 @@
       "subsystem": "VOLT",
       "unverified": true
     },
-    "Do_Wai": {
-      "scpi": "*WAI",
-      "description": "Do wai",
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Do_Waveform_Sor": {
       "scpi": ":WAV:SOR",
       "description": "LabVIEW Programming Demo",
       "subsystem": "WAV",
       "unverified": true
-    },
-    "Execute Command": {
-      "scpi": ":MEASure:CLEar",
-      "scpiFast": ":MEAS:CLE",
-      "description": "Execute Command",
-      "group": "Measurement Settings",
-      "subsystem": "MEASure"
-    },
-    "Force_Trigger": {
-      "scpi": ":TFORce",
-      "scpiFast": ":TFOR",
-      "description": "Force Trigger",
-      "group": "Root Action Commands",
-      "subsystem": "Root"
-    },
-    "Run": {
-      "scpi": ":RUN",
-      "description": "Run",
-      "group": "Root Action Commands",
-      "subsystem": "Root"
-    },
-    "Single": {
-      "scpi": ":SINGle",
-      "scpiFast": ":SING",
-      "description": "Single",
-      "group": "Root Action Commands",
-      "subsystem": "Root"
-    },
-    "Stop": {
-      "scpi": ":STOP",
-      "description": "Stop",
-      "group": "Root Action Commands",
-      "subsystem": "Root"
     }
   },
   "rig": {},
   "nab": {
+    "Get_Ese": {
+      "scpi": "*ESE?",
+      "description": "Get ese",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Esr": {
+      "scpi": "*ESR?",
+      "description": "Get esr",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "description": "Get idn",
+      "returns": {
+        "count": 1,
+        "type": "AARD"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Opc": {
+      "scpi": "*OPC?",
+      "description": "Get opc",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Sre": {
+      "scpi": "*SRE?",
+      "description": "Get sre",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Stb": {
+      "scpi": "*STB?",
+      "description": "Get stb",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
+    "Get_Tst": {
+      "scpi": "*TST?",
+      "description": "Get tst",
+      "returns": {
+        "count": 1,
+        "type": "NR1"
+      },
+      "subsystem": "Common",
+      "unverified": true
+    },
     "Get_Acquire_Averages": {
       "scpi": ":ACQuire:AVERages?",
       "scpiFast": ":ACQ:AVER?",
@@ -6638,6 +6708,16 @@
       "subsystem": "ACQ",
       "unverified": true
     },
+    "Get_Channel_Display": {
+      "scpi": ":CHAN1:DISP?",
+      "description": "Get channel display",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "subsystem": "CHAN",
+      "unverified": true
+    },
     "Get_Channel_Bwlimit": {
       "scpi": ":CHANnel1:BWLimit?",
       "scpiFast": ":CHAN1:BWL?",
@@ -6660,14 +6740,32 @@
       "subsystem": "CHAN",
       "unverified": true
     },
-    "Get_Channel_Display": {
-      "scpi": ":CHAN1:DISP?",
-      "description": "Get channel display",
+    "channel_settings_1": {
+      "scpi": ":CHANnel1:DISPlay?;:CHANnel1:SCALe?;:CHANnel1:OFFSet?",
+      "scpiFast": ":CHAN1:DISP?;:CHAN1:SCAL?;:CHAN1:OFFS?",
+      "description": "Channel 1: on/off, volts per division and offset in one round trip.",
+      "subsystem": "CHANnel",
       "returns": {
-        "count": 1,
-        "type": "BOOL"
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state",
+            "type": "BOOL"
+          },
+          {
+            "name": "scale",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "offset",
+            "type": "NR3",
+            "unit": "V"
+          }
+        ]
       },
-      "subsystem": "CHAN",
+      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_1/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
       "unverified": true
     },
     "Get_Channel_Invert": {
@@ -6755,6 +6853,90 @@
         "type": "BOOL"
       },
       "subsystem": "CHAN",
+      "unverified": true
+    },
+    "channel_settings_2": {
+      "scpi": ":CHANnel2:DISPlay?;:CHANnel2:SCALe?;:CHANnel2:OFFSet?",
+      "scpiFast": ":CHAN2:DISP?;:CHAN2:SCAL?;:CHAN2:OFFS?",
+      "description": "Channel 2: on/off, volts per division and offset in one round trip.",
+      "subsystem": "CHANnel",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state",
+            "type": "BOOL"
+          },
+          {
+            "name": "scale",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "offset",
+            "type": "NR3",
+            "unit": "V"
+          }
+        ]
+      },
+      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_2/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "channel_settings_3": {
+      "scpi": ":CHANnel3:DISPlay?;:CHANnel3:SCALe?;:CHANnel3:OFFSet?",
+      "scpiFast": ":CHAN3:DISP?;:CHAN3:SCAL?;:CHAN3:OFFS?",
+      "description": "Channel 3: on/off, volts per division and offset in one round trip.",
+      "subsystem": "CHANnel",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state",
+            "type": "BOOL"
+          },
+          {
+            "name": "scale",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "offset",
+            "type": "NR3",
+            "unit": "V"
+          }
+        ]
+      },
+      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_3/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "channel_settings_4": {
+      "scpi": ":CHANnel4:DISPlay?;:CHANnel4:SCALe?;:CHANnel4:OFFSet?",
+      "scpiFast": ":CHAN4:DISP?;:CHAN4:SCAL?;:CHAN4:OFFS?",
+      "description": "Channel 4: on/off, volts per division and offset in one round trip.",
+      "subsystem": "CHANnel",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state",
+            "type": "BOOL"
+          },
+          {
+            "name": "scale",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "offset",
+            "type": "NR3",
+            "unit": "V"
+          }
+        ]
+      },
+      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_4/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
       "unverified": true
     },
     "Get_Config_Endian": {
@@ -7073,6 +7255,16 @@
       "subsystem": "DATA",
       "unverified": true
     },
+    "Get_Data_Points_Internal": {
+      "scpi": ":DATA:POINts:INTerpolate?",
+      "scpiFast": ":DATA:POIN:INT?",
+      "description": "Set or query the interpolation mode of the editable points of the arbitrary waveform of the specified signal source channel",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "DATA",
+      "unverified": true
+    },
     "Get_Data_Points": {
       "scpi": ":DATA:POINts?",
       "scpiFast": ":DATA:POIN?",
@@ -7080,16 +7272,6 @@
       "returns": {
         "count": 1,
         "type": "NR1"
-      },
-      "subsystem": "DATA",
-      "unverified": true
-    },
-    "Get_Data_Points_Internal": {
-      "scpi": ":DATA:POINts:INTerpolate?",
-      "scpiFast": ":DATA:POIN:INT?",
-      "description": "Set or query the interpolation mode of the editable points of the arbitrary waveform of the specified signal source channel",
-      "returns": {
-        "count": 1
       },
       "subsystem": "DATA",
       "unverified": true
@@ -7611,26 +7793,6 @@
       "subsystem": "DISP",
       "unverified": true
     },
-    "Get_Ese": {
-      "scpi": "*ESE?",
-      "description": "Get ese",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Esr": {
-      "scpi": "*ESR?",
-      "description": "Get esr",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Etable_Color": {
       "scpi": ":ETABle1:COLumn?",
       "scpiFast": ":ETAB1:COL?",
@@ -7884,16 +8046,6 @@
       "subsystem": "FUNC",
       "unverified": true
     },
-    "Read_IDN": {
-      "scpi": "*IDN?",
-      "description": "Get idn",
-      "returns": {
-        "count": 1,
-        "type": "AARD"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Iic_Address": {
       "scpi": ":IIC:ADDRess?",
       "scpiFast": ":IIC:ADDR?",
@@ -7946,17 +8098,6 @@
       "subsystem": "LA",
       "unverified": true
     },
-    "Get_La_Digital_Display": {
-      "scpi": ":LA:DIGital3:DISPlay?",
-      "scpiFast": ":LA:DIG3:DISP?",
-      "description": "Get la digital display",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "subsystem": "LA",
-      "unverified": true
-    },
     "Get_La_Digital_Positive": {
       "scpi": ":LA:DIGital1:POSition?",
       "scpiFast": ":LA:DIG1:POS?",
@@ -7964,6 +8105,17 @@
       "returns": {
         "count": 1,
         "type": "NR3"
+      },
+      "subsystem": "LA",
+      "unverified": true
+    },
+    "Get_La_Digital_Display": {
+      "scpi": ":LA:DIGital3:DISPlay?",
+      "scpiFast": ":LA:DIG3:DISP?",
+      "description": "Get la digital display",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
       },
       "subsystem": "LA",
       "unverified": true
@@ -8134,6 +8286,38 @@
         "type": "BOOL"
       },
       "subsystem": "MATH",
+      "unverified": true
+    },
+    "math_settings": {
+      "scpi": ":MATH:DISPlay?;:MATH:OPERator?;:MATH:SCALe?;:MATH:OFFSet?",
+      "scpiFast": ":MATH:DISP?;:MATH:OPER?;:MATH:SCAL?;:MATH:OFFS?",
+      "description": "Math on/off, operator, scale and offset, in one round trip.",
+      "subsystem": "MATH",
+      "returns": {
+        "count": 4,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "state",
+            "type": "BOOL"
+          },
+          {
+            "name": "operator",
+            "type": "CRD"
+          },
+          {
+            "name": "scale",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "offset",
+            "type": "NR3",
+            "unit": "V"
+          }
+        ]
+      },
+      "notes": "Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
       "unverified": true
     },
     "Get_Math_Fft_Hcenter": {
@@ -8410,6 +8594,142 @@
       "subsystem": "MEAS",
       "unverified": true
     },
+    "Measure_Frequency": {
+      "scpi": ":MEASure:ITEM? FREQ,<chan>",
+      "scpiFast": ":MEAS:ITEM? FREQ,<chan>",
+      "description": "Measure Frequency",
+      "returns": {
+        "count": 1
+      },
+      "group": "Immediate Measurement (:MEAS:ITEM?)",
+      "subsystem": "MEASure"
+    },
+    "Measure_Vpp": {
+      "scpi": ":MEASure:ITEM? VPP,<chan>",
+      "scpiFast": ":MEAS:ITEM? VPP,<chan>",
+      "description": "Measure Vpp",
+      "returns": {
+        "count": 1
+      },
+      "group": "Immediate Measurement (:MEAS:ITEM?)",
+      "subsystem": "MEASure"
+    },
+    "measure_1": {
+      "scpi": ":MEASure:ITEM? VPP,CHANnel1;:MEASure:ITEM? VRMS,CHANnel1;:MEASure:ITEM? FREQuency,CHANnel1",
+      "scpiFast": ":MEAS:ITEM? VPP,CHAN1;:MEAS:ITEM? VRMS,CHAN1;:MEAS:ITEM? FREQ,CHAN1",
+      "description": "Channel 1: Vpp, Vrms and frequency in one round trip.",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "freq",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "measure_2": {
+      "scpi": ":MEASure:ITEM? VPP,CHANnel2;:MEASure:ITEM? VRMS,CHANnel2;:MEASure:ITEM? FREQuency,CHANnel2",
+      "scpiFast": ":MEAS:ITEM? VPP,CHAN2;:MEAS:ITEM? VRMS,CHAN2;:MEAS:ITEM? FREQ,CHAN2",
+      "description": "Channel 2: Vpp, Vrms and frequency in one round trip.",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "freq",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "measure_3": {
+      "scpi": ":MEASure:ITEM? VPP,CHANnel3;:MEASure:ITEM? VRMS,CHANnel3;:MEASure:ITEM? FREQuency,CHANnel3",
+      "scpiFast": ":MEAS:ITEM? VPP,CHAN3;:MEAS:ITEM? VRMS,CHAN3;:MEAS:ITEM? FREQ,CHAN3",
+      "description": "Channel 3: Vpp, Vrms and frequency in one round trip.",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "freq",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "measure_4": {
+      "scpi": ":MEASure:ITEM? VPP,CHANnel4;:MEASure:ITEM? VRMS,CHANnel4;:MEASure:ITEM? FREQuency,CHANnel4",
+      "scpiFast": ":MEAS:ITEM? VPP,CHAN4;:MEAS:ITEM? VRMS,CHAN4;:MEAS:ITEM? FREQ,CHAN4",
+      "description": "Channel 4: Vpp, Vrms and frequency in one round trip.",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "freq",
+            "type": "NR3",
+            "unit": "Hz"
+          }
+        ]
+      },
+      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
     "Get_Measure_Source": {
       "scpi": ":MEASure:SOURce?",
       "scpiFast": ":MEAS:SOUR?",
@@ -8453,14 +8773,129 @@
       "subsystem": "MEAS",
       "unverified": true
     },
-    "Get_Mod_Am": {
-      "scpi": ":MOD:AM?",
-      "description": "Get mod am",
+    "Get_Stats_CH1": {
+      "scpi": ":MEASure:VPP? CHANnel1;:MEASure:VRMS? CHANnel1;:MEASure:FREQuency? CHANnel1;:MEASure:PDUTy? CHANnel1",
+      "scpiFast": ":MEAS:VPP? CHANnel1;:MEAS:VRMS? CHANnel1;:MEAS:FREQ? CHANnel1;:MEAS:PDUT? CHANnel1",
+      "description": "Get Stats CH1",
       "returns": {
-        "count": 1
+        "count": 4,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp_1",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms_1",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "frequency_1"
+          },
+          {
+            "name": "pduty_1",
+            "type": "NR3",
+            "unit": "%"
+          }
+        ]
       },
-      "subsystem": "MOD",
-      "unverified": true
+      "group": "Channel 1 Stats",
+      "subsystem": "Channel_1"
+    },
+    "Get_Stats_CH2": {
+      "scpi": ":MEASure:VPP? CHANnel2;:MEASure:VRMS? CHANnel2;:MEASure:FREQuency? CHANnel2;:MEASure:PDUTy? CHANnel2",
+      "scpiFast": ":MEAS:VPP? CHANnel2;:MEAS:VRMS? CHANnel2;:MEAS:FREQ? CHANnel2;:MEAS:PDUT? CHANnel2",
+      "description": "Get Stats CH2",
+      "returns": {
+        "count": 4,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp_2",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms_2",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "frequency_2"
+          },
+          {
+            "name": "pduty_2",
+            "type": "NR3",
+            "unit": "%"
+          }
+        ]
+      },
+      "group": "Channel 2 Stats",
+      "subsystem": "Channel_2"
+    },
+    "Get_Stats_CH3": {
+      "scpi": ":MEASure:VPP? CHANnel3;:MEASure:VRMS? CHANnel3;:MEASure:FREQuency? CHANnel3;:MEASure:PDUTy? CHANnel3",
+      "scpiFast": ":MEAS:VPP? CHANnel3;:MEAS:VRMS? CHANnel3;:MEAS:FREQ? CHANnel3;:MEAS:PDUT? CHANnel3",
+      "description": "Get Stats CH3",
+      "returns": {
+        "count": 4,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp_3",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms_3",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "frequency_3"
+          },
+          {
+            "name": "pduty_3",
+            "type": "NR3",
+            "unit": "%"
+          }
+        ]
+      },
+      "group": "Channel 3 Stats",
+      "subsystem": "Channel_3"
+    },
+    "Get_Stats_CH4": {
+      "scpi": ":MEASure:VPP? CHANnel4;:MEASure:VRMS? CHANnel4;:MEASure:FREQuency? CHANnel4;:MEASure:PDUTy? CHANnel4",
+      "scpiFast": ":MEAS:VPP? CHANnel4;:MEAS:VRMS? CHANnel4;:MEAS:FREQ? CHANnel4;:MEAS:PDUT? CHANnel4",
+      "description": "Get Stats CH4",
+      "returns": {
+        "count": 4,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "vpp_4",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "vrms_4",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "frequency_4"
+          },
+          {
+            "name": "pduty_4",
+            "type": "NR3",
+            "unit": "%"
+          }
+        ]
+      },
+      "group": "Channel 4 Stats",
+      "subsystem": "Channel_4"
     },
     "Get_Mod_Am_Depth": {
       "scpi": ":MOD:AM:DEPTh?",
@@ -8493,9 +8928,9 @@
       "subsystem": "MOD",
       "unverified": true
     },
-    "Get_Mod_Fm": {
-      "scpi": ":MOD:FM?",
-      "description": "Get mod fm",
+    "Get_Mod_Am": {
+      "scpi": ":MOD:AM?",
+      "description": "Get mod am",
       "returns": {
         "count": 1
       },
@@ -8533,6 +8968,15 @@
       "subsystem": "MOD",
       "unverified": true
     },
+    "Get_Mod_Fm": {
+      "scpi": ":MOD:FM?",
+      "description": "Get mod fm",
+      "returns": {
+        "count": 1
+      },
+      "subsystem": "MOD",
+      "unverified": true
+    },
     "Get_Mod_Statistic": {
       "scpi": ":MOD:STATe?",
       "scpiFast": ":MOD:STAT?",
@@ -8553,16 +8997,6 @@
         "type": "CRD"
       },
       "subsystem": "MOD",
-      "unverified": true
-    },
-    "Get_Opc": {
-      "scpi": "*OPC?",
-      "description": "Get opc",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_Output_Impedance": {
@@ -8714,17 +9148,6 @@
       "subsystem": "REF",
       "unverified": true
     },
-    "Get_Reference_Display": {
-      "scpi": ":REFerence:DISPlay?",
-      "scpiFast": ":REF:DISP?",
-      "description": "Enable or disable the REF function, or query the status of the REF function",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "subsystem": "REF",
-      "unverified": true
-    },
     "Get_Reference_Enable": {
       "scpi": ":REFerence1:ENABle?",
       "scpiFast": ":REF1:ENAB?",
@@ -8763,6 +9186,17 @@
       "description": "Get reference vscale",
       "returns": {
         "count": 1
+      },
+      "subsystem": "REF",
+      "unverified": true
+    },
+    "Get_Reference_Display": {
+      "scpi": ":REFerence:DISPlay?",
+      "scpiFast": ":REF:DISP?",
+      "description": "Enable or disable the REF function, or query the status of the REF function",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
       },
       "subsystem": "REF",
       "unverified": true
@@ -8875,161 +9309,6 @@
         "type": "NR3"
       },
       "subsystem": "SPI",
-      "unverified": true
-    },
-    "Get_Sre": {
-      "scpi": "*SRE?",
-      "description": "Get sre",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
-    "Get_Stats_CH1": {
-      "scpi": ":MEASure:VPP? CHANnel1;:MEASure:VRMS? CHANnel1;:MEASure:FREQuency? CHANnel1;:MEASure:PDUTy? CHANnel1",
-      "scpiFast": ":MEAS:VPP? CHANnel1;:MEAS:VRMS? CHANnel1;:MEAS:FREQ? CHANnel1;:MEAS:PDUT? CHANnel1",
-      "description": "Get Stats CH1",
-      "returns": {
-        "count": 4,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp_1",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms_1",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "frequency_1"
-          },
-          {
-            "name": "pduty_1",
-            "type": "NR3",
-            "unit": "%"
-          }
-        ]
-      },
-      "group": "Channel 1 Stats",
-      "subsystem": "Channel_1"
-    },
-    "Get_Stats_CH2": {
-      "scpi": ":MEASure:VPP? CHANnel2;:MEASure:VRMS? CHANnel2;:MEASure:FREQuency? CHANnel2;:MEASure:PDUTy? CHANnel2",
-      "scpiFast": ":MEAS:VPP? CHANnel2;:MEAS:VRMS? CHANnel2;:MEAS:FREQ? CHANnel2;:MEAS:PDUT? CHANnel2",
-      "description": "Get Stats CH2",
-      "returns": {
-        "count": 4,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp_2",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms_2",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "frequency_2"
-          },
-          {
-            "name": "pduty_2",
-            "type": "NR3",
-            "unit": "%"
-          }
-        ]
-      },
-      "group": "Channel 2 Stats",
-      "subsystem": "Channel_2"
-    },
-    "Get_Stats_CH3": {
-      "scpi": ":MEASure:VPP? CHANnel3;:MEASure:VRMS? CHANnel3;:MEASure:FREQuency? CHANnel3;:MEASure:PDUTy? CHANnel3",
-      "scpiFast": ":MEAS:VPP? CHANnel3;:MEAS:VRMS? CHANnel3;:MEAS:FREQ? CHANnel3;:MEAS:PDUT? CHANnel3",
-      "description": "Get Stats CH3",
-      "returns": {
-        "count": 4,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp_3",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms_3",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "frequency_3"
-          },
-          {
-            "name": "pduty_3",
-            "type": "NR3",
-            "unit": "%"
-          }
-        ]
-      },
-      "group": "Channel 3 Stats",
-      "subsystem": "Channel_3"
-    },
-    "Get_Stats_CH4": {
-      "scpi": ":MEASure:VPP? CHANnel4;:MEASure:VRMS? CHANnel4;:MEASure:FREQuency? CHANnel4;:MEASure:PDUTy? CHANnel4",
-      "scpiFast": ":MEAS:VPP? CHANnel4;:MEAS:VRMS? CHANnel4;:MEAS:FREQ? CHANnel4;:MEAS:PDUT? CHANnel4",
-      "description": "Get Stats CH4",
-      "returns": {
-        "count": 4,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp_4",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms_4",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "frequency_4"
-          },
-          {
-            "name": "pduty_4",
-            "type": "NR3",
-            "unit": "%"
-          }
-        ]
-      },
-      "group": "Channel 4 Stats",
-      "subsystem": "Channel_4"
-    },
-    "Get_Status": {
-      "scpi": ":TRIGger:STATus?",
-      "scpiFast": ":TRIG:STAT?",
-      "description": "Get Status",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "group": "Trigger Status",
-      "subsystem": "TRIGger"
-    },
-    "Get_Stb": {
-      "scpi": "*STB?",
-      "description": "Get stb",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
       "unverified": true
     },
     "Get_Storage_Image_Color": {
@@ -9205,6 +9484,30 @@
         "unit": "s"
       },
       "subsystem": "TIM",
+      "unverified": true
+    },
+    "timebase_settings": {
+      "scpi": ":TIMebase:MAIN:SCALe?;:TIMebase:MAIN:OFFSet?",
+      "scpiFast": ":TIM:MAIN:SCAL?;:TIM:MAIN:OFFS?",
+      "description": "Seconds per division and the horizontal delay, in one round trip.",
+      "subsystem": "TIMebase",
+      "returns": {
+        "count": 2,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "scale",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "delay",
+            "type": "NR3",
+            "unit": "s"
+          }
+        ]
+      },
+      "notes": "Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
       "unverified": true
     },
     "Get_Timebase_Mode": {
@@ -9511,6 +9814,33 @@
         "type": "CRD"
       },
       "subsystem": "TRIG",
+      "unverified": true
+    },
+    "trigger_settings": {
+      "scpi": ":TRIGger:MODE?;:TRIGger:EDGe:LEVel?;:TRIGger:EDGe:SOURce?",
+      "scpiFast": ":TRIG:MODE?;:TRIG:EDG:LEV?;:TRIG:EDG:SOUR?",
+      "description": "Trigger type, edge level and edge source, in one round trip.",
+      "subsystem": "TRIGger",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "mode",
+            "type": "CRD"
+          },
+          {
+            "name": "level",
+            "type": "NR3",
+            "unit": "V"
+          },
+          {
+            "name": "source",
+            "type": "CRD"
+          }
+        ]
+      },
+      "notes": "Rigol spells the node `EDGe`; the shape is the 54641D's, which answered `EDGE;+0.0E+00;CHAN1`. Not yet run against this model — it is out of the discovery map today.",
       "unverified": true
     },
     "Get_Trigger_Nedge_Edge": {
@@ -10029,6 +10359,17 @@
       "subsystem": "TRIG",
       "unverified": true
     },
+    "Get_Status": {
+      "scpi": ":TRIGger:STATus?",
+      "scpiFast": ":TRIG:STAT?",
+      "description": "Get Status",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "group": "Trigger Status",
+      "subsystem": "TRIGger"
+    },
     "Get_Trigger_Sweep": {
       "scpi": ":TRIGger:SWEep?",
       "scpiFast": ":TRIG:SWE?",
@@ -10205,16 +10546,6 @@
       "subsystem": "TRIG",
       "unverified": true
     },
-    "Get_Tst": {
-      "scpi": "*TST?",
-      "description": "Get tst",
-      "returns": {
-        "count": 1,
-        "type": "NR1"
-      },
-      "subsystem": "Common",
-      "unverified": true
-    },
     "Get_Uart_Baud": {
       "scpi": ":UART:BAUD?",
       "description": "Set or query the TX channel source of RS232 decoding",
@@ -10362,6 +10693,122 @@
       "subsystem": "WAV",
       "unverified": true
     },
+    "waveform_1": {
+      "scpi": ":WAVeform:SOURce CHANnel1;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
+      "scpiFast": ":WAV:SOUR CHAN1;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
+      "description": "Channel 1's trace, with the time axis it was captured on.",
+      "subsystem": "WAVeform",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "samples",
+            "type": "CSV",
+            "unit": "V"
+          },
+          {
+            "name": "xorigin",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "xincrement",
+            "type": "NR3",
+            "unit": "s"
+          }
+        ]
+      },
+      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "waveform_2": {
+      "scpi": ":WAVeform:SOURce CHANnel2;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
+      "scpiFast": ":WAV:SOUR CHAN2;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
+      "description": "Channel 2's trace, with the time axis it was captured on.",
+      "subsystem": "WAVeform",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "samples",
+            "type": "CSV",
+            "unit": "V"
+          },
+          {
+            "name": "xorigin",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "xincrement",
+            "type": "NR3",
+            "unit": "s"
+          }
+        ]
+      },
+      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "waveform_3": {
+      "scpi": ":WAVeform:SOURce CHANnel3;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
+      "scpiFast": ":WAV:SOUR CHAN3;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
+      "description": "Channel 3's trace, with the time axis it was captured on.",
+      "subsystem": "WAVeform",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "samples",
+            "type": "CSV",
+            "unit": "V"
+          },
+          {
+            "name": "xorigin",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "xincrement",
+            "type": "NR3",
+            "unit": "s"
+          }
+        ]
+      },
+      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
+    "waveform_4": {
+      "scpi": ":WAVeform:SOURce CHANnel4;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
+      "scpiFast": ":WAV:SOUR CHAN4;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
+      "description": "Channel 4's trace, with the time axis it was captured on.",
+      "subsystem": "WAVeform",
+      "returns": {
+        "count": 3,
+        "separator": ";",
+        "fields": [
+          {
+            "name": "samples",
+            "type": "CSV",
+            "unit": "V"
+          },
+          {
+            "name": "xorigin",
+            "type": "NR3",
+            "unit": "s"
+          },
+          {
+            "name": "xincrement",
+            "type": "NR3",
+            "unit": "s"
+          }
+        ]
+      },
+      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
+      "unverified": true
+    },
     "Get_Waveform_Source": {
       "scpi": ":WAVeform:SOURce?",
       "scpiFast": ":WAV:SOUR?",
@@ -10395,6 +10842,17 @@
       "subsystem": "WAV",
       "unverified": true
     },
+    "Get_XInc": {
+      "scpi": ":WAVeform:XINC?",
+      "scpiFast": ":WAV:XINC?",
+      "description": "Get XInc",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "group": "Scaling Parameters",
+      "subsystem": "WAVeform"
+    },
     "Get_Waveform_Xorigin": {
       "scpi": ":WAVeform:XORigin?",
       "scpiFast": ":WAV:XOR?",
@@ -10416,17 +10874,6 @@
       },
       "subsystem": "WAV",
       "unverified": true
-    },
-    "Get_XInc": {
-      "scpi": ":WAVeform:XINC?",
-      "scpiFast": ":WAV:XINC?",
-      "description": "Get XInc",
-      "returns": {
-        "count": 1,
-        "type": "NR3"
-      },
-      "group": "Scaling Parameters",
-      "subsystem": "WAVeform"
     },
     "Get_YInc": {
       "scpi": ":WAVeform:YINC?",
@@ -10460,453 +10907,6 @@
       },
       "group": "Scaling Parameters",
       "subsystem": "WAVeform"
-    },
-    "Measure_Frequency": {
-      "scpi": ":MEASure:ITEM? FREQ,<chan>",
-      "scpiFast": ":MEAS:ITEM? FREQ,<chan>",
-      "description": "Measure Frequency",
-      "returns": {
-        "count": 1
-      },
-      "group": "Immediate Measurement (:MEAS:ITEM?)",
-      "subsystem": "MEASure"
-    },
-    "Measure_Vpp": {
-      "scpi": ":MEASure:ITEM? VPP,<chan>",
-      "scpiFast": ":MEAS:ITEM? VPP,<chan>",
-      "description": "Measure Vpp",
-      "returns": {
-        "count": 1
-      },
-      "group": "Immediate Measurement (:MEAS:ITEM?)",
-      "subsystem": "MEASure"
-    },
-    "channel_settings_1": {
-      "scpi": ":CHANnel1:DISPlay?;:CHANnel1:SCALe?;:CHANnel1:OFFSet?",
-      "scpiFast": ":CHAN1:DISP?;:CHAN1:SCAL?;:CHAN1:OFFS?",
-      "description": "Channel 1: on/off, volts per division and offset in one round trip.",
-      "subsystem": "CHANnel",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state",
-            "type": "BOOL"
-          },
-          {
-            "name": "scale",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "offset",
-            "type": "NR3",
-            "unit": "V"
-          }
-        ]
-      },
-      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_1/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "waveform_1": {
-      "scpi": ":WAVeform:SOURce CHANnel1;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
-      "scpiFast": ":WAV:SOUR CHAN1;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
-      "description": "Channel 1's trace, with the time axis it was captured on.",
-      "subsystem": "WAVeform",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "samples",
-            "type": "CSV",
-            "unit": "V"
-          },
-          {
-            "name": "xorigin",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "xincrement",
-            "type": "NR3",
-            "unit": "s"
-          }
-        ]
-      },
-      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "measure_1": {
-      "scpi": ":MEASure:ITEM? VPP,CHANnel1;:MEASure:ITEM? VRMS,CHANnel1;:MEASure:ITEM? FREQuency,CHANnel1",
-      "scpiFast": ":MEAS:ITEM? VPP,CHAN1;:MEAS:ITEM? VRMS,CHAN1;:MEAS:ITEM? FREQ,CHAN1",
-      "description": "Channel 1: Vpp, Vrms and frequency in one round trip.",
-      "subsystem": "MEASure",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "freq",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "channel_settings_2": {
-      "scpi": ":CHANnel2:DISPlay?;:CHANnel2:SCALe?;:CHANnel2:OFFSet?",
-      "scpiFast": ":CHAN2:DISP?;:CHAN2:SCAL?;:CHAN2:OFFS?",
-      "description": "Channel 2: on/off, volts per division and offset in one round trip.",
-      "subsystem": "CHANnel",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state",
-            "type": "BOOL"
-          },
-          {
-            "name": "scale",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "offset",
-            "type": "NR3",
-            "unit": "V"
-          }
-        ]
-      },
-      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_2/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "waveform_2": {
-      "scpi": ":WAVeform:SOURce CHANnel2;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
-      "scpiFast": ":WAV:SOUR CHAN2;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
-      "description": "Channel 2's trace, with the time axis it was captured on.",
-      "subsystem": "WAVeform",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "samples",
-            "type": "CSV",
-            "unit": "V"
-          },
-          {
-            "name": "xorigin",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "xincrement",
-            "type": "NR3",
-            "unit": "s"
-          }
-        ]
-      },
-      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "measure_2": {
-      "scpi": ":MEASure:ITEM? VPP,CHANnel2;:MEASure:ITEM? VRMS,CHANnel2;:MEASure:ITEM? FREQuency,CHANnel2",
-      "scpiFast": ":MEAS:ITEM? VPP,CHAN2;:MEAS:ITEM? VRMS,CHAN2;:MEAS:ITEM? FREQ,CHAN2",
-      "description": "Channel 2: Vpp, Vrms and frequency in one round trip.",
-      "subsystem": "MEASure",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "freq",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "channel_settings_3": {
-      "scpi": ":CHANnel3:DISPlay?;:CHANnel3:SCALe?;:CHANnel3:OFFSet?",
-      "scpiFast": ":CHAN3:DISP?;:CHAN3:SCAL?;:CHAN3:OFFS?",
-      "description": "Channel 3: on/off, volts per division and offset in one round trip.",
-      "subsystem": "CHANnel",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state",
-            "type": "BOOL"
-          },
-          {
-            "name": "scale",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "offset",
-            "type": "NR3",
-            "unit": "V"
-          }
-        ]
-      },
-      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_3/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "waveform_3": {
-      "scpi": ":WAVeform:SOURce CHANnel3;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
-      "scpiFast": ":WAV:SOUR CHAN3;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
-      "description": "Channel 3's trace, with the time axis it was captured on.",
-      "subsystem": "WAVeform",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "samples",
-            "type": "CSV",
-            "unit": "V"
-          },
-          {
-            "name": "xorigin",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "xincrement",
-            "type": "NR3",
-            "unit": "s"
-          }
-        ]
-      },
-      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "measure_3": {
-      "scpi": ":MEASure:ITEM? VPP,CHANnel3;:MEASure:ITEM? VRMS,CHANnel3;:MEASure:ITEM? FREQuency,CHANnel3",
-      "scpiFast": ":MEAS:ITEM? VPP,CHAN3;:MEAS:ITEM? VRMS,CHAN3;:MEAS:ITEM? FREQ,CHAN3",
-      "description": "Channel 3: Vpp, Vrms and frequency in one round trip.",
-      "subsystem": "MEASure",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "freq",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "channel_settings_4": {
-      "scpi": ":CHANnel4:DISPlay?;:CHANnel4:SCALe?;:CHANnel4:OFFSet?",
-      "scpiFast": ":CHAN4:DISP?;:CHAN4:SCAL?;:CHAN4:OFFS?",
-      "description": "Channel 4: on/off, volts per division and offset in one round trip.",
-      "subsystem": "CHANnel",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state",
-            "type": "BOOL"
-          },
-          {
-            "name": "scale",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "offset",
-            "type": "NR3",
-            "unit": "V"
-          }
-        ]
-      },
-      "notes": "The channel index is IN THE COMMAND, not a parameter, so the reply lands on `Reading/channel_settings_4/scale` and a four-strip panel can tell its channels apart. A parameterised verb answers under one name whichever channel it read, which no per-channel display can bind to. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "waveform_4": {
-      "scpi": ":WAVeform:SOURce CHANnel4;:WAVeform:MODE NORMal;:WAVeform:FORMat ASCii;:WAVeform:DATA?;:WAVeform:XORigin?;:WAVeform:XINCrement?",
-      "scpiFast": ":WAV:SOUR CHAN4;:WAV:MODE NORM;:WAV:FORM ASC;:WAV:DATA?;:WAV:XOR?;:WAV:XINC?",
-      "description": "Channel 4's trace, with the time axis it was captured on.",
-      "subsystem": "WAVeform",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "samples",
-            "type": "CSV",
-            "unit": "V"
-          },
-          {
-            "name": "xorigin",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "xincrement",
-            "type": "NR3",
-            "unit": "s"
-          }
-        ]
-      },
-      "notes": "Samples ALONE cannot be plotted — the time axis rides in the same reply, because fetching it separately lets the two disagree when the timebase moves between reads. The source and format writes lead the queries in ONE message so the reply is the trace that was asked for. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "measure_4": {
-      "scpi": ":MEASure:ITEM? VPP,CHANnel4;:MEASure:ITEM? VRMS,CHANnel4;:MEASure:ITEM? FREQuency,CHANnel4",
-      "scpiFast": ":MEAS:ITEM? VPP,CHAN4;:MEAS:ITEM? VRMS,CHAN4;:MEAS:ITEM? FREQ,CHAN4",
-      "description": "Channel 4: Vpp, Vrms and frequency in one round trip.",
-      "subsystem": "MEASure",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "vpp",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "vrms",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "freq",
-            "type": "NR3",
-            "unit": "Hz"
-          }
-        ]
-      },
-      "notes": "Rigol takes the source as an ARGUMENT to :MEASure:ITEM?, so these three need no :MEASure:SOURce write and cannot be attributed to the wrong channel. No dB item exists on this firmware — the panel derives dBV from vrms. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "timebase_settings": {
-      "scpi": ":TIMebase:MAIN:SCALe?;:TIMebase:MAIN:OFFSet?",
-      "scpiFast": ":TIM:MAIN:SCAL?;:TIM:MAIN:OFFS?",
-      "description": "Seconds per division and the horizontal delay, in one round trip.",
-      "subsystem": "TIMebase",
-      "returns": {
-        "count": 2,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "scale",
-            "type": "NR3",
-            "unit": "s"
-          },
-          {
-            "name": "delay",
-            "type": "NR3",
-            "unit": "s"
-          }
-        ]
-      },
-      "notes": "Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
-    },
-    "trigger_settings": {
-      "scpi": ":TRIGger:MODE?;:TRIGger:EDGe:LEVel?;:TRIGger:EDGe:SOURce?",
-      "scpiFast": ":TRIG:MODE?;:TRIG:EDG:LEV?;:TRIG:EDG:SOUR?",
-      "description": "Trigger type, edge level and edge source, in one round trip.",
-      "subsystem": "TRIGger",
-      "returns": {
-        "count": 3,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "mode",
-            "type": "CRD"
-          },
-          {
-            "name": "level",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "source",
-            "type": "CRD"
-          }
-        ]
-      },
-      "notes": "Rigol spells the node `EDGe`; the shape is the 54641D's, which answered `EDGE;+0.0E+00;CHAN1`. Not yet run against this model — it is out of the discovery map today.",
-      "unverified": true
-    },
-    "math_settings": {
-      "scpi": ":MATH:DISPlay?;:MATH:OPERator?;:MATH:SCALe?;:MATH:OFFSet?",
-      "scpiFast": ":MATH:DISP?;:MATH:OPER?;:MATH:SCAL?;:MATH:OFFS?",
-      "description": "Math on/off, operator, scale and offset, in one round trip.",
-      "subsystem": "MATH",
-      "returns": {
-        "count": 4,
-        "separator": ";",
-        "fields": [
-          {
-            "name": "state",
-            "type": "BOOL"
-          },
-          {
-            "name": "operator",
-            "type": "CRD"
-          },
-          {
-            "name": "scale",
-            "type": "NR3",
-            "unit": "V"
-          },
-          {
-            "name": "offset",
-            "type": "NR3",
-            "unit": "V"
-          }
-        ]
-      },
-      "notes": "Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
     }
   }
 }

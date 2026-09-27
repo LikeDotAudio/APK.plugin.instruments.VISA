@@ -66,9 +66,9 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
@@ -82,6 +82,45 @@
   },
   "endpoints": {
     "get": {
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "get",
+        "description": "Read SMU identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Measure_Current": {
         "command": "Measure_Current",
         "verb": "get",
@@ -178,48 +217,14 @@
         },
         "unverified": false
       },
-      "Query_Error": {
-        "command": "Query_Error",
+      "Read_Output_State": {
+        "command": "Read_Output_State",
         "verb": "get",
-        "description": "Query system error queue",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "SYSTem",
-        "group": "System Utilities",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "code"
-            },
-            {
-              "name": "message"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Query_Error",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_Error"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_Compliance_Status": {
-        "command": "Read_Compliance_Status",
-        "verb": "get",
-        "description": "Check if voltage or current compliance threshold was tripped",
-        "scpi": ":SENSe:PROTection:TRIPped?",
-        "scpi_fast": ":SENS:PROT:TRIP?",
-        "subsystem": "SENSe",
-        "group": "Compliance Limits",
+        "description": "Query output enabled/disabled status",
+        "scpi": ":OUTPut:STATe?",
+        "scpi_fast": ":OUTP:STAT?",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
         "args": [],
         "arg": {
           "kind": "none"
@@ -227,56 +232,17 @@
         "returns": {
           "fields": [
             {
-              "name": "tripped"
+              "name": "state"
             }
           ]
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Read_Compliance_Status",
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Output_State",
           "direction": "in",
           "payload_format": {
-            "command": "Read_Compliance_Status"
+            "command": "Read_Output_State"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Compliance_Status",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "get",
-        "description": "Read SMU identification string",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "manufacturer"
-            },
-            {
-              "name": "model"
-            },
-            {
-              "name": "serial"
-            },
-            {
-              "name": "firmware"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Output_State",
           "reading_direction": "out"
         },
         "unverified": false
@@ -327,14 +293,14 @@
         },
         "unverified": false
       },
-      "Read_Output_State": {
-        "command": "Read_Output_State",
+      "Read_Compliance_Status": {
+        "command": "Read_Compliance_Status",
         "verb": "get",
-        "description": "Query output enabled/disabled status",
-        "scpi": ":OUTPut:STATe?",
-        "scpi_fast": ":OUTP:STAT?",
-        "subsystem": "OUTPut",
-        "group": "Output Control",
+        "description": "Check if voltage or current compliance threshold was tripped",
+        "scpi": ":SENSe:PROTection:TRIPped?",
+        "scpi_fast": ":SENS:PROT:TRIP?",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
         "args": [],
         "arg": {
           "kind": "none"
@@ -342,78 +308,57 @@
         "returns": {
           "fields": [
             {
-              "name": "state"
+              "name": "tripped"
             }
           ]
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Read_Output_State",
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Compliance_Status",
           "direction": "in",
           "payload_format": {
-            "command": "Read_Output_State"
+            "command": "Read_Compliance_Status"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Output_State",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Compliance_Status",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "get",
+        "description": "Query system error queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
           "reading_direction": "out"
         },
         "unverified": false
       }
     },
     "set": {
-      "Set_Current_Compliance": {
-        "command": "Set_Current_Compliance",
-        "verb": "set",
-        "description": "Set maximum current compliance protection limit",
-        "scpi": ":SENSe:CURRent:PROTection:LEVel <amps>",
-        "scpi_fast": ":SENS:CURR:PROT:LEV <amps>",
-        "subsystem": "SENSe",
-        "group": "Compliance Limits",
-        "args": [
-          "amps"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "A"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Set_Current_Compliance",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Current_Compliance",
-            "value": "<value>",
-            "input_name": "amps"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Integration_NPLC": {
-        "command": "Set_Integration_NPLC",
-        "verb": "set",
-        "description": "Set A/D converter integration time in power line cycles",
-        "scpi": ":SENSe:NPLC <nplc>",
-        "scpi_fast": ":SENS:NPLC <nplc>",
-        "subsystem": "SENSe",
-        "group": "Measurement Setup",
-        "args": [
-          "nplc"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "min": 0.01,
-          "max": 10.0
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Set_Integration_NPLC",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Integration_NPLC",
-            "value": "<value>",
-            "input_name": "nplc"
-          }
-        },
-        "unverified": false
-      },
       "Set_Output_State": {
         "command": "Set_Output_State",
         "verb": "set",
@@ -440,6 +385,33 @@
             "command": "Set_Output_State",
             "value": "<value>",
             "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Current_Compliance": {
+        "command": "Set_Current_Compliance",
+        "verb": "set",
+        "description": "Set maximum current compliance protection limit",
+        "scpi": ":SENSe:CURRent:PROTection:LEVel <amps>",
+        "scpi_fast": ":SENS:CURR:PROT:LEV <amps>",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
+        "args": [
+          "amps"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "A"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Current_Compliance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Current_Compliance",
+            "value": "<value>",
+            "input_name": "amps"
           }
         },
         "unverified": false
@@ -475,6 +447,34 @@
         },
         "unverified": false
       },
+      "Set_Integration_NPLC": {
+        "command": "Set_Integration_NPLC",
+        "verb": "set",
+        "description": "Set A/D converter integration time in power line cycles",
+        "scpi": ":SENSe:NPLC <nplc>",
+        "scpi_fast": ":SENS:NPLC <nplc>",
+        "subsystem": "SENSe",
+        "group": "Measurement Setup",
+        "args": [
+          "nplc"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "min": 0.01,
+          "max": 10.0
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Integration_NPLC",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Integration_NPLC",
+            "value": "<value>",
+            "input_name": "nplc"
+          }
+        },
+        "unverified": false
+      },
       "Set_Sense_Remote": {
         "command": "Set_Sense_Remote",
         "verb": "set",
@@ -501,6 +501,33 @@
             "command": "Set_Sense_Remote",
             "value": "<value>",
             "input_name": "state"
+          }
+        },
+        "unverified": false
+      },
+      "Set_Voltage_Compliance": {
+        "command": "Set_Voltage_Compliance",
+        "verb": "set",
+        "description": "Set maximum voltage compliance protection limit",
+        "scpi": ":SENSe:VOLTage:PROTection:LEVel <volts>",
+        "scpi_fast": ":SENS:VOLT:PROT:LEV <volts>",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
+        "args": [
+          "volts"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "V"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Set_Voltage_Compliance",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Voltage_Compliance",
+            "value": "<value>",
+            "input_name": "volts"
           }
         },
         "unverified": false
@@ -588,36 +615,48 @@
           }
         },
         "unverified": false
-      },
-      "Set_Voltage_Compliance": {
-        "command": "Set_Voltage_Compliance",
-        "verb": "set",
-        "description": "Set maximum voltage compliance protection limit",
-        "scpi": ":SENSe:VOLTage:PROTection:LEVel <volts>",
-        "scpi_fast": ":SENS:VOLT:PROT:LEV <volts>",
-        "subsystem": "SENSe",
-        "group": "Compliance Limits",
-        "args": [
-          "volts"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "V"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Set_Voltage_Compliance",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Voltage_Compliance",
-            "value": "<value>",
-            "input_name": "volts"
-          }
-        },
-        "unverified": false
       }
     },
     "nab": {
+      "Read_IDN": {
+        "command": "Read_IDN",
+        "verb": "nab",
+        "description": "Read SMU identification string",
+        "scpi": "*IDN?",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "manufacturer"
+            },
+            {
+              "name": "model"
+            },
+            {
+              "name": "serial"
+            },
+            {
+              "name": "firmware"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Read_IDN",
+          "direction": "in",
+          "payload_format": {
+            "command": "Read_IDN"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
       "Measure_Current": {
         "command": "Measure_Current",
         "verb": "nab",
@@ -714,48 +753,14 @@
         },
         "unverified": false
       },
-      "Query_Error": {
-        "command": "Query_Error",
+      "Read_Output_State": {
+        "command": "Read_Output_State",
         "verb": "nab",
-        "description": "Query system error queue",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "SYSTem",
-        "group": "System Utilities",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "code"
-            },
-            {
-              "name": "message"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Query_Error",
-          "direction": "in",
-          "payload_format": {
-            "command": "Query_Error"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_Compliance_Status": {
-        "command": "Read_Compliance_Status",
-        "verb": "nab",
-        "description": "Check if voltage or current compliance threshold was tripped",
-        "scpi": ":SENSe:PROTection:TRIPped?",
-        "scpi_fast": ":SENS:PROT:TRIP?",
-        "subsystem": "SENSe",
-        "group": "Compliance Limits",
+        "description": "Query output enabled/disabled status",
+        "scpi": ":OUTPut:STATe?",
+        "scpi_fast": ":OUTP:STAT?",
+        "subsystem": "OUTPut",
+        "group": "Output Control",
         "args": [],
         "arg": {
           "kind": "none"
@@ -763,56 +768,17 @@
         "returns": {
           "fields": [
             {
-              "name": "tripped"
+              "name": "state"
             }
           ]
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Read_Compliance_Status",
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Output_State",
           "direction": "in",
           "payload_format": {
-            "command": "Read_Compliance_Status"
+            "command": "Read_Output_State"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Compliance_Status",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Read_IDN": {
-        "command": "Read_IDN",
-        "verb": "nab",
-        "description": "Read SMU identification string",
-        "scpi": "*IDN?",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "separator": ",",
-          "fields": [
-            {
-              "name": "manufacturer"
-            },
-            {
-              "name": "model"
-            },
-            {
-              "name": "serial"
-            },
-            {
-              "name": "firmware"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Read_IDN",
-          "direction": "in",
-          "payload_format": {
-            "command": "Read_IDN"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Output_State",
           "reading_direction": "out"
         },
         "unverified": false
@@ -863,14 +829,14 @@
         },
         "unverified": false
       },
-      "Read_Output_State": {
-        "command": "Read_Output_State",
+      "Read_Compliance_Status": {
+        "command": "Read_Compliance_Status",
         "verb": "nab",
-        "description": "Query output enabled/disabled status",
-        "scpi": ":OUTPut:STATe?",
-        "scpi_fast": ":OUTP:STAT?",
-        "subsystem": "OUTPut",
-        "group": "Output Control",
+        "description": "Check if voltage or current compliance threshold was tripped",
+        "scpi": ":SENSe:PROTection:TRIPped?",
+        "scpi_fast": ":SENS:PROT:TRIP?",
+        "subsystem": "SENSe",
+        "group": "Compliance Limits",
         "args": [],
         "arg": {
           "kind": "none"
@@ -878,17 +844,51 @@
         "returns": {
           "fields": [
             {
-              "name": "state"
+              "name": "tripped"
             }
           ]
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Read_Output_State",
+          "topic": "APK.audio/Gui/Komands/SMU/Read_Compliance_Status",
           "direction": "in",
           "payload_format": {
-            "command": "Read_Output_State"
+            "command": "Read_Compliance_Status"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Output_State",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Compliance_Status",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Query_Error": {
+        "command": "Query_Error",
+        "verb": "nab",
+        "description": "Query system error queue",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "SYSTem",
+        "group": "System Utilities",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "separator": ",",
+          "fields": [
+            {
+              "name": "code"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Query_Error",
+          "direction": "in",
+          "payload_format": {
+            "command": "Query_Error"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -971,6 +971,48 @@
       }
     },
     "do": {
+      "Clear_Status": {
+        "command": "Clear_Status",
+        "verb": "do",
+        "description": "Clear status registers and error queue",
+        "scpi": "*CLS",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Clear_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Clear_Status"
+          }
+        },
+        "unverified": false
+      },
+      "Reset": {
+        "command": "Reset",
+        "verb": "do",
+        "description": "Reset SMU to default factory parameters",
+        "scpi": "*RST",
+        "subsystem": "Common",
+        "group": "IEEE 488.2 Common",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/SMU/Reset",
+          "direction": "in",
+          "payload_format": {
+            "command": "Reset"
+          }
+        },
+        "unverified": false
+      },
       "Abort": {
         "command": "Abort",
         "verb": "do",
@@ -989,27 +1031,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Abort"
-          }
-        },
-        "unverified": false
-      },
-      "Clear_Status": {
-        "command": "Clear_Status",
-        "verb": "do",
-        "description": "Clear status registers and error queue",
-        "scpi": "*CLS",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Clear_Status",
-          "direction": "in",
-          "payload_format": {
-            "command": "Clear_Status"
           }
         },
         "unverified": false
@@ -1076,27 +1097,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Output_ON"
-          }
-        },
-        "unverified": false
-      },
-      "Reset": {
-        "command": "Reset",
-        "verb": "do",
-        "description": "Reset SMU to default factory parameters",
-        "scpi": "*RST",
-        "subsystem": "Common",
-        "group": "IEEE 488.2 Common",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/SMU/Reset",
-          "direction": "in",
-          "payload_format": {
-            "command": "Reset"
           }
         },
         "unverified": false

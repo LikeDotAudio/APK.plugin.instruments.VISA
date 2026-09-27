@@ -103,15 +103,15 @@
     }
   },
   "verb_mapping": {
-    "get": "Queries, observations, telemetry and status readings (identical to NAB)",
+    "get": "Single-value queries (each one also a NAB)",
     "set": "Single parameter mutation and write commands",
-    "nab": "Observation and telemetry acquisition queries",
+    "nab": "Observation and telemetry acquisition queries \u2014 anything that returns more than one thing is a NAB only",
     "rig": "Multi-argument system configuration setup commands",
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
     "total_commands": 28,
-    "get_count": 8,
+    "get_count": 4,
     "set_count": 9,
     "nab_count": 8,
     "rig_count": 3,
@@ -119,83 +119,6 @@
   },
   "endpoints": {
     "get": {
-      "Attenuation": {
-        "command": "Attenuation",
-        "verb": "get",
-        "description": "Attenuation",
-        "scpi": ":POWer:RF:ATTenuation?",
-        "scpi_fast": ":POW:RF:ATT?",
-        "subsystem": "Amplitude",
-        "group": "Individual Read Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR3",
-          "unit": "dB"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Attenuation",
-          "direction": "in",
-          "payload_format": {
-            "command": "Attenuation"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Attenuation",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Frequency_settings": {
-        "command": "Frequency_settings",
-        "verb": "get",
-        "description": "Primary Frequency Monitoring",
-        "scpi": ":FREQuency:STARt?;:FREQuency:STOP?;:FREQuency:CENTer?;:FREQuency:SPAN?",
-        "scpi_fast": ":FREQ:STAR?;:FREQ:STOP?;:FREQ:CENT?;:FREQ:SPAN?",
-        "subsystem": "Frequency",
-        "group": "NAB Frequency Monitoring",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 4,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "start",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "stop",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "center",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "span",
-              "type": "NR3",
-              "unit": "Hz"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Frequency_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "Frequency_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Frequency_settings",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "Get_Reference_Level": {
         "command": "Get_Reference_Level",
         "verb": "get",
@@ -224,118 +147,30 @@
         },
         "unverified": false
       },
-      "Get_error_information": {
-        "command": "Get_error_information",
+      "Attenuation": {
+        "command": "Attenuation",
         "verb": "get",
-        "description": "System Error Check",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "System",
-        "group": "System Status and Identification",
+        "description": "Attenuation",
+        "scpi": ":POWer:RF:ATTenuation?",
+        "scpi_fast": ":POW:RF:ATT?",
+        "subsystem": "Amplitude",
+        "group": "Individual Read Queries",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": {
           "count": 1,
-          "type": "NR2"
+          "type": "NR3",
+          "unit": "dB"
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Get_error_information",
+          "topic": "APK.audio/Gui/Komands/Spectrum/Attenuation",
           "direction": "in",
           "payload_format": {
-            "command": "Get_error_information"
+            "command": "Attenuation"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_error_information",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "NAB_all_marker_settings": {
-        "command": "NAB_all_marker_settings",
-        "verb": "get",
-        "description": "Marker Amplitude and Frequency Readbacks",
-        "scpi": ":CALCulate:MARKer1:Y?;:CALCulate:MARKer2:Y?;:CALCulate:MARKer3:Y?;:CALCulate:MARKer4:Y?;:CALCulate:MARKer5:Y?;:CALCulate:MARKer6:Y?;:CALCulate:MARKer1:X?;:CALCulate:MARKer2:X?;:CALCulate:MARKer3:X?;:CALCulate:MARKer4:X?;:CALCulate:MARKer5:X?;:CALCulate:MARKer6:X?",
-        "scpi_fast": ":CALC:MARK1:Y?;:CALC:MARK2:Y?;:CALC:MARK3:Y?;:CALC:MARK4:Y?;:CALC:MARK5:Y?;:CALC:MARK6:Y?;:CALC:MARK1:X?;:CALC:MARK2:X?;:CALC:MARK3:X?;:CALC:MARK4:X?;:CALC:MARK5:X?;:CALC:MARK6:X?",
-        "subsystem": "Markers",
-        "group": "NAB Marker Monitoring",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 12,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "y_1",
-              "type": "NR3",
-              "unit": "dBm"
-            },
-            {
-              "name": "y_2",
-              "type": "NR3",
-              "unit": "dBm"
-            },
-            {
-              "name": "y_3",
-              "type": "NR3",
-              "unit": "dBm"
-            },
-            {
-              "name": "y_4",
-              "type": "NR3",
-              "unit": "dBm"
-            },
-            {
-              "name": "y_5",
-              "type": "NR3",
-              "unit": "dBm"
-            },
-            {
-              "name": "y_6",
-              "type": "NR3",
-              "unit": "dBm"
-            },
-            {
-              "name": "x_1",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "x_2",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "x_3",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "x_4",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "x_5",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "x_6",
-              "type": "NR3",
-              "unit": "Hz"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/NAB_all_marker_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "NAB_all_marker_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/NAB_all_marker_settings",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Attenuation",
           "reading_direction": "out"
         },
         "unverified": false
@@ -368,156 +203,35 @@
         },
         "unverified": false
       },
-      "amplitude_settings": {
-        "command": "amplitude_settings",
+      "Get_error_information": {
+        "command": "Get_error_information",
         "verb": "get",
-        "description": "Power and Attenuation Readbacks",
-        "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel?;:POWer:ATTenuation?;:POWer:GAIN?",
-        "scpi_fast": ":DISP:WIND:TRAC:Y:RLEV?;:POW:ATT?;:POW:GAIN?",
-        "subsystem": "Amplitude",
-        "group": "NAB Amplitude Monitoring",
+        "description": "System Error Check",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "System",
+        "group": "System Status and Identification",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": {
-          "count": 3,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "rlevel",
-              "type": "NR3",
-              "unit": "dBm"
-            },
-            {
-              "name": "attenuation",
-              "type": "NR3",
-              "unit": "dB"
-            },
-            {
-              "name": "gain",
-              "type": "NR3",
-              "unit": "dB"
-            }
-          ]
+          "count": 1,
+          "type": "NR2"
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/amplitude_settings",
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_error_information",
           "direction": "in",
           "payload_format": {
-            "command": "amplitude_settings"
+            "command": "Get_error_information"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/amplitude_settings",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "bandwidth_settings": {
-        "command": "bandwidth_settings",
-        "verb": "get",
-        "description": "Bandwidth and Sweep Monitoring",
-        "scpi": ":SENSe:BANDwidth:RESolution?;:SENSe:BANDwidth:VIDeo?;:SENSe:BANDwidth:VIDeo:AUTO?;:INITiate:CONTinuous?;:SENSe:SWEep:TIME?",
-        "scpi_fast": ":SENS:BAND:RES?;:SENS:BAND:VID?;:SENS:BAND:VID:AUTO?;:INIT:CONT?;:SENS:SWE:TIME?",
-        "subsystem": "Bandwidth",
-        "group": "NAB Bandwidth Monitoring",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 5,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "resolution",
-              "unit": "Hz"
-            },
-            {
-              "name": "video",
-              "unit": "Hz"
-            },
-            {
-              "name": "auto",
-              "type": "BOOL"
-            },
-            {
-              "name": "continuous",
-              "type": "BOOL"
-            },
-            {
-              "name": "time",
-              "type": "NR3",
-              "unit": "s"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/bandwidth_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "bandwidth_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/bandwidth_settings",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_error_information",
           "reading_direction": "out"
         },
         "unverified": false
       }
     },
     "set": {
-      "Power_Attenuation": {
-        "command": "Power_Attenuation",
-        "verb": "set",
-        "description": "Power Attenuation",
-        "scpi": ":POWer:ATTenuation <Power_Attenuation>",
-        "scpi_fast": ":POW:ATT <Power_Attenuation>",
-        "subsystem": "Amplitude",
-        "group": "Individual Power Sets",
-        "args": [
-          "Power_Attenuation"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "dB"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Power_Attenuation",
-          "direction": "in",
-          "payload_format": {
-            "command": "Power_Attenuation",
-            "value": "<value>",
-            "input_name": "Power_Attenuation"
-          }
-        },
-        "unverified": false
-      },
-      "Resolution_Bandwidth": {
-        "command": "Resolution_Bandwidth",
-        "verb": "set",
-        "description": "Resolution Bandwidth",
-        "scpi": ":SENSe:BANDwidth:RESolution <hz_value>",
-        "scpi_fast": ":SENS:BAND:RES <hz_value>",
-        "subsystem": "Bandwidth",
-        "group": "RIG Bandwidth Commands",
-        "args": [
-          "hz_value"
-        ],
-        "arg": {
-          "kind": "numeric",
-          "unit": "Hz"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Resolution_Bandwidth",
-          "direction": "in",
-          "payload_format": {
-            "command": "Resolution_Bandwidth",
-            "value": "<value>",
-            "input_name": "hz_value"
-          }
-        },
-        "unverified": false
-      },
       "Set_Marker_X_position": {
         "command": "Set_Marker_X_position",
         "verb": "set",
@@ -649,29 +363,56 @@
         },
         "unverified": false
       },
-      "Sweep_Time": {
-        "command": "Sweep_Time",
+      "Power_Attenuation": {
+        "command": "Power_Attenuation",
         "verb": "set",
-        "description": "Sweep Time",
-        "scpi": ":SENSe:SWEep:TIME <sweep_time_s>",
-        "scpi_fast": ":SENS:SWE:TIME <sweep_time_s>",
-        "subsystem": "Bandwidth",
-        "group": "RIG Bandwidth Commands",
+        "description": "Power Attenuation",
+        "scpi": ":POWer:ATTenuation <Power_Attenuation>",
+        "scpi_fast": ":POW:ATT <Power_Attenuation>",
+        "subsystem": "Amplitude",
+        "group": "Individual Power Sets",
         "args": [
-          "sweep_time_s"
+          "Power_Attenuation"
         ],
         "arg": {
           "kind": "numeric",
-          "unit": "s"
+          "unit": "dB"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Sweep_Time",
+          "topic": "APK.audio/Gui/Komands/Spectrum/Power_Attenuation",
           "direction": "in",
           "payload_format": {
-            "command": "Sweep_Time",
+            "command": "Power_Attenuation",
             "value": "<value>",
-            "input_name": "sweep_time_s"
+            "input_name": "Power_Attenuation"
+          }
+        },
+        "unverified": false
+      },
+      "Resolution_Bandwidth": {
+        "command": "Resolution_Bandwidth",
+        "verb": "set",
+        "description": "Resolution Bandwidth",
+        "scpi": ":SENSe:BANDwidth:RESolution <hz_value>",
+        "scpi_fast": ":SENS:BAND:RES <hz_value>",
+        "subsystem": "Bandwidth",
+        "group": "RIG Bandwidth Commands",
+        "args": [
+          "hz_value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "Hz"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Resolution_Bandwidth",
+          "direction": "in",
+          "payload_format": {
+            "command": "Resolution_Bandwidth",
+            "value": "<value>",
+            "input_name": "hz_value"
           }
         },
         "unverified": false
@@ -702,141 +443,36 @@
           }
         },
         "unverified": false
+      },
+      "Sweep_Time": {
+        "command": "Sweep_Time",
+        "verb": "set",
+        "description": "Sweep Time",
+        "scpi": ":SENSe:SWEep:TIME <sweep_time_s>",
+        "scpi_fast": ":SENS:SWE:TIME <sweep_time_s>",
+        "subsystem": "Bandwidth",
+        "group": "RIG Bandwidth Commands",
+        "args": [
+          "sweep_time_s"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "s"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Sweep_Time",
+          "direction": "in",
+          "payload_format": {
+            "command": "Sweep_Time",
+            "value": "<value>",
+            "input_name": "sweep_time_s"
+          }
+        },
+        "unverified": false
       }
     },
     "nab": {
-      "Attenuation": {
-        "command": "Attenuation",
-        "verb": "nab",
-        "description": "Attenuation",
-        "scpi": ":POWer:RF:ATTenuation?",
-        "scpi_fast": ":POW:RF:ATT?",
-        "subsystem": "Amplitude",
-        "group": "Individual Read Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR3",
-          "unit": "dB"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Attenuation",
-          "direction": "in",
-          "payload_format": {
-            "command": "Attenuation"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Attenuation",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Frequency_settings": {
-        "command": "Frequency_settings",
-        "verb": "nab",
-        "description": "Primary Frequency Monitoring",
-        "scpi": ":FREQuency:STARt?;:FREQuency:STOP?;:FREQuency:CENTer?;:FREQuency:SPAN?",
-        "scpi_fast": ":FREQ:STAR?;:FREQ:STOP?;:FREQ:CENT?;:FREQ:SPAN?",
-        "subsystem": "Frequency",
-        "group": "NAB Frequency Monitoring",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 4,
-          "separator": ";",
-          "fields": [
-            {
-              "name": "start",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "stop",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "center",
-              "type": "NR3",
-              "unit": "Hz"
-            },
-            {
-              "name": "span",
-              "type": "NR3",
-              "unit": "Hz"
-            }
-          ]
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Frequency_settings",
-          "direction": "in",
-          "payload_format": {
-            "command": "Frequency_settings"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Frequency_settings",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Get_Reference_Level": {
-        "command": "Get_Reference_Level",
-        "verb": "nab",
-        "description": "Get Reference Level",
-        "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel?",
-        "scpi_fast": ":DISP:WIND:TRAC:Y:RLEV?",
-        "subsystem": "Amplitude",
-        "group": "Individual Read Queries",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR3",
-          "unit": "V"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Reference_Level",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Reference_Level"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Reference_Level",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
-      "Get_error_information": {
-        "command": "Get_error_information",
-        "verb": "nab",
-        "description": "System Error Check",
-        "scpi": ":SYSTem:ERRor?",
-        "scpi_fast": ":SYST:ERR?",
-        "subsystem": "System",
-        "group": "System Status and Identification",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "NR2"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Get_error_information",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_error_information"
-          },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_error_information",
-          "reading_direction": "out"
-        },
-        "unverified": false
-      },
       "NAB_all_marker_settings": {
         "command": "NAB_all_marker_settings",
         "verb": "nab",
@@ -926,12 +562,12 @@
         },
         "unverified": false
       },
-      "Preamp_State": {
-        "command": "Preamp_State",
+      "Get_Reference_Level": {
+        "command": "Get_Reference_Level",
         "verb": "nab",
-        "description": "Preamp State",
-        "scpi": ":SENSE:POWer:RF:GAIN:STATe?",
-        "scpi_fast": ":SENS:POW:RF:GAIN:STAT?",
+        "description": "Get Reference Level",
+        "scpi": ":DISPlay:WINDow:TRACe:Y:RLEVel?",
+        "scpi_fast": ":DISP:WIND:TRAC:Y:RLEV?",
         "subsystem": "Amplitude",
         "group": "Individual Read Queries",
         "args": [],
@@ -940,16 +576,16 @@
         },
         "returns": {
           "count": 1,
-          "type": "BOOL",
-          "unit": "dB"
+          "type": "NR3",
+          "unit": "V"
         },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Preamp_State",
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Reference_Level",
           "direction": "in",
           "payload_format": {
-            "command": "Preamp_State"
+            "command": "Get_Reference_Level"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Preamp_State",
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Reference_Level",
           "reading_direction": "out"
         },
         "unverified": false
@@ -994,6 +630,83 @@
             "command": "amplitude_settings"
           },
           "reading_topic": "APK.audio/Device/<device>/Reading/amplitude_settings",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Frequency_settings": {
+        "command": "Frequency_settings",
+        "verb": "nab",
+        "description": "Primary Frequency Monitoring",
+        "scpi": ":FREQuency:STARt?;:FREQuency:STOP?;:FREQuency:CENTer?;:FREQuency:SPAN?",
+        "scpi_fast": ":FREQ:STAR?;:FREQ:STOP?;:FREQ:CENT?;:FREQ:SPAN?",
+        "subsystem": "Frequency",
+        "group": "NAB Frequency Monitoring",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 4,
+          "separator": ";",
+          "fields": [
+            {
+              "name": "start",
+              "type": "NR3",
+              "unit": "Hz"
+            },
+            {
+              "name": "stop",
+              "type": "NR3",
+              "unit": "Hz"
+            },
+            {
+              "name": "center",
+              "type": "NR3",
+              "unit": "Hz"
+            },
+            {
+              "name": "span",
+              "type": "NR3",
+              "unit": "Hz"
+            }
+          ]
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Frequency_settings",
+          "direction": "in",
+          "payload_format": {
+            "command": "Frequency_settings"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Frequency_settings",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      },
+      "Attenuation": {
+        "command": "Attenuation",
+        "verb": "nab",
+        "description": "Attenuation",
+        "scpi": ":POWer:RF:ATTenuation?",
+        "scpi_fast": ":POW:RF:ATT?",
+        "subsystem": "Amplitude",
+        "group": "Individual Read Queries",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "dB"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Attenuation",
+          "direction": "in",
+          "payload_format": {
+            "command": "Attenuation"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Attenuation",
           "reading_direction": "out"
         },
         "unverified": false
@@ -1047,37 +760,64 @@
           "reading_direction": "out"
         },
         "unverified": false
-      }
-    },
-    "rig": {
-      "RBW_VBW_Hz": {
-        "command": "RBW_VBW_Hz",
-        "verb": "rig",
-        "description": "Set Resolution and Video BW",
-        "scpi": ":SENSe:BANDwidth:RESolution <rbw_hz_value>;:SENSe:BANDwidth:VIDeo <vbw_hz_value>",
-        "scpi_fast": ":SENS:BAND:RES <rbw_hz_value>;:SENS:BAND:VID <vbw_hz_value>",
-        "subsystem": "Bandwidth",
-        "group": "RIG Bandwidth Commands",
-        "args": [
-          "rbw_hz_value",
-          "vbw_hz_value"
-        ],
+      },
+      "Preamp_State": {
+        "command": "Preamp_State",
+        "verb": "nab",
+        "description": "Preamp State",
+        "scpi": ":SENSE:POWer:RF:GAIN:STATe?",
+        "scpi_fast": ":SENS:POW:RF:GAIN:STAT?",
+        "subsystem": "Amplitude",
+        "group": "Individual Read Queries",
+        "args": [],
         "arg": {
-          "kind": "numeric",
-          "unit": "Hz"
+          "kind": "none"
         },
-        "returns": null,
+        "returns": {
+          "count": 1,
+          "type": "BOOL",
+          "unit": "dB"
+        },
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/RBW_VBW_Hz",
+          "topic": "APK.audio/Gui/Komands/Spectrum/Preamp_State",
           "direction": "in",
           "payload_format": {
-            "command": "RBW_VBW_Hz",
-            "rbw_hz_value": "<rbw_hz_value>",
-            "vbw_hz_value": "<vbw_hz_value>"
-          }
+            "command": "Preamp_State"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Preamp_State",
+          "reading_direction": "out"
         },
         "unverified": false
       },
+      "Get_error_information": {
+        "command": "Get_error_information",
+        "verb": "nab",
+        "description": "System Error Check",
+        "scpi": ":SYSTem:ERRor?",
+        "scpi_fast": ":SYST:ERR?",
+        "subsystem": "System",
+        "group": "System Status and Identification",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "NR2"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_error_information",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_error_information"
+          },
+          "reading_topic": "APK.audio/Device/<device>/Reading/Get_error_information",
+          "reading_direction": "out"
+        },
+        "unverified": false
+      }
+    },
+    "rig": {
       "Ref_Level_dBm": {
         "command": "Ref_Level_dBm",
         "verb": "rig",
@@ -1134,49 +874,77 @@
           }
         },
         "unverified": false
+      },
+      "RBW_VBW_Hz": {
+        "command": "RBW_VBW_Hz",
+        "verb": "rig",
+        "description": "Set Resolution and Video BW",
+        "scpi": ":SENSe:BANDwidth:RESolution <rbw_hz_value>;:SENSe:BANDwidth:VIDeo <vbw_hz_value>",
+        "scpi_fast": ":SENS:BAND:RES <rbw_hz_value>;:SENS:BAND:VID <vbw_hz_value>",
+        "subsystem": "Bandwidth",
+        "group": "RIG Bandwidth Commands",
+        "args": [
+          "rbw_hz_value",
+          "vbw_hz_value"
+        ],
+        "arg": {
+          "kind": "numeric",
+          "unit": "Hz"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/RBW_VBW_Hz",
+          "direction": "in",
+          "payload_format": {
+            "command": "RBW_VBW_Hz",
+            "rbw_hz_value": "<rbw_hz_value>",
+            "vbw_hz_value": "<vbw_hz_value>"
+          }
+        },
+        "unverified": false
       }
     },
     "do": {
-      "Do_Power_Cycle": {
-        "command": "Do_Power_Cycle",
+      "Set_Marker_State_OFF": {
+        "command": "Set_Marker_State_OFF",
         "verb": "do",
-        "description": "Do Power Cycle",
-        "scpi": ":SYSTem:POWer:RESet",
-        "scpi_fast": ":SYST:POW:RES",
-        "subsystem": "System",
-        "group": "Hardware Reset and Clear",
+        "description": "Disable Marker",
+        "scpi": ":CALCulate:MARKer<marker_number>:STATe OFF",
+        "scpi_fast": ":CALC:MARK<marker_number>:STAT OFF",
+        "subsystem": "Markers",
+        "group": "Marker Command Sets",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Do_Power_Cycle",
+          "topic": "APK.audio/Gui/Komands/Spectrum/Set_Marker_State_OFF",
           "direction": "in",
           "payload_format": {
-            "command": "Do_Power_Cycle"
+            "command": "Set_Marker_State_OFF"
           }
         },
         "unverified": false
       },
-      "Do_Update_Display": {
-        "command": "Do_Update_Display",
+      "Set_Marker_State_ON": {
+        "command": "Set_Marker_State_ON",
         "verb": "do",
-        "description": "Do Update Display",
-        "scpi": ":SYSTem:DISPlay:UPDate",
-        "scpi_fast": ":SYST:DISP:UPD",
-        "subsystem": "System",
-        "group": "System Maintenance Controls",
+        "description": "Enable Marker",
+        "scpi": ":CALCulate:MARKer<marker_number>:STATe ON",
+        "scpi_fast": ":CALC:MARK<marker_number>:STAT ON",
+        "subsystem": "Markers",
+        "group": "Marker Command Sets",
         "args": [],
         "arg": {
           "kind": "none"
         },
         "returns": null,
         "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Do_Update_Display",
+          "topic": "APK.audio/Gui/Komands/Spectrum/Set_Marker_State_ON",
           "direction": "in",
           "payload_format": {
-            "command": "Do_Update_Display"
+            "command": "Set_Marker_State_ON"
           }
         },
         "unverified": false
@@ -1225,50 +993,6 @@
         },
         "unverified": false
       },
-      "Set_Marker_State_OFF": {
-        "command": "Set_Marker_State_OFF",
-        "verb": "do",
-        "description": "Disable Marker",
-        "scpi": ":CALCulate:MARKer<marker_number>:STATe OFF",
-        "scpi_fast": ":CALC:MARK<marker_number>:STAT OFF",
-        "subsystem": "Markers",
-        "group": "Marker Command Sets",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Set_Marker_State_OFF",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Marker_State_OFF"
-          }
-        },
-        "unverified": false
-      },
-      "Set_Marker_State_ON": {
-        "command": "Set_Marker_State_ON",
-        "verb": "do",
-        "description": "Enable Marker",
-        "scpi": ":CALCulate:MARKer<marker_number>:STATe ON",
-        "scpi_fast": ":CALC:MARK<marker_number>:STAT ON",
-        "subsystem": "Markers",
-        "group": "Marker Command Sets",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Spectrum/Set_Marker_State_ON",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Marker_State_ON"
-          }
-        },
-        "unverified": false
-      },
       "Set_Power_Gain_OFF": {
         "command": "Set_Power_Gain_OFF",
         "verb": "do",
@@ -1309,6 +1033,50 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Power_Gain_ON"
+          }
+        },
+        "unverified": false
+      },
+      "Do_Update_Display": {
+        "command": "Do_Update_Display",
+        "verb": "do",
+        "description": "Do Update Display",
+        "scpi": ":SYSTem:DISPlay:UPDate",
+        "scpi_fast": ":SYST:DISP:UPD",
+        "subsystem": "System",
+        "group": "System Maintenance Controls",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Do_Update_Display",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Update_Display"
+          }
+        },
+        "unverified": false
+      },
+      "Do_Power_Cycle": {
+        "command": "Do_Power_Cycle",
+        "verb": "do",
+        "description": "Do Power Cycle",
+        "scpi": ":SYSTem:POWer:RESet",
+        "scpi_fast": ":SYST:POW:RES",
+        "subsystem": "System",
+        "group": "Hardware Reset and Clear",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Do_Power_Cycle",
+          "direction": "in",
+          "payload_format": {
+            "command": "Do_Power_Cycle"
           }
         },
         "unverified": false
