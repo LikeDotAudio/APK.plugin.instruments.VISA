@@ -16,7 +16,7 @@ This is the central home of every bench instrument's GUI. One folder per
 family, and the folder carries the `INSTRUMENT:` prefix:
 
 ```
-INSTRUMENT:DMM/
+INSTRUMENT.DMM/
   gui/                  the family's GUI — real files, and the only copy
     DMM.json            the instrument panel, stamped once per device
     DMM_N.json          N of the instrument — the block that repeats (if any)
@@ -32,19 +32,19 @@ INSTRUMENT:DMM/
 **The prefix belongs to the directory and to nothing else.** The family NAME —
 the device type, the MQTT topics, the `manifest.json` key, its `tab`, the port
 lane and `${family}` — is always the bare `DMM`. A reader resolves a family's
-folder as `INSTRUMENT:<Family>` if it exists, else `<Family>` (so a crate's
+folder as `INSTRUMENT.<Family>` if it exists, else `<Family>` (so a crate's
 `gui/dante/` and an older tree still read), and strips a leading `INSTRUMENT:`
 when it derives a family name from a directory listing. Each language has one
 helper for that: `family_directory` in the orchestrator (`instruments/mod.rs`),
 `family_name`/`family_directory` in `_komand/generate_device_apis.py`,
-`Baremetal:Manager/node_paths.py` and `web:OsApi/SRC/os_roots.py`.
+`Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py`.
 
 ---
 
 ## One name per file
 
-An instrument's API spec is **always** `<Model>.api.json` — `INSTRUMENT:SMU/2410/2410.api.json`,
-never `INSTRUMENT:SMU/2410/api.json`. The family's GUI files follow the same rule:
+An instrument's API spec is **always** `<Model>.api.json` — `INSTRUMENT.SMU/2410/2410.api.json`,
+never `INSTRUMENT.SMU/2410/api.json`. The family's GUI files follow the same rule:
 `gui/DMM.cad.json`, never `gui/cad.json`. Each model folder used to carry a bare `api.json`
 symlink beside the real file; 181 of them were swept on 2026-09-20 and the
 generator now removes any that reappear.

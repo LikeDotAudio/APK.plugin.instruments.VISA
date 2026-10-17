@@ -23,23 +23,26 @@ KNOWN_DEVICES_PATH = os.path.join(INSTRUMENTS_ROOT, '_komand', 'knownDevices.jso
 MANIFEST_PATH = os.path.join(INSTRUMENTS_ROOT, 'manifest.json')
 PORTS_PATH = os.path.join(INSTRUMENTS_ROOT, '_komand', 'ports.json')
 
-# A FAMILY'S FOLDER IS `INSTRUMENT:<Family>`; ITS NAME IS `<Family>`.
+# A FAMILY'S FOLDER IS `INSTRUMENT.<Family>`; ITS NAME IS `<Family>`.
 # The prefix is the directory's, and nothing else's: the device type, the MQTT
 # topic, the manifest key, the `tab` and the port lane all use the bare name.
 # A bare `<Family>/` folder is still read, so a tree that predates the prefix
 # resolves the same way.
-FAMILY_PREFIX = 'INSTRUMENT:'
+FAMILY_PREFIX = 'INSTRUMENT.'
+# The spelling before the 2026-10 dot rename, still read so an old tree resolves.
+LEGACY_FAMILY_PREFIX = 'INSTRUMENT:'
 
 
 def family_name(directory_name):
-    """`INSTRUMENT:DMM` -> `DMM`; a bare name is returned as it is."""
-    if directory_name.startswith(FAMILY_PREFIX):
-        return directory_name[len(FAMILY_PREFIX):]
+    """`INSTRUMENT.DMM` -> `DMM`; a bare name is returned as it is."""
+    for prefix in (FAMILY_PREFIX, LEGACY_FAMILY_PREFIX):
+        if directory_name.startswith(prefix):
+            return directory_name[len(prefix):]
     return directory_name
 
 
 def family_directory(family, root=INSTRUMENTS_ROOT):
-    """`<root>/INSTRUMENT:<family>` if it exists, else `<root>/<family>`."""
+    """`<root>/INSTRUMENT.<family>` if it exists, else `<root>/<family>`."""
     prefixed = os.path.join(root, FAMILY_PREFIX + family)
     return prefixed if os.path.isdir(prefixed) else os.path.join(root, family)
 
