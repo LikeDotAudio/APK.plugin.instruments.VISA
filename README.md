@@ -105,6 +105,7 @@ All from this folder; measured 2026-10-30.
 
 ```bash
 python3 _komand/generate_device_apis.py      # every <Model>.api.json + _komand/ports.json — re-running changes nothing today
+python3 _komand/generate_device_apis.py --check   # writes nothing; 181 specs across 13 families, 0 out of date
 python3 _komand/sort_komands.py --check      # 0 tables out of order
 # the command-table tooling lives in the KOMAND binary:
 cd ../AUDIO.komand && cargo run -- check-tables      # 3 771 commands, 16 models
@@ -113,7 +114,7 @@ cd ../DISCOVERY.Engine/SRC && cargo check -p apkaudio-plugin-instruments-visa   
 
 The generated reports are current: in `AUDIO.komand`, `cargo run -- build-list --check` and `build-trees --check` both pass (the 16 `commands_tree.md` are tracked).
 
-`manifest.json` says `check.sh binding` fails when the families and the manifest diverge; no `check.sh` is in the tree today.
+The two Python `--check`s run from the root as `./.apk.scripts/check.sh instruments` (a default lane). It fails when the families and `manifest.json` diverge in either direction, when a generated `<Model>.api.json` or `ports.json` is stale, or when a table is out of order.
 
 ## Philosophy
 

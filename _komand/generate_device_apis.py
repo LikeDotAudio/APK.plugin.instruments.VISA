@@ -10,6 +10,11 @@ api.json, so a path always names the instrument it belongs to.
 
 Presents all Get, Set, Nab, Rig, and Do commands with complete SCPI, MQTT,
 argument, return, and subsystem metadata.
+
+    python3 generate_device_apis.py           # write every <Model>.api.json + ports.json
+    python3 generate_device_apis.py --check   # write nothing; exit 1 if any file would
+                                              # change, or the manifest and the
+                                              # INSTRUMENT.* folders diverge
 """
 
 import os
@@ -1382,7 +1387,28 @@ def generate_device_api(family, model, authored_komands, known_devices,
     return api_doc
 
 
+def _json_text(document):
+    return json.dumps(document, indent=2) + '\n'
+
+
+def _emit(path, text, check, drift):
+    """Write `text` to `path`, or under --check record that it would change."""
+    if check:
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                if f.read() == text:
+                    return
+        except OSError:
+            pass
+        drift.append(os.path.relpath(path, INSTRUMENTS_ROOT))
+        return
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(text)
+
+
 def main():
+    check = '--check' in sys.argv[1:]
+    drift = []
     authored_komands = load_all_authored_komands()
     family_lanes = load_family_lanes()
     known_devices = {}
@@ -1395,7 +1421,7 @@ def main():
         family_name(d) for d in os.listdir(INSTRUMENTS_ROOT)
         if os.path.isdir(os.path.join(INSTRUMENTS_ROOT, d))
         and not d.startswith(('.', '_'))
-        and d not in ('src', 'SRC')
+        and d not in ('src', 'SRC', 'Documentation')  # crate and wiki, not classes
     ))
 
     missing = [c for c in classes if c not in family_lanes]
@@ -1403,6 +1429,14 @@ def main():
         raise SystemExit(
             "manifest.json declares no tab for " + ", ".join(missing) +
             " — every class needs one before a port lane can be derived."
+        )
+    # The other direction: a manifest class with no INSTRUMENT.<Class> folder is
+    # a tab and a port lane for nothing.
+    orphans = [c for c in family_lanes if c not in classes]
+    if orphans:
+        raise SystemExit(
+            "manifest.json declares " + ", ".join(sorted(orphans)) +
+            " but no INSTRUMENT.<Class> folder holds it."
         )
 
     generated = 0
@@ -1439,9 +1473,7 @@ def main():
 
             # 1. Write <Model>.api.json
             api_file = os.path.join(model_dir, f"{model}.api.json")
-            with open(api_file, 'w', encoding='utf-8') as f:
-                json.dump(api_doc, f, indent=2)
-                f.write('\n')
+            _emit(api_file, _json_text(api_doc), check, drift)
 
             # 2. ONE NAME PER FILE. There used to be an `api.json` symlink beside
             #    every spec pointing at `<Model>.api.json`. It is swept away here
@@ -1452,7 +1484,9 @@ def main():
             #    they meant. `<Model>.api.json` never loses that. Nothing read
             #    the symlink — it was convenience, and it cost identity.
             stale = os.path.join(model_dir, "api.json")
-            if os.path.islink(stale) or os.path.isfile(stale):
+            if (os.path.islink(stale) or os.path.isfile(stale)) and check:
+                drift.append(os.path.relpath(stale, INSTRUMENTS_ROOT))
+            elif os.path.islink(stale) or os.path.isfile(stale):
                 try:
                     os.remove(stale)
                     swept.append(os.path.relpath(stale, INSTRUMENTS_ROOT))
@@ -1475,9 +1509,14 @@ def main():
         )),
         ("instruments", allocation),
     ])
-    with open(PORTS_PATH, 'w', encoding='utf-8') as f:
-        json.dump(ports_doc, f, indent=2)
-        f.write('\n')
+    _emit(PORTS_PATH, _json_text(ports_doc), check, drift)
+
+    if check:
+        for path in drift:
+            print(f"would change: {path}")
+        print(f" {generated} specs across {len(classes)} families checked; "
+              f"{len(drift)} file(s) out of date.")
+        return 1 if drift else 0
 
     print(f" Successfully generated API specifications for {generated} devices across {len(classes)} families.")
     print(f" Total commands presented: {total_commands}")
@@ -1485,7 +1524,8 @@ def main():
         print(f" Ports allocated: {len(taken)} in {min(taken)}-{max(taken)} -> _komand/ports.json")
     if swept:
         print(f" Swept {len(swept)} stale bare api.json file(s); the spec is <Model>.api.json only.")
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

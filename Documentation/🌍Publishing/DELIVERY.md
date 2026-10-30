@@ -11,11 +11,12 @@ No build of its own: it lands by being copied into images. Each copy is a snapsh
 | Discovery Engine (`DISCOVERY.Engine`) | `DISCOVERY.Engine/Docker/Dockerfile` line 62, for `knownDevices.json` at build time | `up-stack.sh DISCOVERY.Engine` |
 | Broker (`DATABUS.Broker.MQTT`) | `DATABUS.Broker.MQTT/Docker/Dockerfile` line 62, as a member of the Rust workspace that image builds | the broker is protected: DockTor never stops or removes it, so rebuild it deliberately |
 
-## Checks (by hand)
+## Checks
 
 ```bash
 python3 _komand/sort_komands.py --check                 # 0 tables out of order
-python3 _komand/generate_device_apis.py && git status   # no diff = api.json/ports.json current
+python3 _komand/generate_device_apis.py --check         # 0 file(s) out of date; manifest and folders agree
+../../../.apk.scripts/check.sh instruments              # both Python checks above, as a root lane
 cd ../AUDIO.komand && cargo run -- check-tables
 cargo run -- build-list --check && cargo run -- build-trees --check && cargo run -- build-links --check
 ```
@@ -24,7 +25,6 @@ cargo run -- build-list --check && cargo run -- build-trees --check && cargo run
 
 ## Not automated
 
-- No CI in this repo and no pre-build gate runs any check above; a stale generated report or an out-of-order table ships silently.
-- `manifest.json` names a `check.sh binding` that does not exist.
+- No CI in this repo and no pre-build gate runs any check above. The root `check.sh` runs the two Python checks in its default lanes, but only when someone runs it; the `AUDIO.komand` cargo checks are run by hand.
 - Images are rebuilt by hand; nothing rebuilds them on a push here.
 - No live URL of its own; the library surfaces through the OsApi instrument page on the bench.

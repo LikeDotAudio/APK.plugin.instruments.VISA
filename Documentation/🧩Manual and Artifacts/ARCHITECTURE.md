@@ -20,7 +20,7 @@ _komand/
   knownDevices.json               *IDN? catalogue; compiled into PLUGIN.VISA by its build.rs
   ports.json                      generated port allocation
   CommandList.csv/.xlsx           generated flat list of every command
-  generate_device_apis.py         writes every <Model>.api.json and ports.json
+  generate_device_apis.py         writes every <Model>.api.json and ports.json (--check)
   sort_komands.py                 orders each table's verb buckets (--check)
   komands.cad.json, komands.dxf, monitor.json
 _datasets/                        Instrument functions.csv/.xlsx, spectrum_presets.json
