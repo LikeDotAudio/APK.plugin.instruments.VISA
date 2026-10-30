@@ -4,7 +4,7 @@ Is `INSTRUMENTS` deployed? Written by `.apk.scripts/smoke.py` from the module's 
 
 ← [Wiki home](../README.md)
 
-**❌ FAIL** — 0/1 checks, since 2026-10-30 12:50 EDT
+**❌ FAIL** — 0/1 checks, since 2026-10-30 12:51 EDT
 
 | Check | Target | Result | Detail |
 |---|---|---|---|
@@ -12,4 +12,4 @@ Is `INSTRUMENTS` deployed? Written by `.apk.scripts/smoke.py` from the module's 
 
 Re-run: `python3 .apk.scripts/smoke.py PODS/POD.THICK/INSTRUMENTS`
 
-<!-- smoke:sig fcf2d7bfc893 since 2026-10-30 12:50 EDT -->
+<!-- smoke:sig 2d62b52b2cc7 since 2026-10-30 12:51 EDT -->
