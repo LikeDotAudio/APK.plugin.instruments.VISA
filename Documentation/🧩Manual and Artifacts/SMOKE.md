@@ -4,12 +4,12 @@ Is `INSTRUMENTS` deployed? Written by `.apk.scripts/smoke.py` from the module's 
 
 ← [Wiki home](../README.md)
 
-**❌ FAIL** — 0/1 checks, since 2026-10-30 12:51 EDT
+**✅ PASS** — 1/1 checks, since 2026-10-30 13:37 EDT
 
 | Check | Target | Result | Detail |
 |---|---|---|---|
-| pushed | [APK.plugin.instruments.VISA](https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) | ❌ | 2 commit(s) not pushed |
+| pushed | [APK.plugin.instruments.VISA](https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) | ✅ | HEAD is on origin |
 
 Re-run: `python3 .apk.scripts/smoke.py PODS/POD.THICK/INSTRUMENTS`
 
-<!-- smoke:sig 2d62b52b2cc7 since 2026-10-30 12:51 EDT -->
+<!-- smoke:sig 2d728c47bb19 since 2026-10-30 13:37 EDT -->

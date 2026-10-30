@@ -14,5 +14,5 @@ The documentation for `INSTRUMENTS`, in the same lanes as the APK.audio monorepo
 <!-- /wiki:lanes -->
 
 <!-- wiki:smoke -->
-**Smoke test** — ❌ FAIL 0/1 since 2026-10-30 12:51 EDT — [results](%F0%9F%A7%A9Manual%20and%20Artifacts/SMOKE.md)
+**Smoke test** — ✅ PASS 1/1 since 2026-10-30 13:37 EDT — [results](%F0%9F%A7%A9Manual%20and%20Artifacts/SMOKE.md)
 <!-- /wiki:smoke -->
