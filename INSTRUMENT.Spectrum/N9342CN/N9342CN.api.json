@@ -142,7 +142,7 @@
           "payload_format": {
             "command": "Get_Reference_Level"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Reference_Level",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Reference_Level",
           "reading_direction": "out"
         },
         "unverified": false
@@ -170,7 +170,7 @@
           "payload_format": {
             "command": "Attenuation"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Attenuation",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Attenuation",
           "reading_direction": "out"
         },
         "unverified": false
@@ -198,7 +198,7 @@
           "payload_format": {
             "command": "Preamp_State"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Preamp_State",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Preamp_State",
           "reading_direction": "out"
         },
         "unverified": false
@@ -225,7 +225,7 @@
           "payload_format": {
             "command": "Get_error_information"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_error_information",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_error_information",
           "reading_direction": "out"
         },
         "unverified": false
@@ -557,7 +557,7 @@
           "payload_format": {
             "command": "all_marker_settings"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/all_marker_settings",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/all_marker_settings",
           "reading_direction": "out"
         },
         "unverified": false
@@ -585,7 +585,7 @@
           "payload_format": {
             "command": "Get_Reference_Level"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Reference_Level",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Reference_Level",
           "reading_direction": "out"
         },
         "unverified": false
@@ -629,7 +629,7 @@
           "payload_format": {
             "command": "amplitude_settings"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/amplitude_settings",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/amplitude_settings",
           "reading_direction": "out"
         },
         "unverified": false
@@ -678,7 +678,7 @@
           "payload_format": {
             "command": "Frequency_settings"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Frequency_settings",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Frequency_settings",
           "reading_direction": "out"
         },
         "unverified": false
@@ -706,7 +706,7 @@
           "payload_format": {
             "command": "Attenuation"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Attenuation",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Attenuation",
           "reading_direction": "out"
         },
         "unverified": false
@@ -756,7 +756,7 @@
           "payload_format": {
             "command": "bandwidth_settings"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/bandwidth_settings",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/bandwidth_settings",
           "reading_direction": "out"
         },
         "unverified": false
@@ -784,7 +784,7 @@
           "payload_format": {
             "command": "Preamp_State"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Preamp_State",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Preamp_State",
           "reading_direction": "out"
         },
         "unverified": false
@@ -811,7 +811,7 @@
           "payload_format": {
             "command": "Get_error_information"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_error_information",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_error_information",
           "reading_direction": "out"
         },
         "unverified": false

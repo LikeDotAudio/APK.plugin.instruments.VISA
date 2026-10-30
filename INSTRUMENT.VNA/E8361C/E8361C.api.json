@@ -116,7 +116,7 @@
           "payload_format": {
             "command": "Read_IDN"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_IDN",
           "reading_direction": "out"
         },
         "unverified": false
@@ -147,7 +147,7 @@
           "payload_format": {
             "command": "Read_S_Parameter_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_S_Parameter_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_S_Parameter_Data",
           "reading_direction": "out"
         },
         "unverified": false
@@ -177,7 +177,7 @@
           "payload_format": {
             "command": "Read_Active_Parameter"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Active_Parameter",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Active_Parameter",
           "reading_direction": "out"
         },
         "unverified": false
@@ -209,7 +209,7 @@
           "payload_format": {
             "command": "Read_Sweep_Time"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Sweep_Time",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Sweep_Time",
           "reading_direction": "out"
         },
         "unverified": false
@@ -243,7 +243,7 @@
           "payload_format": {
             "command": "Query_Error"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Query_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -544,7 +544,7 @@
           "payload_format": {
             "command": "Read_IDN"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_IDN",
           "reading_direction": "out"
         },
         "unverified": false
@@ -575,7 +575,7 @@
           "payload_format": {
             "command": "Read_S_Parameter_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_S_Parameter_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_S_Parameter_Data",
           "reading_direction": "out"
         },
         "unverified": false
@@ -605,7 +605,7 @@
           "payload_format": {
             "command": "Read_Active_Parameter"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Active_Parameter",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Active_Parameter",
           "reading_direction": "out"
         },
         "unverified": false
@@ -641,7 +641,7 @@
           "payload_format": {
             "command": "Read_Frequency_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Frequency_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Frequency_Range",
           "reading_direction": "out"
         },
         "unverified": false
@@ -673,7 +673,7 @@
           "payload_format": {
             "command": "Read_Sweep_Time"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Sweep_Time",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Sweep_Time",
           "reading_direction": "out"
         },
         "unverified": false
@@ -707,7 +707,7 @@
           "payload_format": {
             "command": "Query_Error"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Error",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Query_Error",
           "reading_direction": "out"
         },
         "unverified": false

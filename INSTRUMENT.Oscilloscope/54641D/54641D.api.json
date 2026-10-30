@@ -110,7 +110,7 @@
           "payload_format": {
             "command": "Get_Ese"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Ese",
           "reading_direction": "out"
         },
         "unverified": true
@@ -136,7 +136,7 @@
           "payload_format": {
             "command": "Get_Esr"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Esr",
           "reading_direction": "out"
         },
         "unverified": true
@@ -162,7 +162,7 @@
           "payload_format": {
             "command": "Read_IDN"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_IDN",
           "reading_direction": "out"
         },
         "unverified": false
@@ -188,7 +188,7 @@
           "payload_format": {
             "command": "Get_Lrn"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Lrn",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Lrn",
           "reading_direction": "out"
         },
         "unverified": true
@@ -214,7 +214,7 @@
           "payload_format": {
             "command": "Get_Opc"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Opc",
           "reading_direction": "out"
         },
         "unverified": true
@@ -240,7 +240,7 @@
           "payload_format": {
             "command": "Get_Opt"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opt",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Opt",
           "reading_direction": "out"
         },
         "unverified": true
@@ -266,7 +266,7 @@
           "payload_format": {
             "command": "Get_Sre"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Sre",
           "reading_direction": "out"
         },
         "unverified": true
@@ -292,7 +292,7 @@
           "payload_format": {
             "command": "Get_Stb"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Stb",
           "reading_direction": "out"
         },
         "unverified": true
@@ -318,7 +318,7 @@
           "payload_format": {
             "command": "Get_Tst"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Tst",
           "reading_direction": "out"
         },
         "unverified": true
@@ -344,7 +344,7 @@
           "payload_format": {
             "command": "Get_Acquire_Complete"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Complete",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Complete",
           "reading_direction": "out"
         },
         "unverified": true
@@ -371,7 +371,7 @@
           "payload_format": {
             "command": "Get_Acquire_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -398,7 +398,7 @@
           "payload_format": {
             "command": "Get_Acquire_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -425,7 +425,7 @@
           "payload_format": {
             "command": "Get_Acquire_Points"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Points",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Points",
           "reading_direction": "out"
         },
         "unverified": true
@@ -451,7 +451,7 @@
           "payload_format": {
             "command": "Get_Sample_Rate"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sample_Rate",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Sample_Rate",
           "reading_direction": "out"
         },
         "unverified": false
@@ -477,7 +477,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Date"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Date",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Date",
           "reading_direction": "out"
         },
         "unverified": true
@@ -503,7 +503,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Label"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Label",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Label",
           "reading_direction": "out"
         },
         "unverified": true
@@ -529,7 +529,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Switch"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Switch",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Switch",
           "reading_direction": "out"
         },
         "unverified": true
@@ -557,7 +557,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Time"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Time",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Time",
           "reading_direction": "out"
         },
         "unverified": true
@@ -584,7 +584,7 @@
           "payload_format": {
             "command": "Get_Channel_Coupling"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Channel_Coupling",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Channel_Coupling",
           "reading_direction": "out"
         },
         "unverified": true
@@ -611,7 +611,7 @@
           "payload_format": {
             "command": "Get_Channel_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Channel_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Channel_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -638,7 +638,7 @@
           "payload_format": {
             "command": "Get_Display_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -664,7 +664,7 @@
           "payload_format": {
             "command": "Get_Display_Label"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Label",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Label",
           "reading_direction": "out"
         },
         "unverified": true
@@ -692,7 +692,7 @@
           "payload_format": {
             "command": "Get_Display_Persistence"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Persistence",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Persistence",
           "reading_direction": "out"
         },
         "unverified": true
@@ -719,7 +719,7 @@
           "payload_format": {
             "command": "Get_Display_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -745,7 +745,7 @@
           "payload_format": {
             "command": "Get_Display_Vectors"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Vectors",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Vectors",
           "reading_direction": "out"
         },
         "unverified": true
@@ -772,7 +772,7 @@
           "payload_format": {
             "command": "Get_External_Bwlimit"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Bwlimit",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Bwlimit",
           "reading_direction": "out"
         },
         "unverified": true
@@ -799,7 +799,7 @@
           "payload_format": {
             "command": "Get_External_Impedance"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Impedance",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Impedance",
           "reading_direction": "out"
         },
         "unverified": true
@@ -826,7 +826,7 @@
           "payload_format": {
             "command": "Get_External_Probe"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Probe",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Probe",
           "reading_direction": "out"
         },
         "unverified": true
@@ -852,7 +852,7 @@
           "payload_format": {
             "command": "Get_External_Protection"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Protection",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Protection",
           "reading_direction": "out"
         },
         "unverified": true
@@ -879,7 +879,7 @@
           "payload_format": {
             "command": "Get_External_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -906,7 +906,7 @@
           "payload_format": {
             "command": "Get_External_Units"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Units",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Units",
           "reading_direction": "out"
         },
         "unverified": true
@@ -933,7 +933,7 @@
           "payload_format": {
             "command": "Get_Function_Center"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Center",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Center",
           "reading_direction": "out"
         },
         "unverified": true
@@ -960,7 +960,7 @@
           "payload_format": {
             "command": "Get_Function_Display"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Display",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Display",
           "reading_direction": "out"
         },
         "unverified": true
@@ -987,7 +987,7 @@
           "payload_format": {
             "command": "Get_Function_Offset"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Offset",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Offset",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1014,7 +1014,7 @@
           "payload_format": {
             "command": "Get_Function_Operation"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Operation",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Operation",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1041,7 +1041,7 @@
           "payload_format": {
             "command": "Get_Function_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1068,7 +1068,7 @@
           "payload_format": {
             "command": "Get_Function_Reference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Reference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Reference",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1095,7 +1095,7 @@
           "payload_format": {
             "command": "Get_Function_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1122,7 +1122,7 @@
           "payload_format": {
             "command": "Get_Function_Span"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Span",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Span",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1149,7 +1149,7 @@
           "payload_format": {
             "command": "Get_Function_Window"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Window",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Window",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1175,7 +1175,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Factors"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Factors",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Factors",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1201,7 +1201,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Ffeed"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Ffeed",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Ffeed",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1228,7 +1228,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Format"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Format",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Format",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1254,7 +1254,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Grayscale"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Grayscale",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Grayscale",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1281,7 +1281,7 @@
           "payload_format": {
             "command": "Get_Marker_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Marker_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Marker_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1309,7 +1309,7 @@
           "payload_format": {
             "command": "Get_Marker_Xdelta"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Marker_Xdelta",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Marker_Xdelta",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1337,7 +1337,7 @@
           "payload_format": {
             "command": "Get_X_Delta"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_X_Delta",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_X_Delta",
           "reading_direction": "out"
         },
         "unverified": false
@@ -1365,7 +1365,7 @@
           "payload_format": {
             "command": "Get_Y_Delta"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Y_Delta",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Y_Delta",
           "reading_direction": "out"
         },
         "unverified": false
@@ -1392,7 +1392,7 @@
           "payload_format": {
             "command": "Get_Measure_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1420,7 +1420,7 @@
           "payload_format": {
             "command": "Get_Measure_Delay"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Delay",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Delay",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1448,7 +1448,7 @@
           "payload_format": {
             "command": "Get_Measure_Falltime"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Falltime",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Falltime",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1474,7 +1474,7 @@
           "payload_format": {
             "command": "Get_Measure_Nwidth"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Nwidth",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Nwidth",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1500,7 +1500,7 @@
           "payload_format": {
             "command": "Get_Measure_Overshoot"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Overshoot",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Overshoot",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1526,7 +1526,7 @@
           "payload_format": {
             "command": "Get_Measure_Phase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Phase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Phase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1553,7 +1553,7 @@
           "payload_format": {
             "command": "Get_Measure_Preshoot"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Preshoot",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Preshoot",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1579,7 +1579,7 @@
           "payload_format": {
             "command": "Get_Measure_Pwidth"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Pwidth",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Pwidth",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1607,7 +1607,7 @@
           "payload_format": {
             "command": "Get_Measure_Risetime"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Risetime",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Risetime",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1633,7 +1633,7 @@
           "payload_format": {
             "command": "Get_Measure_Show"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Show",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Show",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1660,7 +1660,7 @@
           "payload_format": {
             "command": "Get_Measure_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1686,7 +1686,7 @@
           "payload_format": {
             "command": "Get_Measure_Tedge"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Tedge",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Tedge",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1712,7 +1712,7 @@
           "payload_format": {
             "command": "Get_Measure_Tvalue"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Tvalue",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Tvalue",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1738,7 +1738,7 @@
           "payload_format": {
             "command": "Get_Measure_Vamplitude"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vamplitude",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vamplitude",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1764,7 +1764,7 @@
           "payload_format": {
             "command": "Get_Measure_Vbase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vbase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vbase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1792,7 +1792,7 @@
           "payload_format": {
             "command": "Get_Measure_Vtime"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vtime",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vtime",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1818,7 +1818,7 @@
           "payload_format": {
             "command": "Get_Measure_Vtop"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vtop",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vtop",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1845,7 +1845,7 @@
           "payload_format": {
             "command": "Get_Measure_Xmax"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Xmax",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Xmax",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1872,7 +1872,7 @@
           "payload_format": {
             "command": "Get_Measure_Xmin"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Xmin",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Xmin",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1899,7 +1899,7 @@
           "payload_format": {
             "command": "Get_Probe_Skew"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Probe_Skew",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Probe_Skew",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1925,7 +1925,7 @@
           "payload_format": {
             "command": "Get_System_Date"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Date",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Date",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1952,7 +1952,7 @@
           "payload_format": {
             "command": "Get_Error"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -1979,7 +1979,7 @@
           "payload_format": {
             "command": "Read_Error"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Error",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -2005,7 +2005,7 @@
           "payload_format": {
             "command": "Get_System_Lock"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Lock",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Lock",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2032,7 +2032,7 @@
           "payload_format": {
             "command": "Get_Setup"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Setup",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Setup",
           "reading_direction": "out"
         },
         "unverified": false
@@ -2060,7 +2060,7 @@
           "payload_format": {
             "command": "Get_System_Time"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Time",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Time",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2088,7 +2088,7 @@
           "payload_format": {
             "command": "Get_Timebase_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2116,7 +2116,7 @@
           "payload_format": {
             "command": "Get_Timebase_Position"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Position",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Position",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2144,7 +2144,7 @@
           "payload_format": {
             "command": "Get_Timebase_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2172,7 +2172,7 @@
           "payload_format": {
             "command": "Get_Timebase_Reference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Reference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Reference",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2200,7 +2200,7 @@
           "payload_format": {
             "command": "Get_Timebase_Scale"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Scale",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Scale",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2228,7 +2228,7 @@
           "payload_format": {
             "command": "Get_Timebase_Window_Position"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Window_Position",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Window_Position",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2256,7 +2256,7 @@
           "payload_format": {
             "command": "Get_Timebase_Window_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Window_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Window_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2284,7 +2284,7 @@
           "payload_format": {
             "command": "Get_Timebase_Window_Scale"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Window_Scale",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Window_Scale",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2310,7 +2310,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Acknowledge"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Acknowledge",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Acknowledge",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2337,7 +2337,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Pattern_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Pattern_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Pattern_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2364,7 +2364,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Pattern_Id_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Pattern_Id_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Pattern_Id_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2390,7 +2390,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Pattern_Id"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Pattern_Id",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Pattern_Id",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2416,7 +2416,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Samplepoint"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Samplepoint",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Samplepoint",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2442,7 +2442,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Signal_Baudrate"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Signal_Baudrate",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Signal_Baudrate",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2469,7 +2469,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2495,7 +2495,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2522,7 +2522,7 @@
           "payload_format": {
             "command": "Get_Trigger_Coupling"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Coupling",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Coupling",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2548,7 +2548,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Greaterthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Greaterthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Greaterthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2574,7 +2574,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Lessthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Lessthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Lessthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2600,7 +2600,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Pattern"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Pattern",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Pattern",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2626,7 +2626,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Qualifier"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Qualifier",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Qualifier",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2653,7 +2653,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2680,7 +2680,7 @@
           "payload_format": {
             "command": "Get_Trigger_Edge_Level"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Edge_Level",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Edge_Level",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2707,7 +2707,7 @@
           "payload_format": {
             "command": "Get_Trigger_Edge_Slope"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Edge_Slope",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Edge_Slope",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2734,7 +2734,7 @@
           "payload_format": {
             "command": "Get_Trigger_Edge_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Edge_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Edge_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2760,7 +2760,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Greaterthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Greaterthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Greaterthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2786,7 +2786,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Lessthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Lessthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Lessthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2813,7 +2813,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Level"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Level",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Level",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2840,7 +2840,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Polarity"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Polarity",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Polarity",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2866,7 +2866,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Qualifier"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Qualifier",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Qualifier",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2893,7 +2893,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2920,7 +2920,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2946,7 +2946,7 @@
           "payload_format": {
             "command": "Get_Trigger_Hfreject"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Hfreject",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Hfreject",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2973,7 +2973,7 @@
           "payload_format": {
             "command": "Get_Trigger_Holdoff"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Holdoff",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Holdoff",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3000,7 +3000,7 @@
           "payload_format": {
             "command": "Get_Trigger_Iic_Pattern_Address"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Iic_Pattern_Address",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Iic_Pattern_Address",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3027,7 +3027,7 @@
           "payload_format": {
             "command": "Get_Trigger_Iic_Pattern_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Iic_Pattern_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Iic_Pattern_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3053,7 +3053,7 @@
           "payload_format": {
             "command": "Get_Trigger_Iic_Trigger_Qualifier"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Iic_Trigger_Qualifier",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Iic_Trigger_Qualifier",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3079,7 +3079,7 @@
           "payload_format": {
             "command": "Get_Trigger_Lin_Signal_Baudrate"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Lin_Signal_Baudrate",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Lin_Signal_Baudrate",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3106,7 +3106,7 @@
           "payload_format": {
             "command": "Get_Trigger_Lin_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Lin_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Lin_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3132,7 +3132,7 @@
           "payload_format": {
             "command": "Get_Trigger_Lin_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Lin_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Lin_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3159,7 +3159,7 @@
           "payload_format": {
             "command": "Get_Trigger_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3185,7 +3185,7 @@
           "payload_format": {
             "command": "Get_Trigger_Nreject"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Nreject",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Nreject",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3211,7 +3211,7 @@
           "payload_format": {
             "command": "Get_Trigger_Pattern"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Pattern",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Pattern",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3237,7 +3237,7 @@
           "payload_format": {
             "command": "Get_Trigger_Reject"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Reject",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Reject",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3264,7 +3264,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3290,7 +3290,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Find"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Find",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Find",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3316,7 +3316,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Reset"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Reset",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Reset",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3344,7 +3344,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Timebase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Timebase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Timebase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3370,7 +3370,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3397,7 +3397,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Clock_Slope"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Clock_Slope",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Clock_Slope",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3425,7 +3425,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Clock_Timebase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Clock_Timebase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Clock_Timebase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3451,7 +3451,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Frame"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Frame",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Frame",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3478,7 +3478,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Pattern_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Pattern_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Pattern_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3505,7 +3505,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Pattern_Width"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Pattern_Width",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Pattern_Width",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3531,7 +3531,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Source_Clock"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Source_Clock",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Source_Clock",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3558,7 +3558,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Source_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Source_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Source_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3584,7 +3584,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Source_Frame"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Source_Frame",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Source_Frame",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3611,7 +3611,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sweep"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sweep",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sweep",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3637,7 +3637,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Line"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Line",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Line",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3664,7 +3664,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3691,7 +3691,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Polarity"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Polarity",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Polarity",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3718,7 +3718,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3744,7 +3744,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Standard"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Standard",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Standard",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3770,7 +3770,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Tvmode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Tvmode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Tvmode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3796,7 +3796,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Source_Dminus"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Source_Dminus",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Source_Dminus",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3822,7 +3822,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Source_Dplus"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Source_Dplus",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Source_Dplus",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3849,7 +3849,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Speed"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Speed",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Speed",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3875,7 +3875,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3901,7 +3901,7 @@
           "payload_format": {
             "command": "Get_Waveform_Byteorder"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Byteorder",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Byteorder",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3928,7 +3928,7 @@
           "payload_format": {
             "command": "Get_Waveform_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -3955,7 +3955,7 @@
           "payload_format": {
             "command": "Get_Waveform_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Data",
           "reading_direction": "out"
         },
         "unverified": false
@@ -3982,7 +3982,7 @@
           "payload_format": {
             "command": "Get_Waveform_Format"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Format",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Format",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4009,7 +4009,7 @@
           "payload_format": {
             "command": "Get_Waveform_Points"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Points",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Points",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4036,7 +4036,7 @@
           "payload_format": {
             "command": "Get_Preamble"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Preamble",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Preamble",
           "reading_direction": "out"
         },
         "unverified": false
@@ -4063,7 +4063,7 @@
           "payload_format": {
             "command": "Get_Waveform_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4089,7 +4089,7 @@
           "payload_format": {
             "command": "Get_Waveform_Unsigned"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Unsigned",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Unsigned",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4115,7 +4115,7 @@
           "payload_format": {
             "command": "Get_Waveform_View"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_View",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_View",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4142,7 +4142,7 @@
           "payload_format": {
             "command": "Get_Waveform_Xincrement"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Xincrement",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Xincrement",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4169,7 +4169,7 @@
           "payload_format": {
             "command": "Get_Waveform_Xorigin"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Xorigin",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Xorigin",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4196,7 +4196,7 @@
           "payload_format": {
             "command": "Get_Waveform_Xreference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Xreference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Xreference",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4223,7 +4223,7 @@
           "payload_format": {
             "command": "Get_Waveform_Yincrement"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Yincrement",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Yincrement",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4250,7 +4250,7 @@
           "payload_format": {
             "command": "Get_Waveform_Yorigin"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Yorigin",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Yorigin",
           "reading_direction": "out"
         },
         "unverified": true
@@ -4277,7 +4277,7 @@
           "payload_format": {
             "command": "Get_Waveform_Yreference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Yreference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Yreference",
           "reading_direction": "out"
         },
         "unverified": true
@@ -8910,7 +8910,7 @@
           "payload_format": {
             "command": "Get_Ese"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Ese",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Ese",
           "reading_direction": "out"
         },
         "unverified": true
@@ -8936,7 +8936,7 @@
           "payload_format": {
             "command": "Get_Esr"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Esr",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Esr",
           "reading_direction": "out"
         },
         "unverified": true
@@ -8962,7 +8962,7 @@
           "payload_format": {
             "command": "Read_IDN"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_IDN",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_IDN",
           "reading_direction": "out"
         },
         "unverified": false
@@ -8988,7 +8988,7 @@
           "payload_format": {
             "command": "Get_Lrn"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Lrn",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Lrn",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9014,7 +9014,7 @@
           "payload_format": {
             "command": "Get_Opc"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opc",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Opc",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9040,7 +9040,7 @@
           "payload_format": {
             "command": "Get_Opt"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Opt",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Opt",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9066,7 +9066,7 @@
           "payload_format": {
             "command": "Get_Sre"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sre",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Sre",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9092,7 +9092,7 @@
           "payload_format": {
             "command": "Get_Stb"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Stb",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Stb",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9118,7 +9118,7 @@
           "payload_format": {
             "command": "Get_Tst"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Tst",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Tst",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9144,7 +9144,7 @@
           "payload_format": {
             "command": "Get_Acquire_Complete"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Complete",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Complete",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9171,7 +9171,7 @@
           "payload_format": {
             "command": "Get_Acquire_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9198,7 +9198,7 @@
           "payload_format": {
             "command": "Get_Acquire_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9225,7 +9225,7 @@
           "payload_format": {
             "command": "Get_Acquire_Points"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Acquire_Points",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Acquire_Points",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9251,7 +9251,7 @@
           "payload_format": {
             "command": "Get_Sample_Rate"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Sample_Rate",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Sample_Rate",
           "reading_direction": "out"
         },
         "unverified": false
@@ -9277,7 +9277,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Date"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Date",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Date",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9303,7 +9303,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Label"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Label",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Label",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9329,7 +9329,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Switch"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Switch",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Switch",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9357,7 +9357,7 @@
           "payload_format": {
             "command": "Get_Calibrate_Time"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Calibrate_Time",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calibrate_Time",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9384,7 +9384,7 @@
           "payload_format": {
             "command": "Get_Channel_Coupling"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Channel_Coupling",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Channel_Coupling",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9427,7 +9427,7 @@
           "payload_format": {
             "command": "channel_settings_1"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/channel_settings_1",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/channel_settings_1",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9454,7 +9454,7 @@
           "payload_format": {
             "command": "Get_Channel_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Channel_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Channel_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9497,7 +9497,7 @@
           "payload_format": {
             "command": "channel_settings_2"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/channel_settings_2",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/channel_settings_2",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9524,7 +9524,7 @@
           "payload_format": {
             "command": "Get_Display_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9550,7 +9550,7 @@
           "payload_format": {
             "command": "Get_Display_Label"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Label",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Label",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9578,7 +9578,7 @@
           "payload_format": {
             "command": "Get_Display_Persistence"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Persistence",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Persistence",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9605,7 +9605,7 @@
           "payload_format": {
             "command": "Get_Display_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9631,7 +9631,7 @@
           "payload_format": {
             "command": "Get_Display_Vectors"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Display_Vectors",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Display_Vectors",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9658,7 +9658,7 @@
           "payload_format": {
             "command": "Get_External_Bwlimit"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Bwlimit",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Bwlimit",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9685,7 +9685,7 @@
           "payload_format": {
             "command": "Get_External_Impedance"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Impedance",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Impedance",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9712,7 +9712,7 @@
           "payload_format": {
             "command": "Get_External_Probe"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Probe",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Probe",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9738,7 +9738,7 @@
           "payload_format": {
             "command": "Get_External_Protection"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Protection",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Protection",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9765,7 +9765,7 @@
           "payload_format": {
             "command": "Get_External_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9792,7 +9792,7 @@
           "payload_format": {
             "command": "Get_External_Units"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_External_Units",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_External_Units",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9819,7 +9819,7 @@
           "payload_format": {
             "command": "Get_Function_Center"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Center",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Center",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9846,7 +9846,7 @@
           "payload_format": {
             "command": "Get_Function_Display"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Display",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Display",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9893,7 +9893,7 @@
           "payload_format": {
             "command": "math_settings"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/math_settings",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/math_settings",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9920,7 +9920,7 @@
           "payload_format": {
             "command": "Get_Function_Offset"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Offset",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Offset",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9947,7 +9947,7 @@
           "payload_format": {
             "command": "Get_Function_Operation"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Operation",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Operation",
           "reading_direction": "out"
         },
         "unverified": true
@@ -9974,7 +9974,7 @@
           "payload_format": {
             "command": "Get_Function_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10001,7 +10001,7 @@
           "payload_format": {
             "command": "Get_Function_Reference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Reference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Reference",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10028,7 +10028,7 @@
           "payload_format": {
             "command": "Get_Function_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10055,7 +10055,7 @@
           "payload_format": {
             "command": "Get_Function_Span"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Span",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Span",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10082,7 +10082,7 @@
           "payload_format": {
             "command": "Get_Function_Window"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Function_Window",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Function_Window",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10108,7 +10108,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Factors"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Factors",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Factors",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10134,7 +10134,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Ffeed"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Ffeed",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Ffeed",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10161,7 +10161,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Format"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Format",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Format",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10187,7 +10187,7 @@
           "payload_format": {
             "command": "Get_Hardcopy_Grayscale"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Hardcopy_Grayscale",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Hardcopy_Grayscale",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10214,7 +10214,7 @@
           "payload_format": {
             "command": "Get_Marker_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Marker_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Marker_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10242,7 +10242,7 @@
           "payload_format": {
             "command": "Get_Marker_Xdelta"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Marker_Xdelta",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Marker_Xdelta",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10270,7 +10270,7 @@
           "payload_format": {
             "command": "Get_X_Delta"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_X_Delta",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_X_Delta",
           "reading_direction": "out"
         },
         "unverified": false
@@ -10298,7 +10298,7 @@
           "payload_format": {
             "command": "Get_Y_Delta"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Y_Delta",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Y_Delta",
           "reading_direction": "out"
         },
         "unverified": false
@@ -10325,7 +10325,7 @@
           "payload_format": {
             "command": "Get_Measure_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10353,7 +10353,7 @@
           "payload_format": {
             "command": "Get_Measure_Delay"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Delay",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Delay",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10381,7 +10381,7 @@
           "payload_format": {
             "command": "Get_Measure_Falltime"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Falltime",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Falltime",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10407,7 +10407,7 @@
           "payload_format": {
             "command": "Get_Measure_Nwidth"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Nwidth",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Nwidth",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10433,7 +10433,7 @@
           "payload_format": {
             "command": "Get_Measure_Overshoot"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Overshoot",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Overshoot",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10459,7 +10459,7 @@
           "payload_format": {
             "command": "Get_Measure_Phase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Phase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Phase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10486,7 +10486,7 @@
           "payload_format": {
             "command": "Get_Measure_Preshoot"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Preshoot",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Preshoot",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10512,7 +10512,7 @@
           "payload_format": {
             "command": "Get_Measure_Pwidth"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Pwidth",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Pwidth",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10540,7 +10540,7 @@
           "payload_format": {
             "command": "Get_Measure_Risetime"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Risetime",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Risetime",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10566,7 +10566,7 @@
           "payload_format": {
             "command": "Get_Measure_Show"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Show",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Show",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10639,7 +10639,7 @@
           "payload_format": {
             "command": "Get_Time_Stats_CH1"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Time_Stats_CH1",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Time_Stats_CH1",
           "reading_direction": "out"
         },
         "unverified": false
@@ -10712,7 +10712,7 @@
           "payload_format": {
             "command": "Get_Time_Stats_CH2"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Time_Stats_CH2",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Time_Stats_CH2",
           "reading_direction": "out"
         },
         "unverified": false
@@ -10787,7 +10787,7 @@
           "payload_format": {
             "command": "Get_Voltage_Stats_CH1"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Voltage_Stats_CH1",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Voltage_Stats_CH1",
           "reading_direction": "out"
         },
         "unverified": false
@@ -10862,7 +10862,7 @@
           "payload_format": {
             "command": "Get_Voltage_Stats_CH2"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Voltage_Stats_CH2",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Voltage_Stats_CH2",
           "reading_direction": "out"
         },
         "unverified": false
@@ -10906,7 +10906,7 @@
           "payload_format": {
             "command": "measure_1"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/measure_1",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/measure_1",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10950,7 +10950,7 @@
           "payload_format": {
             "command": "measure_2"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/measure_2",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/measure_2",
           "reading_direction": "out"
         },
         "unverified": true
@@ -10999,7 +10999,7 @@
           "payload_format": {
             "command": "Get_Math_Statistics"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Math_Statistics",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Math_Statistics",
           "reading_direction": "out"
         },
         "unverified": false
@@ -11026,7 +11026,7 @@
           "payload_format": {
             "command": "Get_Measure_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11052,7 +11052,7 @@
           "payload_format": {
             "command": "Get_Measure_Tedge"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Tedge",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Tedge",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11078,7 +11078,7 @@
           "payload_format": {
             "command": "Get_Measure_Tvalue"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Tvalue",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Tvalue",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11104,7 +11104,7 @@
           "payload_format": {
             "command": "Get_Measure_Vamplitude"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vamplitude",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vamplitude",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11130,7 +11130,7 @@
           "payload_format": {
             "command": "Get_Measure_Vbase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vbase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vbase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11158,7 +11158,7 @@
           "payload_format": {
             "command": "Get_Measure_Vtime"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vtime",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vtime",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11184,7 +11184,7 @@
           "payload_format": {
             "command": "Get_Measure_Vtop"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Vtop",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Vtop",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11211,7 +11211,7 @@
           "payload_format": {
             "command": "Get_Measure_Xmax"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Xmax",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Xmax",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11238,7 +11238,7 @@
           "payload_format": {
             "command": "Get_Measure_Xmin"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Measure_Xmin",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Measure_Xmin",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11265,7 +11265,7 @@
           "payload_format": {
             "command": "Get_Probe_Skew"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Probe_Skew",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Probe_Skew",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11291,7 +11291,7 @@
           "payload_format": {
             "command": "Get_System_Date"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Date",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Date",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11318,7 +11318,7 @@
           "payload_format": {
             "command": "Get_Error"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Error",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -11345,7 +11345,7 @@
           "payload_format": {
             "command": "Read_Error"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Read_Error",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Read_Error",
           "reading_direction": "out"
         },
         "unverified": false
@@ -11371,7 +11371,7 @@
           "payload_format": {
             "command": "Get_System_Lock"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Lock",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Lock",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11398,7 +11398,7 @@
           "payload_format": {
             "command": "Get_Setup"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Setup",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Setup",
           "reading_direction": "out"
         },
         "unverified": false
@@ -11426,7 +11426,7 @@
           "payload_format": {
             "command": "Get_System_Time"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_System_Time",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Time",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11454,7 +11454,7 @@
           "payload_format": {
             "command": "Get_Timebase_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11482,7 +11482,7 @@
           "payload_format": {
             "command": "Get_Timebase_Position"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Position",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Position",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11510,7 +11510,7 @@
           "payload_format": {
             "command": "Get_Timebase_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11538,7 +11538,7 @@
           "payload_format": {
             "command": "Get_Timebase_Reference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Reference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Reference",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11566,7 +11566,7 @@
           "payload_format": {
             "command": "Get_Timebase_Scale"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Scale",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Scale",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11605,7 +11605,7 @@
           "payload_format": {
             "command": "timebase_settings"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/timebase_settings",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/timebase_settings",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11633,7 +11633,7 @@
           "payload_format": {
             "command": "Get_Timebase_Window_Position"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Window_Position",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Window_Position",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11661,7 +11661,7 @@
           "payload_format": {
             "command": "Get_Timebase_Window_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Window_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Window_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11689,7 +11689,7 @@
           "payload_format": {
             "command": "Get_Timebase_Window_Scale"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Timebase_Window_Scale",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Timebase_Window_Scale",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11715,7 +11715,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Acknowledge"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Acknowledge",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Acknowledge",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11742,7 +11742,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Pattern_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Pattern_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Pattern_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11769,7 +11769,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Pattern_Id_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Pattern_Id_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Pattern_Id_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11795,7 +11795,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Pattern_Id"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Pattern_Id",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Pattern_Id",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11821,7 +11821,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Samplepoint"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Samplepoint",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Samplepoint",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11847,7 +11847,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Signal_Baudrate"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Signal_Baudrate",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Signal_Baudrate",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11874,7 +11874,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11900,7 +11900,7 @@
           "payload_format": {
             "command": "Get_Trigger_Can_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Can_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Can_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11927,7 +11927,7 @@
           "payload_format": {
             "command": "Get_Trigger_Coupling"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Coupling",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Coupling",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11953,7 +11953,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Greaterthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Greaterthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Greaterthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -11979,7 +11979,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Lessthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Lessthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Lessthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12005,7 +12005,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Pattern"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Pattern",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Pattern",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12031,7 +12031,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Qualifier"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Qualifier",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Qualifier",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12058,7 +12058,7 @@
           "payload_format": {
             "command": "Get_Trigger_Duration_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Duration_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Duration_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12085,7 +12085,7 @@
           "payload_format": {
             "command": "Get_Trigger_Edge_Level"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Edge_Level",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Edge_Level",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12112,7 +12112,7 @@
           "payload_format": {
             "command": "Get_Trigger_Edge_Slope"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Edge_Slope",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Edge_Slope",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12139,7 +12139,7 @@
           "payload_format": {
             "command": "Get_Trigger_Edge_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Edge_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Edge_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12165,7 +12165,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Greaterthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Greaterthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Greaterthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12191,7 +12191,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Lessthan"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Lessthan",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Lessthan",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12218,7 +12218,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Level"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Level",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Level",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12245,7 +12245,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Polarity"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Polarity",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Polarity",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12271,7 +12271,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Qualifier"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Qualifier",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Qualifier",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12298,7 +12298,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Range"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Range",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Range",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12325,7 +12325,7 @@
           "payload_format": {
             "command": "Get_Trigger_Glitch_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Glitch_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Glitch_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12351,7 +12351,7 @@
           "payload_format": {
             "command": "Get_Trigger_Hfreject"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Hfreject",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Hfreject",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12378,7 +12378,7 @@
           "payload_format": {
             "command": "Get_Trigger_Holdoff"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Holdoff",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Holdoff",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12405,7 +12405,7 @@
           "payload_format": {
             "command": "Get_Trigger_Iic_Pattern_Address"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Iic_Pattern_Address",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Iic_Pattern_Address",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12432,7 +12432,7 @@
           "payload_format": {
             "command": "Get_Trigger_Iic_Pattern_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Iic_Pattern_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Iic_Pattern_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12458,7 +12458,7 @@
           "payload_format": {
             "command": "Get_Trigger_Iic_Trigger_Qualifier"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Iic_Trigger_Qualifier",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Iic_Trigger_Qualifier",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12484,7 +12484,7 @@
           "payload_format": {
             "command": "Get_Trigger_Lin_Signal_Baudrate"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Lin_Signal_Baudrate",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Lin_Signal_Baudrate",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12511,7 +12511,7 @@
           "payload_format": {
             "command": "Get_Trigger_Lin_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Lin_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Lin_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12537,7 +12537,7 @@
           "payload_format": {
             "command": "Get_Trigger_Lin_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Lin_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Lin_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12564,7 +12564,7 @@
           "payload_format": {
             "command": "Get_Trigger_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12606,7 +12606,7 @@
           "payload_format": {
             "command": "trigger_settings"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/trigger_settings",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/trigger_settings",
           "reading_direction": "out"
         },
         "unverified": false
@@ -12632,7 +12632,7 @@
           "payload_format": {
             "command": "Get_Trigger_Nreject"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Nreject",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Nreject",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12658,7 +12658,7 @@
           "payload_format": {
             "command": "Get_Trigger_Pattern"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Pattern",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Pattern",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12684,7 +12684,7 @@
           "payload_format": {
             "command": "Get_Trigger_Reject"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Reject",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Reject",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12711,7 +12711,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12737,7 +12737,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Find"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Find",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Find",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12763,7 +12763,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Reset"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Reset",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Reset",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12791,7 +12791,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Timebase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Timebase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Timebase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12817,7 +12817,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sequence_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sequence_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sequence_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12844,7 +12844,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Clock_Slope"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Clock_Slope",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Clock_Slope",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12872,7 +12872,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Clock_Timebase"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Clock_Timebase",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Clock_Timebase",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12898,7 +12898,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Frame"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Frame",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Frame",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12925,7 +12925,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Pattern_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Pattern_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Pattern_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12952,7 +12952,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Pattern_Width"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Pattern_Width",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Pattern_Width",
           "reading_direction": "out"
         },
         "unverified": true
@@ -12978,7 +12978,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Source_Clock"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Source_Clock",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Source_Clock",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13005,7 +13005,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Source_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Source_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Source_Data",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13031,7 +13031,7 @@
           "payload_format": {
             "command": "Get_Trigger_Spi_Source_Frame"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Spi_Source_Frame",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Spi_Source_Frame",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13058,7 +13058,7 @@
           "payload_format": {
             "command": "Get_Trigger_Sweep"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Sweep",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Sweep",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13084,7 +13084,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Line"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Line",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Line",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13111,7 +13111,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Mode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Mode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Mode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13138,7 +13138,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Polarity"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Polarity",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Polarity",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13165,7 +13165,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13191,7 +13191,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Standard"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Standard",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Standard",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13217,7 +13217,7 @@
           "payload_format": {
             "command": "Get_Trigger_Tv_Tvmode"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Tv_Tvmode",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Tv_Tvmode",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13243,7 +13243,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Source_Dminus"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Source_Dminus",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Source_Dminus",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13269,7 +13269,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Source_Dplus"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Source_Dplus",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Source_Dplus",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13296,7 +13296,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Speed"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Speed",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Speed",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13322,7 +13322,7 @@
           "payload_format": {
             "command": "Get_Trigger_Usb_Trigger"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Trigger_Usb_Trigger",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Trigger_Usb_Trigger",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13348,7 +13348,7 @@
           "payload_format": {
             "command": "Get_Waveform_Byteorder"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Byteorder",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Byteorder",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13375,7 +13375,7 @@
           "payload_format": {
             "command": "Get_Waveform_Count"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Count",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Count",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13402,7 +13402,7 @@
           "payload_format": {
             "command": "Get_Waveform_Data"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Data",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Data",
           "reading_direction": "out"
         },
         "unverified": false
@@ -13429,7 +13429,7 @@
           "payload_format": {
             "command": "Get_Waveform_Format"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Format",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Format",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13456,7 +13456,7 @@
           "payload_format": {
             "command": "Get_Waveform_Points"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Points",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Points",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13483,7 +13483,7 @@
           "payload_format": {
             "command": "Get_Preamble"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Preamble",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Preamble",
           "reading_direction": "out"
         },
         "unverified": false
@@ -13527,7 +13527,7 @@
           "payload_format": {
             "command": "waveform_1"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/waveform_1",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/waveform_1",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13571,7 +13571,7 @@
           "payload_format": {
             "command": "waveform_2"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/waveform_2",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/waveform_2",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13598,7 +13598,7 @@
           "payload_format": {
             "command": "Get_Waveform_Source"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Source",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Source",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13624,7 +13624,7 @@
           "payload_format": {
             "command": "Get_Waveform_Unsigned"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Unsigned",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Unsigned",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13650,7 +13650,7 @@
           "payload_format": {
             "command": "Get_Waveform_View"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_View",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_View",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13677,7 +13677,7 @@
           "payload_format": {
             "command": "Get_Waveform_Xincrement"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Xincrement",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Xincrement",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13704,7 +13704,7 @@
           "payload_format": {
             "command": "Get_Waveform_Xorigin"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Xorigin",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Xorigin",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13731,7 +13731,7 @@
           "payload_format": {
             "command": "Get_Waveform_Xreference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Xreference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Xreference",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13758,7 +13758,7 @@
           "payload_format": {
             "command": "Get_Waveform_Yincrement"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Yincrement",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Yincrement",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13785,7 +13785,7 @@
           "payload_format": {
             "command": "Get_Waveform_Yorigin"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Yorigin",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Yorigin",
           "reading_direction": "out"
         },
         "unverified": true
@@ -13812,7 +13812,7 @@
           "payload_format": {
             "command": "Get_Waveform_Yreference"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Get_Waveform_Yreference",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Waveform_Yreference",
           "reading_direction": "out"
         },
         "unverified": true

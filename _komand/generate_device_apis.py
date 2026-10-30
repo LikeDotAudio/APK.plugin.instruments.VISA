@@ -1268,7 +1268,11 @@ def build_endpoint_entry(family, cmd_name, raw_cmd, verb):
         mqtt_info["payload_format"] = {"command": cmd_name}
 
     if verb == "nab":
-        mqtt_info["reading_topic"] = f"APK.audio/Device/<device>/Reading/{cmd_name}"
+        # Where KOMAND actually publishes it: readings.rs `reading_topic()` on the
+        # device base VISA names (`serial_publish`), not a top-level `Device/`
+        # family no grammar declares and nothing publishes (check.sh topicroots).
+        mqtt_info["reading_topic"] = (
+            f"APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/{cmd_name}")
         mqtt_info["reading_direction"] = "out"
 
     entry = {

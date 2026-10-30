@@ -103,7 +103,7 @@
           "payload_format": {
             "command": "Query_Channel_State"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Channel_State",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Query_Channel_State",
           "reading_direction": "out"
         },
         "unverified": true
@@ -128,7 +128,7 @@
           "payload_format": {
             "command": "Query_Slot_ID"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Slot_ID",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Query_Slot_ID",
           "reading_direction": "out"
         },
         "unverified": true
@@ -209,7 +209,7 @@
           "payload_format": {
             "command": "Query_Channel_State"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Channel_State",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Query_Channel_State",
           "reading_direction": "out"
         },
         "unverified": true
@@ -234,7 +234,7 @@
           "payload_format": {
             "command": "Query_Slot_ID"
           },
-          "reading_topic": "APK.audio/Device/<device>/Reading/Query_Slot_ID",
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Query_Slot_ID",
           "reading_direction": "out"
         },
         "unverified": true
