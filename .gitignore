@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+# A standalone `cargo test` in _komand/ writes this; the crate is a library.
+/_komand/Cargo.lock

@@ -8,7 +8,7 @@ The instrument library — bench panel templates by family, and the KOMAND defin
 |---|---|
 | **Recipe** | none — data, not a container: other stacks read it or copy it in |
 | **Source** | this repository (https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) — `INSTRUMENT.{Counter,DAQ,DMM,Distortion,Generator,LCR,Load,Oscilloscope,Power,Router,SMU,Spectrum,VNA}` families (see *Layout* below), `manifest.json`, `_komand/` (`knownDevices.json`, `ports.json`, `CommandList.csv`/`.xlsx`, the generators), `_datasets/`, and in `SRC/` the `apkaudio-plugin-instruments-visa` crate — a stub binary that prints its name, a member of the `DISCOVERY.Engine/SRC` workspace |
-| **Used by** | `PLUGINS/PLUGIN.VISA` (its `build.rs` finds `INSTRUMENTS/_komand/knownDevices.json` and compiles it in); `NODE.BareMetal/Docker/Dockerfile` copies this whole folder to `/app/Instruments`, where the orchestrator stamps one panel per discovered instrument and `AUDIO.komand` reads the command tables (`KOMAND_REPO_PATH=/app/Instruments`); `WEB.OsApi` (`os_roots.komand_library()`) |
+| **Used by** | `PLUGINS/PLUGIN.VISA` (it compiles `_komand/knownDevices.json` in through the `apkaudio-known-devices` crate at `_komand/Cargo.toml`, named by git rev from this repository); `NODE.BareMetal/Docker/Dockerfile` copies this whole folder to `/app/Instruments`, where the orchestrator stamps one panel per discovered instrument and `AUDIO.komand` reads the command tables (`KOMAND_REPO_PATH=/app/Instruments`); `WEB.OsApi` (`os_roots.komand_library()`) |
 
 ---
 
@@ -95,7 +95,7 @@ a family overflowing its 100-slot lane fails at generation time instead of
 colliding later. Both files are outputs of
 `python3 _komand/generate_device_apis.py` — change the allocator, not the JSON.
 
-Was `APK:BareMetal/PLUGINS/PLUGIN:instruments:VISA`. A missing library does not fail at run time — it is an empty instrument tab — and a missing `knownDevices.json` fails the VISA build.
+Was `APK:BareMetal/PLUGINS/PLUGIN:instruments:VISA`. A missing library does not fail at run time — it is an empty instrument tab — and a missing `knownDevices.json` fails the VISA build (the `apkaudio-known-devices` crate cannot compile without it).
 
 ---
 

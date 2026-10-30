@@ -17,7 +17,8 @@ INSTRUMENT.<Family>/
   <Model>/<Model>.komand          command table (16 models)
   <Model>/commands_tree.md        generated SCPI tree of that table
 _komand/
-  knownDevices.json               *IDN? catalogue; compiled into PLUGIN.VISA by its build.rs
+  knownDevices.json               *IDN? catalogue; compiled into PLUGIN.VISA through the crate below
+  Cargo.toml, known_devices.rs    apkaudio-known-devices: the catalogue as KNOWN_DEVICES_JSON
   ports.json                      generated port allocation
   CommandList.csv/.xlsx           generated flat list of every command
   generate_device_apis.py         writes every <Model>.api.json and ports.json (--check)
@@ -34,7 +35,7 @@ SRC/                              stub crate apkaudio-plugin-instruments-visa (D
 | `AUDIO.komand` agent | `KOMAND_REPO_PATH=/app/Instruments` in `Node-BareMetal`, or walks up to the folder holding `_komand/` | `.komand` tables → SCPI |
 | `AUDIO.komand` tools | same | generate/check `CommandList.*`, `commands_tree.md`, `knownDevices.json` links |
 | BareMetal orchestrator (VISA hunter) | `/app/Instruments`, `family_directory` in `NODE.BareMetal/SRC/Core/ORCHESTRATOR:hunter:VISA/src/instruments/library.rs` | stamps one panel per discovered instrument |
-| `PLUGIN.VISA` | `build.rs` finds `INSTRUMENTS/_komand/knownDevices.json` | compiled-in identification table |
+| `PLUGIN.VISA` | the `apkaudio-known-devices` crate (`_komand/Cargo.toml`), by git rev from this repository; patched to the local folder in the monorepo | compiled-in identification table |
 | `WEB.OsApi` | `/srv/portal/Instruments`, `os_roots.komand_library()` | the instrument page and `<Model>.api.json` |
 
 ## Working on it

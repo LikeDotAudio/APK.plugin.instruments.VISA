@@ -1,0 +1,21 @@
+# apkaudio-known-devices — knownDevices.json, the *IDN? catalogue, as a crate.
+#
+# THE FILE STAYS HERE, ONE COPY. PLUGIN.VISA compiles it in; before this crate
+# its build.rs walked up from the plugin to find this file, so the plugin could
+# not build from its own repository (LOOSE-visa-standalone). Now the plugin
+# names this crate by git rev from APK.plugin.instruments.VISA — cargo checks
+# out the whole repository, so the file comes with it — and inside the monorepo
+# the engine workspace's [patch] (and PLUGINS/.cargo/config.toml) point the
+# name back at this folder. No workspace, no path dependency: it builds alone.
+[package]
+name = "apkaudio-known-devices"
+version = "0.1.0"
+edition = "2024"
+description = "The APK.audio *IDN? model catalogue (knownDevices.json), for include at compile time"
+include = ["Cargo.toml", "known_devices.rs", "knownDevices.json"]
+
+[lib]
+path = "known_devices.rs"
+
+# Not a member of any workspace above this folder.
+[workspace]
