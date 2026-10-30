@@ -1,19 +1,19 @@
-# APK:data:INSTRUMENTS
+# INSTRUMENTS
 
-The instrument library — bench panel templates by family, and the KOMAND definition tree.
+The instrument library — bench panel templates by family, and the KOMAND definition tree: 13 families, 181 models, 16 of them with a `<Model>.komand` command table.
 
 | | |
 |---|---|
 | **Recipe** | none — data, not a container: other stacks read it or copy it in |
-| **Source** | this repository (https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) — `INSTRUMENT:{Counter,DAQ,DMM,Generator,LCR,Load,Oscilloscope,Power,Router,SMU,Spectrum,VNA,Distortion}` families (see *Layout* below), `SRC/_komand/knownDevices.json`, `SRC/_datasets`, and the `apkaudio-plugin-instruments-visa` crate |
-| **Used by** | `APK:plugin:VISA` (its `build.rs` walks up to `APK:data:INSTRUMENTS/SRC/_komand/knownDevices.json` and compiles it in); `APK:BareMetal/Docker/Dockerfile` copies `SRC/` to `/app/Instruments`, where the orchestrator stamps one panel per discovered instrument; `APK:web:OsApi` (`os_roots.komand_library`) |
+| **Source** | this repository (https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) — `INSTRUMENT.{Counter,DAQ,DMM,Distortion,Generator,LCR,Load,Oscilloscope,Power,Router,SMU,Spectrum,VNA}` families (see *Layout* below), `manifest.json`, `_komand/` (`knownDevices.json`, `ports.json`, `CommandList.csv`/`.xlsx`, the generators), `_datasets/`, and in `SRC/` the `apkaudio-plugin-instruments-visa` crate — a stub binary that prints its name, a member of the `DISCOVERY.Engine/SRC` workspace |
+| **Used by** | `PLUGINS/PLUGIN.VISA` (its `build.rs` finds `INSTRUMENTS/_komand/knownDevices.json` and compiles it in); `NODE.BareMetal/Docker/Dockerfile` copies this whole folder to `/app/Instruments`, where the orchestrator stamps one panel per discovered instrument and `AUDIO.komand` reads the command tables (`KOMAND_REPO_PATH=/app/Instruments`); `WEB.OsApi` (`os_roots.komand_library()`) |
 
 ---
 
 ## Layout
 
 This is the central home of every bench instrument's GUI. One folder per
-family, and the folder carries the `INSTRUMENT:` prefix:
+family, and the folder carries the `INSTRUMENT.` prefix:
 
 ```
 INSTRUMENT.DMM/
@@ -33,9 +33,10 @@ INSTRUMENT.DMM/
 the device type, the MQTT topics, the `manifest.json` key, its `tab`, the port
 lane and `${family}` — is always the bare `DMM`. A reader resolves a family's
 folder as `INSTRUMENT.<Family>` if it exists, else `<Family>` (so a crate's
-`gui/dante/` and an older tree still read), and strips a leading `INSTRUMENT:`
-when it derives a family name from a directory listing. Each language has one
-helper for that: `family_directory` in the orchestrator (`instruments/mod.rs`),
+`gui/dante/` and an older tree still read), and strips a leading `INSTRUMENT.`
+(or the legacy `INSTRUMENT:`) when it derives a family name from a directory
+listing. Each language has one helper for that: `family_directory` in the
+orchestrator (`NODE.BareMetal/SRC/Core/ORCHESTRATOR:hunter:VISA/src/instruments/library.rs`),
 `family_name`/`family_directory` in `_komand/generate_device_apis.py`,
 `Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py`.
 
@@ -52,7 +53,7 @@ generator now removes any that reappear.
 The generic name was the whole problem: `SMU/2410/api.json` and
 `DMM/34411A/api.json` are the same string, so an open editor tab, a grep hit and
 a stack trace all stopped saying *which* instrument they meant. Nothing ever
-read the symlink — `APK:web:OsApi` (`server.py`) has always opened
+read the symlink — `WEB.OsApi` (`server.py`) has always opened
 `f'{model}.api.json'` directly — so it bought convenience and cost identity.
 
 ---
@@ -93,6 +94,35 @@ colliding later. Both files are outputs of
 `python3 _komand/generate_device_apis.py` — change the allocator, not the JSON.
 
 Was `APK:BareMetal/PLUGINS/PLUGIN:instruments:VISA`. A missing library does not fail at run time — it is an empty instrument tab — and a missing `knownDevices.json` fails the VISA build.
+
+---
+
+## Generate and check
+
+All from this folder; measured 2026-10-30.
+
+```bash
+python3 _komand/generate_device_apis.py      # every <Model>.api.json + _komand/ports.json — re-running changes nothing today
+python3 _komand/sort_komands.py --check      # 0 tables out of order
+# the command-table tooling lives in the KOMAND binary:
+cd ../AUDIO.komand && KOMAND_REPO_PATH=../INSTRUMENTS cargo run -- check-tables      # 3 771 commands, 16 models
+cd ../DISCOVERY.Engine/SRC && cargo check -p apkaudio-plugin-instruments-visa         # the stub crate builds
+```
+
+Two generated reports are behind the tree today: `KOMAND_REPO_PATH=../INSTRUMENTS cargo run -- build-list --check` (in `AUDIO.komand`) finds `_komand/CommandList.csv` stale — its `File` column still names the pre-rename `DMM/34401A/…` paths — and `build-trees --check` reports all 16 `commands_tree.md` missing (none is tracked).
+
+`manifest.json` says `check.sh binding` fails when the families and the manifest diverge; no `check.sh` is in the tree today.
+
+## Philosophy
+
+- **Data, not a container.** No `Docker/`; images copy the folder in (`NODE.BareMetal/Docker/Dockerfile`, `COPY ["PODS/POD.THICK/INSTRUMENTS", "./Instruments"]`).
+- **The prefix belongs to the directory.** `INSTRUMENT.DMM` is a folder; `DMM` is the family everywhere else, and every reader has one helper to translate (`_komand/generate_device_apis.py`, `family_name` / `family_directory`).
+- **One name per file.** `<Model>.api.json`, never `api.json`, so a path names its instrument; the generator removes stray bare names (`_komand/generate_device_apis.py`, module doc).
+- **Derive, don't store — and show the cost.** Ports are computed from the manifest `tab` and model order; `ports.json` is rewritten each run so a renumbering is a reviewable diff, and a full lane fails at generation (`_komand/generate_device_apis.py`, lines 80+).
+- **Reports are outputs.** `CommandList.csv`, `ports.json` and every `<Model>.api.json` are generated from the tables and the manifest — "change the allocator, not the JSON".
+- **Every class is declared.** A family folder with no `manifest.json` entry is an error, not a quiet gap (`manifest.json`, `_note.every_class_needs_an_entry`).
+
+Plans for this repo live in the house roadmap, `Documentation/🛣Roadmap/roadmap.htm` in APK.audio.
 
 ---
 
