@@ -5,7 +5,7 @@
 # not build from its own repository (LOOSE-visa-standalone). Now the plugin
 # names this crate by git rev from APK.plugin.instruments.VISA — cargo checks
 # out the whole repository, so the file comes with it — and inside the monorepo
-# the engine workspace's [patch] (and PLUGINS/.cargo/config.toml) point the
+# the engine workspace's [patch] (and the plugin's generated .cargo/config.toml) point the
 # name back at this folder. No workspace, no path dependency: it builds alone.
 [package]
 name = "apkaudio-known-devices"
