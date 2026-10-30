@@ -1,5 +1,7 @@
 # INSTRUMENTS
 
+**Wiki:** [Documentation/README.md](Documentation/README.md) — principles, architecture, delivery.
+
 The instrument library — bench panel templates by family, and the KOMAND definition tree: 13 families, 181 models, 16 of them with a `<Model>.komand` command table.
 
 | | |
@@ -105,11 +107,11 @@ All from this folder; measured 2026-10-30.
 python3 _komand/generate_device_apis.py      # every <Model>.api.json + _komand/ports.json — re-running changes nothing today
 python3 _komand/sort_komands.py --check      # 0 tables out of order
 # the command-table tooling lives in the KOMAND binary:
-cd ../AUDIO.komand && KOMAND_REPO_PATH=../INSTRUMENTS cargo run -- check-tables      # 3 771 commands, 16 models
+cd ../AUDIO.komand && cargo run -- check-tables      # 3 771 commands, 16 models
 cd ../DISCOVERY.Engine/SRC && cargo check -p apkaudio-plugin-instruments-visa         # the stub crate builds
 ```
 
-Two generated reports are behind the tree today: `KOMAND_REPO_PATH=../INSTRUMENTS cargo run -- build-list --check` (in `AUDIO.komand`) finds `_komand/CommandList.csv` stale — its `File` column still names the pre-rename `DMM/34401A/…` paths — and `build-trees --check` reports all 16 `commands_tree.md` missing (none is tracked).
+The generated reports are current: in `AUDIO.komand`, `cargo run -- build-list --check` and `build-trees --check` both pass (the 16 `commands_tree.md` are tracked).
 
 `manifest.json` says `check.sh binding` fails when the families and the manifest diverge; no `check.sh` is in the tree today.
 
