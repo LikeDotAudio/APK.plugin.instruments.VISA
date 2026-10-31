@@ -18,7 +18,7 @@ The bench instrument library as data: 13 families / 181 models — family panel 
 ## Scorecard
 | Category | Score (0–3) | Finding |
 |---|---|---|
-| Coupling & Cohesion | 2 | Consumed by file copy into images (deliberate); the resolver is data (`families.json`) but three readers in other repos still re-implement it until they adopt it (handoffs). |
+| Coupling & Cohesion | 3 | Consumed by file copy into images (deliberate); the resolver is data (`families.json`) and every reader (orchestrator `library.rs`, `node_paths.py`, `os_roots.py`) reads it first. |
 | Boundary Integrity | 3 | `<Model>.api.json` is a versioned published spec; every on-disk format has a JSON Schema. |
 | Duplication Control | 3 | Catalogue fields checked equal across `.gui` and `knownDevices.json`; baselines and donors are data files. |
 | Testing & Contracts | 3 | Schemas enforced by `--check`; a broken `.gui` fails loudly; one local `_komand/check.sh` (both checks, unit tests, cargo test). |
@@ -30,6 +30,6 @@ Score key: 3 meets the standard · 2 minor gaps · 1 significant gaps · 0 absen
 2. **Good: derived, not stored.** Ports come from `15000 + family_index*100 + model_index` and `ports.json` is regenerated so renumbering shows as a diff; `--check` writes nothing and fails on drift.
 3. **Good: a published spec with a version.** [`INSTRUMENT.DMM/34401A/34401A.api.json`](../../INSTRUMENT.DMM/34401A/34401A.api.json) carries `api_version`, an inbound `service` block and an outbound `transport` block; its shape is `_komand/schemas/api.schema.json`.
 4. **Good: `knownDevices.json` is a model catalogue, not a discovery list.** It maps `*IDN?` model strings to metadata and holds no addresses.
-5. **The resolver's other readers.** `families.json` is the resolver as data; the orchestrator (`instruments/library.rs`), `Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py` still re-implement the prefix rule. **Waiting on NODE.BareMetal and WEB.OsApi (handoffs filed).**
+5. **The resolver's other readers.** Delivered — `families.json` is the resolver as data; the orchestrator (`instruments/library.rs`), `Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py` read it first, the prefix rule kept only as their fallback (NODE.BareMetal `b510073`, WEB.OsApi `0047b53`).
 
 Delivered findings are recorded in [🌍Publishing/DELIVERY.md](../%F0%9F%8C%8DPublishing/DELIVERY.md).
