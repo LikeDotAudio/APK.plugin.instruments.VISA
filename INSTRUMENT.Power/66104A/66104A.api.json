@@ -2347,7 +2347,11 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "LINK"
+          ],
+          "default": "LINK"
         },
         "returns": null,
         "mqtt": {
@@ -2452,7 +2456,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "NORM",
+            "REV"
+          ],
+          "default": "NORM"
         },
         "returns": null,
         "mqtt": {
@@ -2564,7 +2573,14 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "BUS",
+            "EXT",
+            "LINK",
+            "HOLD"
+          ],
+          "default": "BUS"
         },
         "returns": null,
         "mqtt": {
@@ -2752,7 +2768,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "FIX",
+            "LIST"
+          ],
+          "default": "FIX"
         },
         "returns": null,
         "mqtt": {
@@ -2860,7 +2881,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "FIX",
+            "LIST"
+          ],
+          "default": "FIX"
         },
         "returns": null,
         "mqtt": {
@@ -3165,7 +3191,15 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "BUS",
+            "EXT",
+            "HOLD",
+            "LINK",
+            "TTLT"
+          ],
+          "default": "BUS"
         },
         "returns": null,
         "mqtt": {
@@ -3247,7 +3281,15 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "BUS",
+            "EXT",
+            "HOLD",
+            "LINK",
+            "TTLT"
+          ],
+          "default": "BUS"
         },
         "returns": null,
         "mqtt": {

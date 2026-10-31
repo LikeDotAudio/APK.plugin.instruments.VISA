@@ -112,17 +112,17 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `TTLT` — **DO** `Do_Output_Ttltrg` · †<br>CURR:PROT:STAT,32
   - **`DFI`**
     - `LINK` — **SET** `Set_Output_Dfi_Link` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>This command specifies which events within the power module are linked to DFI source events
-    - `SOUR` — **SET** `Set_Output_Dfi_Source` · `<value>` · args: `value` · enum · †<br>This command selects the source for DFI events
+    - `SOUR` — **SET** `Set_Output_Dfi_Source` · `<value>` · args: `value` · enum: `LINK` · †<br>This command selects the source for DFI events
     - `STAT` — **SET** `Set_Output_Dfi_Status` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>This command enables or disables the discrete fault indicator (DFI) signal to the power module backplane
   - **`PROT`**
     - `DEL` — **SET** `Set_Output_Protection_Delay` · `<value>` · args: `value` · numeric (s) · †<br>Controlling Protection Functions
   - **`REL`**
-    - `POL` — **SET** `Set_Output_Relay_Polarity` · `<value>` · args: `value` · enum · †<br>This command is valid only if the power module is configured for the optional relay connector
+    - `POL` — **SET** `Set_Output_Relay_Polarity` · `<value>` · args: `value` · enum: `NORM` | `REV` · †<br>This command is valid only if the power module is configured for the optional relay connector
     - `STAT` — **SET** `Set_Output_Relay_Status` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>This command is valid only if the power module is configured for the optional relay connector
     - `STAT?` — **NAB** `Get_Output_Relay_Status` · → BOOL · †<br>This command is valid only if the power module is configured for the optional relay connector
   - **`TTLT`**
     - `LINK` — **SET** `Set_Output_Ttltrg_Link` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>Controlling Triggers
-    - `SOUR` — **SET** `Set_Output_Ttltrg_Source` · `<value>` · args: `value` · enum · †<br>Controlling Triggers
+    - `SOUR` — **SET** `Set_Output_Ttltrg_Source` · `<value>` · args: `value` · enum: `BUS` | `EXT` | `LINK` | `HOLD` · †<br>Controlling Triggers
     - `STAT` — **SET** `Set_Output_Ttltrg_Status` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>This command enables or disables the power module Trigger Out signal, which is available at a BNC connector on the rear of the mainframe
     - `LINK?` — **NAB** `Get_Output_Ttltrg_Link` · → BOOL · †<br>Controlling Triggers
     - `SOUR?` — **NAB** `Get_Output_Ttltrg_Source` · → CRD · †<br>Controlling Triggers
@@ -175,7 +175,7 @@ Several statements in one message, so they hang off no single branch. Every stat
 - **`SOURce`**
   - `LIST` — **DO** `Do_Source_List` · †<br>Conventions
   - **`CURRent`**
-    - `MODE` — **SET** `Set_Source_Current_Mode` · `<value>` · args: `value` · enum · †<br>LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list
+    - `MODE` — **SET** `Set_Source_Current_Mode` · `<value>` · args: `value` · enum: `FIX` | `LIST` · †<br>LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list
     - `MODE?` — **NAB** `Get_Source_Current_Mode` · → NR3 · †<br>LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list
     - `LEVel` — **DO** `Do_Source_Current_Level` · †<br>This command directly programs the immediate current level of the power module
     - **`LEVel`**
@@ -197,7 +197,7 @@ Several statements in one message, so they hang off no single branch. Every stat
     - **`VOLTage`**
       - `POINts?` — **NAB** `Get_Source_List_Voltage_Points` · → NR1 V · †<br>This query returns the number of points specified in LIST:VOLT
   - **`VOLTage`**
-    - `MODE` — **SET** `Set_Source_Voltage_Mode` · `<value>` · args: `value` · enum · †<br>LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list
+    - `MODE` — **SET** `Set_Source_Voltage_Mode` · `<value>` · args: `value` · enum: `FIX` | `LIST` · †<br>LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list
     - `MODE?` — **NAB** `Get_Source_Voltage_Mode` · → CRD V · †<br>LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list
     - `LEVel` — **DO** `Do_Source_Voltage_Level` · †<br>This command directly programs the immediate voltage level of the power module
     - `PROTection` — **DO** `Do_Source_Voltage_Protection` · †<br>- Status Reporting")
@@ -239,7 +239,7 @@ Several statements in one message, so they hang off no single branch. Every stat
 - **`TRIG`**
   - `DEL` — **SET** `Set_Trigger_Delay` · `<value>` · args: `value` · numeric (s) · †<br>Controlling Triggers
   - `LINK` — **SET** `Set_Trigger_Link` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>Controlling Triggers
-  - `SOUR` — **SET** `Set_Trigger_Source` · `<value>` · args: `value` · enum · †<br>Controlling Triggers
+  - `SOUR` — **SET** `Set_Trigger_Source` · `<value>` · args: `value` · enum: `BUS` | `EXT` | `HOLD` | `LINK` | `TTLT` · †<br>Controlling Triggers
   - `DEL?` — **NAB** `Get_Trigger_Delay` · → NR3 s · †<br>Controlling Triggers
   - `LINK?` — **NAB** `Get_Trigger_Link` · → BOOL · †<br>Controlling Triggers
   - `SOUR?` — **NAB** `Get_Trigger_Source` · → CRD · †<br>Controlling Triggers
@@ -249,7 +249,7 @@ Several statements in one message, so they hang off no single branch. Every stat
 - **`TRIGger`**
   - **`STARt`**
     - `DELay` — **SET** `Set_Trigger_Start_Delay` · `<value>` · args: `value` · numeric (s) · †<br>This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output
-    - `SOURce` — **SET** `Set_Trigger_Start_Source` · `<value>` · args: `value` · enum · †<br>This command selects the power module input trigger source as follows
+    - `SOURce` — **SET** `Set_Trigger_Start_Source` · `<value>` · args: `value` · enum: `BUS` | `EXT` | `HOLD` | `LINK` | `TTLT` · †<br>This command selects the power module input trigger source as follows
     - `DELay?` — **NAB** `Get_Trigger_Start_Delay` · → NR3 s · †<br>This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output
     - `LINK?` — **NAB** `Get_Trigger_Start_Link` · → CRD · †<br>This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command
     - `SOURce?` — **NAB** `Get_Trigger_Start_Source` · → CRD · †<br>This command selects the power module input trigger source as follows

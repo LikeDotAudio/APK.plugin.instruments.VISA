@@ -193,7 +193,11 @@
       "scpi": "OUTP:DFI:SOUR <value>",
       "description": "This command selects the source for DFI events",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "LINK"
+        ],
+        "default": "LINK"
       },
       "args": [
         "value"
@@ -246,7 +250,12 @@
       "scpi": "OUTP:REL:POL <value>",
       "description": "This command is valid only if the power module is configured for the optional relay connector",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "NORM",
+          "REV"
+        ],
+        "default": "NORM"
       },
       "args": [
         "value"
@@ -306,7 +315,14 @@
       "scpi": "OUTP:TTLT:SOUR <value>",
       "description": "Controlling Triggers",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "BUS",
+          "EXT",
+          "LINK",
+          "HOLD"
+        ],
+        "default": "BUS"
       },
       "args": [
         "value"
@@ -403,7 +419,12 @@
       "scpiFast": "SOUR:CURR:MODE <value>",
       "description": "LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "FIX",
+          "LIST"
+        ],
+        "default": "FIX"
       },
       "args": [
         "value"
@@ -459,7 +480,12 @@
       "scpiFast": "SOUR:VOLT:MODE <value>",
       "description": "LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "FIX",
+          "LIST"
+        ],
+        "default": "FIX"
       },
       "args": [
         "value"
@@ -608,7 +634,15 @@
       "scpi": "TRIG:SOUR <value>",
       "description": "Controlling Triggers",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "BUS",
+          "EXT",
+          "HOLD",
+          "LINK",
+          "TTLT"
+        ],
+        "default": "BUS"
       },
       "args": [
         "value"
@@ -651,7 +685,15 @@
       "scpiFast": "TRIG:STAR:SOUR <value>",
       "description": "This command selects the power module input trigger source as follows",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "BUS",
+          "EXT",
+          "HOLD",
+          "LINK",
+          "TTLT"
+        ],
+        "default": "BUS"
       },
       "args": [
         "value"

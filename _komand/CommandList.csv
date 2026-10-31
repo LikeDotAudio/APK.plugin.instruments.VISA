@@ -2840,28 +2840,28 @@ Power,66101A,SET,Set_Ese,Set ese,*ESE <value>,,value,integer,,,,Common,,,,,1,yes
 Power,66101A,SET,Set_Initiate_Continuous,Set initiate continuous,INIT:CONT <value>,,value,bool,OFF; ON,,,INIT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output,Output on or off.,OUTP <state>,,state,bool,OFF; ON,,Output Control,OUTPut,,,,,1,,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Dfi_Link,This command specifies which events within the power module are linked to DFI source events,OUTP:DFI:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
+Power,66101A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,LINK,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Dfi_Status,This command enables or disables the discrete fault indicator (DFI) signal to the power module backplane,OUTP:DFI:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Protection_Delay,Set output protection delay,OUTP:PROT:DEL <value>,,value,numeric,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Relay,Output Subsystem,OUTP:REL <value>,,value,unknown,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
+Power,66101A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,NORM; REV,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Relay_Status,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Status,"If the power module is configured to use the relay option, the command opens the relay contacts when the output is disabled and closes them when it is enabled",OUTP:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Ttltrg_Link,Set output ttltrg link,OUTP:TTLT:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Output_Ttltrg_Source,Set output ttltrg source,OUTP:TTLT:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
+Power,66101A,SET,Set_Output_Ttltrg_Source,Set output ttltrg source,OUTP:TTLT:SOUR <value>,,value,enum,BUS; EXT; LINK; HOLD,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Output_Ttltrg_Status,"This command enables or disables the power module Trigger Out signal, which is available at a BNC connector on the rear of the mainframe",OUTP:TTLT:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Psc,Set psc,*PSC <value>,,value,bool,0; 1,,,Common,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Rcl,Set rcl,*RCL <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Sav,Set sav,*SAV <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_Current_Level_Immediate_Amplitude,Set source current level immediate amplitude,SOUR:CURR:LEV:IMM:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_Current_Level_Trigger_Amplitude,Set source current level trigger amplitude,SOUR:CURR:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
+Power,66101A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_Current_Protection_Status,This command enables or disables the power module overcurrent (OC) protection function,SOURce:CURRent:PROTection:STATe <value>,SOUR:CURR:PROT:STAT <value>,value,bool,OFF; ON,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_List_Count,This command sets the number of times that the list is executed before it is completed,SOURce:LIST:COUNt <value>,SOUR:LIST:COUN <value>,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_List_Dwel,"- If LIST:STEP ONCE has been programmed, the output remains at the present level until a trigger sequences the next point in the list",SOURce:LIST:DWEL<chan> <value>,SOUR:LIST:DWEL<chan> <value>,value,integer,,chan,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_List_Step,"In either mode, triggers that occur during a dwell interval are ignored",SOUR:LIST:STEP <value>,,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage level trigger amplitude,SOUR:VOLT:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
+Power,66101A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
@@ -2875,10 +2875,10 @@ Power,66101A,SET,Set_Status_Questionable_Ntransition,corresponding Questionable 
 Power,66101A,SET,Set_Status_Questionable_Ptransition,Register Commands,STAT:QUES:PTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Trigger_Delay,Set trigger delay,TRIG:DEL <value>,,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Trigger_Link,Set trigger link,TRIG:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Trigger_Source,Set trigger source,TRIG:SOUR <value>,,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
+Power,66101A,SET,Set_Trigger_Source,Set trigger source,TRIG:SOUR <value>,,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Trigger_Start_Delay,This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output,TRIGger:STARt:DELay <value>,TRIG:STAR:DEL <value>,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
+Power,66101A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Voltage_Protection,Query Indicator,VOLT:PROT <value>,,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
@@ -3034,28 +3034,28 @@ Power,66102A,SET,Set_Ese,Set ese,*ESE <value>,,value,integer,,,,Common,,,,,1,yes
 Power,66102A,SET,Set_Initiate_Continuous,Set initiate continuous,INIT:CONT <value>,,value,bool,OFF; ON,,,INIT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output,Output on or off.,OUTP <state>,,state,bool,OFF; ON,,Output Control,OUTPut,,,,,1,,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Dfi_Link,This command specifies which events within the power module are linked to DFI source events,OUTP:DFI:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
+Power,66102A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,LINK,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Dfi_Status,This command enables or disables the discrete fault indicator (DFI) signal to the power module backplane,OUTP:DFI:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Protection_Delay,Set output protection delay,OUTP:PROT:DEL <value>,,value,numeric,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Relay,Output Subsystem,OUTP:REL <value>,,value,unknown,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
+Power,66102A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,NORM; REV,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Relay_Status,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Status,"If the power module is configured to use the relay option, the command opens the relay contacts when the output is disabled and closes them when it is enabled",OUTP:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Ttltrg_Link,Set output ttltrg link,OUTP:TTLT:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Output_Ttltrg_Source,Set output ttltrg source,OUTP:TTLT:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
+Power,66102A,SET,Set_Output_Ttltrg_Source,Set output ttltrg source,OUTP:TTLT:SOUR <value>,,value,enum,BUS; EXT; LINK; HOLD,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Output_Ttltrg_Status,"This command enables or disables the power module Trigger Out signal, which is available at a BNC connector on the rear of the mainframe",OUTP:TTLT:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Psc,Set psc,*PSC <value>,,value,bool,0; 1,,,Common,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Rcl,Set rcl,*RCL <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Sav,Set sav,*SAV <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_Current_Level_Immediate_Amplitude,Set source current level immediate amplitude,SOUR:CURR:LEV:IMM:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_Current_Level_Trigger_Amplitude,Set source current level trigger amplitude,SOUR:CURR:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
+Power,66102A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_Current_Protection_Status,This command enables or disables the power module overcurrent (OC) protection function,SOURce:CURRent:PROTection:STATe <value>,SOUR:CURR:PROT:STAT <value>,value,bool,OFF; ON,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_List_Count,This command sets the number of times that the list is executed before it is completed,SOURce:LIST:COUNt <value>,SOUR:LIST:COUN <value>,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_List_Dwel,"- If LIST:STEP ONCE has been programmed, the output remains at the present level until a trigger sequences the next point in the list",SOURce:LIST:DWEL<chan> <value>,SOUR:LIST:DWEL<chan> <value>,value,integer,,chan,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_List_Step,"In either mode, triggers that occur during a dwell interval are ignored",SOUR:LIST:STEP <value>,,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage level trigger amplitude,SOUR:VOLT:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
+Power,66102A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
@@ -3069,10 +3069,10 @@ Power,66102A,SET,Set_Status_Questionable_Ntransition,corresponding Questionable 
 Power,66102A,SET,Set_Status_Questionable_Ptransition,Register Commands,STAT:QUES:PTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Trigger_Delay,Set trigger delay,TRIG:DEL <value>,,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Trigger_Link,Set trigger link,TRIG:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Trigger_Source,Set trigger source,TRIG:SOUR <value>,,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
+Power,66102A,SET,Set_Trigger_Source,Set trigger source,TRIG:SOUR <value>,,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Trigger_Start_Delay,This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output,TRIGger:STARt:DELay <value>,TRIG:STAR:DEL <value>,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
+Power,66102A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Voltage_Sense_Source,Set voltage sense source,VOLT:SENS:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
@@ -3227,28 +3227,28 @@ Power,66103A,SET,Set_Ese,Set ese,*ESE <value>,,value,integer,,,,Common,,,,,1,yes
 Power,66103A,SET,Set_Initiate_Continuous,Set initiate continuous,INIT:CONT <value>,,value,bool,OFF; ON,,,INIT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output,Output on or off.,OUTP <state>,,state,bool,OFF; ON,,Output Control,OUTPut,,,,,1,,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Dfi_Link,This command specifies which events within the power module are linked to DFI source events,OUTP:DFI:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
+Power,66103A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,LINK,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Dfi_Status,This command enables or disables the discrete fault indicator (DFI) signal to the power module backplane,OUTP:DFI:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Protection_Delay,Set output protection delay,OUTP:PROT:DEL <value>,,value,numeric,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Relay,Output Subsystem,OUTP:REL <value>,,value,unknown,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
+Power,66103A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,NORM; REV,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Relay_Status,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Status,"If the power module is configured to use the relay option, the command opens the relay contacts when the output is disabled and closes them when it is enabled",OUTP:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Ttltrg_Link,Set output ttltrg link,OUTP:TTLT:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Output_Ttltrg_Source,Set output ttltrg source,OUTP:TTLT:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
+Power,66103A,SET,Set_Output_Ttltrg_Source,Set output ttltrg source,OUTP:TTLT:SOUR <value>,,value,enum,BUS; EXT; LINK; HOLD,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Output_Ttltrg_Status,"This command enables or disables the power module Trigger Out signal, which is available at a BNC connector on the rear of the mainframe",OUTP:TTLT:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Psc,Set psc,*PSC <value>,,value,bool,0; 1,,,Common,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Rcl,Set rcl,*RCL <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Sav,Set sav,*SAV <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_Current_Level_Immediate_Amplitude,Set source current level immediate amplitude,SOUR:CURR:LEV:IMM:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_Current_Level_Trigger_Amplitude,Set source current level trigger amplitude,SOUR:CURR:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
+Power,66103A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_Current_Protection_Status,This command enables or disables the power module overcurrent (OC) protection function,SOURce:CURRent:PROTection:STATe <value>,SOUR:CURR:PROT:STAT <value>,value,bool,OFF; ON,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_List_Count,This command sets the number of times that the list is executed before it is completed,SOURce:LIST:COUNt <value>,SOUR:LIST:COUN <value>,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_List_Dwel,"- If LIST:STEP ONCE has been programmed, the output remains at the present level until a trigger sequences the next point in the list",SOURce:LIST:DWEL<chan> <value>,SOUR:LIST:DWEL<chan> <value>,value,integer,,chan,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_List_Step,"In either mode, triggers that occur during a dwell interval are ignored",SOUR:LIST:STEP <value>,,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage level trigger amplitude,SOUR:VOLT:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
+Power,66103A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
@@ -3262,10 +3262,10 @@ Power,66103A,SET,Set_Status_Questionable_Ntransition,corresponding Questionable 
 Power,66103A,SET,Set_Status_Questionable_Ptransition,Register Commands,STAT:QUES:PTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Trigger_Delay,Set trigger delay,TRIG:DEL <value>,,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Trigger_Link,Set trigger link,TRIG:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Trigger_Source,Set trigger source,TRIG:SOUR <value>,,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
+Power,66103A,SET,Set_Trigger_Source,Set trigger source,TRIG:SOUR <value>,,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Trigger_Start_Delay,This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output,TRIGger:STARt:DELay <value>,TRIG:STAR:DEL <value>,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
+Power,66103A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Voltage_Sense_Source,Set voltage sense source,VOLT:SENS:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
@@ -3423,28 +3423,28 @@ Power,66104A,SET,Set_Initiate_Continuous,Controlling Triggers,INIT:CONT <value>,
 Power,66104A,SET,Set_List_Dwel_Points,"CURR:PROT:STAT,32",LIST:DWEL:POIN <value>,,value,integer,,,,LIST,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output,Output on or off.,OUTP <state>,,state,bool,OFF; ON,,Output Control,OUTPut,,,,,1,,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Dfi_Link,This command specifies which events within the power module are linked to DFI source events,OUTP:DFI:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
+Power,66104A,SET,Set_Output_Dfi_Source,This command selects the source for DFI events,OUTP:DFI:SOUR <value>,,value,enum,LINK,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Dfi_Status,This command enables or disables the discrete fault indicator (DFI) signal to the power module backplane,OUTP:DFI:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Protection_Delay,Controlling Protection Functions,OUTP:PROT:DEL <value>,,value,numeric,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Relay,Controlling the Output State,OUTP:REL <value>,,value,unknown,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
+Power,66104A,SET,Set_Output_Relay_Polarity,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:POL <value>,,value,enum,NORM; REV,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Relay_Status,This command is valid only if the power module is configured for the optional relay connector,OUTP:REL:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Status,"If the power module is configured to use the relay option, the command opens the relay contacts when the output is disabled and closes them when it is enabled",OUTP:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Ttltrg_Link,Controlling Triggers,OUTP:TTLT:LINK <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Output_Ttltrg_Source,Controlling Triggers,OUTP:TTLT:SOUR <value>,,value,enum,,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
+Power,66104A,SET,Set_Output_Ttltrg_Source,Controlling Triggers,OUTP:TTLT:SOUR <value>,,value,enum,BUS; EXT; LINK; HOLD,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Output_Ttltrg_Status,"This command enables or disables the power module Trigger Out signal, which is available at a BNC connector on the rear of the mainframe",OUTP:TTLT:STAT <value>,,value,bool,OFF; ON,,,OUTP,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Psc,Set psc,*PSC <value>,,value,bool,0; 1,,,Common,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Rcl,Set rcl,*RCL <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Sav,Set sav,*SAV <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_Current_Level_Immediate_Amplitude,Set source current level immediate amplitude,SOUR:CURR:LEV:IMM:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_Current_Level_Trigger_Amplitude,Set source current level trigger amplitude,SOUR:CURR:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
+Power,66104A,SET,Set_Source_Current_Mode,"LIST:CURR . If the LIST parameter is used, then the output current may be changed by the subsequent execution of a list",SOURce:CURRent:MODE <value>,SOUR:CURR:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_Current_Protection_Status,This command enables or disables the power module overcurrent (OC) protection function,SOURce:CURRent:PROTection:STATe <value>,SOUR:CURR:PROT:STAT <value>,value,bool,OFF; ON,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_List_Count,This command sets the number of times that the list is executed before it is completed,SOURce:LIST:COUNt <value>,SOUR:LIST:COUN <value>,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_List_Dwel,"- If LIST:STEP ONCE has been programmed, the output remains at the present level until a trigger sequences the next point in the list",SOURce:LIST:DWEL<chan> <value>,SOUR:LIST:DWEL<chan> <value>,value,integer,,chan,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_List_Step,"In either mode, triggers that occur during a dwell interval are ignored",SOUR:LIST:STEP <value>,,value,integer,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage level trigger amplitude,SOUR:VOLT:LEV:TRIG:AMPL <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
+Power,66104A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
@@ -3458,10 +3458,10 @@ Power,66104A,SET,Set_Status_Questionable_Ntransition,corresponding Questionable 
 Power,66104A,SET,Set_Status_Questionable_Ptransition,Register Commands,STAT:QUES:PTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Trigger_Delay,Controlling Triggers,TRIG:DEL <value>,,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Trigger_Link,Controlling Triggers,TRIG:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Trigger_Source,Controlling Triggers,TRIG:SOUR <value>,,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
+Power,66104A,SET,Set_Trigger_Source,Controlling Triggers,TRIG:SOUR <value>,,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Trigger_Start_Delay,This command sets the time delay between the detection of an event on the specified trigger source and the start of any corresponding trigger action on the power module’s output,TRIGger:STARt:DELay <value>,TRIG:STAR:DEL <value>,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
+Power,66104A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Voltage_Sense_Source,Local Voltage Sensing,VOLT:SENS:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
