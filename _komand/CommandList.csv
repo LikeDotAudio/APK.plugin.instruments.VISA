@@ -1385,11 +1385,11 @@ Load,6060B,NAB,Get_Curr_Tlev,Query the transient current level,CURR:TLEV?,,,,,,,
 Load,6060B,NAB,Get_Inp_Shor_Stat,Query the input short state,INP:SHOR:STAT?,,,,,,,INP,1,BOOL,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Inp_Stat,Query whether the load input is on (OUTP is an alias for INP),INP:STAT?,,,,,,,INP,1,BOOL,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Meas_All,Authored from a panel literal in Load.json; never executed before.,MEAS:ALL?,,,,,,,,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,NAB,Get_Meas_Curr,Authored from a panel literal in Load.json; never executed before.,MEAS:CURR?,,,,,,,,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,NAB,Get_Meas_Curr,Authored from a panel literal in Load.json; never executed before.,MEAS:CURR?,,,,,,,,1,NR3,A,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Meas_Curr_Dc,Measure the DC current flowing into the load,MEAS:CURR:DC?,,,,,,,MEAS,1,NR3,A,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,NAB,Get_Meas_Pow,Authored from a panel literal in Load.json; never executed before.,MEAS:POW?,,,,,,,,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,NAB,Get_Meas_Pow,Authored from a panel literal in Load.json; never executed before.,MEAS:POW?,,,,,,,,1,NR3,W,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Meas_Pow_Dc,Measure the DC power being dissipated,MEAS:POW:DC?,,,,,,,MEAS,1,NR3,W,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,NAB,Get_Meas_Volt,Authored from a panel literal in Load.json; never executed before.,MEAS:VOLT?,,,,,,,,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,NAB,Get_Meas_Volt,Authored from a panel literal in Load.json; never executed before.,MEAS:VOLT?,,,,,,,,1,NR3,V,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Meas_Volt_Dc,Measure the DC voltage across the load input,MEAS:VOLT:DC?,,,,,,,MEAS,1,NR3,V,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Mode,"Query the operating mode — CURR, RES or VOLT (FUNC is an alias)",MODE?,,,,,,,MODE,1,CRD,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_OCP_Config,"Read overcurrent protection state, level and delay in one transaction",:CURR:PROT:STAT?;:CURR:PROT:LEV?;:CURR:PROT:DEL?,,,,,,Readback Queries,CURRent,3,BOOL; NR3; NR3,A; V; A,stat; lev; del,3,yes,INSTRUMENT.Load/6060B/6060B.komand
@@ -1426,7 +1426,7 @@ Load,6060B,NAB,Measure_All,Measure All,MODE?;:MEAS:VOLT?;:MEAS:CURR?;:MEAS:POW?,
 Load,6060B,NAB,Read_IDN,IDN,*IDN?,,,,,,Common Commands,Common,1,AARD,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Status_Byte,Status Byte,*STB?,,,,,,Status Registers,STATus,1,NR1,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,RIG,Setup_Transient_Profile,"Set both transient levels, duty and frequency together",:CURR:LEV <level_a>;:CURR:TLEV <level_b>;:TRAN:DCYC <duty>;:TRAN:FREQ <freq>,,level_a; level_b; duty; freq,numeric,,,Pulse & Dynamic Loading,TRANsient,,,,,4,yes,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,SET,Set_Chan,Select the electronic load channel this command stream addresses (INST is an alias),CHAN <value>,,value,enum,,,,CHAN,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,SET,Set_Chan,Select the electronic load channel this command stream addresses (INST is an alias),CHAN <value>,,value,numeric,,,,CHAN,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Curr_Lev_Trig,Set the current level the load takes on when triggered,CURR:LEV:TRIG <value>,,value,numeric,,,,CURR,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Curr_Prot_Del,Set how long an overcurrent may persist before the input is turned off,CURR:PROT:DEL <value>,,value,numeric,,,,CURR,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Curr_Prot_Lev,Set the overcurrent protection level,CURR:PROT:LEV <value>,,value,numeric,,,,CURR,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
@@ -1435,9 +1435,9 @@ Load,6060B,SET,Set_Current_Level,Set Current Level,CURR <value>,,value,numeric,,
 Load,6060B,SET,Set_Current_Range,Set Current Range,CURR:RANG <value>,,value,numeric,,,Constant Current Parameters,CURRent,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Current_Slew,Set Current Slew,CURR:SLEW <value>,,value,numeric,,,Constant Current Parameters,CURRent,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Ese,Set ese,*ESE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,SET,Set_Inp,Engage or release the load input,INP <state>,INP <state>,state,bool,OFF; ON,,Input Control,INPut,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,SET,Set_Inp,Engage or release the load input,INP <state>,,state,bool,OFF; ON,,Input Control,INPut,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Inp_Shor_Stat,Close or open the input short across the load terminals,INP:SHOR:STAT <value>,,value,bool,OFF; ON,,,INP,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,SET,Set_Mode,Select the operating mode,MODE:<value>,MODE:<value>,value,enum,CURR; RES; VOLT,,CC / CV / CR,MODE,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,SET,Set_Mode,Select the operating mode,MODE:<value>,,value,enum,CURR; RES; VOLT,,CC / CV / CR,MODE,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Port0,Set the state of the rear-panel digital port 0 output,PORT0 <value>,,value,unknown,,,,PORT0,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Rcl,Set rcl,*RCL <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Res_Lev_Trig,Set the resistance the load takes on when triggered,RES:LEV:TRIG <value>,,value,numeric,,,,RES,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
@@ -1452,14 +1452,14 @@ Load,6060B,SET,Set_Stat_Oper_Enab,Set the Operation Status enable mask,STAT:OPER
 Load,6060B,SET,Set_Stat_Oper_Ntr,Set the Operation Status negative-transition filter,STAT:OPER:NTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Stat_Oper_Ptr,Set the Operation Status positive-transition filter,STAT:OPER:PTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Stat_Ques_Enab,Set the Questionable Status enable mask,STAT:QUES:ENAB <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,SET,Set_Tran_Stat,Enable or disable transient (pulse) operation,TRAN:STAT <value>,TRAN:STAT <value>,value,bool,OFF; ON,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,SET,Set_Tran_Stat,Enable or disable transient (pulse) operation,TRAN:STAT <value>,,value,bool,OFF; ON,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Tran_Twid,Set the transient pulse width,TRAN:TWID <value>,,value,numeric,,,,TRAN,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Transient_Duty,Set Transient Duty,TRAN:DCYC <value>,,value,numeric,,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Transient_Freq,Set Transient Freq,TRAN:FREQ <value>,,value,numeric,,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Transient_Level_A,Set Transient Level A,CURR:LEV <value>,,value,numeric,,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Transient_Level_B,Set Transient Level B,CURR:TLEV <value>,,value,numeric,,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,SET,Set_Transient_Mode,Set Transient Mode,TRAN:MODE <mode>,,mode,enum,,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,SET,Set_Trig_Sour,"Select the trigger source — BUS, EXT, HOLD, LINE or TIM",TRIG:SOUR <value>,,value,enum,,,,TRIG,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,SET,Set_Transient_Mode,Set Transient Mode,TRAN:MODE <mode>,,mode,enum,CONT; PULS; TOGG,,Pulse & Dynamic Loading,TRANsient,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
+Load,6060B,SET,Set_Trig_Sour,"Select the trigger source — BUS, EXT, HOLD, LINE or TIM",TRIG:SOUR <value>,,value,enum,BUS; EXT; HOLD,,,TRIG,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Trig_Tim,Set the internal trigger timer period,TRIG:TIM <value>,,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Volt_Lev_Trig,Set the voltage level the load takes on when triggered,VOLT:LEV:TRIG <value>,,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,SET,Set_Voltage_Level,Set Voltage Level,VOLT <value>,,value,numeric,,,Constant Voltage Parameters,VOLTage,,,,,1,,INSTRUMENT.Load/6060B/6060B.komand
@@ -1912,10 +1912,10 @@ Oscilloscope,54641D,SET,Set_Window_HANNing,Set Window HANNing,:FUNCtion:WINDow <
 Oscilloscope,54641D,SET,Set_Window_Position,Set Window Position,TIMebase:WINDow:POSition <pos>,TIM:WIND:POS <pos>,pos,numeric,,,Zoom Window Settings,TIMebase,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
 Oscilloscope,54641D,SET,Set_Window_RECTangular,Set Window RECTangular,:FUNCtion:WINDow <window>,:FUNC:WIND <window>,window,enum,,,FFT Specific Configuration,Math_FFT,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
 Oscilloscope,54641D,SET,Set_Window_Scale,Set Window Scale,TIMebase:WINDow:SCALe <scale>,TIM:WIND:SCAL <scale>,scale,numeric,,,Zoom Window Settings,TIMebase,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
-Oscilloscope,54641D,SET,Set_X1,Set X1,MARKer:X1Position <pos>,MARK:X1Position <pos>,pos,numeric,,,Time/Frequency Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
-Oscilloscope,54641D,SET,Set_X2,Set X2,MARKer:X2Position <pos>,MARK:X2Position <pos>,pos,numeric,,,Time/Frequency Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
-Oscilloscope,54641D,SET,Set_Y1,Set Y1,MARKer:Y1Position <lev>,MARK:Y1Position <lev>,lev,numeric,,,Voltage Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
-Oscilloscope,54641D,SET,Set_Y2,Set Y2,MARKer:Y2Position <lev>,MARK:Y2Position <lev>,lev,numeric,,,Voltage Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
+Oscilloscope,54641D,SET,Set_X1,Set X1,MARKer:X1Position <pos>,MARK:X1P <pos>,pos,numeric,,,Time/Frequency Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
+Oscilloscope,54641D,SET,Set_X2,Set X2,MARKer:X2Position <pos>,MARK:X2P <pos>,pos,numeric,,,Time/Frequency Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
+Oscilloscope,54641D,SET,Set_Y1,Set Y1,MARKer:Y1Position <lev>,MARK:Y1P <lev>,lev,numeric,,,Voltage Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
+Oscilloscope,54641D,SET,Set_Y2,Set Y2,MARKer:Y2Position <lev>,MARK:Y2P <lev>,lev,numeric,,,Voltage Markers,MARKer,,,,,1,,INSTRUMENT.Oscilloscope/54641D/54641D.komand
 Oscilloscope,DS1104Z,DO,Auto,Auto,:AUTO,,,,,,Root Action Commands,Root,,,,,1,,INSTRUMENT.Oscilloscope/DS1104Z/DS1104Z.komand
 Oscilloscope,DS1104Z,DO,Auto_Scale,Auto Scale,:AUToscale,:AUT,,,,,Actions and Toggles,System,,,,,1,,INSTRUMENT.Oscilloscope/DS1104Z/DS1104Z.komand
 Oscilloscope,DS1104Z,DO,CH1_OFF,CH1 OFF,:CHANnel1:DISPlay OFF,:CHAN1:DISP OFF,,,,,Actions and Toggles,Channel_1,,,,,1,,INSTRUMENT.Oscilloscope/DS1104Z/DS1104Z.komand

@@ -1025,7 +1025,7 @@
     },
     "Set_X1": {
       "scpi": "MARKer:X1Position <pos>",
-      "scpiFast": "MARK:X1Position <pos>",
+      "scpiFast": "MARK:X1P <pos>",
       "description": "Set X1",
       "arg": {
         "kind": "numeric"
@@ -1038,7 +1038,7 @@
     },
     "Set_X2": {
       "scpi": "MARKer:X2Position <pos>",
-      "scpiFast": "MARK:X2Position <pos>",
+      "scpiFast": "MARK:X2P <pos>",
       "description": "Set X2",
       "arg": {
         "kind": "numeric"
@@ -1051,7 +1051,7 @@
     },
     "Set_Y1": {
       "scpi": "MARKer:Y1Position <lev>",
-      "scpiFast": "MARK:Y1Position <lev>",
+      "scpiFast": "MARK:Y1P <lev>",
       "description": "Set Y1",
       "arg": {
         "kind": "numeric"
@@ -1064,7 +1064,7 @@
     },
     "Set_Y2": {
       "scpi": "MARKer:Y2Position <lev>",
-      "scpiFast": "MARK:Y2Position <lev>",
+      "scpiFast": "MARK:Y2P <lev>",
       "description": "Set Y2",
       "arg": {
         "kind": "numeric"

@@ -433,7 +433,11 @@
         "arg": {
           "kind": "none"
         },
-        "returns": null,
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "A"
+        },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/Load/Get_Meas_Curr",
           "direction": "in",
@@ -483,7 +487,11 @@
         "arg": {
           "kind": "none"
         },
-        "returns": null,
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "W"
+        },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/Load/Get_Meas_Pow",
           "direction": "in",
@@ -533,7 +541,11 @@
         "arg": {
           "kind": "none"
         },
-        "returns": null,
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/Load/Get_Meas_Volt",
           "direction": "in",
@@ -1454,7 +1466,8 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "numeric",
+          "min": 1
         },
         "returns": null,
         "mqtt": {
@@ -2155,7 +2168,12 @@
           "mode"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "CONT",
+            "PULS",
+            "TOGG"
+          ]
         },
         "returns": null,
         "mqtt": {
@@ -2236,7 +2254,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "BUS",
+            "EXT",
+            "HOLD"
+          ]
         },
         "returns": null,
         "mqtt": {
@@ -2754,7 +2777,11 @@
         "arg": {
           "kind": "none"
         },
-        "returns": null,
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "A"
+        },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/Load/Get_Meas_Curr",
           "direction": "in",
@@ -2804,7 +2831,11 @@
         "arg": {
           "kind": "none"
         },
-        "returns": null,
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "W"
+        },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/Load/Get_Meas_Pow",
           "direction": "in",
@@ -2854,7 +2885,11 @@
         "arg": {
           "kind": "none"
         },
-        "returns": null,
+        "returns": {
+          "count": 1,
+          "type": "NR3",
+          "unit": "V"
+        },
         "mqtt": {
           "topic": "APK.audio/Gui/Komands/Load/Get_Meas_Volt",
           "direction": "in",

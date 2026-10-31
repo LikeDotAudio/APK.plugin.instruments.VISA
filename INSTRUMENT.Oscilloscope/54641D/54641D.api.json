@@ -6238,7 +6238,7 @@
         "verb": "set",
         "description": "Set X1",
         "scpi": "MARKer:X1Position <pos>",
-        "scpi_fast": "MARK:X1Position <pos>",
+        "scpi_fast": "MARK:X1P <pos>",
         "subsystem": "MARKer",
         "group": "Time/Frequency Markers",
         "args": [
@@ -6264,7 +6264,7 @@
         "verb": "set",
         "description": "Set X2",
         "scpi": "MARKer:X2Position <pos>",
-        "scpi_fast": "MARK:X2Position <pos>",
+        "scpi_fast": "MARK:X2P <pos>",
         "subsystem": "MARKer",
         "group": "Time/Frequency Markers",
         "args": [
@@ -6290,7 +6290,7 @@
         "verb": "set",
         "description": "Set Y1",
         "scpi": "MARKer:Y1Position <lev>",
-        "scpi_fast": "MARK:Y1Position <lev>",
+        "scpi_fast": "MARK:Y1P <lev>",
         "subsystem": "MARKer",
         "group": "Voltage Markers",
         "args": [
@@ -6316,7 +6316,7 @@
         "verb": "set",
         "description": "Set Y2",
         "scpi": "MARKer:Y2Position <lev>",
-        "scpi_fast": "MARK:Y2Position <lev>",
+        "scpi_fast": "MARK:Y2P <lev>",
         "subsystem": "MARKer",
         "group": "Voltage Markers",
         "args": [

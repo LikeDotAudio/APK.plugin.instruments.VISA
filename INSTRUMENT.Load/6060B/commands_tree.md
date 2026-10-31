@@ -21,7 +21,7 @@ Several statements in one message, so they hang off no single branch. Every stat
 
 ## Tree
 
-- `CHAN` — **SET** `Set_Chan` · `<value>` · args: `value` · enum · †<br>Select the electronic load channel this command stream addresses (INST is an alias)
+- `CHAN` — **SET** `Set_Chan` · `<value>` · args: `value` · numeric · †<br>Select the electronic load channel this command stream addresses (INST is an alias)
 - `CURR` — **SET** `Set_Current_Level` · `<value>` · args: `value` · numeric (A)
 - `INP` — **SET** `Set_Inp` · `<state>` · args: `state` · bool: `OFF` | `ON`<br>Engage or release the load input
 - `PORT0` — **SET** `Set_Port0` · `<value>` · args: `value` · †<br>Set the state of the rear-panel digital port 0 output
@@ -81,9 +81,9 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `SHORT` — **DO** `Do_Input_Short` · †<br>Short On/Off
 - **`MEAS`**
   - `ALL?` — **NAB** `Get_Meas_All` · †<br>Authored from a panel literal in Load.json; never executed before.
-  - `CURR?` — **NAB** `Get_Meas_Curr` · †<br>Authored from a panel literal in Load.json; never executed before.
-  - `POW?` — **NAB** `Get_Meas_Pow` · †<br>Authored from a panel literal in Load.json; never executed before.
-  - `VOLT?` — **NAB** `Get_Meas_Volt` · †<br>Authored from a panel literal in Load.json; never executed before.
+  - `CURR?` — **NAB** `Get_Meas_Curr` · → NR3 A · †<br>Authored from a panel literal in Load.json; never executed before.
+  - `POW?` — **NAB** `Get_Meas_Pow` · → NR3 W · †<br>Authored from a panel literal in Load.json; never executed before.
+  - `VOLT?` — **NAB** `Get_Meas_Volt` · → NR3 V · †<br>Authored from a panel literal in Load.json; never executed before.
   - **`CURR`**
     - `DC?` — **NAB** `Get_Meas_Curr_Dc` · → NR3 A · †<br>Measure the DC current flowing into the load
   - **`POW`**
@@ -138,7 +138,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `TWID` — **SET** `Set_Tran_Twid` · `<value>` · args: `value` · numeric (s) · †<br>Set the transient pulse width
   - `DCYC` — **SET** `Set_Transient_Duty` · `<value>` · args: `value` · numeric (%)
   - `FREQ` — **SET** `Set_Transient_Freq` · `<value>` · args: `value` · numeric (Hz)
-  - `MODE` — **SET** `Set_Transient_Mode` · `<mode>` · args: `mode` · enum
+  - `MODE` — **SET** `Set_Transient_Mode` · `<mode>` · args: `mode` · enum: `CONT` | `PULS` | `TOGG`
   - `DCYC?` — **NAB** `Get_Tran_Dcyc` · → NR3 %<br>Query the transient duty cycle
   - `FREQ?` — **NAB** `Get_Tran_Freq` · → NR3 Hz<br>Query the transient frequency
   - `MODE?` — **NAB** `Get_Tran_Mode` · → CRD<br>Query the transient mode — CONT, PULS or TOGG
@@ -149,7 +149,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `STAT` — **DO** `Transient_OFF` · `OFF`
   - `STAT` — **DO** `Transient_ON` · `ON`
 - **`TRIG`**
-  - `SOUR` — **SET** `Set_Trig_Sour` · `<value>` · args: `value` · enum · †<br>Select the trigger source — BUS, EXT, HOLD, LINE or TIM
+  - `SOUR` — **SET** `Set_Trig_Sour` · `<value>` · args: `value` · enum: `BUS` | `EXT` | `HOLD` · †<br>Select the trigger source — BUS, EXT, HOLD, LINE or TIM
   - `TIM` — **SET** `Set_Trig_Tim` · `<value>` · args: `value` · numeric (s) · †<br>Set the internal trigger timer period
   - `SOUR?` — **NAB** `Get_Trig_Sour` · → CRD · †<br>Query the trigger source
   - `TIM?` — **NAB** `Get_Trig_Tim` · → NR3 s · †<br>Query the internal trigger timer period

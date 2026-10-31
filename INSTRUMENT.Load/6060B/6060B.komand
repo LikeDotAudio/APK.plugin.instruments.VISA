@@ -58,7 +58,8 @@
       "scpi": "CHAN <value>",
       "description": "Select the electronic load channel this command stream addresses (INST is an alias)",
       "arg": {
-        "kind": "enum"
+        "kind": "numeric",
+        "min": 1
       },
       "subsystem": "CHAN",
       "args": [
@@ -196,7 +197,6 @@
     },
     "Set_Inp": {
       "scpi": "INP <state>",
-      "scpiFast": "INP <state>",
       "description": "Engage or release the load input",
       "arg": {
         "kind": "bool",
@@ -230,7 +230,6 @@
     },
     "Set_Mode": {
       "scpi": "MODE:<value>",
-      "scpiFast": "MODE:<value>",
       "description": "Select the operating mode",
       "arg": {
         "kind": "enum",
@@ -425,7 +424,12 @@
       "scpi": "TRAN:MODE <mode>",
       "description": "Set Transient Mode",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "CONT",
+          "PULS",
+          "TOGG"
+        ]
       },
       "group": "Pulse & Dynamic Loading",
       "args": [
@@ -435,7 +439,6 @@
     },
     "Set_Tran_Stat": {
       "scpi": "TRAN:STAT <value>",
-      "scpiFast": "TRAN:STAT <value>",
       "description": "Enable or disable transient (pulse) operation",
       "arg": {
         "kind": "bool",
@@ -469,7 +472,12 @@
       "scpi": "TRIG:SOUR <value>",
       "description": "Select the trigger source — BUS, EXT, HOLD, LINE or TIM",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "BUS",
+          "EXT",
+          "HOLD"
+        ]
       },
       "subsystem": "TRIG",
       "args": [
@@ -955,7 +963,12 @@
     "Get_Meas_Curr": {
       "scpi": "MEAS:CURR?",
       "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "A"
+      }
     },
     "Get_Meas_Pow_Dc": {
       "scpi": "MEAS:POW:DC?",
@@ -971,7 +984,12 @@
     "Get_Meas_Pow": {
       "scpi": "MEAS:POW?",
       "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "W"
+      }
     },
     "Get_Meas_Volt_Dc": {
       "scpi": "MEAS:VOLT:DC?",
@@ -987,7 +1005,12 @@
     "Get_Meas_Volt": {
       "scpi": "MEAS:VOLT?",
       "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "returns": {
+        "count": 1,
+        "type": "NR3",
+        "unit": "V"
+      }
     },
     "Get_Mode": {
       "scpi": "MODE?",
