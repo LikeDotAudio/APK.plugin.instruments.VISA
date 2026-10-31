@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**43 commands** — SET 27 · RIG 0 · NAB 10 · DO 6 · 43 unverified (100%)
+**39 commands** — SET 27 · RIG 0 · NAB 6 · DO 6 · 39 unverified (100%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -30,11 +30,6 @@ Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the ta
   - `TLEV` — **SET** `Set_Curr_Tlev` · `<value>` · numeric (A) · per-instance: `value` · †<br>Authored from a panel literal in LCR.json; never executed before.
 - **`DISPlay`**
   - `STATe` — **SET** `Display_State` · `<state>` · args: `state` · bool: `OFF` | `ON` · †<br>Turns the display ON or OFF.
-- **`MEAS`**
-  - `ALL?` — **NAB** `Get_Meas_All` · †<br>Authored from a panel literal in LCR.json; never executed before.
-  - `CURR?` — **NAB** `Get_Meas_Curr` · †<br>Authored from a panel literal in LCR.json; never executed before.
-  - `POW?` — **NAB** `Get_Meas_Pow` · †<br>Authored from a panel literal in LCR.json; never executed before.
-  - `VOLT?` — **NAB** `Get_Meas_Volt` · †<br>Authored from a panel literal in LCR.json; never executed before.
 - **`SENSe`**
   - `FUNCtion` — **SET** `Measurement_Function` · `<function>` · args: `function` · enum · †<br>Selects measurement parameters (e.g., CP-D, LS-Q).
   - `FREQuency` — **SET** `Set_Test_Frequency` · `<freq>` · args: `freq` · numeric (Hz) · †<br>Sets the test signal frequency (100, 1k, 10k, 100k Hz).

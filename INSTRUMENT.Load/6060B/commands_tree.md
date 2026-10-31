@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**129 commands** — SET 38 · RIG 1 · NAB 50 · DO 40 · 87 unverified (67%)
+**128 commands** — SET 38 · RIG 1 · NAB 49 · DO 40 · 86 unverified (67%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -80,7 +80,6 @@ Several statements in one message, so they hang off no single branch. Every stat
 - **`INPUT`**
   - `SHORT` — **DO** `Do_Input_Short` · †<br>Short On/Off
 - **`MEAS`**
-  - `ALL?` — **NAB** `Get_Meas_All` · †<br>Authored from a panel literal in Load.json; never executed before.
   - `CURR?` — **NAB** `Get_Meas_Curr` · → NR3 A · †<br>Authored from a panel literal in Load.json; never executed before.
   - `POW?` — **NAB** `Get_Meas_Pow` · → NR3 W · †<br>Authored from a panel literal in Load.json; never executed before.
   - `VOLT?` — **NAB** `Get_Meas_Volt` · → NR3 V · †<br>Authored from a panel literal in Load.json; never executed before.

@@ -10,7 +10,6 @@ DMM,34401A,DO,Do_Calibration_Secure_Code,Calibration Overview,CALibration:SECure
 DMM,34401A,DO,Do_Configure_Frequency,Measurement Configuration,CONF:FREQ,,,,,,,CONF,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,DO,Do_Configure_Period,Do configure period,CONFigure:PERiod,CONF:PER,,,,,,CONF,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,DO,Do_Configure_Voltage,Do configure voltage,CONF:VOLT,,,,,,,CONF,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,DO,Do_Data_Points?_All,Authored from a panel literal in DMM.json; never executed before.,DATA:POINts? ALL,,,,,,,,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,DO,Do_Dcv_Dcv,Do dcv dcv,DCV:DCV,,,,,,,DCV,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,DO,Do_Frequency_Voltage,Do frequency voltage,FREQuency:VOLTage,FREQ:VOLT,,,,,,FREQ,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,DO,Do_Opc,Do opc,*OPC,,,,,,,Common,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
@@ -77,7 +76,6 @@ DMM,34401A,NAB,Get_Period_Voltage_Range,Get period voltage range,PERiod:VOLTage:
 DMM,34401A,NAB,Get_Psc,Get psc,*PSC?,,,,,,,Common,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Questionable_Enable,Status Reporting Commands,:QUEStionable:ENABle?,:QUES:ENAB?,,,,,,QUES,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Questionable_Event,Status Reporting Commands,:QUEStionable:EVENt?,:QUES:EVEN?,,,,,,QUES,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,NAB,Get_Read_All,Authored from a panel literal in DMM_N.json; never executed before.,READ:ALL?,,,,,,,,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Resolution_Nplcycles,Get resolution nplcycles,RESistance:NPLCycles?,RES:NPLC?,,,,,,RES,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Resolution_Range,Get resolution range,RESistance:RANGe?,RES:RANG?,,,,,,RES,1,NR3,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Resolution_Resolution,Measurement Configuration Commands,RESistance:RESolution?,RES:RES?,,,,,,RES,1,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
@@ -125,7 +123,6 @@ DMM,34401A,SET,Set_Calibration_String,Calibration Message,CALibration:STRing <va
 DMM,34401A,SET,Set_Calibration_Value,Calibration Commands,CALibration:VALue <value>,CAL:VAL <value>,value,numeric,,,,CAL,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_DCV_Range,Set DCV Range,:SENSe:VOLTage:DC:RANGe <range>,:SENS:VOLT:DC:RANG <range>,range,numeric,,,Measurement Parameters,SENSe,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Data_Feed,Math Operations,DATA:FEED <value>,,value,unknown,,,,DATA,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,SET,Set_Db_Reference,Math Operation Commands,:DB:REFerence <value>,:DB:REF <value>,value,enum,,,,DB,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Detector_Bandwidth,Set detector bandwidth,DETector:BANDwidth <value>,DET:BAND <value>,value,unknown,,,,DET,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Ese,Set ese,*ESE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Frequency_Aperture,Measurement Configuration,FREQuency:APERture <value>,FREQ:APER <value>,value,unknown,,,,FREQ,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
@@ -145,14 +142,11 @@ DMM,34401A,SET,Set_Period_Aperture,Measurement Configuration,PERiod:APERture <va
 DMM,34401A,SET,Set_Period_Voltage_Range,Set period voltage range,PERiod:VOLTage:RANGe <value>,PER:VOLT:RANG <value>,value,numeric,,,,PER,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Psc,Set psc,*PSC <value>,,value,bool,0; 1,,,Common,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Questionable_Enable,Status Reporting Commands,:QUEStionable:ENABle <value>,:QUES:ENAB <value>,value,integer,,,,QUES,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,SET,Set_Rang,Authored from a panel literal in DMM.json; never executed before.,RANG <value>,,,,,value,,,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,SET,Set_Rang_Auto,Authored from a panel literal in DMM.json; never executed before.,RANG:AUTO <value>,,,,,value,,,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Resolution_Nplcycles,Set resolution nplcycles,RESistance:NPLCycles <value>,RES:NPLC <value>,value,integer,,,,RES,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Resolution_Range,Set resolution range,RESistance:RANGe <value>,RES:RANG <value>,value,numeric,,,,RES,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Resolution_Resolution,Measurement Configuration Commands,RESistance:RESolution <value>,RES:RES <value>,value,unknown,,,,RES,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Sample_Count,Set Sample Count,:SAMPle:COUNt <count>,:SAMP:COUN <count>,count,integer,,,Setup Trigger Model,TRIGger,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Secure_State,Calibration Commands,:SECure:STATe <value>,:SEC:STAT <value>,value,bool,OFF; ON,,,SEC,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,SET,Set_Sens_Volt_Nplc,Authored from a panel literal in DMM.json; never executed before.,SENS:VOLT:NPLC <value>,,,,,value,,,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_State_Questionable_Enable,The SCPI Status Model,STATus:QUEStionable:ENABle <value>,STAT:QUES:ENAB <value>,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_System_Beeper_State,System-Related Commands,SYSTem:BEEPer:STATe <value>,SYST:BEEP:STAT <value>,value,bool,OFF; ON,,,SYST,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
@@ -1300,10 +1294,6 @@ LCR,4263A,DO,Trigger_Bus,Triggers the unit (equivalent to the Bus trigger).,*TRG
 LCR,4263A,DO,Trigger_Immediate,Manually triggers a measurement.,:TRIGger,:TRIG,,,,,,TRIGger,,,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
 LCR,4263A,NAB,Fetch_Existing,Retrieves the most recent measurement data.,:FETCh?,:FETC?,,,,,,MEASure,1,,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
 LCR,4263A,NAB,Get_Error_Queue,Queries the next entry in the error queue.,:SYSTem:ERRor?,:SYST:ERR?,,,,,,SYSTem,1,NR2,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
-LCR,4263A,NAB,Get_Meas_All,Authored from a panel literal in LCR.json; never executed before.,MEAS:ALL?,,,,,,,,,,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
-LCR,4263A,NAB,Get_Meas_Curr,Authored from a panel literal in LCR.json; never executed before.,MEAS:CURR?,,,,,,,,,,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
-LCR,4263A,NAB,Get_Meas_Pow,Authored from a panel literal in LCR.json; never executed before.,MEAS:POW?,,,,,,,,,,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
-LCR,4263A,NAB,Get_Meas_Volt,Authored from a panel literal in LCR.json; never executed before.,MEAS:VOLT?,,,,,,,,,,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
 LCR,4263A,NAB,Get_Operation_Complete,Returns '1' once all pending operations are completed.,*OPC?,,,,,,,Common,1,NR1,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
 LCR,4263A,NAB,Measure,Executes a complete measurement and retrieves data.,:MEASure?,:MEAS?,,,,,,MEASure,1,,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
 LCR,4263A,NAB,Read_IDN,"Queries the instrument identification (Manufacturer, Model, Serial, Firmware).",*IDN?,,,,,,,Common,1,AARD,,,1,yes,INSTRUMENT.LCR/4263A/4263A.komand
@@ -1384,7 +1374,6 @@ Load,6060B,NAB,Get_Curr_Slew,Query the current slew rate,CURR:SLEW?,,,,,,,CURR,1
 Load,6060B,NAB,Get_Curr_Tlev,Query the transient current level,CURR:TLEV?,,,,,,,CURR,1,NR3,V,,1,,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Inp_Shor_Stat,Query the input short state,INP:SHOR:STAT?,,,,,,,INP,1,BOOL,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Inp_Stat,Query whether the load input is on (OUTP is an alias for INP),INP:STAT?,,,,,,,INP,1,BOOL,,,1,,INSTRUMENT.Load/6060B/6060B.komand
-Load,6060B,NAB,Get_Meas_All,Authored from a panel literal in Load.json; never executed before.,MEAS:ALL?,,,,,,,,,,,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Meas_Curr,Authored from a panel literal in Load.json; never executed before.,MEAS:CURR?,,,,,,,,1,NR3,A,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Meas_Curr_Dc,Measure the DC current flowing into the load,MEAS:CURR:DC?,,,,,,,MEAS,1,NR3,A,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
 Load,6060B,NAB,Get_Meas_Pow,Authored from a panel literal in Load.json; never executed before.,MEAS:POW?,,,,,,,,1,NR3,W,,1,yes,INSTRUMENT.Load/6060B/6060B.komand
@@ -2864,7 +2853,6 @@ Power,66101A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage l
 Power,66101A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Status_Operation_Enable,This command and its query set and read the value of the Operation Enable register,STAT:OPER:ENAB <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Status_Operation_Event,This query returns the value of the Operation Event register,STAT:OPER:EVEN <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Status_Operation_Ntransition,corresponding Operation Event register,STAT:OPER:NTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
@@ -2880,9 +2868,7 @@ Power,66101A,SET,Set_Trigger_Start_Delay,This command sets the time delay betwee
 Power,66101A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Voltage_Protection,Query Indicator,VOLT:PROT <value>,,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
-Power,66101A,SET,Set_Voltage_Sense_Source,Set voltage sense source,VOLT:SENS:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66101A,SET,Set_Voltage_Trigger,Set voltage trigger,VOLT:TRIG <value>,,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66101A/66101A.komand
 Power,66102A,DO,Clear_Protection,Clear Protection,INST:NSEL <chan>;OUTP:PROT:CLE,,,,,chan,Output Control,,,,,,2,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,DO,Clear_Status,Clear Status,*CLS,,,,,,Common Commands,Common,,,,,1,,INSTRUMENT.Power/66102A/66102A.komand
@@ -3058,7 +3044,6 @@ Power,66102A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage l
 Power,66102A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Status_Operation_Enable,This command and its query set and read the value of the Operation Enable register,STAT:OPER:ENAB <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Status_Operation_Event,This query returns the value of the Operation Event register,STAT:OPER:EVEN <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Status_Operation_Ntransition,corresponding Operation Event register,STAT:OPER:NTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
@@ -3074,8 +3059,6 @@ Power,66102A,SET,Set_Trigger_Start_Delay,This command sets the time delay betwee
 Power,66102A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
-Power,66102A,SET,Set_Voltage_Sense_Source,Set voltage sense source,VOLT:SENS:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66102A,SET,Set_Voltage_Trigger,Set voltage trigger,VOLT:TRIG <value>,,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66102A/66102A.komand
 Power,66103A,DO,Clear_Protection,Clear Protection,INST:NSEL <chan>;OUTP:PROT:CLE,,,,,chan,Output Control,,,,,,2,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,DO,Clear_Status,Clear Status,*CLS,,,,,,Common Commands,Common,,,,,1,,INSTRUMENT.Power/66103A/66103A.komand
@@ -3251,7 +3234,6 @@ Power,66103A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage l
 Power,66103A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Status_Operation_Enable,This command and its query set and read the value of the Operation Enable register,STAT:OPER:ENAB <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Status_Operation_Event,This query returns the value of the Operation Event register,STAT:OPER:EVEN <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Status_Operation_Ntransition,corresponding Operation Event register,STAT:OPER:NTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
@@ -3267,8 +3249,6 @@ Power,66103A,SET,Set_Trigger_Start_Delay,This command sets the time delay betwee
 Power,66103A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
-Power,66103A,SET,Set_Voltage_Sense_Source,Set voltage sense source,VOLT:SENS:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66103A,SET,Set_Voltage_Trigger,Set voltage trigger,VOLT:TRIG <value>,,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66103A/66103A.komand
 Power,66104A,DO,Clear_Protection,Clear Protection,INST:NSEL <chan>;OUTP:PROT:CLE,,,,,chan,Output Control,,,,,,2,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,DO,Clear_Status,Clear Status,*CLS,,,,,,Common Commands,Common,,,,,1,,INSTRUMENT.Power/66104A/66104A.komand
@@ -3447,7 +3427,6 @@ Power,66104A,SET,Set_Source_Voltage_Level_Trigger_Amplitude,Set source voltage l
 Power,66104A,SET,Set_Source_Voltage_Mode,"LIST:VOLT . If the LIST parameter is used, then the output voltage may be changed by the subsequent execution of a list",SOURce:VOLTage:MODE <value>,SOUR:VOLT:MODE <value>,value,enum,FIX; LIST,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Source_Voltage_Protection_Level,Set source voltage protection level,SOUR:VOLT:PROT:LEV <value>,,value,numeric,,,,SOUR,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Sre,Set sre,*SRE <value>,,value,integer,,,,Common,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Status_Operation,Register Commands,STAT:OPER <value>,,value,enum,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Status_Operation_Enable,This command and its query set and read the value of the Operation Enable register,STAT:OPER:ENAB <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Status_Operation_Event,This query returns the value of the Operation Event register,STAT:OPER:EVEN <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Status_Operation_Ntransition,corresponding Operation Event register,STAT:OPER:NTR <value>,,value,integer,,,,STAT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
@@ -3463,8 +3442,6 @@ Power,66104A,SET,Set_Trigger_Start_Delay,This command sets the time delay betwee
 Power,66104A,SET,Set_Trigger_Start_Link,This command specifies which event conditions within the power module are linked to trigger source events when LINK is the parameter of the TRIG:SOUR command,TRIG:STAR:LINK <value>,,value,bool,OFF; ON,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Trigger_Start_Source,This command selects the power module input trigger source as follows,TRIGger:STARt:SOURce <value>,TRIG:STAR:SOUR <value>,value,enum,BUS; EXT; HOLD; LINK; TTLT,,,TRIG,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Voltage,Output voltage setpoint.,VOLT <value>,,value,numeric,,,Configuration,SOURce,,,,,1,,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Voltage_Alc_Source,Set voltage alc source,VOLT:ALC:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
-Power,66104A,SET,Set_Voltage_Sense_Source,Local Voltage Sensing,VOLT:SENS:SOUR <value>,,value,enum,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Power,66104A,SET,Set_Voltage_Trigger,Set voltage trigger,VOLT:TRIG <value>,,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.Power/66104A/66104A.komand
 Router,3235,DO,Card_Reset,Card Reset,CRESET <slot>,CRES <slot>,,,,slot,System Reset & Control,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
 Router,3235,DO,Clear_State,Clear State,CLR,,,,,,System Reset & Control,,,,,,1,,INSTRUMENT.Router/3235/3235.komand

@@ -947,7 +947,9 @@
     "Get_Meas_All": {
       "scpi": "MEAS:ALL?",
       "description": "Authored from a panel literal in Load.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "Agilent Electronic Load Family Programming Manual 06060-90005 p. 51 (https://xdevs.com/doc/HP_Agilent_Keysight/HP%206050A,%206051A%20Programming.pdf): MEASure has CURRent?, POWer?, VOLTage? only — no MEAS:ALL?"
     },
     "Get_Meas_Curr_Dc": {
       "scpi": "MEAS:CURR:DC?",

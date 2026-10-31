@@ -442,6 +442,10 @@ def generate_device_api(family, model, authored_komands, known_devices,
         for cname, raw_cmd in sorted_commands(verb_cmds):
             if not isinstance(raw_cmd, dict):
                 continue
+            # A retired command (the manual shows it does not exist) is not
+            # published in the spec; it stays in the table with its citation.
+            if raw_cmd.get('retired'):
+                continue
             item = build_endpoint_entry(family, cname, raw_cmd, verb)
             endpoints[verb][cname] = item
             # A single-value NAB is also exposed under GET for REST/query

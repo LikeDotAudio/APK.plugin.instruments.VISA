@@ -491,7 +491,9 @@
         "value"
       ],
       "subsystem": "STAT",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 66lxxA MPS Programming Guide 5959-3362 (https://xdevs.com/doc/HP_Agilent_Keysight/661xxA_programming.pdf) pp. 43-44: STATus:OPERation[:EVENt]? is query-only; only :ENABle/:NTR/:PTR take a value — there is no settable STAT:OPER"
     },
     "Set_Status_Operation_Enable": {
       "scpi": "STAT:OPER:ENAB <value>",
@@ -713,7 +715,9 @@
         "value"
       ],
       "subsystem": "VOLT",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 66lxxA MPS Programming Guide 5959-3362 (https://xdevs.com/doc/HP_Agilent_Keysight/661xxA_programming.pdf) p. 49: VOLT:SENS:SOUR? (alias VOLT:ALC:SOUR?) reads the rear sense switch; query-only, no set form"
     },
     "Set_Voltage_Sense_Source": {
       "scpi": "VOLT:SENS:SOUR <value>",
@@ -725,7 +729,9 @@
         "value"
       ],
       "subsystem": "VOLT",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 66lxxA MPS Programming Guide 5959-3362 (https://xdevs.com/doc/HP_Agilent_Keysight/661xxA_programming.pdf) p. 49: [SOURce]:VOLTage:SENSe:SOURce? is query-only, no set form"
     },
     "Set_Voltage_Trigger": {
       "scpi": "VOLT:TRIG <value>",

@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**196 commands** — SET 52 · RIG 4 · NAB 74 · DO 66 · 183 unverified (93%)
+**193 commands** — SET 49 · RIG 4 · NAB 74 · DO 66 · 180 unverified (93%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -207,7 +207,6 @@ Several statements in one message, so they hang off no single branch. Every stat
     - **`SENSe`**
       - `SOURce?` — **NAB** `Get_Source_Voltage_Sense_Source` · → CRD V · †<br>This command reads the state of the power module output connector remote sense switch
 - **`STAT`**
-  - `OPER` — **SET** `Set_Status_Operation` · `<value>` · args: `value` · enum · †<br>Register Commands
   - `QUES` — **SET** `Set_Status_Questionable` · `<value>` · args: `value` · †<br>Register Commands
   - `OPER?` — **NAB** `Get_Status_Operation` · → CRD · †<br>Register Commands
   - `QUES?` — **NAB** `Get_Status_Questionable` · → 1 value · †<br>Register Commands
@@ -267,7 +266,6 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `MODE` — **DO** `Do_Voltage_Mode` · †<br>Controlling Fixed-Mode Output
   - `TIUG` — **DO** `Do_Voltage_Tiug` · †
   - **`ALC`**
-    - `SOUR` — **SET** `Set_Voltage_Alc_Source` · `<value>` · args: `value` · enum · †
     - `SOUR?` — **NAB** `Get_Voltage_Alc_Source` · → CRD V · †
   - **`LEV`**
     - `IMM` — **DO** `Do_Voltage_Level_Immediate` · †
@@ -275,7 +273,6 @@ Several statements in one message, so they hang off no single branch. Every stat
   - **`PROT`**
     - `LEV` — **DO** `Do_Voltage_Protection_Level` · †
   - **`SENS`**
-    - `SOUR` — **SET** `Set_Voltage_Sense_Source` · `<value>` · args: `value` · enum · †<br>Local Voltage Sensing
     - `SOUR?` — **NAB** `Get_Voltage_Sense_Source` · → CRD V · †<br>Local Voltage Sensing
 
 ## Common commands (IEEE 488.2)

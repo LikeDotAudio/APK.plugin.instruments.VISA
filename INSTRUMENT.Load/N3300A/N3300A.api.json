@@ -73,10 +73,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 129,
-    "get_count": 48,
+    "total_commands": 128,
+    "get_count": 47,
     "set_count": 38,
-    "nab_count": 50,
+    "nab_count": 49,
     "rig_count": 1,
     "do_count": 40
   },
@@ -371,29 +371,6 @@
           "reading_direction": "out"
         },
         "unverified": false
-      },
-      "Get_Meas_All": {
-        "command": "Get_Meas_All",
-        "verb": "get",
-        "description": "Authored from a panel literal in Load.json; never executed before.",
-        "scpi": "MEAS:ALL?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Load/Get_Meas_All",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_All"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_All",
-          "reading_direction": "out"
-        },
-        "unverified": true
       },
       "Get_Meas_Curr_Dc": {
         "command": "Get_Meas_Curr_Dc",
@@ -2715,29 +2692,6 @@
           "reading_direction": "out"
         },
         "unverified": false
-      },
-      "Get_Meas_All": {
-        "command": "Get_Meas_All",
-        "verb": "nab",
-        "description": "Authored from a panel literal in Load.json; never executed before.",
-        "scpi": "MEAS:ALL?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Load/Get_Meas_All",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_All"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_All",
-          "reading_direction": "out"
-        },
-        "unverified": true
       },
       "Get_Meas_Curr_Dc": {
         "command": "Get_Meas_Curr_Dc",

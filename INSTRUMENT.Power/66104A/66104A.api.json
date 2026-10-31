@@ -85,9 +85,9 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 196,
+    "total_commands": 193,
     "get_count": 71,
-    "set_count": 52,
+    "set_count": 49,
     "nab_count": 74,
     "rig_count": 4,
     "do_count": 66
@@ -2900,31 +2900,6 @@
         },
         "unverified": true
       },
-      "Set_Status_Operation": {
-        "command": "Set_Status_Operation",
-        "verb": "set",
-        "description": "Register Commands",
-        "scpi": "STAT:OPER <value>",
-        "subsystem": "STAT",
-        "group": "STAT",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "enum"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Power/Set_Status_Operation",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Status_Operation",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Set_Status_Operation_Enable": {
         "command": "Set_Status_Operation_Enable",
         "verb": "set",
@@ -3328,56 +3303,6 @@
           }
         },
         "unverified": false
-      },
-      "Set_Voltage_Alc_Source": {
-        "command": "Set_Voltage_Alc_Source",
-        "verb": "set",
-        "description": "Set voltage alc source",
-        "scpi": "VOLT:ALC:SOUR <value>",
-        "subsystem": "VOLT",
-        "group": "VOLT",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "enum"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Power/Set_Voltage_Alc_Source",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Voltage_Alc_Source",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Voltage_Sense_Source": {
-        "command": "Set_Voltage_Sense_Source",
-        "verb": "set",
-        "description": "Local Voltage Sensing",
-        "scpi": "VOLT:SENS:SOUR <value>",
-        "subsystem": "VOLT",
-        "group": "VOLT",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "enum"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/Power/Set_Voltage_Sense_Source",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Voltage_Sense_Source",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
       },
       "Set_Voltage_Trigger": {
         "command": "Set_Voltage_Trigger",

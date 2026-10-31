@@ -72,10 +72,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 43,
-    "get_count": 10,
+    "total_commands": 39,
+    "get_count": 6,
     "set_count": 27,
-    "nab_count": 10,
+    "nab_count": 6,
     "rig_count": 0,
     "do_count": 6
   },
@@ -155,98 +155,6 @@
             "command": "Fetch_Existing"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Fetch_Existing",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_All": {
-        "command": "Get_Meas_All",
-        "verb": "get",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:ALL?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_All",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_All"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_All",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_Curr": {
-        "command": "Get_Meas_Curr",
-        "verb": "get",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:CURR?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_Curr",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_Curr"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_Curr",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_Pow": {
-        "command": "Get_Meas_Pow",
-        "verb": "get",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:POW?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_Pow",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_Pow"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_Pow",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_Volt": {
-        "command": "Get_Meas_Volt",
-        "verb": "get",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:VOLT?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_Volt",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_Volt"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_Volt",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1128,98 +1036,6 @@
             "command": "Fetch_Existing"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Fetch_Existing",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_All": {
-        "command": "Get_Meas_All",
-        "verb": "nab",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:ALL?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_All",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_All"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_All",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_Curr": {
-        "command": "Get_Meas_Curr",
-        "verb": "nab",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:CURR?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_Curr",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_Curr"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_Curr",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_Pow": {
-        "command": "Get_Meas_Pow",
-        "verb": "nab",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:POW?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_Pow",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_Pow"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_Pow",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Meas_Volt": {
-        "command": "Get_Meas_Volt",
-        "verb": "nab",
-        "description": "Authored from a panel literal in LCR.json; never executed before.",
-        "scpi": "MEAS:VOLT?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/LCR/Get_Meas_Volt",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Meas_Volt"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Meas_Volt",
           "reading_direction": "out"
         },
         "unverified": true

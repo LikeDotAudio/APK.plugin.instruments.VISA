@@ -423,22 +423,30 @@
     "Get_Meas_All": {
       "scpi": "MEAS:ALL?",
       "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "Owner decision 2026-10-31: no HP 4263A manual was obtainable, and MEAS:ALL?/CURR?/POW?/VOLT? are the electronic-load measurement set (Electronic Load Family Programming Manual 06060-90005 p. 51), authored here from a panel literal — an LCR meter measures impedance, not load current/power"
     },
     "Get_Meas_Curr": {
       "scpi": "MEAS:CURR?",
       "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "Owner decision 2026-10-31: no HP 4263A manual was obtainable, and MEAS:ALL?/CURR?/POW?/VOLT? are the electronic-load measurement set (Electronic Load Family Programming Manual 06060-90005 p. 51), authored here from a panel literal — an LCR meter measures impedance, not load current/power"
     },
     "Get_Meas_Pow": {
       "scpi": "MEAS:POW?",
       "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "Owner decision 2026-10-31: no HP 4263A manual was obtainable, and MEAS:ALL?/CURR?/POW?/VOLT? are the electronic-load measurement set (Electronic Load Family Programming Manual 06060-90005 p. 51), authored here from a panel literal — an LCR meter measures impedance, not load current/power"
     },
     "Get_Meas_Volt": {
       "scpi": "MEAS:VOLT?",
       "description": "Authored from a panel literal in LCR.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "Owner decision 2026-10-31: no HP 4263A manual was obtainable, and MEAS:ALL?/CURR?/POW?/VOLT? are the electronic-load measurement set (Electronic Load Family Programming Manual 06060-90005 p. 51), authored here from a panel literal — an LCR meter measures impedance, not load current/power"
     },
     "Measure": {
       "scpi": ":MEASure?",

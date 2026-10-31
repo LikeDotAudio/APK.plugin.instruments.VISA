@@ -228,7 +228,9 @@
         "value"
       ],
       "subsystem": "DB",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 34401A User's Guide 34401-90004 (https://www.manualslib.com/manual/578999/Hp-34401a.html) pp. 125, 168: the node is CALCulate:DB:REFerence (table entry Set_dB_Ref); a bare :DB:REFerence is not a 34401A command"
     },
     "Set_Detector_Bandwidth": {
       "scpi": "DETector:BANDwidth <value>",
@@ -457,12 +459,16 @@
     "Set_Rang": {
       "scpi": "RANG <value>",
       "description": "Authored from a panel literal in DMM.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 34401A User's Guide 34401-90004 (https://www.manualslib.com/manual/578999/Hp-34401a.html) p. 121: ranges are <function>:RANGe {<range>|MIN|MAX} per function; a bare RANG names no function"
     },
     "Set_Rang_Auto": {
       "scpi": "RANG:AUTO <value>",
       "description": "Authored from a panel literal in DMM.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 34401A User's Guide 34401-90004 (https://www.manualslib.com/manual/578999/Hp-34401a.html) p. 121: <function>:RANGe:AUTO {OFF|ON} per function; a bare RANG:AUTO names no function"
     },
     "Set_Resolution_Nplcycles": {
       "scpi": "RESistance:NPLCycles <value>",
@@ -539,7 +545,9 @@
     "Set_Sens_Volt_Nplc": {
       "scpi": "SENS:VOLT:NPLC <value>",
       "description": "Authored from a panel literal in DMM.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 34401A User's Guide 34401-90004 (https://www.manualslib.com/manual/578999/Hp-34401a.html) p. 122: <function>:NPLCycles {0.02|0.2|1|10|100|MIN|MAX} per function (VOLTage:DC, not VOLTage); SENS:VOLT:NPLC names no function"
     },
     "Set_AC_Bandwidth": {
       "scpi": ":SENSe:VOLTage:AC:BANDwidth <filter>",
@@ -831,7 +839,9 @@
     "Do_Data_Points?_All": {
       "scpi": "DATA:POINts? ALL",
       "description": "Authored from a panel literal in DMM.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 34401A User's Guide 34401-90004 (https://www.manualslib.com/manual/578999/Hp-34401a.html): `DATA:POINts? ALL` appears on none of pp. 118-131, 168 read; DATA:POINts? is a query, not a do-press (owner decision 2026-10-31)"
     },
     "Do_Dcv_Dcv": {
       "scpi": "DCV:DCV",
@@ -1709,7 +1719,9 @@
     "Get_Read_All": {
       "scpi": "READ:ALL?",
       "description": "Authored from a panel literal in DMM_N.json; never executed before.",
-      "unverified": true
+      "unverified": true,
+      "retired": true,
+      "retired_because": "HP 34401A User's Guide 34401-90004 (https://www.manualslib.com/manual/578999/Hp-34401a.html) p. 130: the reading query is READ? with no parameter; there is no READ:ALL?"
     },
     "Read_Next": {
       "scpi": ":READ?",

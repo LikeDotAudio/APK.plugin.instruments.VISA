@@ -85,12 +85,12 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 163,
-    "get_count": 73,
-    "set_count": 47,
-    "nab_count": 75,
+    "total_commands": 157,
+    "get_count": 72,
+    "set_count": 43,
+    "nab_count": 74,
     "rig_count": 5,
-    "do_count": 36
+    "do_count": 35
   },
   "endpoints": {
     "get": {
@@ -1602,29 +1602,6 @@
         },
         "unverified": true
       },
-      "Get_Read_All": {
-        "command": "Get_Read_All",
-        "verb": "get",
-        "description": "Authored from a panel literal in DMM_N.json; never executed before.",
-        "scpi": "READ:ALL?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Get_Read_All",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Read_All"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Read_All",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Read_Next": {
         "command": "Read_Next",
         "verb": "get",
@@ -2440,32 +2417,6 @@
         },
         "unverified": true
       },
-      "Set_Db_Reference": {
-        "command": "Set_Db_Reference",
-        "verb": "set",
-        "description": "Math Operation Commands",
-        "scpi": ":DB:REFerence <value>",
-        "scpi_fast": ":DB:REF <value>",
-        "subsystem": "DB",
-        "group": "DB",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "enum"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Set_Db_Reference",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Db_Reference",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Set_Detector_Bandwidth": {
         "command": "Set_Detector_Bandwidth",
         "verb": "set",
@@ -2884,52 +2835,6 @@
         },
         "unverified": true
       },
-      "Set_Rang": {
-        "command": "Set_Rang",
-        "verb": "set",
-        "description": "Authored from a panel literal in DMM.json; never executed before.",
-        "scpi": "RANG <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Set_Rang",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Rang",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Rang_Auto": {
-        "command": "Set_Rang_Auto",
-        "verb": "set",
-        "description": "Authored from a panel literal in DMM.json; never executed before.",
-        "scpi": "RANG:AUTO <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Set_Rang_Auto",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Rang_Auto",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
       "Set_Resolution_Nplcycles": {
         "command": "Set_Resolution_Nplcycles",
         "verb": "set",
@@ -3061,29 +2966,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Secure_State",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Sens_Volt_Nplc": {
-        "command": "Set_Sens_Volt_Nplc",
-        "verb": "set",
-        "description": "Authored from a panel literal in DMM.json; never executed before.",
-        "scpi": "SENS:VOLT:NPLC <value>",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Set_Sens_Volt_Nplc",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Sens_Volt_Nplc",
             "value": "<value>",
             "input_name": "value"
           }
@@ -4965,29 +4847,6 @@
         },
         "unverified": true
       },
-      "Get_Read_All": {
-        "command": "Get_Read_All",
-        "verb": "nab",
-        "description": "Authored from a panel literal in DMM_N.json; never executed before.",
-        "scpi": "READ:ALL?",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Get_Read_All",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Read_All"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Read_All",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
       "Read_Next": {
         "command": "Read_Next",
         "verb": "nab",
@@ -5972,27 +5831,6 @@
           }
         },
         "unverified": false
-      },
-      "Do_Data_Points?_All": {
-        "command": "Do_Data_Points?_All",
-        "verb": "do",
-        "description": "Authored from a panel literal in DMM.json; never executed before.",
-        "scpi": "DATA:POINts? ALL",
-        "subsystem": "General",
-        "group": "General",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Do_Data_Points?_All",
-          "direction": "in",
-          "payload_format": {
-            "command": "Do_Data_Points?_All"
-          }
-        },
-        "unverified": true
       },
       "Do_Dcv_Dcv": {
         "command": "Do_Dcv_Dcv",

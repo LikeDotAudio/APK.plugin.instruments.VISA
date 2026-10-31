@@ -21,3 +21,11 @@ September 1997 — Chapter 3, Language Dictionary; it states the commands work t
 - `set/Set_Status_Operation` — searched: 5959-3362 Status subsystem pp. 43–44: STATus:OPERation[:EVENt]? is query-only and the settable registers are STAT:OPER:ENAB/NTR/PTR <NRf> (0–32727); no `STAT:OPER <value>` set command exists, so there is no choice list to give it. Removing or re-pointing the entry is the owner's call (the commands floor)
 - `set/Set_Voltage_Alc_Source` — searched: 5959-3362 VOLT:SENS:SOUR?, p. 49: the remote-sense switch is READ ("This command reads the state…"), query-only, returns EXTernal | INTernal; VOLT:ALC:SOUR is its SCPI alias. No set form, so no settable choice list
 - `set/Set_Voltage_Sense_Source` — searched: as Set_Voltage_Alc_Source: query-only [SOURce]:VOLTage:SENSe:SOURce?, p. 49
+
+## Retired (owner decision, 2026-10-31)
+
+The manual shows these commands do not exist. Each entry stays in the table with `"retired": true` and its citation in `retired_because`; KOMAND never sends it, check-tables skips it, and it still counts toward the commands floor.
+
+- `set/Set_Status_Operation` — HP 66lxxA MPS Programming Guide 5959-3362 (https://xdevs.com/doc/HP_Agilent_Keysight/661xxA_programming.pdf) pp. 43-44: STATus:OPERation[:EVENt]? is query-only; only :ENABle/:NTR/:PTR take a value — there is no settable STAT:OPER
+- `set/Set_Voltage_Alc_Source` — HP 66lxxA MPS Programming Guide 5959-3362 (https://xdevs.com/doc/HP_Agilent_Keysight/661xxA_programming.pdf) p. 49: VOLT:SENS:SOUR? (alias VOLT:ALC:SOUR?) reads the rear sense switch; query-only, no set form
+- `set/Set_Voltage_Sense_Source` — HP 66lxxA MPS Programming Guide 5959-3362 (https://xdevs.com/doc/HP_Agilent_Keysight/661xxA_programming.pdf) p. 49: [SOURce]:VOLTage:SENSe:SOURce? is query-only, no set form

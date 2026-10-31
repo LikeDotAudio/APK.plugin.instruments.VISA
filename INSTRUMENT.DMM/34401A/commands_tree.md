@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**163 commands** — SET 47 · RIG 5 · NAB 75 · DO 36 · 111 unverified (68%)
+**157 commands** — SET 43 · RIG 5 · NAB 74 · DO 35 · 105 unverified (66%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -22,7 +22,6 @@ Several statements in one message, so they hang off no single branch. Every stat
 ## Tree
 
 - `FUNCtion` — **SET** `Set_Func` · `"<value>"` · args: `value` · enum: `VOLT:DC` | `VOLT:AC` | `RES` | `FRES` | `FREQ` | `PER` | `CONT` | `DIOD` | `CURR:DC` | `CURR:AC`<br>Select the measurement function
-- `RANG` — **SET** `Set_Rang` · `<value>` · per-instance: `value` · †<br>Authored from a panel literal in DMM.json; never executed before.
 - `FETCh?` — **NAB** `Fetch_Existing` · → 1 value
 - `FUNCtion?` — **NAB** `Get_Func` · → CRD<br>Which measurement function is selected
 - `READ?` — **NAB** `Read_Next` · → 1 value
@@ -91,9 +90,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `FEED` — **SET** `Set_Data_Feed` · `<value>` · args: `value` · †<br>Math Operations
   - `FEED?` — **NAB** `Get_Data_Feed` · → 1 value · †<br>Math Operations
   - `POINts?` — **NAB** `Get_Data_Points` · → NR1 · †
-  - `POINts?` — **DO** `Do_Data_Points?_All` · `ALL` · †<br>Authored from a panel literal in DMM.json; never executed before.
 - **`DB`**
-  - `REFerence` — **SET** `Set_Db_Reference` · `<value>` · args: `value` · enum · †<br>Math Operation Commands
   - `REFerence?` — **NAB** `Get_Db_Reference` · → CRD · †<br>Math Operation Commands
 - **`DCV`**
   - `DCV` — **DO** `Do_Dcv_Dcv` · †
@@ -156,10 +153,6 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `ENABle` — **SET** `Set_Questionable_Enable` · `<value>` · args: `value` · integer · †<br>Status Reporting Commands
   - `ENABle?` — **NAB** `Get_Questionable_Enable` · → NR1 · †<br>Status Reporting Commands
   - `EVENt?` — **NAB** `Get_Questionable_Event` · → NR1 · †<br>Status Reporting Commands
-- **`RANG`**
-  - `AUTO` — **SET** `Set_Rang_Auto` · `<value>` · per-instance: `value` · †<br>Authored from a panel literal in DMM.json; never executed before.
-- **`READ`**
-  - `ALL?` — **NAB** `Get_Read_All` · †<br>Authored from a panel literal in DMM_N.json; never executed before.
 - **`RESistance`**
   - `NPLCycles` — **SET** `Set_Resolution_Nplcycles` · `<value>` · args: `value` · integer · †
   - `RANGe` — **SET** `Set_Resolution_Range` · `<value>` · args: `value` · numeric · †
@@ -177,9 +170,6 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `STATe` — **SET** `Set_Secure_State` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>Calibration Commands
   - `STATe?` — **NAB** `Get_Secure_State` · → BOOL · †<br>Calibration Commands
   - `CODE` — **DO** `Do_Secure_Code` · †<br>Calibration Commands
-- **`SENS`**
-  - **`VOLT`**
-    - `NPLC` — **SET** `Set_Sens_Volt_Nplc` · `<value>` · per-instance: `value` · †<br>Authored from a panel literal in DMM.json; never executed before.
 - **`SENSe`**
   - `FUNCtion` — **DO** `Do_Sense_Function` · †<br>Using the CONFigure Command
   - **`VOLTage`**
