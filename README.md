@@ -7,7 +7,7 @@ The instrument library — bench panel templates by family, and the KOMAND defin
 | | |
 |---|---|
 | **Recipe** | none — data, not a container: other stacks read it or copy it in |
-| **Source** | this repository (https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) — `INSTRUMENT.{Counter,DAQ,DMM,Distortion,Generator,LCR,Load,Oscilloscope,Power,Router,SMU,Spectrum,VNA}` families (see *Layout* below), `manifest.json`, `_komand/` (`knownDevices.json`, `ports.json`, `CommandList.csv`/`.xlsx`, the generators), `_datasets/`, and in `SRC/` the `apkaudio-plugin-instruments-visa` crate — a stub binary that prints its name, a member of the `DISCOVERY.Engine/SRC` workspace |
+| **Source** | this repository (https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.git) — `INSTRUMENT.{Counter,DAQ,DMM,Distortion,Generator,LCR,Load,Oscilloscope,Power,Router,SMU,Spectrum,VNA}` families (see *Layout* below), `manifest.json`, `_komand/` (`knownDevices.json`, `ports.json`, `CommandList.csv`/`.xlsx`, the generators), `_datasets/`. No binary crate: the stub `SRC/` (`apkaudio-plugin-instruments-visa`, which only printed its name) was removed under the no-dead-code rule (LOOSE-stub-crates); the one crate here is `_komand/`'s `apkaudio-known-devices` |
 | **Used by** | `PLUGINS/PLUGIN.VISA` (it compiles `_komand/knownDevices.json` in through the `apkaudio-known-devices` crate at `_komand/Cargo.toml`, named by git rev from this repository); `NODE.BareMetal/Docker/Dockerfile` copies this whole folder to `/app/Instruments`, where the orchestrator stamps one panel per discovered instrument and `AUDIO.komand` reads the command tables (`KOMAND_REPO_PATH=/app/Instruments`); `WEB.OsApi` (`os_roots.komand_library()`) |
 
 ---
@@ -109,7 +109,7 @@ python3 _komand/generate_device_apis.py --check   # writes nothing; 181 specs ac
 python3 _komand/sort_komands.py --check      # 0 tables out of order
 # the command-table tooling lives in the KOMAND binary:
 cd ../AUDIO.komand && cargo run -- check-tables      # 3 771 commands, 16 models
-cd ../DISCOVERY.Engine/SRC && cargo check -p apkaudio-plugin-instruments-visa         # the stub crate builds
+cd _komand && cargo test                    # apkaudio-known-devices builds alone (its own workspace)
 ```
 
 The generated reports are current: in `AUDIO.komand`, `cargo run -- build-list --check` and `build-trees --check` both pass (the 16 `commands_tree.md` are tracked).

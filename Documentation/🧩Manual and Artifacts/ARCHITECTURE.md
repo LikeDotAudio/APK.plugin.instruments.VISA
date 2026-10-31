@@ -25,7 +25,6 @@ _komand/
   sort_komands.py                 orders each table's verb buckets (--check)
   komands.cad.json, komands.dxf, monitor.json
 _datasets/                        Instrument functions.csv/.xlsx, spectrum_presets.json
-SRC/                              stub crate apkaudio-plugin-instruments-visa (DISCOVERY.Engine/SRC workspace)
 ```
 
 ## Who reads it
