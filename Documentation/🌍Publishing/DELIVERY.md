@@ -29,6 +29,11 @@ cargo run -- build-list --check && cargo run -- build-trees --check && cargo run
 - Images are rebuilt by hand; nothing rebuilds them on a push here.
 - No live URL of its own; the library surfaces through the OsApi instrument page on the bench.
 
+## Delivered 2026-10-31: portable file names (no `:` `|` or case twins)
+
+- The monorepo now checks out on Windows and macOS: no tracked name holds `<>:"|?*`, a trailing dot or space, a device name or a case-only twin. Colon folders became dot folders (the POD.x convention).
+- References to the renamed folders updated (`Baremetal.Manager`, `ORCHESTRATOR.hunter.VISA`). Docs/comments only, no behaviour change.
+
 ## Delivered from the 2026-10-30 audit
 
 - **JSON Schemas, enforced, one check command** — `_komand/schemas/` (`gui`, `komand`+`command`, `api`, `manifest`, `families`, `baseline`), validated by the dependency-free `_komand/schema_check.py` and by `generate_device_apis.py --check` (384 files, 0 problems; a typo'd key, a missing field or a wrong type is refused — proved on a scratch copy). `_komand/check.sh` runs both `--check`s, `test_instruments.py` (7 tests) and `cargo test` in `_komand/`; it passes. No workflow added (root rule). The root `check.sh instruments` lane already runs the generator `--check`, so it now covers the schemas too.
