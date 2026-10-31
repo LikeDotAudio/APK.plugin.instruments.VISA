@@ -61,4 +61,5 @@ Inserting a model renumbers the later models' ports in its family; review the `p
 | `_komand/baselines/<Family>.json`, `donors.json` | baseline command sets for Counter/DAQ/SMU/VNA and each family's primary donor model (were Python literals) |
 | `_komand/test_instruments.py` | unit tests: schemas accept the tree and refuse typos, catalogue rule, data files, resolver |
 | `_komand/retired_ports.json` | ports that left, stated; --check refuses a silent drop or a reused retired port |
+| `INSTRUMENT.<F>/<Model>/SOURCES.md` | the manual (title, URL, page) behind every table correction, and what was searched for each finding left unconfirmed |
 | `_komand/check.sh` | the one local command: both `--check`s, unit tests, `cargo test` |
