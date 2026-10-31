@@ -10620,7 +10620,11 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
         },
         "returns": null,
         "mqtt": {
@@ -15275,7 +15279,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "AM",
+            "FM"
+          ],
+          "default": "AM"
         },
         "returns": null,
         "mqtt": {
@@ -15301,7 +15310,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "OMEG",
+            "FIFT"
+          ],
+          "default": "OMEG"
         },
         "returns": null,
         "mqtt": {
@@ -15501,7 +15515,7 @@
       "Set_Parallel_Polarity": {
         "command": "Set_Parallel_Polarity",
         "verb": "set",
-        "description": "Set or query the CLK channel source of parallel decoding",
+        "description": "Set or query the data polarity of parallel decoding",
         "scpi": ":PARallel:POLarity <value>",
         "scpi_fast": ":PAR:POL <value>",
         "subsystem": "PAR",
@@ -15510,7 +15524,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "NEG",
+            "POS"
+          ],
+          "default": "POS"
         },
         "returns": null,
         "mqtt": {
@@ -15527,7 +15546,7 @@
       "Set_Parallel_Source": {
         "command": "Set_Parallel_Source",
         "verb": "set",
-        "description": "Set or query the CLK channel source of parallel decoding",
+        "description": "Set or query the channel source of the data bit currently selected (parallel decoding)",
         "scpi": ":PARallel:SOURce <value>",
         "scpi_fast": ":PAR:SOUR <value>",
         "subsystem": "PAR",
@@ -15536,7 +15555,29 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "D0",
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "D6",
+            "D7",
+            "D8",
+            "D9",
+            "D10",
+            "D11",
+            "D12",
+            "D13",
+            "D14",
+            "D15",
+            "CHAN1",
+            "CHAN2",
+            "CHAN3",
+            "CHAN4"
+          ]
         },
         "returns": null,
         "mqtt": {
@@ -15959,7 +16000,7 @@
       "Set_Spi_Mode": {
         "command": "Set_Spi_Mode",
         "verb": "set",
-        "description": "Set or query the signal source of the clock channel in SPI decoding",
+        "description": "Set or query the frame synchronization mode of SPI decoding",
         "scpi": ":SPI:MODE <value>",
         "subsystem": "SPI",
         "group": "SPI",
@@ -15967,7 +16008,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "CS",
+            "TIM"
+          ],
+          "default": "TIM"
         },
         "returns": null,
         "mqtt": {
@@ -16009,7 +16055,7 @@
       "Set_Spi_Polarity": {
         "command": "Set_Spi_Polarity",
         "verb": "set",
-        "description": "Set or query the signal source of the clock channel in SPI decoding",
+        "description": "Set or query the polarity of the SDA data line in SPI decoding",
         "scpi": ":SPI:POLarity <value>",
         "scpi_fast": ":SPI:POL <value>",
         "subsystem": "SPI",
@@ -16018,7 +16064,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "NEG",
+            "POS"
+          ],
+          "default": "POS"
         },
         "returns": null,
         "mqtt": {
@@ -16035,7 +16086,7 @@
       "Set_Spi_Select": {
         "command": "Set_Spi_Select",
         "verb": "set",
-        "description": "Set or query the signal source of the clock channel in SPI decoding",
+        "description": "Set or query the CS polarity in SPI decoding",
         "scpi": ":SPI:SELect <value>",
         "scpi_fast": ":SPI:SEL <value>",
         "subsystem": "SPI",
@@ -16044,7 +16095,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "NCS",
+            "CS"
+          ],
+          "default": "NCS"
         },
         "returns": null,
         "mqtt": {
@@ -16345,7 +16401,8 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "numeric",
+          "unit": "V"
         },
         "returns": null,
         "mqtt": {
@@ -16834,7 +16891,7 @@
       "Set_Trigger_Delay_Type": {
         "command": "Set_Trigger_Delay_Type",
         "verb": "set",
-        "description": "Set or query the trigger source A in delay trigger",
+        "description": "Set or query the delay type in delay trigger",
         "scpi": ":TRIGger:DELay:TYPe <value>",
         "scpi_fast": ":TRIG:DEL:TYP <value>",
         "subsystem": "TRIG",
@@ -16843,7 +16900,14 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "GRE",
+            "LESS",
+            "GLES",
+            "GOUT"
+          ],
+          "default": "GRE"
         },
         "returns": null,
         "mqtt": {
@@ -19755,7 +19819,7 @@
       "Set_Uart_Polarity": {
         "command": "Set_Uart_Polarity",
         "verb": "set",
-        "description": "Set or query the TX channel source of RS232 decoding",
+        "description": "Set or query the polarity of RS232 decoding",
         "scpi": ":UART:POLarity <value>",
         "scpi_fast": ":UART:POL <value>",
         "subsystem": "UART",
@@ -19764,7 +19828,12 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "NEG",
+            "POS"
+          ],
+          "default": "POS"
         },
         "returns": null,
         "mqtt": {

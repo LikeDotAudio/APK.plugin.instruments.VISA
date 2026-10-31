@@ -134,7 +134,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `UNITs` — **SET** `Set_Units` · `<unit>` · args: `unit` · enum: `VOLT` | `WATT` | `AMP` | `UNKN` · per-instance: `n`
 - **`CONFig`**
   - `ENDian` — **SET** `Set_Config_Endian` · `<value>` · args: `value` · †<br>Turn on or off the endian display function in serial bus decoding, or query the status of the endian display function in serial bus decoding
-  - `FORMat` — **SET** `Set_Config_Format` · `<value>` · args: `value` · enum · †<br>Turn on or off the format display function, or query the status of the format display function
+  - `FORMat` — **SET** `Set_Config_Format` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>Turn on or off the format display function, or query the status of the format display function
   - `LABel` — **SET** `Set_Config_Label` · `<value>` · args: `value` · †<br>Turn on or off the label display function, or query the status of the label display function
   - `LINE` — **SET** `Set_Config_Line` · `<value>` · args: `value` · †
   - `WIDth` — **SET** `Set_Config_Width` · `<value>` · args: `value` · numeric · †<br>Turn on or off the width display function, or query the status of the width display function
@@ -486,7 +486,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `AM` — **SET** `Set_Mod_Am` · `<value>` · args: `value` · †
   - `FM` — **SET** `Set_Mod_Fm` · `<value>` · args: `value` · †
   - `STATe` — **SET** `Set_Mod_Statistic` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>Enable or disable the modulation of the specified source channel, or query the status of the modulation of the specified source channel
-  - `TYPe` — **SET** `Set_Mod_Type` · `<value>` · args: `value` · enum · †<br>Set or query the modulation type of the specified source channel
+  - `TYPe` — **SET** `Set_Mod_Type` · `<value>` · args: `value` · enum: `AM` | `FM` · †<br>Set or query the modulation type of the specified source channel
   - `AM?` — **NAB** `Get_Mod_Am` · → 1 value · †
   - `FM?` — **NAB** `Get_Mod_Fm` · → 1 value · †
   - `STATe?` — **NAB** `Get_Mod_Statistic` · → BOOL · †<br>Enable or disable the modulation of the specified source channel, or query the status of the modulation of the specified source channel
@@ -508,7 +508,7 @@ Several statements in one message, so they hang off no single branch. Every stat
       - `FREQuency?` — **NAB** `Get_Mod_Fm_Internal_Frequency` · → 1 value · †<br>Set or query the modulating waveform frequency of AM or FM of the specified source channel
       - `FUNCtion?` — **NAB** `Get_Mod_Fm_Internal_Function` · → CRD · †<br>Set or query the modulating waveform of AM or FM of the specified source channel
 - **`OUTPut`**
-  - `IMPedance` — **SET** `Set_Output_Impedance` · `<value>` · args: `value` · enum · †
+  - `IMPedance` — **SET** `Set_Output_Impedance` · `<value>` · args: `value` · enum: `OMEG` | `FIFT` · †
   - `IMPedance?` — **NAB** `Get_Output_Impedance` · → CRD · †
 - **`PARallel`**
   - `BITX` — **SET** `Set_Parallel_Bitx` · `<value>` · args: `value` · †<br>Set or query the CLK channel source of parallel decoding
@@ -518,8 +518,8 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `NREJect` — **SET** `Set_Parallel_Nreject` · `<value>` · args: `value` · †<br>Set or query the CLK channel source of parallel decoding
   - `NRTime` — **SET** `Set_Parallel_Nrtime` · `<value>` · args: `value` · numeric (s) · †<br>Set or query the CLK channel source of parallel decoding
   - `PLOT` — **SET** `Set_Parallel_Plot` · `<value>` · args: `value` · †<br>Set or query the CLK channel source of parallel decoding
-  - `POLarity` — **SET** `Set_Parallel_Polarity` · `<value>` · args: `value` · enum · †<br>Set or query the CLK channel source of parallel decoding
-  - `SOURce` — **SET** `Set_Parallel_Source` · `<value>` · args: `value` · enum · †<br>Set or query the CLK channel source of parallel decoding
+  - `POLarity` — **SET** `Set_Parallel_Polarity` · `<value>` · args: `value` · enum: `NEG` | `POS` · †<br>Set or query the data polarity of parallel decoding
+  - `SOURce` — **SET** `Set_Parallel_Source` · `<value>` · args: `value` · enum: `D0` | `D1` | `D2` | `D3` | `D4` | `D5` | `D6` | `D7` | `D8` | `D9` | `D10` | `D11` | `D12` | `D13` | `D14` | `D15` | `CHAN1` | `CHAN2` | `CHAN3` | `CHAN4` · †<br>Set or query the channel source of the data bit currently selected (parallel decoding)
   - `WIDTh` — **SET** `Set_Parallel_Width` · `<value>` · args: `value` · numeric · †<br>Set or query the CLK channel source of parallel decoding
   - `BITX?` — **NAB** `Get_Parallel_Bitx` · → 1 value · †<br>Set or query the CLK channel source of parallel decoding
   - `CCOMpensation?` — **NAB** `Get_Parallel_Ccompensation` · → 1 value · †<br>Set or query the CLK channel source of parallel decoding
@@ -558,10 +558,10 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `EDGE` — **SET** `Set_Spi_Edge` · `<value>` · args: `value` · †<br>Set or query the signal source of the clock channel in SPI decoding
   - `ENDian` — **SET** `Set_Spi_Endian` · `<value>` · args: `value` · †<br>Set or query the signal source of the clock channel in SPI decoding
   - `MISO` — **SET** `Set_Spi_Miso` · `<value>` · args: `value` · †<br>Set or query the signal source of the clock channel in SPI decoding
-  - `MODE` — **SET** `Set_Spi_Mode` · `<value>` · args: `value` · enum · †<br>Set or query the signal source of the clock channel in SPI decoding
+  - `MODE` — **SET** `Set_Spi_Mode` · `<value>` · args: `value` · enum: `CS` | `TIM` · †<br>Set or query the frame synchronization mode of SPI decoding
   - `MOSI` — **SET** `Set_Spi_Mosi` · `<value>` · args: `value` · †<br>Set or query the signal source of the clock channel in SPI decoding
-  - `POLarity` — **SET** `Set_Spi_Polarity` · `<value>` · args: `value` · enum · †<br>Set or query the signal source of the clock channel in SPI decoding
-  - `SELect` — **SET** `Set_Spi_Select` · `<value>` · args: `value` · enum · †<br>Set or query the signal source of the clock channel in SPI decoding
+  - `POLarity` — **SET** `Set_Spi_Polarity` · `<value>` · args: `value` · enum: `NEG` | `POS` · †<br>Set or query the polarity of the SDA data line in SPI decoding
+  - `SELect` — **SET** `Set_Spi_Select` · `<value>` · args: `value` · enum: `NCS` | `CS` · †<br>Set or query the CS polarity in SPI decoding
   - `TIMeout` — **SET** `Set_Spi_Timebase` · `<value>` · args: `value` · numeric (s) · †<br>Set or query the signal source of the clock channel in SPI decoding
   - `WIDTh` — **SET** `Set_Spi_Width` · `<value>` · args: `value` · numeric · †<br>Set or query the signal source of the clock channel in SPI decoding
   - `CLK?` — **NAB** `Get_Spi_Clk` · → 1 value · †<br>Set or query the signal source of the clock channel in SPI decoding
@@ -600,7 +600,7 @@ Several statements in one message, so they hang off no single branch. Every stat
     - `INSTall` — **DO** `Do_System_Option_Install` · †<br>Install a option. |Name|Type|Range|Default| |---|---|---|---| |<license>|ASCII String|Refer to
     - `UNINSTall` — **DO** `Do_System_Option_Uninstall` · †<br>Uninstall the options installed
 - **`THREshold`**
-  - `CHANnel<chan>` — **SET** `Set_Threshold_Channel` · `<value>` · args: `value` · enum · per-instance: `chan` · †<br>Set or query the threshold level of the specified analog channel
+  - `CHANnel<chan>` — **SET** `Set_Threshold_Channel` · `<value>` · args: `value` · numeric (V) · per-instance: `chan` · †<br>Set or query the threshold level of the specified analog channel
   - `CHANnel<chan>?` — **NAB** `Get_Threshold_Channel` · per-instance: `chan` · → CRD · †<br>Set or query the threshold level of the specified analog channel
 - **`TIMebase`**
   - `MODE` — **SET** `Set_Timebase_Mode` · `<mode>` · args: `mode` · enum: `MAIN` | `XY` | `ROLL`
@@ -656,7 +656,7 @@ Several statements in one message, so they hang off no single branch. Every stat
     - `SLOPB` — **SET** `Set_Trigger_Delay_Slopb` · `<value>` · args: `value` · enum: `POS` | `NEG` · †<br>Set or query the trigger source A in delay trigger
     - `TLOWer` — **SET** `Set_Trigger_Delay_Tlower` · `<value>` · args: `value` · numeric (s) · †<br>Set or query the trigger source A in delay trigger
     - `TUPPer` — **SET** `Set_Trigger_Delay_Tupper` · `<value>` · args: `value` · numeric (s) · †<br>Set or query the trigger source A in delay trigger
-    - `TYPe` — **SET** `Set_Trigger_Delay_Type` · `<value>` · args: `value` · enum · †<br>Set or query the trigger source A in delay trigger
+    - `TYPe` — **SET** `Set_Trigger_Delay_Type` · `<value>` · args: `value` · enum: `GRE` | `LESS` | `GLES` | `GOUT` · †<br>Set or query the delay type in delay trigger
     - `SA?` — **NAB** `Get_Trigger_Delay_Sa` · → NR3 s · †<br>Set or query the trigger source A in delay trigger
     - `SB?` — **NAB** `Get_Trigger_Delay_Sb` · → NR3 s · †<br>Set or query the trigger source A in delay trigger
     - `SLOPA?` — **NAB** `Get_Trigger_Delay_Slopa` · → CRD s · †<br>Set or query the trigger source A in delay trigger
@@ -842,7 +842,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `BAUD` — **SET** `Set_Uart_Baud` · `<value>` · args: `value` · †<br>Set or query the TX channel source of RS232 decoding
   - `ENDian` — **SET** `Set_Uart_Endian` · `<value>` · args: `value` · †<br>Set or query the TX channel source of RS232 decoding
   - `PARity` — **SET** `Set_Uart_Parallel` · `<value>` · args: `value` · †<br>Set or query the TX channel source of RS232 decoding
-  - `POLarity` — **SET** `Set_Uart_Polarity` · `<value>` · args: `value` · enum · †<br>Set or query the TX channel source of RS232 decoding
+  - `POLarity` — **SET** `Set_Uart_Polarity` · `<value>` · args: `value` · enum: `NEG` | `POS` · †<br>Set or query the polarity of RS232 decoding
   - `RX` — **SET** `Set_Uart_Rx` · `<value>` · args: `value` · †<br>Set or query the TX channel source of RS232 decoding
   - `STOP` — **SET** `Set_Uart_Stop` · `<value>` · args: `value` · numeric · †<br>Set or query the TX channel source of RS232 decoding
   - `TX` — **SET** `Set_Uart_Tx` · `<value>` · args: `value` · †<br>Set or query the TX channel source of RS232 decoding

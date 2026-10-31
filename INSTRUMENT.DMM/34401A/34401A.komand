@@ -1559,7 +1559,8 @@
       "subsystem": "MEASure",
       "arg": {
         "kind": "numeric"
-      }
+      },
+      "alias_of": "MEASure_Resistance"
     },
     "MEASure_Voltage_AC": {
       "scpi": "MEASure:VOLTage:AC?",
@@ -1590,7 +1591,8 @@
       "subsystem": "MEASure",
       "arg": {
         "kind": "numeric"
-      }
+      },
+      "alias_of": "MEASure_Voltage_AC"
     },
     "MEASure_Voltage_DC": {
       "scpi": "MEASure:VOLTage:DC?",
@@ -1621,7 +1623,8 @@
       "subsystem": "MEASure",
       "arg": {
         "kind": "numeric"
-      }
+      },
+      "alias_of": "MEASure_Voltage_DC"
     },
     "Get_Null_Offset": {
       "scpi": ":NULL:OFFSet?",

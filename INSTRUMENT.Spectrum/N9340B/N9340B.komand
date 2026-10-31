@@ -2594,7 +2594,8 @@
         "unit": "dB"
       },
       "group": "Individual Read Queries",
-      "subsystem": "Amplitude"
+      "subsystem": "Amplitude",
+      "alias_of": "Get_Sense_Power_Rf_Gain_State"
     },
     "Get_Sense_Sweep_Tdmode": {
       "scpi": ":SENSe:SWEep:TDMode?",

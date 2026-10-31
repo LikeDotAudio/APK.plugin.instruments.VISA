@@ -16,6 +16,7 @@
     "unverified": {"type": "boolean"},
     "args": {"type": "array", "items": {"type": "string"}},
     "arg": {"type": "object"},
-    "returns": {"type": "object"}
+    "returns": {"type": "object"},
+    "alias_of": {"type": "string", "minLength": 1}
   }
 }

@@ -989,7 +989,8 @@
       "scpiFast": "SOUR:CURR:LEV:TRIG",
       "description": "RST Value _See Table 3-2_",
       "subsystem": "SOUR",
-      "unverified": true
+      "unverified": true,
+      "alias_of": "Do_Source_Current_Level_Trigger"
     },
     "Do_Source_List": {
       "scpi": "SOURce:LIST",
@@ -1031,7 +1032,8 @@
       "scpiFast": "SOUR:VOLT:LEV:TRIG",
       "description": "Do source voltlev trigger",
       "subsystem": "SOUR",
-      "unverified": true
+      "unverified": true,
+      "alias_of": "Do_Source_Voltage_Level_Trigger"
     },
     "Do_Source_Voltage_Protection": {
       "scpi": "SOURce:VOLTage:PROTection",

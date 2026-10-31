@@ -89,7 +89,8 @@
       "args": [
         "count"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Average_Count"
     },
     "Set_Acquire_Mode": {
       "scpi": ":ACQuire:MODE <value>",
@@ -141,7 +142,8 @@
       "args": [
         "type"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Acquire_Mode_AVERage"
     },
     "Set_Acquire_Mode_NORMal": {
       "scpi": ":ACQuire:TYPE <type>",
@@ -154,7 +156,8 @@
       "args": [
         "type"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Acquire_Mode_AVERage"
     },
     "Set_Acquire_Mode_PEAK": {
       "scpi": ":ACQuire:TYPE <type>",
@@ -167,7 +170,8 @@
       "args": [
         "type"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Acquire_Mode_AVERage"
     },
     "Set_Acquire_Type": {
       "scpi": "ACQuire:TYPE <type>",
@@ -180,7 +184,8 @@
       "args": [
         "type"
       ],
-      "subsystem": "ACQuire"
+      "subsystem": "ACQuire",
+      "alias_of": "Set_Acquire_Mode_AVERage"
     },
     "Set_Calibrate_Label": {
       "scpi": ":CALibrate:LABel <value>",
@@ -236,7 +241,8 @@
         "value"
       ],
       "subsystem": "CHANNEL",
-      "unverified": true
+      "unverified": true,
+      "alias_of": "CH1_Coupling"
     },
     "CH1_Invert": {
       "scpi": ":CHANnel1:INVert <state>",
@@ -788,7 +794,8 @@
       "args": [
         "operation"
       ],
-      "subsystem": "Math_FFT"
+      "subsystem": "Math_FFT",
+      "alias_of": "Set_Function_Operation"
     },
     "Set_Math_Operator": {
       "scpi": ":FUNCtion:OPERation <value>",
@@ -812,7 +819,8 @@
       "group": "Math_FFT",
       "subsystem": "Math_FFT",
       "notes": "The name the DS1104Z already uses for the same control. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
+      "unverified": true,
+      "alias_of": "Set_Function_Operation"
     },
     "Set_Math_Range": {
       "scpi": ":FUNCtion:RANGe <range>",
@@ -841,7 +849,8 @@
       "group": "Math_FFT",
       "subsystem": "Math_FFT",
       "notes": "Agilent's :FUNCtion:RANGe is FULL SCALE across the graticule where Rigol's :MATH:SCALe is per division — the same knob, eight divisions apart. `Set_Math_Range` remains as the instrument's own spelling. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
+      "unverified": true,
+      "alias_of": "Set_Math_Range"
     },
     "Set_Function_Reference": {
       "scpi": ":FUNCtion:REFerence <value>",
@@ -932,7 +941,8 @@
       "args": [
         "window"
       ],
-      "subsystem": "Math_FFT"
+      "subsystem": "Math_FFT",
+      "alias_of": "Set_Window_FLATtop"
     },
     "Set_Window_RECTangular": {
       "scpi": ":FUNCtion:WINDow <window>",
@@ -945,7 +955,8 @@
       "args": [
         "window"
       ],
-      "subsystem": "Math_FFT"
+      "subsystem": "Math_FFT",
+      "alias_of": "Set_Window_FLATtop"
     },
     "Set_Hardcopy_Factors": {
       "scpi": ":HARDcopy:FACTors <value>",
@@ -1425,7 +1436,8 @@
       "args": [
         "pos"
       ],
-      "subsystem": "TIMebase"
+      "subsystem": "TIMebase",
+      "alias_of": "Set_Timebase_Delay"
     },
     "Set_Timebase_Position": {
       "scpi": ":TIMebase:POSition <position>",
@@ -1439,7 +1451,8 @@
       "args": [
         "position"
       ],
-      "subsystem": "Time"
+      "subsystem": "Time",
+      "alias_of": "Set_Timebase_Delay"
     },
     "Set_Timebase_Range": {
       "scpi": ":TIMebase:RANGe <value>",
@@ -1717,7 +1730,8 @@
       "args": [
         "source"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Edge_Source"
     },
     "Set_Edge_Source_CH2": {
       "scpi": ":TRIGger:EDGE:SOURce <source>",
@@ -1730,7 +1744,8 @@
       "args": [
         "source"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Edge_Source"
     },
     "Set_Edge_Source_EXT": {
       "scpi": ":TRIGger:EDGE:SOURce <source>",
@@ -1743,7 +1758,8 @@
       "args": [
         "source"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Edge_Source"
     },
     "Set_Glitch_Width": {
       "scpi": "TRIGger:GLITch:LESSthan <time>",
@@ -2400,14 +2416,16 @@
       "scpiFast": "AUT",
       "description": "Autoscale",
       "group": "Root Action Commands",
-      "subsystem": "Root"
+      "subsystem": "Root",
+      "alias_of": "Auto_Scale"
     },
     "Do_Autoscale": {
       "scpi": ":AUToscale",
       "scpiFast": ":AUT",
       "description": "Do Autoscale",
       "group": "Actions and Toggles",
-      "subsystem": "System"
+      "subsystem": "System",
+      "alias_of": "Auto_Scale"
     },
     "Do_Channel_Bwlimit": {
       "scpi": ":CHANNEL1:BWLIMIT",
@@ -2797,7 +2815,8 @@
       "scpi": "RUN",
       "description": "Run",
       "group": "Root Action Commands",
-      "subsystem": "Root"
+      "subsystem": "Root",
+      "alias_of": "Do_Run"
     },
     "Do_Single": {
       "scpi": ":SINGle",
@@ -2811,7 +2830,8 @@
       "scpiFast": "SING",
       "description": "Single",
       "group": "Root Action Commands",
-      "subsystem": "Root"
+      "subsystem": "Root",
+      "alias_of": "Do_Single"
     },
     "Do_Stop": {
       "scpi": ":STOP",
@@ -2823,7 +2843,8 @@
       "scpi": "STOP",
       "description": "Stop",
       "group": "Root Action Commands",
-      "subsystem": "Root"
+      "subsystem": "Root",
+      "alias_of": "Do_Stop"
     },
     "Do_System_Key": {
       "scpi": "SYSTem:KEY",
@@ -3699,7 +3720,8 @@
         "unit": "s"
       },
       "group": "Cursor Deltas",
-      "subsystem": "MARKer"
+      "subsystem": "MARKer",
+      "alias_of": "Get_Marker_Xdelta"
     },
     "Get_Y_Delta": {
       "scpi": "MARKer:YDELta?",
@@ -3941,7 +3963,8 @@
           "MATH"
         ],
         "default": "CHANnel1"
-      }
+      },
+      "alias_of": "Get_Time_Stats_CH1"
     },
     "Get_Voltage_Stats_CH1": {
       "scpi": ":MEASure:SOURce <source>;:MEASure:VPP?;:MEASure:VRMS?;:MEASure:VMAX?;:MEASure:VMIN?",
@@ -4067,7 +4090,8 @@
           "MATH"
         ],
         "default": "CHANnel1"
-      }
+      },
+      "alias_of": "Get_Voltage_Stats_CH1"
     },
     "measure_1": {
       "scpi": ":MEASure:SOURce CHANnel1;:MEASure:VPP?;:MEASure:VRMS?;:MEASure:FREQuency?",
@@ -4296,7 +4320,8 @@
         "type": "NR2"
       },
       "group": "Errors and ID",
-      "subsystem": "System"
+      "subsystem": "System",
+      "alias_of": "Get_Error"
     },
     "Get_System_Lock": {
       "scpi": ":SYSTem:LOCK?",

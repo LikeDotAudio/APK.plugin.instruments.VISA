@@ -556,7 +556,8 @@
       "scpi": "*TRG",
       "description": "Trigger Immediate",
       "group": "Trigger System",
-      "subsystem": "TRIGger"
+      "subsystem": "TRIGger",
+      "alias_of": "Trigger"
     },
     "Do_Abor": {
       "scpi": "ABOR",

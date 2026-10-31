@@ -642,7 +642,11 @@
       "scpiFast": ":CONF:FORM <value>",
       "description": "Turn on or off the format display function, or query the status of the format display function",
       "arg": {
-        "kind": "enum"
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
       },
       "args": [
         "value"
@@ -3386,7 +3390,12 @@
       "scpiFast": ":MOD:TYP <value>",
       "description": "Set or query the modulation type of the specified source channel",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "AM",
+          "FM"
+        ],
+        "default": "AM"
       },
       "args": [
         "value"
@@ -3399,7 +3408,12 @@
       "scpiFast": ":OUTP:IMP <value>",
       "description": "Set output impedance",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "OMEG",
+          "FIFT"
+        ],
+        "default": "OMEG"
       },
       "args": [
         "value"
@@ -3502,9 +3516,14 @@
     "Set_Parallel_Polarity": {
       "scpi": ":PARallel:POLarity <value>",
       "scpiFast": ":PAR:POL <value>",
-      "description": "Set or query the CLK channel source of parallel decoding",
+      "description": "Set or query the data polarity of parallel decoding",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "NEG",
+          "POS"
+        ],
+        "default": "POS"
       },
       "args": [
         "value"
@@ -3515,9 +3534,31 @@
     "Set_Parallel_Source": {
       "scpi": ":PARallel:SOURce <value>",
       "scpiFast": ":PAR:SOUR <value>",
-      "description": "Set or query the CLK channel source of parallel decoding",
+      "description": "Set or query the channel source of the data bit currently selected (parallel decoding)",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "D0",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "D10",
+          "D11",
+          "D12",
+          "D13",
+          "D14",
+          "D15",
+          "CHAN1",
+          "CHAN2",
+          "CHAN3",
+          "CHAN4"
+        ]
       },
       "args": [
         "value"
@@ -3751,9 +3792,14 @@
     },
     "Set_Spi_Mode": {
       "scpi": ":SPI:MODE <value>",
-      "description": "Set or query the signal source of the clock channel in SPI decoding",
+      "description": "Set or query the frame synchronization mode of SPI decoding",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "CS",
+          "TIM"
+        ],
+        "default": "TIM"
       },
       "args": [
         "value"
@@ -3776,9 +3822,14 @@
     "Set_Spi_Polarity": {
       "scpi": ":SPI:POLarity <value>",
       "scpiFast": ":SPI:POL <value>",
-      "description": "Set or query the signal source of the clock channel in SPI decoding",
+      "description": "Set or query the polarity of the SDA data line in SPI decoding",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "NEG",
+          "POS"
+        ],
+        "default": "POS"
       },
       "args": [
         "value"
@@ -3789,9 +3840,14 @@
     "Set_Spi_Select": {
       "scpi": ":SPI:SELect <value>",
       "scpiFast": ":SPI:SEL <value>",
-      "description": "Set or query the signal source of the clock channel in SPI decoding",
+      "description": "Set or query the CS polarity in SPI decoding",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "NCS",
+          "CS"
+        ],
+        "default": "NCS"
       },
       "args": [
         "value"
@@ -3962,7 +4018,8 @@
       "scpiFast": ":THRE:CHAN<chan> <value>",
       "description": "Set or query the threshold level of the specified analog channel",
       "arg": {
-        "kind": "enum"
+        "kind": "numeric",
+        "unit": "V"
       },
       "args": [
         "value"
@@ -4044,7 +4101,8 @@
       "args": [
         "offset"
       ],
-      "subsystem": "Time"
+      "subsystem": "Time",
+      "alias_of": "Set_Timebase_Delay"
     },
     "Time_Scale": {
       "scpi": ":TIMebase:MAIN:SCALe <scale>",
@@ -4239,9 +4297,16 @@
     "Set_Trigger_Delay_Type": {
       "scpi": ":TRIGger:DELay:TYPe <value>",
       "scpiFast": ":TRIG:DEL:TYP <value>",
-      "description": "Set or query the trigger source A in delay trigger",
+      "description": "Set or query the delay type in delay trigger",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "GRE",
+          "LESS",
+          "GLES",
+          "GOUT"
+        ],
+        "default": "GRE"
       },
       "args": [
         "value"
@@ -4381,7 +4446,8 @@
       "group": "Trigger Settings",
       "subsystem": "TRIGger",
       "notes": "The name the 54641D already uses for the same control. Authored 2026-08-08 for the tabbed oscilloscope panel; not yet executed against hardware.",
-      "unverified": true
+      "unverified": true,
+      "alias_of": "Set_Edge_Level"
     },
     "Trigger_Level": {
       "scpi": ":TRIGger:EDGe:LEVel <level>",
@@ -4394,7 +4460,8 @@
       "args": [
         "level"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Edge_Level"
     },
     "Set_Edge_Slope": {
       "scpi": ":TRIGger:EDGe:SLOPe <slope>",
@@ -4487,7 +4554,8 @@
       "args": [
         "source"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Edge_Source"
     },
     "Set_Trigger_Holdoff": {
       "scpi": ":TRIGger:HOLDoff <value>",
@@ -5657,7 +5725,8 @@
       "args": [
         "sweep"
       ],
-      "subsystem": "Trigger"
+      "subsystem": "Trigger",
+      "alias_of": "Set_Sweep"
     },
     "Set_Trigger_Timebase_Slope": {
       "scpi": ":TRIGger:TIMeout:SLOPe <value>",
@@ -5979,9 +6048,14 @@
     "Set_Uart_Polarity": {
       "scpi": ":UART:POLarity <value>",
       "scpiFast": ":UART:POL <value>",
-      "description": "Set or query the TX channel source of RS232 decoding",
+      "description": "Set or query the polarity of RS232 decoding",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "NEG",
+          "POS"
+        ],
+        "default": "POS"
       },
       "args": [
         "value"
