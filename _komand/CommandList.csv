@@ -3697,9 +3697,9 @@ Spectrum,N9340B,SET,Set_Measure_Semask_Offset_List_Frequency_Start,Set the Start
 Spectrum,N9340B,SET,Set_Measure_Semask_Offset_List_Start_Absolute,Set the Abs Start,:MEASure:SEMask:OFFSet:LIST:STARt:ABSolute <value>,:MEAS:SEM:OFFS:LIST:STAR:ABS <value>,value,unknown,,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Measure_Semask_Offset_List_Start_Rcarrier,Set the Rel Start,:MEASure:SEMask:OFFSet:LIST:STARt:RCARrier <value>,:MEAS:SEM:OFFS:LIST:STAR:RCAR <value>,value,unknown,,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Measure_Semask_Offset_List_State,Set the Start Freq,:MEASure:SEMask:OFFSet:LIST:STATe <value>,:MEAS:SEM:OFFS:LIST:STAT <value>,value,bool,OFF; ON,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
-Spectrum,N9340B,SET,Set_Measure_Semask_Offset_List_Sweep,Set the Sweep Time,:MEASure:SEMask:OFFSet:LIST:SWEeptime <value>,:MEAS:SEM:OFFS:LIST:SWE <value>,value,enum,,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,SET,Set_Measure_Semask_Offset_List_Sweep,Set the Sweep Time,:MEASure:SEMask:OFFSet:LIST:SWEeptime <value>,:MEAS:SEM:OFFS:LIST:SWE <value>,value,numeric,,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Measure_Semask_Offset_List_Test,Set the Fail Mask,:MEASure:SEMask:OFFSet:LIST:TEST <value>,:MEAS:SEM:OFFS:LIST:TEST <value>,value,unknown,,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
-Spectrum,N9340B,SET,Set_Measure_Semask_Sweep,Set the Sweep Time,:MEASure:SEMask:SWEeptime <value>,:MEAS:SEM:SWE <value>,value,enum,,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,SET,Set_Measure_Semask_Sweep,Set the Sweep Time,:MEASure:SEMask:SWEeptime <value>,:MEAS:SEM:SWE <value>,value,numeric,,,,MEAS,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Power_Attenuation,Set Power Attenuation,:POWer:ATTenuation <db_value>,:POW:ATT <db_value>,db_value,numeric,,,Individual Power Sets,Amplitude,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_RBW,Set RBW,:SENSe:BANDwidth:RESolution <hz_value>,:SENS:BAND:RES <hz_value>,hz_value,numeric,,,RIG Bandwidth Commands,Bandwidth,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_RBW_Auto,Set RBW Auto,:SENSe:BANDwidth:RESolution:AUTO <state_bool>,:SENS:BAND:RES:AUTO <state_bool>,state_bool,bool,OFF; ON,,RIG Bandwidth Commands,Bandwidth,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
@@ -3721,7 +3721,7 @@ Spectrum,N9340B,SET,Set_Start_Freq_MHz,Set Start Freq MHz,:FREQuency:STARt <hz_v
 Spectrum,N9340B,SET,Set_Stop_Freq_MHz,Set Stop Freq MHz,:FREQuency:STOP <hz_value>,:FREQ:STOP <hz_value>,hz_value,numeric,,,RIG Frequency commands,Frequency,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Sweep_time,Set Sweep time,:SENSe:SWEep:TIME <s_value>,:SENS:SWE:TIME <s_value>,s_value,numeric,,,RIG Bandwidth Commands,Bandwidth,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Sweep_time_Auto,Set Sweep time Auto,:SENSe:SWEep:TIME:AUTO <state_bool>,:SENS:SWE:TIME:AUTO <state_bool>,state_bool,bool,OFF; ON,,RIG Bandwidth Commands,Bandwidth,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
-Spectrum,N9340B,SET,Set_System_Channel,Low Frequency Channel,:SYSTem:CHANnel <value>,:SYST:CHAN <value>,value,enum,,,,SYST,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,SET,Set_System_Channel,Low Frequency Channel,:SYSTem:CHANnel <value>,:SYST:CHAN <value>,value,bool,OFF; ON,,,SYST,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_System_Configure_Port,Power on Type,:SYSTem:CONFigure:PORT <value>,:SYST:CONF:PORT <value>,value,enum,REF; TRIG,,,SYST,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_System_Date,Set Date,:SYSTem:DATE <value>,:SYST:DATE <value>,value,unknown,,,,SYST,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_System_Time,Set Time,:SYSTem:TIME <value>,:SYST:TIME <value>,value,numeric,,,,SYST,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
@@ -3733,7 +3733,7 @@ Spectrum,N9340B,SET,Set_Tgenerator_Normalize_Posn,Normalization Reference Positi
 Spectrum,N9340B,SET,Set_Tgenerator_Normalize_State,Normalization,:TGENerator:NORMalize:STATe <value>,:TGEN:NORM:STAT <value>,value,bool,OFF; ON,,,TGEN,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Tgenerator_Normalize_Trace,Reference Trace,:TGENerator:NORMalize:TRACe <value>,:TGEN:NORM:TRAC <value>,value,block,,,,TGEN,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Trace_Format,Trace format,:TRACe:FORMat <value>,:TRAC:FORM <value>,value,enum,ASC; REAL,,,TRAC,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
-Spectrum,N9340B,SET,Set_Trace_Mode,Set Trace Mode,:TRACe<trace_number>:MODE <mode_string>,:TRAC<trace_number>:MODE <mode_string>,mode_string,enum,,trace_number,Trace Command Sets,Trace,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,SET,Set_Trace_Mode,Set Trace Mode,:TRACe<trace_number>:MODE <mode_string>,:TRAC<trace_number>:MODE <mode_string>,mode_string,enum,WRIT; MAXH; MINH; VIEW; BLAN,trace_number,Trace Command Sets,Trace,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Trigger_Sequence_Delaytime,Trigger Delay Time,:TRIGger:SEQuence:DELaytime <value>,:TRIG:SEQ:DEL <value>,value,numeric,,,,TRIG,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Trigger_Sequence_External_Slope,External Trigger Slope,:TRIGger:SEQuence:EXTernal1:SLOPe <value>,:TRIG:SEQ:EXT1:SLOP <value>,value,enum,POS; NEG,,,TRIG,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Trigger_Sequence_Source,Initiate a Single Sweep,:TRIGger:SEQuence:SOURce <value>,:TRIG:SEQ:SOUR <value>,value,enum,IMM; VID; EXT,,,TRIG,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand

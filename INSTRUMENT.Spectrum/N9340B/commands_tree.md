@@ -174,7 +174,7 @@ Several statements in one message, so they hang off no single branch. Every stat
     - `PERCent?` — **NAB** `Get_Measure_Obw_Percent` · → NR3 s · †<br>Set percentage (%) method of OBW
     - `XDB?` — **NAB** `Get_Measure_Obw_Xdb` · → NR3 · †<br>Set dBc method of OBW
   - **`SEMask`**
-    - `SWEeptime` — **SET** `Set_Measure_Semask_Sweep` · `<value>` · args: `value` · enum · †<br>Set the Sweep Time
+    - `SWEeptime` — **SET** `Set_Measure_Semask_Sweep` · `<value>` · args: `value` · numeric (s) · †<br>Set the Sweep Time
     - `SWEeptime?` — **NAB** `Get_Measure_Semask_Sweep` · → CRD s · †<br>Set the Sweep Time
     - `BANDwidth` — **DO** `Do_Measure_Semask_Bandwidth` · †<br>Set the Chan Integ BW
     - `MARKer<n>` — **DO** `Do_Measure_Semask_Marker` · per-instance: `n` · †<br>Turn On/Off the Marker
@@ -194,7 +194,7 @@ Several statements in one message, so they hang off no single branch. Every stat
     - **`OFFSet`**
       - **`LIST`**
         - `STATe` — **SET** `Set_Measure_Semask_Offset_List_State` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>Set the Start Freq
-        - `SWEeptime` — **SET** `Set_Measure_Semask_Offset_List_Sweep` · `<value>` · args: `value` · enum · †<br>Set the Sweep Time
+        - `SWEeptime` — **SET** `Set_Measure_Semask_Offset_List_Sweep` · `<value>` · args: `value` · numeric (s) · †<br>Set the Sweep Time
         - `TEST` — **SET** `Set_Measure_Semask_Offset_List_Test` · `<value>` · args: `value` · †<br>Set the Fail Mask
         - `STATe?` — **NAB** `Get_Measure_Semask_Offset_List_State` · → BOOL · †<br>Set the Start Freq
         - `SWEeptime?` — **NAB** `Get_Measure_Semask_Offset_List_Sweep` · → CRD s · †<br>Set the Sweep Time
@@ -296,7 +296,7 @@ Several statements in one message, so they hang off no single branch. Every stat
     - **`TIME`**
       - `AUTO` — **SET** `Set_Sweep_time_Auto` · `<state_bool>` · args: `state_bool` · bool: `OFF` | `ON`
 - **`SYSTem`**
-  - `CHANnel` — **SET** `Set_System_Channel` · `<value>` · args: `value` · enum · †<br>Low Frequency Channel
+  - `CHANnel` — **SET** `Set_System_Channel` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>Low Frequency Channel
   - `DATE` — **SET** `Set_System_Date` · `<value>` · args: `value` · †<br>Set Date
   - `TIME` — **SET** `Set_System_Time` · `<value>` · args: `value` · numeric (s) · †<br>Set Time
   - `CHANnel?` — **NAB** `Get_System_Channel` · → CRD · †<br>Low Frequency Channel
@@ -338,7 +338,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `FORMat` — **SET** `Set_Trace_Format` · `<value>` · args: `value` · enum: `ASC` | `REAL` · †<br>Trace format
   - `FORMat?` — **NAB** `Get_Trace_Format` · → CRD · †<br>Trace format
 - **`TRACe<trace_number>`**
-  - `MODE` — **SET** `Set_Trace_Mode` · `<mode_string>` · args: `mode_string` · enum · per-instance: `trace_number`
+  - `MODE` — **SET** `Set_Trace_Mode` · `<mode_string>` · args: `mode_string` · enum: `WRIT` | `MAXH` | `MINH` | `VIEW` | `BLAN` · per-instance: `trace_number`
 - **`TRIGger`**
   - **`SEQuence`**
     - `DELaytime` — **SET** `Set_Trigger_Sequence_Delaytime` · `<value>` · args: `value` · numeric (s) · †<br>Trigger Delay Time

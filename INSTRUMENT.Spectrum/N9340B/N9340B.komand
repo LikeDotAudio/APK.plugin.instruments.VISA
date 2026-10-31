@@ -575,7 +575,10 @@
       "scpiFast": ":MEAS:SEM:OFFS:LIST:SWE <value>",
       "description": "Set the Sweep Time",
       "arg": {
-        "kind": "enum"
+        "kind": "numeric",
+        "unit": "s",
+        "min": 0.005,
+        "max": 4000
       },
       "args": [
         "value"
@@ -601,7 +604,10 @@
       "scpiFast": ":MEAS:SEM:SWE <value>",
       "description": "Set the Sweep Time",
       "arg": {
-        "kind": "enum"
+        "kind": "numeric",
+        "unit": "s",
+        "min": 0.00837,
+        "max": 4000
       },
       "args": [
         "value"
@@ -903,7 +909,11 @@
       "scpiFast": ":SYST:CHAN <value>",
       "description": "Low Frequency Channel",
       "arg": {
-        "kind": "enum"
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
       },
       "args": [
         "value"
@@ -1076,7 +1086,14 @@
       "scpiFast": ":TRAC<trace_number>:MODE <mode_string>",
       "description": "Set Trace Mode",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "WRIT",
+          "MAXH",
+          "MINH",
+          "VIEW",
+          "BLAN"
+        ]
       },
       "group": "Trace Command Sets",
       "args": [

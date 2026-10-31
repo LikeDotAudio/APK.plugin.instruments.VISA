@@ -3544,7 +3544,10 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "numeric",
+          "unit": "s",
+          "min": 0.005,
+          "max": 4000
         },
         "returns": null,
         "mqtt": {
@@ -3596,7 +3599,10 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "numeric",
+          "unit": "s",
+          "min": 0.00837,
+          "max": 4000
         },
         "returns": null,
         "mqtt": {
@@ -4171,7 +4177,11 @@
           "value"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "bool",
+          "values": [
+            "OFF",
+            "ON"
+          ]
         },
         "returns": null,
         "mqtt": {
@@ -4500,7 +4510,14 @@
           "mode_string"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "enum",
+          "values": [
+            "WRIT",
+            "MAXH",
+            "MINH",
+            "VIEW",
+            "BLAN"
+          ]
         },
         "returns": null,
         "mqtt": {
