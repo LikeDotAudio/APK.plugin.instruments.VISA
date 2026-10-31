@@ -66,7 +66,10 @@
       "scpiFast": ":CALC:DB:REF <value>",
       "description": "Set dB Ref",
       "arg": {
-        "kind": "enum"
+        "kind": "numeric",
+        "unit": "dBm",
+        "min": -200,
+        "max": 200
       },
       "group": "Math and Limits Setup",
       "args": [
@@ -79,7 +82,27 @@
       "scpiFast": ":CALC:DBM:REF <value>",
       "description": "Set dBm Ref",
       "arg": {
-        "kind": "enum"
+        "kind": "enum",
+        "values": [
+          "50",
+          "75",
+          "93",
+          "110",
+          "124",
+          "125",
+          "135",
+          "150",
+          "250",
+          "300",
+          "500",
+          "600",
+          "800",
+          "900",
+          "1000",
+          "1200",
+          "8000"
+        ],
+        "unit": "ohm"
       },
       "group": "Math and Limits Setup",
       "args": [

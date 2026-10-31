@@ -47,10 +47,10 @@ Several statements in one message, so they hang off no single branch. Every stat
     - `MAXimum?` — **NAB** `Query_Max` · → 1 value
     - `MINimum?` — **NAB** `Query_Min` · → 1 value
   - **`DB`**
-    - `REFerence` — **SET** `Set_dB_Ref` · `<value>` · args: `value` · enum
+    - `REFerence` — **SET** `Set_dB_Ref` · `<value>` · args: `value` · numeric (dBm)
     - `REFerence?` — **NAB** `Get_Calculate_Db_Reference` · → CRD · †
   - **`DBM`**
-    - `REFerence` — **SET** `Set_dBm_Ref` · `<value>` · args: `value` · enum
+    - `REFerence` — **SET** `Set_dBm_Ref` · `<value>` · args: `value` · enum: `50` | `75` | `93` | `110` | `124` | `125` | `135` | `150` | `250` | `300` | `500` | `600` | `800` | `900` | `1000` | `1200` | `8000`
   - **`LIMit`**
     - `LOWer?` — **NAB** `Get_Calculate_Limit_Lower` · → 1 value · †<br>Math Operations
     - `UPPer?` — **NAB** `Get_Calculate_Limit_Upper` · → 1 value · †<br>Math Operations

@@ -1585,7 +1585,34 @@
       "scpiFast": "AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>",
       "description": "Setup AM",
       "arg": {
-        "kind": "enum"
+        "kind": "multi",
+        "parameters": {
+          "shape": {
+            "kind": "enum",
+            "values": [
+              "SIN",
+              "SQU",
+              "RAMP",
+              "NRAM",
+              "TRI",
+              "NOIS",
+              "USER"
+            ],
+            "default": "SIN"
+          },
+          "freq": {
+            "kind": "numeric",
+            "unit": "Hz",
+            "min": 0.002,
+            "max": 20000
+          },
+          "depth": {
+            "kind": "numeric",
+            "unit": "%",
+            "min": 0,
+            "max": 120
+          }
+        }
       },
       "group": "Modulation Setup",
       "args": [

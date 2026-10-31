@@ -8413,7 +8413,34 @@
           "depth"
         ],
         "arg": {
-          "kind": "enum"
+          "kind": "multi",
+          "parameters": {
+            "shape": {
+              "kind": "enum",
+              "values": [
+                "SIN",
+                "SQU",
+                "RAMP",
+                "NRAM",
+                "TRI",
+                "NOIS",
+                "USER"
+              ],
+              "default": "SIN"
+            },
+            "freq": {
+              "kind": "numeric",
+              "unit": "Hz",
+              "min": 0.002,
+              "max": 20000
+            },
+            "depth": {
+              "kind": "numeric",
+              "unit": "%",
+              "min": 0,
+              "max": 120
+            }
+          }
         },
         "returns": null,
         "mqtt": {

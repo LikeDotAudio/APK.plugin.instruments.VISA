@@ -160,8 +160,8 @@ DMM,34401A,SET,Set_Trigger_Count,Set Trigger Count,:TRIGger:COUNt <count>,:TRIG:
 DMM,34401A,SET,Set_Trigger_Delay,Set Trigger Delay,:TRIGger:DELay <delay>,:TRIG:DEL <delay>,delay,numeric,,,Setup Trigger Model,TRIGger,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Trigger_Source,Set Trigger Source,:TRIGger:SOURce <source>,:TRIG:SOUR <source>,source,enum,BUS; IMM; EXT,,Setup Trigger Model,TRIGger,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Voltage_Range,An Introduction to the SCPI Language,VOLTage:RANGe <value>,VOLT:RANG <value>,value,numeric,,,,VOLT,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,SET,Set_dB_Ref,Set dB Ref,:CALCulate:DB:REFerence <value>,:CALC:DB:REF <value>,value,enum,,,Math and Limits Setup,CALCulate,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,SET,Set_dBm_Ref,Set dBm Ref,:CALCulate:DBM:REFerence <value>,:CALC:DBM:REF <value>,value,enum,,,Math and Limits Setup,CALCulate,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
+DMM,34401A,SET,Set_dB_Ref,Set dB Ref,:CALCulate:DB:REFerence <value>,:CALC:DB:REF <value>,value,numeric,,,Math and Limits Setup,CALCulate,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
+DMM,34401A,SET,Set_dBm_Ref,Set dBm Ref,:CALCulate:DBM:REFerence <value>,:CALC:DBM:REF <value>,value,enum,50; 75; 93; 110; 124; 125; 135; 150; 250; 300; 500; 600; 800; 900; 1000; 1200; 8000,,Math and Limits Setup,CALCulate,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 Distortion,Porta_one,DO,Do_Ampl_Step,Selects the sweep mode or the number of sweep steps,AMPLitude:STEPs,AMPL:STEP,,,,,,AMPL,,,,,1,yes,INSTRUMENT.Distortion/Porta_one/Porta_one.komand
 Distortion,Porta_one,DO,Do_At_Fmax,Do at fmax,ATio:FMAX,AT:FMAX,,,,,,AT,,,,,1,yes,INSTRUMENT.Distortion/Porta_one/Porta_one.komand
 Distortion,Porta_one,DO,Do_Clear_Status,Do Clear Status,*CLS,,,,,,Global Utilities,System,,,,,1,,INSTRUMENT.Distortion/Porta_one/Porta_one.komand
@@ -948,7 +948,7 @@ Generator,33210A,NAB,shape_settings,"Every shape parameter and the load it drive
 Generator,33210A,RIG,Apply_Pulse,Apply Pulse,"APPLy:PULSe <freq>, <amp>, <offset>","APPL:PULS <freq>, <amp>, <offset>",freq; amp; offset,numeric,,,APPLy Macro Commands,APPLy,,,,,1,,INSTRUMENT.Generator/33210A/33210A.komand
 Generator,33210A,RIG,Apply_Sine,Apply Sine,"APPLy:SINusoid <freq>, <amp>, <offset>","APPL:SIN <freq>, <amp>, <offset>",freq; amp; offset,numeric,,,APPLy Macro Commands,APPLy,,,,,1,,INSTRUMENT.Generator/33210A/33210A.komand
 Generator,33210A,RIG,Apply_Square,Apply Square,"APPLy:SQUare <freq>, <amp>, <offset>","APPL:SQU <freq>, <amp>, <offset>",freq; amp; offset,numeric,,,APPLy Macro Commands,APPLy,,,,,1,,INSTRUMENT.Generator/33210A/33210A.komand
-Generator,33210A,RIG,Setup_AM,Setup AM,AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>,AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>,shape; freq; depth,enum,,,Modulation Setup,Modulation,,,,,3,,INSTRUMENT.Generator/33210A/33210A.komand
+Generator,33210A,RIG,Setup_AM,Setup AM,AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>,AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>,shape; freq; depth,multi,,,Modulation Setup,Modulation,,,,,3,,INSTRUMENT.Generator/33210A/33210A.komand
 Generator,33210A,RIG,Setup_Burst,"Configure burst mode, count, phase and period in order",:BURSt:MODE <mode>;:BURSt:NCYCles <cycles>;:BURSt:PHASe <phase>;:BURSt:INTernal:PERiod <period>,:BURS:MODE <mode>;:BURS:NCYC <cycles>;:BURS:PHAS <phase>;:BURS:INT:PER <period>,mode; cycles; phase; period,enum,TRIG; GAT,,Burst Configuration,BURSt,,,,,4,yes,INSTRUMENT.Generator/33210A/33210A.komand
 Generator,33210A,SET,Set_Am_Source,AM Commands,AM:SOUR <value>,,value,enum,INT; EXT,,,AM,,,,,1,yes,INSTRUMENT.Generator/33210A/33210A.komand
 Generator,33210A,SET,Set_Am_State,Set AM State,AM:STATe <value>,AM:STAT <value>,value,bool,OFF; ON,,Modulation Control,AM,,,,,1,,INSTRUMENT.Generator/33210A/33210A.komand
@@ -1211,7 +1211,7 @@ Generator,33220A,NAB,shape_settings,"Every shape parameter and the load it drive
 Generator,33220A,RIG,Apply_Pulse,Apply Pulse,"APPLy:PULSe <freq>, <amp>, <offset>","APPL:PULS <freq>, <amp>, <offset>",freq; amp; offset,numeric,,,APPLy Macro Commands,APPLy,,,,,1,,INSTRUMENT.Generator/33220A/33220A.komand
 Generator,33220A,RIG,Apply_Sine,Apply Sine,"APPLy:SINusoid <freq>, <amp>, <offset>","APPL:SIN <freq>, <amp>, <offset>",freq; amp; offset,numeric,,,APPLy Macro Commands,APPLy,,,,,1,,INSTRUMENT.Generator/33220A/33220A.komand
 Generator,33220A,RIG,Apply_Square,Apply Square,"APPLy:SQUare <freq>, <amp>, <offset>","APPL:SQU <freq>, <amp>, <offset>",freq; amp; offset,numeric,,,APPLy Macro Commands,APPLy,,,,,1,,INSTRUMENT.Generator/33220A/33220A.komand
-Generator,33220A,RIG,Setup_AM,Setup AM,AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>,AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>,shape; freq; depth,enum,,,Modulation Setup,Modulation,,,,,3,,INSTRUMENT.Generator/33220A/33220A.komand
+Generator,33220A,RIG,Setup_AM,Setup AM,AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>,AM:INT:FUNC <shape>;AM:INT:FREQ <freq>;AM:DEPT <depth>,shape; freq; depth,multi,,,Modulation Setup,Modulation,,,,,3,,INSTRUMENT.Generator/33220A/33220A.komand
 Generator,33220A,SET,Set_Am_Source,AM Commands,AM:SOUR <value>,,value,enum,INT; EXT,,,AM,,,,,1,yes,INSTRUMENT.Generator/33220A/33220A.komand
 Generator,33220A,SET,Set_Am_State,Set AM State,AM:STATe <value>,AM:STAT <value>,value,bool,OFF; ON,,Modulation Control,AM,,,,,1,,INSTRUMENT.Generator/33220A/33220A.komand
 Generator,33220A,SET,Set_Amplitude,Set Amplitude,VOLTage <amp>,VOLT <amp>,amp,numeric,,,SOURce Configuration,SOURce,,,,,1,,INSTRUMENT.Generator/33220A/33220A.komand

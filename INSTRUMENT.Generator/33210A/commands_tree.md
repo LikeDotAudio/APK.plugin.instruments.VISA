@@ -14,7 +14,7 @@ Several statements in one message, so they hang off no single branch. Every stat
 
 - **NAB** `Get_Sweep_Config` · → state, time, spacing, start, stop · †<br>Read the whole sweep setup in one transaction
   - `:SWEep:STATe?;:SWEep:TIME?;:SWEep:SPACing?;:FREQuency:STARt?;:FREQuency:STOP?`
-- **RIG** `Setup_AM` · args: `shape`, `freq`, `depth` · enum
+- **RIG** `Setup_AM` · args: `shape`, `freq`, `depth` · multi
   - `AM:INTernal:FUNCtion <shape>;AM:INTernal:FREQuency <freq>;AM:DEPTh <depth>`
 - **RIG** `Setup_Burst` · args: `mode`, `cycles`, `phase`, `period` · enum: `TRIG` | `GAT` · †<br>Configure burst mode, count, phase and period in order
   - `:BURSt:MODE <mode>;:BURSt:NCYCles <cycles>;:BURSt:PHASe <phase>;:BURSt:INTernal:PERiod <period>`
