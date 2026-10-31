@@ -38,9 +38,9 @@ folder as `INSTRUMENT.<Family>` if it exists, else `<Family>` (so a crate's
 `gui/dante/` and an older tree still read), and strips a leading `INSTRUMENT.`
 (or the legacy `INSTRUMENT:`) when it derives a family name from a directory
 listing. Each language has one helper for that: `family_directory` in the
-orchestrator (`NODE.BareMetal/SRC/Core/ORCHESTRATOR:hunter:VISA/src/instruments/library.rs`),
+orchestrator (`NODE.BareMetal/SRC/Core/ORCHESTRATOR.hunter.VISA/src/instruments/library.rs`),
 `family_name`/`family_directory` in `_komand/generate_device_apis.py`,
-`Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py` — four copies
+`Baremetal.Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py` — four copies
 of one rule, so the rule is now DATA: `families.json` names each family's folder,
 and those readers are asked to look it up there (2026-10-30).
 

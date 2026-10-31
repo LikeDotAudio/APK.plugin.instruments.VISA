@@ -33,7 +33,7 @@ _datasets/                        Instrument functions.csv/.xlsx, spectrum_prese
 |---|---|---|
 | `AUDIO.komand` agent | `KOMAND_REPO_PATH=/app/Instruments` in `Node-BareMetal`, or walks up to the folder holding `_komand/` | `.komand` tables → SCPI |
 | `AUDIO.komand` tools | same | generate/check `CommandList.*`, `commands_tree.md`, `knownDevices.json` links |
-| BareMetal orchestrator (VISA hunter) | `/app/Instruments`, `family_directory` in `NODE.BareMetal/SRC/Core/ORCHESTRATOR:hunter:VISA/src/instruments/library.rs` | stamps one panel per discovered instrument |
+| BareMetal orchestrator (VISA hunter) | `/app/Instruments`, `family_directory` in `NODE.BareMetal/SRC/Core/ORCHESTRATOR.hunter.VISA/src/instruments/library.rs` | stamps one panel per discovered instrument |
 | `PLUGIN.VISA` | the `apkaudio-known-devices` crate (`_komand/Cargo.toml`), by git rev from this repository; patched to the local folder in the monorepo | compiled-in identification table |
 | `WEB.OsApi` | `/srv/portal/Instruments`, `os_roots.komand_library()` | the instrument page and `<Model>.api.json` |
 

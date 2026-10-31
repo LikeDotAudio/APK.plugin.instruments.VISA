@@ -227,7 +227,7 @@
             }
           }
         },
-        "notes": "READ-ONLY ON PURPOSE, AND SAYS SO. Every model in this class declares \"vocabulary\": \"none\" in its .gui sheet and carries no .komand table, so there is no command for a control here to name, and rightly: a knob that cannot reach an instrument is worse than no knob. Nothing would catch one — the old `check.sh binding` lane that refused it is retired, and `prune_unbindable` (NODE.BareMetal ORCHESTRATOR:hunter:VISA) prunes nothing for a model with no .komand table — so this note is the rule. bind_state is what a console for a device it cannot drive is for. Authoring <Model>.komand beside <Model>.gui is what adds controls."
+        "notes": "READ-ONLY ON PURPOSE, AND SAYS SO. Every model in this class declares \"vocabulary\": \"none\" in its .gui sheet and carries no .komand table, so there is no command for a control here to name, and rightly: a knob that cannot reach an instrument is worse than no knob. Nothing would catch one — the old `check.sh binding` lane that refused it is retired, and `prune_unbindable` (NODE.BareMetal ORCHESTRATOR.hunter.VISA) prunes nothing for a model with no .komand table — so this note is the rule. bind_state is what a console for a device it cannot drive is for. Authoring <Model>.komand beside <Model>.gui is what adds controls."
       }
     }
   }
