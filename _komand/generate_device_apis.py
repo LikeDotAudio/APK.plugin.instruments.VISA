@@ -514,6 +514,13 @@ def _emit(path, text, check, drift):
 
 def main():
     check = '--check' in sys.argv[1:]
+    # ports.json as it stood BEFORE this run, for the retirement check.
+    previous = {}
+    try:
+        with open(PORTS_PATH, 'r', encoding='utf-8') as f:
+            previous = json.load(f).get('instruments', {})
+    except (OSError, ValueError):
+        pass
     drift = []
     authored_komands = load_all_authored_komands()
     family_lanes = load_family_lanes()
@@ -639,12 +646,24 @@ def main():
     bad_donors = [f"baselines/donors.json: {fam} -> {m} has no authored .komand"
                   for fam, m in PRIMARY_DONOR_MODELS.items() if m not in authored_komands]
 
+    # A model that left must be retired by name, not dropped (audit #6).
+    retired = {}
+    try:
+        with open(os.path.join(INSTRUMENTS_ROOT, '_komand', 'retired_ports.json'), 'r', encoding='utf-8') as f:
+            retired = json.load(f).get('retired', {})
+    except (OSError, ValueError) as e:
+        print(f"Warning: _komand/retired_ports.json unreadable: {e}", file=sys.stderr)
+    port_problems = [f"ports: {key} (port {entry.get('port')}) is no longer generated — list it in _komand/retired_ports.json"
+                     for key, entry in previous.items() if key not in allocation and key not in retired]
+    port_problems += [f"ports: retired {key}'s port {r.get('port')} is reallocated to {taken[r.get('port')]}"
+                      for key, r in retired.items() if r.get('port') in taken and taken[r.get('port')] != key]
+
     # Every governed file against its JSON Schema (_komand/schemas/).
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import schema_check
     schema_files, schema_problems = schema_check.check_tree(INSTRUMENTS_ROOT)
 
-    problems = index_problems + disagreements + bad_donors + [f"schema: {p}" for p in schema_problems]
+    problems = index_problems + disagreements + bad_donors + port_problems + [f"schema: {p}" for p in schema_problems]
     for p in problems:
         print(f"problem: {p}", file=sys.stderr)
 

@@ -22,7 +22,7 @@ The bench instrument library as data: 13 families / 181 models — family panel 
 | Boundary Integrity | 3 | `<Model>.api.json` is a versioned published spec; every on-disk format has a JSON Schema. |
 | Duplication Control | 3 | Catalogue fields checked equal across `.gui` and `knownDevices.json`; baselines and donors are data files. |
 | Testing & Contracts | 3 | Schemas enforced by `--check`; a broken `.gui` fails loudly; one local `_komand/check.sh` (both checks, unit tests, cargo test). |
-| Change management | 2 | `api_version` in every spec, legacy prefix still read; no deprecation path for a removed model's port. |
+| Change management | 3 | `api_version` in every spec, legacy prefix still read; a removed model's port must be retired by name (`_komand/retired_ports.json`). |
 Score key: 3 meets the standard · 2 minor gaps · 1 significant gaps · 0 absent / violated.
 
 ## Findings
@@ -31,6 +31,5 @@ Score key: 3 meets the standard · 2 minor gaps · 1 significant gaps · 0 absen
 3. **Good: a published spec with a version.** [`INSTRUMENT.DMM/34401A/34401A.api.json`](../../INSTRUMENT.DMM/34401A/34401A.api.json) carries `api_version`, an inbound `service` block and an outbound `transport` block; its shape is `_komand/schemas/api.schema.json`.
 4. **Good: `knownDevices.json` is a model catalogue, not a discovery list.** It maps `*IDN?` model strings to metadata and holds no addresses.
 5. **The resolver's other readers.** `families.json` is the resolver as data; the orchestrator (`instruments/library.rs`), `Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py` still re-implement the prefix rule. **Waiting on NODE.BareMetal and WEB.OsApi (handoffs filed).**
-6. **No deprecation path for a removed model's port.** A deleted model frees its port silently and the next model renumbers; open (a `retired` list in `ports.json` would make it a stated change).
 
 Delivered findings are recorded in [🌍Publishing/DELIVERY.md](../%F0%9F%8C%8DPublishing/DELIVERY.md).
