@@ -1,0 +1,407 @@
+{
+  "_note": "Baseline command set for INSTRUMENT.SMU, a family with no authored .komand table. Read by generate_device_apis.py (load_baselines) for every model of the family; the result is that model's SMU_Baseline spec. Same shape as a .komand table's verb buckets. Validated by schemas/baseline.schema.json under --check.",
+  "set": {
+    "Set_Source_Function": {
+      "scpi": ":SOURce:FUNCtion <func>",
+      "scpi_fast": ":SOUR:FUNC <func>",
+      "description": "Set active source mode: Voltage or Current",
+      "subsystem": "SOURce",
+      "group": "Source Setup",
+      "args": [
+        "func"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "VOLTage",
+          "CURRent"
+        ]
+      }
+    },
+    "Set_Source_Voltage": {
+      "scpi": ":SOURce:VOLTage:LEVel <volts>",
+      "scpi_fast": ":SOUR:VOLT:LEV <volts>",
+      "description": "Set voltage output level in Volts",
+      "subsystem": "SOURce",
+      "group": "Source Setup",
+      "args": [
+        "volts"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "V"
+      }
+    },
+    "Set_Source_Current": {
+      "scpi": ":SOURce:CURRent:LEVel <amps>",
+      "scpi_fast": ":SOUR:CURR:LEV <amps>",
+      "description": "Set current output level in Amperes",
+      "subsystem": "SOURce",
+      "group": "Source Setup",
+      "args": [
+        "amps"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "A"
+      }
+    },
+    "Set_Voltage_Compliance": {
+      "scpi": ":SENSe:VOLTage:PROTection:LEVel <volts>",
+      "scpi_fast": ":SENS:VOLT:PROT:LEV <volts>",
+      "description": "Set maximum voltage compliance protection limit",
+      "subsystem": "SENSe",
+      "group": "Compliance Limits",
+      "args": [
+        "volts"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "V"
+      }
+    },
+    "Set_Current_Compliance": {
+      "scpi": ":SENSe:CURRent:PROTection:LEVel <amps>",
+      "scpi_fast": ":SENS:CURR:PROT:LEV <amps>",
+      "description": "Set maximum current compliance protection limit",
+      "subsystem": "SENSe",
+      "group": "Compliance Limits",
+      "args": [
+        "amps"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "A"
+      }
+    },
+    "Set_Output_State": {
+      "scpi": ":OUTPut:STATe <state>",
+      "scpi_fast": ":OUTP:STAT <state>",
+      "description": "Turn SMU output terminal ON or OFF",
+      "subsystem": "OUTPut",
+      "group": "Output Control",
+      "args": [
+        "state"
+      ],
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      }
+    },
+    "Set_Sense_Function": {
+      "scpi": ":SENSe:FUNCtion '<function>'",
+      "scpi_fast": ":SENS:FUNC '<function>'",
+      "description": "Set measurement sense mode",
+      "subsystem": "SENSe",
+      "group": "Measurement Setup",
+      "args": [
+        "function"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "VOLTage",
+          "CURRent",
+          "RESistance"
+        ]
+      }
+    },
+    "Set_Sense_Remote": {
+      "scpi": ":SENSe:REMote <state>",
+      "scpi_fast": ":SENS:REM <state>",
+      "description": "Select 4-wire remote sensing or 2-wire local sensing",
+      "subsystem": "SENSe",
+      "group": "Measurement Setup",
+      "args": [
+        "state"
+      ],
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      }
+    },
+    "Set_Integration_NPLC": {
+      "scpi": ":SENSe:NPLC <nplc>",
+      "scpi_fast": ":SENS:NPLC <nplc>",
+      "description": "Set A/D converter integration time in power line cycles",
+      "subsystem": "SENSe",
+      "group": "Measurement Setup",
+      "args": [
+        "nplc"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "min": 0.01,
+        "max": 10.0
+      }
+    }
+  },
+  "nab": {
+    "Read_Next": {
+      "scpi": ":READ?",
+      "scpi_fast": ":READ?",
+      "description": "Trigger measurement and return voltage, current, and resistance",
+      "subsystem": "SENSe",
+      "group": "Data Acquisition",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "voltage",
+            "unit": "V"
+          },
+          {
+            "name": "current",
+            "unit": "A"
+          },
+          {
+            "name": "resistance",
+            "unit": "Ohm"
+          },
+          {
+            "name": "time",
+            "unit": "s"
+          },
+          {
+            "name": "status"
+          }
+        ]
+      }
+    },
+    "Measure_Voltage": {
+      "scpi": ":MEASure:VOLTage?",
+      "scpi_fast": ":MEAS:VOLT?",
+      "description": "Measure voltage at terminals",
+      "subsystem": "SENSe",
+      "group": "Direct Measurement",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "voltage",
+            "unit": "V"
+          }
+        ],
+        "unit": "V"
+      }
+    },
+    "Measure_Current": {
+      "scpi": ":MEASure:CURRent?",
+      "scpi_fast": ":MEAS:CURR?",
+      "description": "Measure current flowing through terminals",
+      "subsystem": "SENSe",
+      "group": "Direct Measurement",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "current",
+            "unit": "A"
+          }
+        ],
+        "unit": "A"
+      }
+    },
+    "Measure_Resistance": {
+      "scpi": ":MEASure:RESistance?",
+      "scpi_fast": ":MEAS:RES?",
+      "description": "Calculate resistance from measured V and I",
+      "subsystem": "SENSe",
+      "group": "Direct Measurement",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "resistance",
+            "unit": "Ohm"
+          }
+        ],
+        "unit": "Ohm"
+      }
+    },
+    "Read_Output_State": {
+      "scpi": ":OUTPut:STATe?",
+      "scpi_fast": ":OUTP:STAT?",
+      "description": "Query output enabled/disabled status",
+      "subsystem": "OUTPut",
+      "group": "Output Control",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "state"
+          }
+        ]
+      }
+    },
+    "Read_Compliance_Status": {
+      "scpi": ":SENSe:PROTection:TRIPped?",
+      "scpi_fast": ":SENS:PROT:TRIP?",
+      "description": "Check if voltage or current compliance threshold was tripped",
+      "subsystem": "SENSe",
+      "group": "Compliance Limits",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "tripped"
+          }
+        ]
+      }
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "scpi_fast": "*IDN?",
+      "description": "Read SMU identification string",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": [],
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "manufacturer"
+          },
+          {
+            "name": "model"
+          },
+          {
+            "name": "serial"
+          },
+          {
+            "name": "firmware"
+          }
+        ]
+      }
+    },
+    "Query_Error": {
+      "scpi": ":SYSTem:ERRor?",
+      "scpi_fast": ":SYST:ERR?",
+      "description": "Query system error queue",
+      "subsystem": "SYSTem",
+      "group": "System Utilities",
+      "args": [],
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "code"
+          },
+          {
+            "name": "message"
+          }
+        ]
+      }
+    }
+  },
+  "do": {
+    "Output_ON": {
+      "scpi": ":OUTPut:STATe ON",
+      "scpi_fast": ":OUTP:STAT ON",
+      "description": "Enable SMU power output terminals",
+      "subsystem": "OUTPut",
+      "group": "Output Control",
+      "args": []
+    },
+    "Output_OFF": {
+      "scpi": ":OUTPut:STATe OFF",
+      "scpi_fast": ":OUTP:STAT OFF",
+      "description": "Safely disable SMU output terminals",
+      "subsystem": "OUTPut",
+      "group": "Output Control",
+      "args": []
+    },
+    "Reset": {
+      "scpi": "*RST",
+      "scpi_fast": "*RST",
+      "description": "Reset SMU to default factory parameters",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Clear_Status": {
+      "scpi": "*CLS",
+      "scpi_fast": "*CLS",
+      "description": "Clear status registers and error queue",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Initiate": {
+      "scpi": ":INITiate",
+      "scpi_fast": ":INIT",
+      "description": "Arm trigger system and initiate measurement",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    },
+    "Abort": {
+      "scpi": ":ABORt",
+      "scpi_fast": ":ABOR",
+      "description": "Abort ongoing sweep or measurement sequence",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    }
+  },
+  "rig": {
+    "Configure_Voltage_Source": {
+      "scpi": ":SOURce:FUNCtion VOLTage;:SOURce:VOLTage:LEVel <volts>;:SENSe:CURRent:PROTection <compliance>",
+      "scpi_fast": ":SOUR:FUNC VOLT;:SOUR:VOLT:LEV <volts>;:SENS:CURR:PROT <compliance>",
+      "description": "Configure SMU as voltage source with voltage setpoint and current compliance limit",
+      "subsystem": "SOURce",
+      "group": "Source Setup",
+      "args": [
+        "volts",
+        "compliance"
+      ],
+      "arg": {
+        "kind": "multi",
+        "parameters": {
+          "volts": {
+            "kind": "numeric",
+            "unit": "V"
+          },
+          "compliance": {
+            "kind": "numeric",
+            "unit": "A"
+          }
+        }
+      }
+    },
+    "Configure_Current_Source": {
+      "scpi": ":SOURce:FUNCtion CURRent;:SOURce:CURRent:LEVel <amps>;:SENSe:VOLTage:PROTection <compliance>",
+      "scpi_fast": ":SOUR:FUNC CURR;:SOUR:CURR:LEV <amps>;:SENS:VOLT:PROT <compliance>",
+      "description": "Configure SMU as current source with current setpoint and voltage compliance limit",
+      "subsystem": "SOURce",
+      "group": "Source Setup",
+      "args": [
+        "amps",
+        "compliance"
+      ],
+      "arg": {
+        "kind": "multi",
+        "parameters": {
+          "amps": {
+            "kind": "numeric",
+            "unit": "A"
+          },
+          "compliance": {
+            "kind": "numeric",
+            "unit": "V"
+          }
+        }
+      }
+    }
+  }
+}

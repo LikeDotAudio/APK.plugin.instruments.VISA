@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/manifest.schema.json",
+  "title": "INSTRUMENTS/manifest.json — one entry per instrument class; keys starting _ are notes",
+  "type": "object",
+  "patternProperties": {"^_": {}},
+  "additionalProperties": {
+    "type": "object",
+    "required": ["tab"],
+    "additionalProperties": false,
+    "properties": {
+      "tab": {"type": "string", "pattern": "^[0-9]+_"},
+      "groups": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["name", "header", "over", "by", "size", "columns", "station", "id", "description"],
+          "additionalProperties": false,
+          "properties": {
+            "name": {"type": "string"}, "header": {"type": "string"}, "over": {"type": "string"},
+            "by": {"type": "string"}, "size": {"type": ["string", "integer"]}, "columns": {"type": ["integer", "string"]},
+            "station": {"type": "string"}, "id": {"type": "string"}, "description": {"type": ["string", "object"]}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/baseline.schema.json",
+  "title": "_komand/baselines/<Family>.json — the command set of a family with no authored table",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {"^_": {}},
+  "properties": {
+    "set": {"$ref": "#/$defs/bucket"},
+    "do": {"$ref": "#/$defs/bucket"},
+    "rig": {"$ref": "#/$defs/bucket"},
+    "nab": {"$ref": "#/$defs/bucket"}
+  },
+  "$defs": {
+    "bucket": {"type": "object", "additionalProperties": {"$ref": "command.schema.json"}}
+  }
+}

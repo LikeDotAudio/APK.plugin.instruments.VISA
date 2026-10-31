@@ -27,6 +27,7 @@ INSTRUMENTS_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KNOWN_DEVICES_PATH = os.path.join(INSTRUMENTS_ROOT, '_komand', 'knownDevices.json')
 MANIFEST_PATH = os.path.join(INSTRUMENTS_ROOT, 'manifest.json')
 PORTS_PATH = os.path.join(INSTRUMENTS_ROOT, '_komand', 'ports.json')
+FAMILIES_PATH = os.path.join(INSTRUMENTS_ROOT, 'families.json')
 
 # A FAMILY'S FOLDER IS `INSTRUMENT.<Family>`; ITS NAME IS `<Family>`.
 # The prefix is the directory's, and nothing else's: the device type, the MQTT
@@ -46,10 +47,42 @@ def family_name(directory_name):
     return directory_name
 
 
+def load_families(path=FAMILIES_PATH):
+    """`families.json` — {family: folder}, the resolver as data (audit #4)."""
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return dict(json.load(f).get('families', {}))
+    except (OSError, ValueError):
+        return {}
+
+
 def family_directory(family, root=INSTRUMENTS_ROOT):
-    """`<root>/INSTRUMENT.<family>` if it exists, else `<root>/<family>`."""
+    """The family's folder: `families.json` first, else `INSTRUMENT.<family>`
+    if it exists, else `<root>/<family>` (a tree that predates the index)."""
+    folder = load_families(os.path.join(root, 'families.json')).get(family)
+    if folder and os.path.isdir(os.path.join(root, folder)):
+        return os.path.join(root, folder)
     prefixed = os.path.join(root, FAMILY_PREFIX + family)
     return prefixed if os.path.isdir(prefixed) else os.path.join(root, family)
+
+
+# The catalogue fields a `.gui` and `knownDevices.json` both carry. The `.gui`
+# is the source; knownDevices.json (the *IDN? catalogue PLUGIN.VISA compiles
+# in) must say the same, and --check fails when it does not (audit #2).
+CATALOGUE_FIELDS = ('manufacturer', 'type', 'notes')
+
+
+def catalogue_disagreements(model, gui_data, known):
+    """`model.field: gui X != knownDevices Y` for every field the two disagree on."""
+    out = []
+    for field in CATALOGUE_FIELDS:
+        if field in gui_data and field in known and gui_data[field] != known[field]:
+            out.append(f"{model}.{field}: .gui {gui_data[field]!r} != knownDevices.json {known[field]!r}")
+    return out
+
+
+class BrokenGui(SystemExit):
+    """A `<Model>.gui` that exists and does not parse: said, never skipped."""
 
 # --------------------------------------------------------------------------
 # WHERE AN INSTRUMENT'S API ANSWERS, and where it goes to find the box.
@@ -220,973 +253,37 @@ IDN_ALIASES = {
 }
 
 # --------------------------------------------------------------------------
-# Baseline command sets for families without authored .komand tables
+# Baseline command sets and primary donors — DATA, not code (audit 2026-10-30
+# #5). They were ~950 lines of Python dict literals here; they are now
+# `_komand/baselines/<Family>.json` (a family with no authored .komand) and
+# `_komand/baselines/donors.json` (the authored model a table-less model
+# inherits from). Same content, so every generated spec is byte-identical.
 # --------------------------------------------------------------------------
 
-BASELINE_COMMANDS = {
-    "Counter": {
-        "set": {
-            "Set_Frequency_Arm_Start": {
-                "scpi": ":SENSe:FREQuency:ARM:STARt:SOURce <source>",
-                "scpi_fast": ":SENS:FREQ:ARM:STAR:SOUR <source>",
-                "description": "Set start arm source for frequency measurements",
-                "subsystem": "SENSe",
-                "group": "Arming and Triggering",
-                "args": ["source"],
-                "arg": {"kind": "enum", "values": ["IMMediate", "EXTernal"]},
-            },
-            "Set_Gate_Time": {
-                "scpi": ":SENSe:FREQuency:ARM:STOP:TIMer <seconds>",
-                "scpi_fast": ":SENS:FREQ:ARM:STOP:TIM <seconds>",
-                "description": "Set gate time in seconds",
-                "subsystem": "SENSe",
-                "group": "Gate Control",
-                "args": ["seconds"],
-                "arg": {"kind": "numeric", "unit": "s", "min": 0.001, "max": 100.0},
-            },
-            "Set_Input1_Coupling": {
-                "scpi": ":INPut1:COUPling <coupling>",
-                "scpi_fast": ":INP1:COUP <coupling>",
-                "description": "Set Channel 1 AC/DC input coupling",
-                "subsystem": "INPut",
-                "group": "Input Conditioning",
-                "args": ["coupling"],
-                "arg": {"kind": "enum", "values": ["AC", "DC"]},
-            },
-            "Set_Input1_Impedance": {
-                "scpi": ":INPut1:IMPedance <ohms>",
-                "scpi_fast": ":INP1:IMP <ohms>",
-                "description": "Set Channel 1 input impedance (50 Ohm or 1 MOhm)",
-                "subsystem": "INPut",
-                "group": "Input Conditioning",
-                "args": ["ohms"],
-                "arg": {"kind": "enum", "values": ["50", "1M"]},
-            },
-            "Set_Input1_Filter": {
-                "scpi": ":INPut1:FILTer:STATe <state>",
-                "scpi_fast": ":INP1:FILT:STAT <state>",
-                "description": "Enable or disable 100 kHz low-pass filter on Channel 1",
-                "subsystem": "INPut",
-                "group": "Input Conditioning",
-                "args": ["state"],
-                "arg": {"kind": "bool", "values": ["OFF", "ON"]},
-            },
-            "Set_Input2_Coupling": {
-                "scpi": ":INPut2:COUPling <coupling>",
-                "scpi_fast": ":INP2:COUP <coupling>",
-                "description": "Set Channel 2 AC/DC input coupling",
-                "subsystem": "INPut",
-                "group": "Input Conditioning",
-                "args": ["coupling"],
-                "arg": {"kind": "enum", "values": ["AC", "DC"]},
-            },
-            "Set_Input2_Impedance": {
-                "scpi": ":INPut2:IMPedance <ohms>",
-                "scpi_fast": ":INP2:IMP <ohms>",
-                "description": "Set Channel 2 input impedance (50 Ohm or 1 MOhm)",
-                "subsystem": "INPut",
-                "group": "Input Conditioning",
-                "args": ["ohms"],
-                "arg": {"kind": "enum", "values": ["50", "1M"]},
-            },
-            "Set_Trigger_Level": {
-                "scpi": ":SENSe:EVENt1:LEVel <level>",
-                "scpi_fast": ":SENS:EVEN1:LEV <level>",
-                "description": "Set Channel 1 trigger threshold voltage",
-                "subsystem": "SENSe",
-                "group": "Trigger Setup",
-                "args": ["level"],
-                "arg": {"kind": "numeric", "unit": "V"},
-            },
-            "Set_Function": {
-                "scpi": ":SENSe:FUNCtion '<function>'",
-                "scpi_fast": ":SENS:FUNC '<function>'",
-                "description": "Set active measurement function",
-                "subsystem": "SENSe",
-                "group": "Measurement Setup",
-                "args": ["function"],
-                "arg": {"kind": "enum", "values": ["FREQuency 1", "PERiod 1", "TINTerval 1,2", "PWIDth 1", "NWIDth 1"]},
-            },
-        },
-        "nab": {
-            "Read_Next": {
-                "scpi": ":READ?",
-                "scpi_fast": ":READ?",
-                "description": "Trigger counter and fetch next reading",
-                "subsystem": "SENSe",
-                "group": "Data Acquisition",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"separator": ";", "fields": [{"name": "reading", "unit": "Hz"}], "unit": "Hz"},
-            },
-            "Fetch_Data": {
-                "scpi": ":FETCh?",
-                "scpi_fast": ":FETC?",
-                "description": "Fetch last calculated measurement",
-                "subsystem": "SENSe",
-                "group": "Data Acquisition",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"separator": ";", "fields": [{"name": "reading", "unit": "Hz"}], "unit": "Hz"},
-            },
-            "Measure_Frequency": {
-                "scpi": ":MEASure:FREQuency?",
-                "scpi_fast": ":MEAS:FREQ?",
-                "description": "Measure frequency on channel 1",
-                "subsystem": "SENSe",
-                "group": "Direct Measurement",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"fields": [{"name": "frequency", "unit": "Hz"}], "unit": "Hz"},
-            },
-            "Measure_Period": {
-                "scpi": ":MEASure:PERiod?",
-                "scpi_fast": ":MEAS:PER?",
-                "description": "Measure signal period on channel 1",
-                "subsystem": "SENSe",
-                "group": "Direct Measurement",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"fields": [{"name": "period", "unit": "s"}], "unit": "s"},
-            },
-            "Measure_Time_Interval": {
-                "scpi": ":MEASure:TINTerval?",
-                "scpi_fast": ":MEAS:TINT?",
-                "description": "Measure time interval between channel 1 and channel 2",
-                "subsystem": "SENSe",
-                "group": "Direct Measurement",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"fields": [{"name": "interval", "unit": "s"}], "unit": "s"},
-            },
-            "Measure_Pulse_Width": {
-                "scpi": ":MEASure:PWIDth?",
-                "scpi_fast": ":MEAS:PWID?",
-                "description": "Measure positive pulse width",
-                "subsystem": "SENSe",
-                "group": "Direct Measurement",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"fields": [{"name": "width", "unit": "s"}], "unit": "s"},
-            },
-            "Read_IDN": {
-                "scpi": "*IDN?",
-                "scpi_fast": "*IDN?",
-                "description": "Read instrument identification string",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"separator": ",", "fields": [{"name": "manufacturer"}, {"name": "model"}, {"name": "serial"}, {"name": "firmware"}]},
-            },
-            "Query_Error": {
-                "scpi": ":SYSTem:ERRor?",
-                "scpi_fast": ":SYST:ERR?",
-                "description": "Query next error code and message from queue",
-                "subsystem": "SYSTem",
-                "group": "System Utilities",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"separator": ",", "fields": [{"name": "code"}, {"name": "message"}]},
-            },
-            "Query_OPC": {
-                "scpi": "*OPC?",
-                "scpi_fast": "*OPC?",
-                "description": "Query operation complete state",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"fields": [{"name": "complete"}]},
-            },
-            "Read_STB": {
-                "scpi": "*STB?",
-                "scpi_fast": "*STB?",
-                "description": "Read status byte register",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"fields": [{"name": "status_byte"}]},
-            },
-        },
-        "do": {
-            "Reset": {
-                "scpi": "*RST",
-                "scpi_fast": "*RST",
-                "description": "Reset counter to factory default settings",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Clear_Status": {
-                "scpi": "*CLS",
-                "scpi_fast": "*CLS",
-                "description": "Clear status registers and error queue",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Initiate": {
-                "scpi": ":INITiate",
-                "scpi_fast": ":INIT",
-                "description": "Initiate measurement cycle",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-            "Abort": {
-                "scpi": ":ABORt",
-                "scpi_fast": ":ABOR",
-                "description": "Abort active measurement",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-            "Auto_Trigger": {
-                "scpi": ":SENSe:EVENt1:LEVel:AUTO ON",
-                "scpi_fast": ":SENS:EVEN1:LEV:AUTO ON",
-                "description": "Automatically set trigger levels",
-                "subsystem": "SENSe",
-                "group": "Trigger Setup",
-                "args": [],
-            },
-        },
-        "rig": {
-            "Configure_Frequency": {
-                "scpi": ":CONFigure:FREQuency <expected_freq>, <resolution>",
-                "scpi_fast": ":CONF:FREQ <expected_freq>, <resolution>",
-                "description": "Configure frequency measurement with expected frequency and target resolution",
-                "subsystem": "CONFigure",
-                "group": "Measurement Configuration",
-                "args": ["expected_freq", "resolution"],
-                "arg": {
-                    "kind": "multi",
-                    "parameters": {
-                        "expected_freq": {"kind": "numeric", "unit": "Hz"},
-                        "resolution": {"kind": "numeric", "unit": "Hz"},
-                    },
-                },
-            },
-            "Configure_Period": {
-                "scpi": ":CONFigure:PERiod <expected_period>, <resolution>",
-                "scpi_fast": ":CONF:PER <expected_period>, <resolution>",
-                "description": "Configure period measurement with expected period and resolution",
-                "subsystem": "CONFigure",
-                "group": "Measurement Configuration",
-                "args": ["expected_period", "resolution"],
-                "arg": {
-                    "kind": "multi",
-                    "parameters": {
-                        "expected_period": {"kind": "numeric", "unit": "s"},
-                        "resolution": {"kind": "numeric", "unit": "s"},
-                    },
-                },
-            },
-            "Configure_Time_Interval": {
-                "scpi": ":CONFigure:TINTerval",
-                "scpi_fast": ":CONF:TINT",
-                "description": "Configure time interval measurement between Channel 1 and 2",
-                "subsystem": "CONFigure",
-                "group": "Measurement Configuration",
-                "args": [],
-            },
-        },
-    },
+BASELINES_DIR = os.path.join(INSTRUMENTS_ROOT, '_komand', 'baselines')
 
-    "DAQ": {
-        "set": {
-            "Set_Scan_List": {
-                "scpi": ":ROUTe:SCAN (@<channels>)",
-                "scpi_fast": ":ROUT:SCAN (@<channels>)",
-                "description": "Define channels included in automatic scan sweep",
-                "subsystem": "ROUTe",
-                "group": "Route Configuration",
-                "args": ["channels"],
-                "arg": {"kind": "string"},
-            },
-            "Set_Scan_Interval": {
-                "scpi": ":ROUTe:SCAN:TIMer <seconds>",
-                "scpi_fast": ":ROUT:SCAN:TIM <seconds>",
-                "description": "Set timer interval between scan sweeps",
-                "subsystem": "ROUTe",
-                "group": "Scan Timing",
-                "args": ["seconds"],
-                "arg": {"kind": "numeric", "unit": "s", "min": 0.0, "max": 359999.0},
-            },
-            "Set_Channel_Delay": {
-                "scpi": ":ROUTe:CHANnel:DELay <seconds>, (@<channels>)",
-                "scpi_fast": ":ROUT:CHAN:DEL <seconds>, (@<channels>)",
-                "description": "Set settling delay time before measurement on specified channels",
-                "subsystem": "ROUTe",
-                "group": "Scan Timing",
-                "args": ["seconds", "channels"],
-            },
-            "Set_Monitor_Channel": {
-                "scpi": ":ROUTe:MONItor (@<channel>)",
-                "scpi_fast": ":ROUT:MON (@<channel>)",
-                "description": "Designate single channel for real-time monitoring",
-                "subsystem": "ROUTe",
-                "group": "Channel Monitor",
-                "args": ["channel"],
-            },
-            "Set_Monitor_State": {
-                "scpi": ":ROUTe:MONItor:STATe <state>",
-                "scpi_fast": ":ROUT:MON:STAT <state>",
-                "description": "Enable or disable background channel monitoring",
-                "subsystem": "ROUTe",
-                "group": "Channel Monitor",
-                "args": ["state"],
-                "arg": {"kind": "bool", "values": ["OFF", "ON"]},
-            },
-            "Set_Trigger_Source": {
-                "scpi": ":TRIGger:SOURce <source>",
-                "scpi_fast": ":TRIG:SOUR <source>",
-                "description": "Set trigger source for scan acquisition",
-                "subsystem": "TRIGger",
-                "group": "Trigger Setup",
-                "args": ["source"],
-                "arg": {"kind": "enum", "values": ["IMMediate", "TIMer", "EXTernal", "BUS", "ALARm1", "ALARm2"]},
-            },
-            "Set_Trigger_Count": {
-                "scpi": ":TRIGger:COUNt <count>",
-                "scpi_fast": ":TRIG:COUN <count>",
-                "description": "Set number of sweeps to perform before trigger system idles",
-                "subsystem": "TRIGger",
-                "group": "Trigger Setup",
-                "args": ["count"],
-                "arg": {"kind": "numeric", "min": 1, "max": 50000},
-            },
-            "Set_Integration_NPLC": {
-                "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>, (@<channels>)",
-                "scpi_fast": ":SENS:VOLT:DC:NPLC <nplc>, (@<channels>)",
-                "description": "Set integration time in power line cycles for DC measurements",
-                "subsystem": "SENSe",
-                "group": "Measurement Parameters",
-                "args": ["nplc", "channels"],
-            },
-        },
-        "nab": {
-            "Read_Next": {
-                "scpi": ":READ?",
-                "scpi_fast": ":READ?",
-                "description": "Trigger scan sweep and return all channel readings",
-                "subsystem": "SENSe",
-                "group": "Data Acquisition",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"separator": ",", "fields": [{"name": "readings"}]},
-            },
-            "Fetch_Scan": {
-                "scpi": ":FETCh?",
-                "scpi_fast": ":FETC?",
-                "description": "Fetch reading buffer contents from memory",
-                "subsystem": "SENSe",
-                "group": "Data Acquisition",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {"separator": ",", "fields": [{"name": "readings"}]},
-            },
-            "Read_Scan_List": {
-                "scpi": ":ROUTe:SCAN?",
-                "scpi_fast": ":ROUT:SCAN?",
-                "description": "Query configured scan channel list",
-                "subsystem": "ROUTe",
-                "group": "Route Configuration",
-                "args": [],
-                "returns": {"fields": [{"name": "scan_list"}]},
-            },
-            "Read_Monitor_Data": {
-                "scpi": ":ROUTe:MONItor:DATA?",
-                "scpi_fast": ":ROUT:MON:DATA?",
-                "description": "Read latest measurement from monitored channel",
-                "subsystem": "ROUTe",
-                "group": "Channel Monitor",
-                "args": [],
-                "returns": {"fields": [{"name": "reading"}]},
-            },
-            "Read_IDN": {
-                "scpi": "*IDN?",
-                "scpi_fast": "*IDN?",
-                "description": "Read DAQ identity and installed module firmware",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-                "returns": {"separator": ",", "fields": [{"name": "manufacturer"}, {"name": "model"}, {"name": "serial"}, {"name": "firmware"}]},
-            },
-            "Query_Error": {
-                "scpi": ":SYSTem:ERRor?",
-                "scpi_fast": ":SYST:ERR?",
-                "description": "Query next error code and message",
-                "subsystem": "SYSTem",
-                "group": "System Utilities",
-                "args": [],
-                "returns": {"separator": ",", "fields": [{"name": "code"}, {"name": "message"}]},
-            },
-            "Query_Scan_Size": {
-                "scpi": ":DATA:POINts?",
-                "scpi_fast": ":DATA:POIN?",
-                "description": "Query number of readings currently stored in volatile memory",
-                "subsystem": "DATA",
-                "group": "Memory System",
-                "args": [],
-                "returns": {"fields": [{"name": "count"}]},
-            },
-        },
-        "do": {
-            "Start_Scan": {
-                "scpi": ":INITiate",
-                "scpi_fast": ":INIT",
-                "description": "Initiate scan sequence",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-            "Abort": {
-                "scpi": ":ABORt",
-                "scpi_fast": ":ABOR",
-                "description": "Abort running scan sweep",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-            "Reset": {
-                "scpi": "*RST",
-                "scpi_fast": "*RST",
-                "description": "Reset DAQ mainframe and installed modules",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Clear_Status": {
-                "scpi": "*CLS",
-                "scpi_fast": "*CLS",
-                "description": "Clear all status registers and error queue",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Open_All": {
-                "scpi": ":ROUTe:OPEN:ALL",
-                "scpi_fast": ":ROUT:OPEN:ALL",
-                "description": "Open all switch and multiplexer channels across all slots",
-                "subsystem": "ROUTe",
-                "group": "Route Configuration",
-                "args": [],
-            },
-            "Clear_Memory": {
-                "scpi": ":DATA:CLEar",
-                "scpi_fast": ":DATA:CLE",
-                "description": "Clear internal reading storage buffer",
-                "subsystem": "DATA",
-                "group": "Memory System",
-                "args": [],
-            },
-        },
-        "rig": {
-            "Configure_Voltage_Scan": {
-                "scpi": ":CONFigure:VOLTage:DC <range>, <resolution>, (@<channels>)",
-                "scpi_fast": ":CONF:VOLT:DC <range>, <resolution>, (@<channels>)",
-                "description": "Configure DC voltage measurements with range and resolution across channel list",
-                "subsystem": "CONFigure",
-                "group": "Measurement Configuration",
-                "args": ["range", "resolution", "channels"],
-            },
-            "Configure_Temperature_Scan": {
-                "scpi": ":CONFigure:TEMPerature <type>, <transducer>, (@<channels>)",
-                "scpi_fast": ":CONF:TEMP <type>, <transducer>, (@<channels>)",
-                "description": "Configure thermocouple/RTD temperature measurement on channel list",
-                "subsystem": "CONFigure",
-                "group": "Measurement Configuration",
-                "args": ["type", "transducer", "channels"],
-            },
-        },
-    },
 
-    "SMU": {
-        "set": {
-            "Set_Source_Function": {
-                "scpi": ":SOURce:FUNCtion <func>",
-                "scpi_fast": ":SOUR:FUNC <func>",
-                "description": "Set active source mode: Voltage or Current",
-                "subsystem": "SOURce",
-                "group": "Source Setup",
-                "args": ["func"],
-                "arg": {"kind": "enum", "values": ["VOLTage", "CURRent"]},
-            },
-            "Set_Source_Voltage": {
-                "scpi": ":SOURce:VOLTage:LEVel <volts>",
-                "scpi_fast": ":SOUR:VOLT:LEV <volts>",
-                "description": "Set voltage output level in Volts",
-                "subsystem": "SOURce",
-                "group": "Source Setup",
-                "args": ["volts"],
-                "arg": {"kind": "numeric", "unit": "V"},
-            },
-            "Set_Source_Current": {
-                "scpi": ":SOURce:CURRent:LEVel <amps>",
-                "scpi_fast": ":SOUR:CURR:LEV <amps>",
-                "description": "Set current output level in Amperes",
-                "subsystem": "SOURce",
-                "group": "Source Setup",
-                "args": ["amps"],
-                "arg": {"kind": "numeric", "unit": "A"},
-            },
-            "Set_Voltage_Compliance": {
-                "scpi": ":SENSe:VOLTage:PROTection:LEVel <volts>",
-                "scpi_fast": ":SENS:VOLT:PROT:LEV <volts>",
-                "description": "Set maximum voltage compliance protection limit",
-                "subsystem": "SENSe",
-                "group": "Compliance Limits",
-                "args": ["volts"],
-                "arg": {"kind": "numeric", "unit": "V"},
-            },
-            "Set_Current_Compliance": {
-                "scpi": ":SENSe:CURRent:PROTection:LEVel <amps>",
-                "scpi_fast": ":SENS:CURR:PROT:LEV <amps>",
-                "description": "Set maximum current compliance protection limit",
-                "subsystem": "SENSe",
-                "group": "Compliance Limits",
-                "args": ["amps"],
-                "arg": {"kind": "numeric", "unit": "A"},
-            },
-            "Set_Output_State": {
-                "scpi": ":OUTPut:STATe <state>",
-                "scpi_fast": ":OUTP:STAT <state>",
-                "description": "Turn SMU output terminal ON or OFF",
-                "subsystem": "OUTPut",
-                "group": "Output Control",
-                "args": ["state"],
-                "arg": {"kind": "bool", "values": ["OFF", "ON"]},
-            },
-            "Set_Sense_Function": {
-                "scpi": ":SENSe:FUNCtion '<function>'",
-                "scpi_fast": ":SENS:FUNC '<function>'",
-                "description": "Set measurement sense mode",
-                "subsystem": "SENSe",
-                "group": "Measurement Setup",
-                "args": ["function"],
-                "arg": {"kind": "enum", "values": ["VOLTage", "CURRent", "RESistance"]},
-            },
-            "Set_Sense_Remote": {
-                "scpi": ":SENSe:REMote <state>",
-                "scpi_fast": ":SENS:REM <state>",
-                "description": "Select 4-wire remote sensing or 2-wire local sensing",
-                "subsystem": "SENSe",
-                "group": "Measurement Setup",
-                "args": ["state"],
-                "arg": {"kind": "bool", "values": ["OFF", "ON"]},
-            },
-            "Set_Integration_NPLC": {
-                "scpi": ":SENSe:NPLC <nplc>",
-                "scpi_fast": ":SENS:NPLC <nplc>",
-                "description": "Set A/D converter integration time in power line cycles",
-                "subsystem": "SENSe",
-                "group": "Measurement Setup",
-                "args": ["nplc"],
-                "arg": {"kind": "numeric", "min": 0.01, "max": 10.0},
-            },
-        },
-        "nab": {
-            "Read_Next": {
-                "scpi": ":READ?",
-                "scpi_fast": ":READ?",
-                "description": "Trigger measurement and return voltage, current, and resistance",
-                "subsystem": "SENSe",
-                "group": "Data Acquisition",
-                "args": [],
-                "arg": {"kind": "none"},
-                "returns": {
-                    "separator": ",",
-                    "fields": [
-                        {"name": "voltage", "unit": "V"},
-                        {"name": "current", "unit": "A"},
-                        {"name": "resistance", "unit": "Ohm"},
-                        {"name": "time", "unit": "s"},
-                        {"name": "status"},
-                    ],
-                },
-            },
-            "Measure_Voltage": {
-                "scpi": ":MEASure:VOLTage?",
-                "scpi_fast": ":MEAS:VOLT?",
-                "description": "Measure voltage at terminals",
-                "subsystem": "SENSe",
-                "group": "Direct Measurement",
-                "args": [],
-                "returns": {"fields": [{"name": "voltage", "unit": "V"}], "unit": "V"},
-            },
-            "Measure_Current": {
-                "scpi": ":MEASure:CURRent?",
-                "scpi_fast": ":MEAS:CURR?",
-                "description": "Measure current flowing through terminals",
-                "subsystem": "SENSe",
-                "group": "Direct Measurement",
-                "args": [],
-                "returns": {"fields": [{"name": "current", "unit": "A"}], "unit": "A"},
-            },
-            "Measure_Resistance": {
-                "scpi": ":MEASure:RESistance?",
-                "scpi_fast": ":MEAS:RES?",
-                "description": "Calculate resistance from measured V and I",
-                "subsystem": "SENSe",
-                "group": "Direct Measurement",
-                "args": [],
-                "returns": {"fields": [{"name": "resistance", "unit": "Ohm"}], "unit": "Ohm"},
-            },
-            "Read_Output_State": {
-                "scpi": ":OUTPut:STATe?",
-                "scpi_fast": ":OUTP:STAT?",
-                "description": "Query output enabled/disabled status",
-                "subsystem": "OUTPut",
-                "group": "Output Control",
-                "args": [],
-                "returns": {"fields": [{"name": "state"}]},
-            },
-            "Read_Compliance_Status": {
-                "scpi": ":SENSe:PROTection:TRIPped?",
-                "scpi_fast": ":SENS:PROT:TRIP?",
-                "description": "Check if voltage or current compliance threshold was tripped",
-                "subsystem": "SENSe",
-                "group": "Compliance Limits",
-                "args": [],
-                "returns": {"fields": [{"name": "tripped"}]},
-            },
-            "Read_IDN": {
-                "scpi": "*IDN?",
-                "scpi_fast": "*IDN?",
-                "description": "Read SMU identification string",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-                "returns": {"separator": ",", "fields": [{"name": "manufacturer"}, {"name": "model"}, {"name": "serial"}, {"name": "firmware"}]},
-            },
-            "Query_Error": {
-                "scpi": ":SYSTem:ERRor?",
-                "scpi_fast": ":SYST:ERR?",
-                "description": "Query system error queue",
-                "subsystem": "SYSTem",
-                "group": "System Utilities",
-                "args": [],
-                "returns": {"separator": ",", "fields": [{"name": "code"}, {"name": "message"}]},
-            },
-        },
-        "do": {
-            "Output_ON": {
-                "scpi": ":OUTPut:STATe ON",
-                "scpi_fast": ":OUTP:STAT ON",
-                "description": "Enable SMU power output terminals",
-                "subsystem": "OUTPut",
-                "group": "Output Control",
-                "args": [],
-            },
-            "Output_OFF": {
-                "scpi": ":OUTPut:STATe OFF",
-                "scpi_fast": ":OUTP:STAT OFF",
-                "description": "Safely disable SMU output terminals",
-                "subsystem": "OUTPut",
-                "group": "Output Control",
-                "args": [],
-            },
-            "Reset": {
-                "scpi": "*RST",
-                "scpi_fast": "*RST",
-                "description": "Reset SMU to default factory parameters",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Clear_Status": {
-                "scpi": "*CLS",
-                "scpi_fast": "*CLS",
-                "description": "Clear status registers and error queue",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Initiate": {
-                "scpi": ":INITiate",
-                "scpi_fast": ":INIT",
-                "description": "Arm trigger system and initiate measurement",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-            "Abort": {
-                "scpi": ":ABORt",
-                "scpi_fast": ":ABOR",
-                "description": "Abort ongoing sweep or measurement sequence",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-        },
-        "rig": {
-            "Configure_Voltage_Source": {
-                "scpi": ":SOURce:FUNCtion VOLTage;:SOURce:VOLTage:LEVel <volts>;:SENSe:CURRent:PROTection <compliance>",
-                "scpi_fast": ":SOUR:FUNC VOLT;:SOUR:VOLT:LEV <volts>;:SENS:CURR:PROT <compliance>",
-                "description": "Configure SMU as voltage source with voltage setpoint and current compliance limit",
-                "subsystem": "SOURce",
-                "group": "Source Setup",
-                "args": ["volts", "compliance"],
-                "arg": {
-                    "kind": "multi",
-                    "parameters": {
-                        "volts": {"kind": "numeric", "unit": "V"},
-                        "compliance": {"kind": "numeric", "unit": "A"},
-                    },
-                },
-            },
-            "Configure_Current_Source": {
-                "scpi": ":SOURce:FUNCtion CURRent;:SOURce:CURRent:LEVel <amps>;:SENSe:VOLTage:PROTection <compliance>",
-                "scpi_fast": ":SOUR:FUNC CURR;:SOUR:CURR:LEV <amps>;:SENS:VOLT:PROT <compliance>",
-                "description": "Configure SMU as current source with current setpoint and voltage compliance limit",
-                "subsystem": "SOURce",
-                "group": "Source Setup",
-                "args": ["amps", "compliance"],
-                "arg": {
-                    "kind": "multi",
-                    "parameters": {
-                        "amps": {"kind": "numeric", "unit": "A"},
-                        "compliance": {"kind": "numeric", "unit": "V"},
-                    },
-                },
-            },
-        },
-    },
+def load_baselines(directory=BASELINES_DIR):
+    """{family: baseline command set}, one `<Family>.json` each (notes dropped)."""
+    out = {}
+    for path in sorted(glob.glob(os.path.join(directory, '*.json'))):
+        name = os.path.splitext(os.path.basename(path))[0]
+        if name == 'donors':
+            continue
+        with open(path, 'r', encoding='utf-8') as f:
+            doc = json.load(f, object_pairs_hook=OrderedDict)
+        out[name] = OrderedDict((k, v) for k, v in doc.items() if not k.startswith('_'))
+    return out
 
-    "VNA": {
-        "set": {
-            "Set_Start_Frequency": {
-                "scpi": ":SENSe:FREQuency:STARt <freq>",
-                "scpi_fast": ":SENS:FREQ:STAR <freq>",
-                "description": "Set sweep start frequency in Hz",
-                "subsystem": "SENSe",
-                "group": "Frequency Setup",
-                "args": ["freq"],
-                "arg": {"kind": "numeric", "unit": "Hz"},
-            },
-            "Set_Stop_Frequency": {
-                "scpi": ":SENSe:FREQuency:STOP <freq>",
-                "scpi_fast": ":SENS:FREQ:STOP <freq>",
-                "description": "Set sweep stop frequency in Hz",
-                "subsystem": "SENSe",
-                "group": "Frequency Setup",
-                "args": ["freq"],
-                "arg": {"kind": "numeric", "unit": "Hz"},
-            },
-            "Set_Center_Frequency": {
-                "scpi": ":SENSe:FREQuency:CENTer <freq>",
-                "scpi_fast": ":SENS:FREQ:CENT <freq>",
-                "description": "Set sweep center frequency in Hz",
-                "subsystem": "SENSe",
-                "group": "Frequency Setup",
-                "args": ["freq"],
-                "arg": {"kind": "numeric", "unit": "Hz"},
-            },
-            "Set_Frequency_Span": {
-                "scpi": ":SENSe:FREQuency:SPAN <span>",
-                "scpi_fast": ":SENS:FREQ:SPAN <span>",
-                "description": "Set sweep frequency span in Hz",
-                "subsystem": "SENSe",
-                "group": "Frequency Setup",
-                "args": ["span"],
-                "arg": {"kind": "numeric", "unit": "Hz"},
-            },
-            "Set_Sweep_Points": {
-                "scpi": ":SENSe:SWEep:POINts <points>",
-                "scpi_fast": ":SENS:SWE:POIN <points>",
-                "description": "Set number of measurement points per sweep",
-                "subsystem": "SENSe",
-                "group": "Sweep Control",
-                "args": ["points"],
-                "arg": {"kind": "numeric", "min": 2, "max": 100001},
-            },
-            "Set_IF_Bandwidth": {
-                "scpi": ":SENSe:BANDwidth:RESolution <bandwidth>",
-                "scpi_fast": ":SENS:BAND:RES <bandwidth>",
-                "description": "Set intermediate frequency (IF) filter resolution bandwidth",
-                "subsystem": "SENSe",
-                "group": "Receiver Setup",
-                "args": ["bandwidth"],
-                "arg": {"kind": "numeric", "unit": "Hz"},
-            },
-            "Set_Power_Level": {
-                "scpi": ":SOURce:POWer:LEVel:IMMediate:AMPLitude <power>",
-                "scpi_fast": ":SOUR:POW:LEV:IMM:AMPL <power>",
-                "description": "Set RF test port stimulus power level in dBm",
-                "subsystem": "SOURce",
-                "group": "Source Setup",
-                "args": ["power"],
-                "arg": {"kind": "numeric", "unit": "dBm"},
-            },
-            "Set_Measurement_Parameter": {
-                "scpi": ":CALCulate:PARameter:DEFine '<param>'",
-                "scpi_fast": ":CALC:PAR:DEF '<param>'",
-                "description": "Select S-parameter to measure on active trace",
-                "subsystem": "CALCulate",
-                "group": "Trace Setup",
-                "args": ["param"],
-                "arg": {"kind": "enum", "values": ["S11", "S21", "S12", "S22"]},
-            },
-            "Set_Display_Format": {
-                "scpi": ":CALCulate:FORMat <format>",
-                "scpi_fast": ":CALC:FORM <format>",
-                "description": "Set active trace display format",
-                "subsystem": "CALCulate",
-                "group": "Trace Setup",
-                "args": ["format"],
-                "arg": {"kind": "enum", "values": ["MLOGarithmic", "PHASe", "GDELay", "SMITh", "POLar", "SWR", "REAL", "IMAGinary"]},
-            },
-        },
-        "nab": {
-            "Read_S_Parameter_Data": {
-                "scpi": ":CALCulate:DATA? FDATA",
-                "scpi_fast": ":CALC:DATA? FDATA",
-                "description": "Fetch formatted trace data points for active S-parameter",
-                "subsystem": "CALCulate",
-                "group": "Trace Data",
-                "args": [],
-                "returns": {"separator": ",", "fields": [{"name": "trace_points"}]},
-            },
-            "Read_Frequency_Range": {
-                "scpi": ":SENSe:FREQuency:STARt?;:SENSe:FREQuency:STOP?",
-                "scpi_fast": ":SENS:FREQ:STAR?;:SENS:FREQ:STOP?",
-                "description": "Read sweep start and stop frequency bounds",
-                "subsystem": "SENSe",
-                "group": "Frequency Setup",
-                "args": [],
-                "returns": {"separator": ";", "fields": [{"name": "start_frequency", "unit": "Hz"}, {"name": "stop_frequency", "unit": "Hz"}]},
-            },
-            "Read_Sweep_Time": {
-                "scpi": ":SENSe:SWEep:TIME?",
-                "scpi_fast": ":SENS:SWE:TIME?",
-                "description": "Read calculated duration of single sweep",
-                "subsystem": "SENSe",
-                "group": "Sweep Control",
-                "args": [],
-                "returns": {"fields": [{"name": "time", "unit": "s"}], "unit": "s"},
-            },
-            "Read_Active_Parameter": {
-                "scpi": ":CALCulate:PARameter:SELect?",
-                "scpi_fast": ":CALC:PAR:SEL?",
-                "description": "Query currently selected S-parameter definition",
-                "subsystem": "CALCulate",
-                "group": "Trace Setup",
-                "args": [],
-                "returns": {"fields": [{"name": "parameter"}]},
-            },
-            "Read_IDN": {
-                "scpi": "*IDN?",
-                "scpi_fast": "*IDN?",
-                "description": "Read VNA identification string",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-                "returns": {"separator": ",", "fields": [{"name": "manufacturer"}, {"name": "model"}, {"name": "serial"}, {"name": "firmware"}]},
-            },
-            "Query_Error": {
-                "scpi": ":SYSTem:ERRor?",
-                "scpi_fast": ":SYST:ERR?",
-                "description": "Query system error queue",
-                "subsystem": "SYSTem",
-                "group": "System Utilities",
-                "args": [],
-                "returns": {"separator": ",", "fields": [{"name": "code"}, {"name": "message"}]},
-            },
-        },
-        "do": {
-            "Reset": {
-                "scpi": "*RST",
-                "scpi_fast": "*RST",
-                "description": "Reset VNA to factory preset state",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Clear_Status": {
-                "scpi": "*CLS",
-                "scpi_fast": "*CLS",
-                "description": "Clear status registers",
-                "subsystem": "Common",
-                "group": "IEEE 488.2 Common",
-                "args": [],
-            },
-            "Trigger_Single": {
-                "scpi": ":INITiate:CONTinuous OFF;:INITiate:IMMediate",
-                "scpi_fast": ":INIT:CONT OFF;:INIT:IMM",
-                "description": "Disarm continuous trigger and initiate single sweep",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-            "Continuous_Sweep": {
-                "scpi": ":INITiate:CONTinuous ON",
-                "scpi_fast": ":INIT:CONT ON",
-                "description": "Arm continuous sweeping mode",
-                "subsystem": "TRIGger",
-                "group": "Trigger System",
-                "args": [],
-            },
-            "Autoscale": {
-                "scpi": ":DISPlay:WINDow:TRACe:Y:SCALe:AUTO",
-                "scpi_fast": ":DISP:WIND:TRAC:Y:SCAL:AUTO",
-                "description": "Autoscale active trace Y-axis limits",
-                "subsystem": "DISPlay",
-                "group": "Display Format",
-                "args": [],
-            },
-            "RF_Power_ON": {
-                "scpi": ":OUTPut:STATe ON",
-                "scpi_fast": ":OUTP:STAT ON",
-                "description": "Turn RF stimulus port power ON",
-                "subsystem": "OUTPut",
-                "group": "Source Setup",
-                "args": [],
-            },
-            "RF_Power_OFF": {
-                "scpi": ":OUTPut:STATe OFF",
-                "scpi_fast": ":OUTP:STAT OFF",
-                "description": "Turn RF stimulus port power OFF",
-                "subsystem": "OUTPut",
-                "group": "Source Setup",
-                "args": [],
-            },
-        },
-        "rig": {
-            "Configure_S_Parameter_Sweep": {
-                "scpi": ":CALCulate:PARameter:DEFine '<param>';:SENSe:FREQuency:STARt <start>;:SENSe:FREQuency:STOP <stop>;:SENSe:SWEep:POINts <points>",
-                "scpi_fast": ":CALC:PAR:DEF '<param>';:SENS:FREQ:STAR <start>;:SENS:FREQ:STOP <stop>;:SENS:SWE:POIN <points>",
-                "description": "Configure S-parameter, sweep frequency bounds, and number of sweep points in one atomic operation",
-                "subsystem": "CONFigure",
-                "group": "Measurement Configuration",
-                "args": ["param", "start", "stop", "points"],
-                "arg": {
-                    "kind": "multi",
-                    "parameters": {
-                        "param": {"kind": "enum", "values": ["S11", "S21", "S12", "S22"]},
-                        "start": {"kind": "numeric", "unit": "Hz"},
-                        "stop": {"kind": "numeric", "unit": "Hz"},
-                        "points": {"kind": "numeric", "min": 2, "max": 100001},
-                    },
-                },
-            },
-        },
-    },
-}
 
-# Primary donor models for families with authored .komand files
-PRIMARY_DONOR_MODELS = {
-    "DMM": "34401A",
-    "Generator": "33220A",
-    "Oscilloscope": "54641D",
-    "Power": "66101A",
-    "Load": "6060B",
-    "Spectrum": "N9340B",
-    "Router": "3235",
-    "Distortion": "Porta_one",
-    "LCR": "4263A",
-}
+def load_donors(directory=BASELINES_DIR):
+    """{family: donor model} from `donors.json`."""
+    with open(os.path.join(directory, 'donors.json'), 'r', encoding='utf-8') as f:
+        return dict(json.load(f)['donors'])
+
+
+BASELINE_COMMANDS = load_baselines()
+PRIMARY_DONOR_MODELS = load_donors()
 
 
 def load_all_authored_komands():
@@ -1300,11 +397,16 @@ def generate_device_api(family, model, authored_komands, known_devices,
     gui_file = os.path.join(family_directory(family), model, f"{model}.gui")
     gui_data = {}
     if os.path.isfile(gui_file):
+        # A BROKEN .gui IS AN ERROR, NOT AN ABSENT ONE (audit #3). This was
+        # `except Exception: pass`: a malformed file produced a spec with the
+        # fallback manufacturer and no channels/domains, and --check passed.
         try:
             with open(gui_file, 'r', encoding='utf-8') as f:
                 gui_data = json.load(f)
-        except Exception:
-            pass
+        except (OSError, ValueError) as e:
+            raise BrokenGui(f"{os.path.relpath(gui_file, INSTRUMENTS_ROOT)} does not read: {e}")
+        if not isinstance(gui_data, dict):
+            raise BrokenGui(f"{os.path.relpath(gui_file, INSTRUMENTS_ROOT)} is not a JSON object")
 
     known = known_devices.get(model, {})
     manufacturer = gui_data.get('manufacturer') or known.get('manufacturer', 'Unknown')
@@ -1515,13 +617,48 @@ def main():
     ])
     _emit(PORTS_PATH, _json_text(ports_doc), check, drift)
 
+    # The resolver index must name exactly the folders on disk.
+    indexed = load_families()
+    on_disk = {family_name(d): d for d in os.listdir(INSTRUMENTS_ROOT)
+               if os.path.isdir(os.path.join(INSTRUMENTS_ROOT, d))
+               and d.startswith((FAMILY_PREFIX, LEGACY_FAMILY_PREFIX))}
+    index_problems = [f"families.json: {f} -> {indexed.get(f)!r}, folder {on_disk.get(f)!r}"
+                      for f in sorted(set(indexed) | set(on_disk)) if indexed.get(f) != on_disk.get(f)]
+
+    # The catalogue fields agree between every .gui and knownDevices.json.
+    disagreements = []
+    for family in classes:
+        family_dir = family_directory(family)
+        for model in sorted(os.listdir(family_dir)):
+            gui_file = os.path.join(family_dir, model, f"{model}.gui")
+            if model in known_devices and os.path.isfile(gui_file):
+                with open(gui_file, 'r', encoding='utf-8') as f:
+                    disagreements += catalogue_disagreements(model, json.load(f), known_devices[model])
+
+    # Every donor is an authored model of its family.
+    bad_donors = [f"baselines/donors.json: {fam} -> {m} has no authored .komand"
+                  for fam, m in PRIMARY_DONOR_MODELS.items() if m not in authored_komands]
+
+    # Every governed file against its JSON Schema (_komand/schemas/).
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import schema_check
+    schema_files, schema_problems = schema_check.check_tree(INSTRUMENTS_ROOT)
+
+    problems = index_problems + disagreements + bad_donors + [f"schema: {p}" for p in schema_problems]
+    for p in problems:
+        print(f"problem: {p}", file=sys.stderr)
+
     if check:
         for path in drift:
             print(f"would change: {path}")
+        print(f" {schema_files} file(s) checked against _komand/schemas/; "
+              f"{len(problems)} catalogue/schema/index problem(s).")
         print(f" {generated} specs across {len(classes)} families checked; "
               f"{len(drift)} file(s) out of date.")
-        return 1 if drift else 0
+        return 1 if drift or problems else 0
 
+    if problems:
+        print(f" {len(problems)} catalogue/schema/index problem(s) — see above; --check will fail.")
     print(f" Successfully generated API specifications for {generated} devices across {len(classes)} families.")
     print(f" Total commands presented: {total_commands}")
     if taken:

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/gui.schema.json",
+  "title": "<Model>.gui — one model's catalogue record and capabilities",
+  "type": "object",
+  "required": ["model", "manufacturer", "type", "notes"],
+  "additionalProperties": false,
+  "properties": {
+    "model": {"type": "string", "minLength": 1},
+    "manufacturer": {"type": "string", "minLength": 1},
+    "type": {"type": "string", "minLength": 1},
+    "notes": {"type": "string"},
+    "vocabulary": {"type": "string"},
+    "description": {"type": "string"},
+    "provenance": {"type": "string"},
+    "unverified": {"type": "boolean"},
+    "channels": {"type": "integer", "minimum": 0},
+    "digital_channels": {"type": "integer", "minimum": 0},
+    "watts": {"type": "integer", "minimum": 0},
+    "domains": {"type": "object"},
+    "domain_notes": {"type": "string"},
+    "declared": {"type": "object"},
+    "channel_format": {"type": "object"},
+    "slots": {"type": "object"},
+    "connections": {"type": "array"},
+    "connection_conflicts": {"type": "object"}
+  }
+}

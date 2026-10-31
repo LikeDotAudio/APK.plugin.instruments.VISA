@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/families.schema.json",
+  "title": "INSTRUMENTS/families.json — the INSTRUMENT.<Family> resolver as data",
+  "type": "object",
+  "required": ["version", "prefix", "legacy_prefixes", "families"],
+  "additionalProperties": false,
+  "patternProperties": {"^_": {}},
+  "properties": {
+    "version": {"type": "integer", "minimum": 1},
+    "prefix": {"type": "string", "minLength": 1},
+    "legacy_prefixes": {"type": "array", "items": {"type": "string"}},
+    "families": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+  }
+}

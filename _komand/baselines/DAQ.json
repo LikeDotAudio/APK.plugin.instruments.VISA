@@ -1,0 +1,324 @@
+{
+  "_note": "Baseline command set for INSTRUMENT.DAQ, a family with no authored .komand table. Read by generate_device_apis.py (load_baselines) for every model of the family; the result is that model's DAQ_Baseline spec. Same shape as a .komand table's verb buckets. Validated by schemas/baseline.schema.json under --check.",
+  "set": {
+    "Set_Scan_List": {
+      "scpi": ":ROUTe:SCAN (@<channels>)",
+      "scpi_fast": ":ROUT:SCAN (@<channels>)",
+      "description": "Define channels included in automatic scan sweep",
+      "subsystem": "ROUTe",
+      "group": "Route Configuration",
+      "args": [
+        "channels"
+      ],
+      "arg": {
+        "kind": "string"
+      }
+    },
+    "Set_Scan_Interval": {
+      "scpi": ":ROUTe:SCAN:TIMer <seconds>",
+      "scpi_fast": ":ROUT:SCAN:TIM <seconds>",
+      "description": "Set timer interval between scan sweeps",
+      "subsystem": "ROUTe",
+      "group": "Scan Timing",
+      "args": [
+        "seconds"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "s",
+        "min": 0.0,
+        "max": 359999.0
+      }
+    },
+    "Set_Channel_Delay": {
+      "scpi": ":ROUTe:CHANnel:DELay <seconds>, (@<channels>)",
+      "scpi_fast": ":ROUT:CHAN:DEL <seconds>, (@<channels>)",
+      "description": "Set settling delay time before measurement on specified channels",
+      "subsystem": "ROUTe",
+      "group": "Scan Timing",
+      "args": [
+        "seconds",
+        "channels"
+      ]
+    },
+    "Set_Monitor_Channel": {
+      "scpi": ":ROUTe:MONItor (@<channel>)",
+      "scpi_fast": ":ROUT:MON (@<channel>)",
+      "description": "Designate single channel for real-time monitoring",
+      "subsystem": "ROUTe",
+      "group": "Channel Monitor",
+      "args": [
+        "channel"
+      ]
+    },
+    "Set_Monitor_State": {
+      "scpi": ":ROUTe:MONItor:STATe <state>",
+      "scpi_fast": ":ROUT:MON:STAT <state>",
+      "description": "Enable or disable background channel monitoring",
+      "subsystem": "ROUTe",
+      "group": "Channel Monitor",
+      "args": [
+        "state"
+      ],
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      }
+    },
+    "Set_Trigger_Source": {
+      "scpi": ":TRIGger:SOURce <source>",
+      "scpi_fast": ":TRIG:SOUR <source>",
+      "description": "Set trigger source for scan acquisition",
+      "subsystem": "TRIGger",
+      "group": "Trigger Setup",
+      "args": [
+        "source"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "IMMediate",
+          "TIMer",
+          "EXTernal",
+          "BUS",
+          "ALARm1",
+          "ALARm2"
+        ]
+      }
+    },
+    "Set_Trigger_Count": {
+      "scpi": ":TRIGger:COUNt <count>",
+      "scpi_fast": ":TRIG:COUN <count>",
+      "description": "Set number of sweeps to perform before trigger system idles",
+      "subsystem": "TRIGger",
+      "group": "Trigger Setup",
+      "args": [
+        "count"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "min": 1,
+        "max": 50000
+      }
+    },
+    "Set_Integration_NPLC": {
+      "scpi": ":SENSe:VOLTage:DC:NPLC <nplc>, (@<channels>)",
+      "scpi_fast": ":SENS:VOLT:DC:NPLC <nplc>, (@<channels>)",
+      "description": "Set integration time in power line cycles for DC measurements",
+      "subsystem": "SENSe",
+      "group": "Measurement Parameters",
+      "args": [
+        "nplc",
+        "channels"
+      ]
+    }
+  },
+  "nab": {
+    "Read_Next": {
+      "scpi": ":READ?",
+      "scpi_fast": ":READ?",
+      "description": "Trigger scan sweep and return all channel readings",
+      "subsystem": "SENSe",
+      "group": "Data Acquisition",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "readings"
+          }
+        ]
+      }
+    },
+    "Fetch_Scan": {
+      "scpi": ":FETCh?",
+      "scpi_fast": ":FETC?",
+      "description": "Fetch reading buffer contents from memory",
+      "subsystem": "SENSe",
+      "group": "Data Acquisition",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "readings"
+          }
+        ]
+      }
+    },
+    "Read_Scan_List": {
+      "scpi": ":ROUTe:SCAN?",
+      "scpi_fast": ":ROUT:SCAN?",
+      "description": "Query configured scan channel list",
+      "subsystem": "ROUTe",
+      "group": "Route Configuration",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "scan_list"
+          }
+        ]
+      }
+    },
+    "Read_Monitor_Data": {
+      "scpi": ":ROUTe:MONItor:DATA?",
+      "scpi_fast": ":ROUT:MON:DATA?",
+      "description": "Read latest measurement from monitored channel",
+      "subsystem": "ROUTe",
+      "group": "Channel Monitor",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "reading"
+          }
+        ]
+      }
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "scpi_fast": "*IDN?",
+      "description": "Read DAQ identity and installed module firmware",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": [],
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "manufacturer"
+          },
+          {
+            "name": "model"
+          },
+          {
+            "name": "serial"
+          },
+          {
+            "name": "firmware"
+          }
+        ]
+      }
+    },
+    "Query_Error": {
+      "scpi": ":SYSTem:ERRor?",
+      "scpi_fast": ":SYST:ERR?",
+      "description": "Query next error code and message",
+      "subsystem": "SYSTem",
+      "group": "System Utilities",
+      "args": [],
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "code"
+          },
+          {
+            "name": "message"
+          }
+        ]
+      }
+    },
+    "Query_Scan_Size": {
+      "scpi": ":DATA:POINts?",
+      "scpi_fast": ":DATA:POIN?",
+      "description": "Query number of readings currently stored in volatile memory",
+      "subsystem": "DATA",
+      "group": "Memory System",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "count"
+          }
+        ]
+      }
+    }
+  },
+  "do": {
+    "Start_Scan": {
+      "scpi": ":INITiate",
+      "scpi_fast": ":INIT",
+      "description": "Initiate scan sequence",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    },
+    "Abort": {
+      "scpi": ":ABORt",
+      "scpi_fast": ":ABOR",
+      "description": "Abort running scan sweep",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    },
+    "Reset": {
+      "scpi": "*RST",
+      "scpi_fast": "*RST",
+      "description": "Reset DAQ mainframe and installed modules",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Clear_Status": {
+      "scpi": "*CLS",
+      "scpi_fast": "*CLS",
+      "description": "Clear all status registers and error queue",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Open_All": {
+      "scpi": ":ROUTe:OPEN:ALL",
+      "scpi_fast": ":ROUT:OPEN:ALL",
+      "description": "Open all switch and multiplexer channels across all slots",
+      "subsystem": "ROUTe",
+      "group": "Route Configuration",
+      "args": []
+    },
+    "Clear_Memory": {
+      "scpi": ":DATA:CLEar",
+      "scpi_fast": ":DATA:CLE",
+      "description": "Clear internal reading storage buffer",
+      "subsystem": "DATA",
+      "group": "Memory System",
+      "args": []
+    }
+  },
+  "rig": {
+    "Configure_Voltage_Scan": {
+      "scpi": ":CONFigure:VOLTage:DC <range>, <resolution>, (@<channels>)",
+      "scpi_fast": ":CONF:VOLT:DC <range>, <resolution>, (@<channels>)",
+      "description": "Configure DC voltage measurements with range and resolution across channel list",
+      "subsystem": "CONFigure",
+      "group": "Measurement Configuration",
+      "args": [
+        "range",
+        "resolution",
+        "channels"
+      ]
+    },
+    "Configure_Temperature_Scan": {
+      "scpi": ":CONFigure:TEMPerature <type>, <transducer>, (@<channels>)",
+      "scpi_fast": ":CONF:TEMP <type>, <transducer>, (@<channels>)",
+      "description": "Configure thermocouple/RTD temperature measurement on channel list",
+      "subsystem": "CONFigure",
+      "group": "Measurement Configuration",
+      "args": [
+        "type",
+        "transducer",
+        "channels"
+      ]
+    }
+  }
+}

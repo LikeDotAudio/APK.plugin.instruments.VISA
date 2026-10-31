@@ -50,3 +50,14 @@ cargo run -- build-links                  # knownDevices.json → tables
 ```
 
 Inserting a model renumbers the later models' ports in its family; review the `ports.json` diff.
+
+## Checks and data files (2026-10-30)
+
+| File | What |
+|---|---|
+| `families.json` | family → folder (`INSTRUMENT.<Family>`), the resolver every reader should use; held to the folders by `--check` |
+| `_komand/schemas/*.schema.json` | the formats: `gui`, `komand` (+ `command`), `api`, `manifest`, `families`, `baseline` |
+| `_komand/schema_check.py` | dependency-free validator for those schemas; `check_tree()` is called by `generate_device_apis.py --check` |
+| `_komand/baselines/<Family>.json`, `donors.json` | baseline command sets for Counter/DAQ/SMU/VNA and each family's primary donor model (were Python literals) |
+| `_komand/test_instruments.py` | unit tests: schemas accept the tree and refuse typos, catalogue rule, data files, resolver |
+| `_komand/check.sh` | the one local command: both `--check`s, unit tests, `cargo test` |

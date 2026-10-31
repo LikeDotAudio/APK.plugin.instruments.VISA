@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/api.schema.json",
+  "title": "<Model>.api.json — the generated, published instrument API spec (api_version 1.x)",
+  "type": "object",
+  "required": ["api_version", "model", "family", "manufacturer", "notes", "service", "transport", "verb_mapping", "summary", "endpoints"],
+  "additionalProperties": false,
+  "properties": {
+    "api_version": {"type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$"},
+    "model": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "manufacturer": {"type": "string"},
+    "notes": {"type": "string"},
+    "aliases": {"type": "array", "items": {"type": "string"}},
+    "channels": {"type": "integer"},
+    "domains": {"type": "object"},
+    "inherited_from": {"type": "string"},
+    "service": {
+      "type": "object",
+      "required": ["host", "port", "family_lane", "path", "routes", "socket"],
+      "properties": {
+        "host": {"type": "string"}, "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+        "family_lane": {"type": "object"}, "path": {"type": "string"}, "routes": {"type": "object"}, "socket": {"type": "object"}
+      }
+    },
+    "transport": {"type": "object", "required": ["default", "visa", "sockets"]},
+    "verb_mapping": {"type": "object"},
+    "summary": {
+      "type": "object",
+      "required": ["total_commands", "get_count", "set_count", "nab_count", "rig_count", "do_count"],
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "endpoints": {
+      "type": "object",
+      "required": ["get", "set", "nab", "rig", "do"],
+      "additionalProperties": false,
+      "properties": {
+        "get": {"$ref": "#/$defs/bucket"}, "set": {"$ref": "#/$defs/bucket"}, "nab": {"$ref": "#/$defs/bucket"},
+        "rig": {"$ref": "#/$defs/bucket"}, "do": {"$ref": "#/$defs/bucket"}
+      }
+    }
+  },
+  "$defs": {
+    "bucket": {
+      "type": "object",
+      "additionalProperties": {"type": "object", "required": ["command", "verb", "scpi"]}
+    }
+  }
+}

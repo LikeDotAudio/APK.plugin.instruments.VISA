@@ -1,0 +1,361 @@
+{
+  "_note": "Baseline command set for INSTRUMENT.VNA, a family with no authored .komand table. Read by generate_device_apis.py (load_baselines) for every model of the family; the result is that model's VNA_Baseline spec. Same shape as a .komand table's verb buckets. Validated by schemas/baseline.schema.json under --check.",
+  "set": {
+    "Set_Start_Frequency": {
+      "scpi": ":SENSe:FREQuency:STARt <freq>",
+      "scpi_fast": ":SENS:FREQ:STAR <freq>",
+      "description": "Set sweep start frequency in Hz",
+      "subsystem": "SENSe",
+      "group": "Frequency Setup",
+      "args": [
+        "freq"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      }
+    },
+    "Set_Stop_Frequency": {
+      "scpi": ":SENSe:FREQuency:STOP <freq>",
+      "scpi_fast": ":SENS:FREQ:STOP <freq>",
+      "description": "Set sweep stop frequency in Hz",
+      "subsystem": "SENSe",
+      "group": "Frequency Setup",
+      "args": [
+        "freq"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      }
+    },
+    "Set_Center_Frequency": {
+      "scpi": ":SENSe:FREQuency:CENTer <freq>",
+      "scpi_fast": ":SENS:FREQ:CENT <freq>",
+      "description": "Set sweep center frequency in Hz",
+      "subsystem": "SENSe",
+      "group": "Frequency Setup",
+      "args": [
+        "freq"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      }
+    },
+    "Set_Frequency_Span": {
+      "scpi": ":SENSe:FREQuency:SPAN <span>",
+      "scpi_fast": ":SENS:FREQ:SPAN <span>",
+      "description": "Set sweep frequency span in Hz",
+      "subsystem": "SENSe",
+      "group": "Frequency Setup",
+      "args": [
+        "span"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      }
+    },
+    "Set_Sweep_Points": {
+      "scpi": ":SENSe:SWEep:POINts <points>",
+      "scpi_fast": ":SENS:SWE:POIN <points>",
+      "description": "Set number of measurement points per sweep",
+      "subsystem": "SENSe",
+      "group": "Sweep Control",
+      "args": [
+        "points"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "min": 2,
+        "max": 100001
+      }
+    },
+    "Set_IF_Bandwidth": {
+      "scpi": ":SENSe:BANDwidth:RESolution <bandwidth>",
+      "scpi_fast": ":SENS:BAND:RES <bandwidth>",
+      "description": "Set intermediate frequency (IF) filter resolution bandwidth",
+      "subsystem": "SENSe",
+      "group": "Receiver Setup",
+      "args": [
+        "bandwidth"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "Hz"
+      }
+    },
+    "Set_Power_Level": {
+      "scpi": ":SOURce:POWer:LEVel:IMMediate:AMPLitude <power>",
+      "scpi_fast": ":SOUR:POW:LEV:IMM:AMPL <power>",
+      "description": "Set RF test port stimulus power level in dBm",
+      "subsystem": "SOURce",
+      "group": "Source Setup",
+      "args": [
+        "power"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "dBm"
+      }
+    },
+    "Set_Measurement_Parameter": {
+      "scpi": ":CALCulate:PARameter:DEFine '<param>'",
+      "scpi_fast": ":CALC:PAR:DEF '<param>'",
+      "description": "Select S-parameter to measure on active trace",
+      "subsystem": "CALCulate",
+      "group": "Trace Setup",
+      "args": [
+        "param"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "S11",
+          "S21",
+          "S12",
+          "S22"
+        ]
+      }
+    },
+    "Set_Display_Format": {
+      "scpi": ":CALCulate:FORMat <format>",
+      "scpi_fast": ":CALC:FORM <format>",
+      "description": "Set active trace display format",
+      "subsystem": "CALCulate",
+      "group": "Trace Setup",
+      "args": [
+        "format"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "MLOGarithmic",
+          "PHASe",
+          "GDELay",
+          "SMITh",
+          "POLar",
+          "SWR",
+          "REAL",
+          "IMAGinary"
+        ]
+      }
+    }
+  },
+  "nab": {
+    "Read_S_Parameter_Data": {
+      "scpi": ":CALCulate:DATA? FDATA",
+      "scpi_fast": ":CALC:DATA? FDATA",
+      "description": "Fetch formatted trace data points for active S-parameter",
+      "subsystem": "CALCulate",
+      "group": "Trace Data",
+      "args": [],
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "trace_points"
+          }
+        ]
+      }
+    },
+    "Read_Frequency_Range": {
+      "scpi": ":SENSe:FREQuency:STARt?;:SENSe:FREQuency:STOP?",
+      "scpi_fast": ":SENS:FREQ:STAR?;:SENS:FREQ:STOP?",
+      "description": "Read sweep start and stop frequency bounds",
+      "subsystem": "SENSe",
+      "group": "Frequency Setup",
+      "args": [],
+      "returns": {
+        "separator": ";",
+        "fields": [
+          {
+            "name": "start_frequency",
+            "unit": "Hz"
+          },
+          {
+            "name": "stop_frequency",
+            "unit": "Hz"
+          }
+        ]
+      }
+    },
+    "Read_Sweep_Time": {
+      "scpi": ":SENSe:SWEep:TIME?",
+      "scpi_fast": ":SENS:SWE:TIME?",
+      "description": "Read calculated duration of single sweep",
+      "subsystem": "SENSe",
+      "group": "Sweep Control",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "time",
+            "unit": "s"
+          }
+        ],
+        "unit": "s"
+      }
+    },
+    "Read_Active_Parameter": {
+      "scpi": ":CALCulate:PARameter:SELect?",
+      "scpi_fast": ":CALC:PAR:SEL?",
+      "description": "Query currently selected S-parameter definition",
+      "subsystem": "CALCulate",
+      "group": "Trace Setup",
+      "args": [],
+      "returns": {
+        "fields": [
+          {
+            "name": "parameter"
+          }
+        ]
+      }
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "scpi_fast": "*IDN?",
+      "description": "Read VNA identification string",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": [],
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "manufacturer"
+          },
+          {
+            "name": "model"
+          },
+          {
+            "name": "serial"
+          },
+          {
+            "name": "firmware"
+          }
+        ]
+      }
+    },
+    "Query_Error": {
+      "scpi": ":SYSTem:ERRor?",
+      "scpi_fast": ":SYST:ERR?",
+      "description": "Query system error queue",
+      "subsystem": "SYSTem",
+      "group": "System Utilities",
+      "args": [],
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "code"
+          },
+          {
+            "name": "message"
+          }
+        ]
+      }
+    }
+  },
+  "do": {
+    "Reset": {
+      "scpi": "*RST",
+      "scpi_fast": "*RST",
+      "description": "Reset VNA to factory preset state",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Clear_Status": {
+      "scpi": "*CLS",
+      "scpi_fast": "*CLS",
+      "description": "Clear status registers",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Trigger_Single": {
+      "scpi": ":INITiate:CONTinuous OFF;:INITiate:IMMediate",
+      "scpi_fast": ":INIT:CONT OFF;:INIT:IMM",
+      "description": "Disarm continuous trigger and initiate single sweep",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    },
+    "Continuous_Sweep": {
+      "scpi": ":INITiate:CONTinuous ON",
+      "scpi_fast": ":INIT:CONT ON",
+      "description": "Arm continuous sweeping mode",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    },
+    "Autoscale": {
+      "scpi": ":DISPlay:WINDow:TRACe:Y:SCALe:AUTO",
+      "scpi_fast": ":DISP:WIND:TRAC:Y:SCAL:AUTO",
+      "description": "Autoscale active trace Y-axis limits",
+      "subsystem": "DISPlay",
+      "group": "Display Format",
+      "args": []
+    },
+    "RF_Power_ON": {
+      "scpi": ":OUTPut:STATe ON",
+      "scpi_fast": ":OUTP:STAT ON",
+      "description": "Turn RF stimulus port power ON",
+      "subsystem": "OUTPut",
+      "group": "Source Setup",
+      "args": []
+    },
+    "RF_Power_OFF": {
+      "scpi": ":OUTPut:STATe OFF",
+      "scpi_fast": ":OUTP:STAT OFF",
+      "description": "Turn RF stimulus port power OFF",
+      "subsystem": "OUTPut",
+      "group": "Source Setup",
+      "args": []
+    }
+  },
+  "rig": {
+    "Configure_S_Parameter_Sweep": {
+      "scpi": ":CALCulate:PARameter:DEFine '<param>';:SENSe:FREQuency:STARt <start>;:SENSe:FREQuency:STOP <stop>;:SENSe:SWEep:POINts <points>",
+      "scpi_fast": ":CALC:PAR:DEF '<param>';:SENS:FREQ:STAR <start>;:SENS:FREQ:STOP <stop>;:SENS:SWE:POIN <points>",
+      "description": "Configure S-parameter, sweep frequency bounds, and number of sweep points in one atomic operation",
+      "subsystem": "CONFigure",
+      "group": "Measurement Configuration",
+      "args": [
+        "param",
+        "start",
+        "stop",
+        "points"
+      ],
+      "arg": {
+        "kind": "multi",
+        "parameters": {
+          "param": {
+            "kind": "enum",
+            "values": [
+              "S11",
+              "S21",
+              "S12",
+              "S22"
+            ]
+          },
+          "start": {
+            "kind": "numeric",
+            "unit": "Hz"
+          },
+          "stop": {
+            "kind": "numeric",
+            "unit": "Hz"
+          },
+          "points": {
+            "kind": "numeric",
+            "min": 2,
+            "max": 100001
+          }
+        }
+      }
+    }
+  }
+}

@@ -25,6 +25,17 @@ cargo run -- build-list --check && cargo run -- build-trees --check && cargo run
 
 ## Not automated
 
-- No CI in this repo and no pre-build gate runs any check above. The root `check.sh` runs the two Python checks in its default lanes, but only when someone runs it; the `AUDIO.komand` cargo checks are run by hand.
+- No CI in this repo (the root's rule); the one local command is `_komand/check.sh`. No pre-build gate runs any check above. The root `check.sh` runs the two Python checks in its default lanes, but only when someone runs it; the `AUDIO.komand` cargo checks are run by hand.
 - Images are rebuilt by hand; nothing rebuilds them on a push here.
 - No live URL of its own; the library surfaces through the OsApi instrument page on the bench.
+
+## Delivered from the 2026-10-30 audit
+
+- **JSON Schemas, enforced, one check command** — `_komand/schemas/` (`gui`, `komand`+`command`, `api`, `manifest`, `families`, `baseline`), validated by the dependency-free `_komand/schema_check.py` and by `generate_device_apis.py --check` (384 files, 0 problems; a typo'd key, a missing field or a wrong type is refused — proved on a scratch copy). `_komand/check.sh` runs both `--check`s, `test_instruments.py` (7 tests) and `cargo test` in `_komand/`; it passes. No workflow added (root rule). The root `check.sh instruments` lane already runs the generator `--check`, so it now covers the schemas too.
+- **Catalogue fields single-checked** — `.gui` is the source for `manufacturer`/`type`/`notes`; `--check` fails naming every field where `knownDevices.json` (the catalogue PLUGIN.VISA compiles in) says otherwise (`catalogue_disagreements`). Today 0 of 181 disagree. Kept two copies by design: `knownDevices.json` is the crate PLUGIN.VISA links by git rev, so the fields must ride in it; the check makes the two one truth.
+- **A broken `.gui` fails loudly** — `generate_device_api` raises `BrokenGui` naming the file (was `except Exception: pass`); proved on a scratch copy (exit 1, file and parse error named).
+- **Family resolver as data** — `families.json` (family → folder, `prefix`, `legacy_prefixes`); `family_directory` reads it; `--check` fails when it and the folders disagree. The other three readers (NODE.BareMetal `instruments/library.rs` + `Baremetal:Manager/node_paths.py`, WEB.OsApi `os_roots.py`) are asked to read it (handoffs filed).
+- **Baselines and donors are data** — `BASELINE_COMMANDS` (~950 lines) and `PRIMARY_DONOR_MODELS` moved to `_komand/baselines/<Family>.json` and `donors.json` (outside the family folders, so no panel/table reader picks them up); `generate_device_apis.py` is 1535 → ~600 lines and every generated spec is byte-identical (`--check`: 0 of 181 out of date). `--check` also refuses a donor that is not an authored model.
+- **INSTRUMENTS baked into images** — Kept by design (house rule: OS/ and INSTRUMENTS baked into images; OsApi serves the image copy). Part of the plugin image (VISA's catalogue), the NODE.BareMetal image (komand tables) and WEB.OsApi (instrument page): those images need a rebuild after an edit here.
+
+Verified: `_komand/check.sh` (exit 0); `../AUDIO.komand/check.sh` still passes against this tree (99 tests, every derived file current).

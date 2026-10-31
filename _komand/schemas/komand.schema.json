@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/komand.schema.json",
+  "title": "<Model>.komand — an authored command table",
+  "type": "object",
+  "required": ["model", "family", "set", "do", "rig", "nab"],
+  "additionalProperties": false,
+  "properties": {
+    "model": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "set": {"$ref": "#/$defs/bucket"},
+    "do": {"$ref": "#/$defs/bucket"},
+    "rig": {"$ref": "#/$defs/bucket"},
+    "nab": {"$ref": "#/$defs/bucket"}
+  },
+  "$defs": {
+    "bucket": {"type": "object", "additionalProperties": {"$ref": "command.schema.json"}}
+  }
+}

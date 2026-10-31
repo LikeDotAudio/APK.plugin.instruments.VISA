@@ -40,7 +40,9 @@ folder as `INSTRUMENT.<Family>` if it exists, else `<Family>` (so a crate's
 listing. Each language has one helper for that: `family_directory` in the
 orchestrator (`NODE.BareMetal/SRC/Core/ORCHESTRATOR:hunter:VISA/src/instruments/library.rs`),
 `family_name`/`family_directory` in `_komand/generate_device_apis.py`,
-`Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py`.
+`Baremetal:Manager/node_paths.py` and `WEB.OsApi/SRC/os_roots.py` — four copies
+of one rule, so the rule is now DATA: `families.json` names each family's folder,
+and those readers are asked to look it up there (2026-10-30).
 
 ---
 
@@ -105,7 +107,10 @@ All from this folder; measured 2026-10-30.
 
 ```bash
 python3 _komand/generate_device_apis.py      # every <Model>.api.json + _komand/ports.json — re-running changes nothing today
-python3 _komand/generate_device_apis.py --check   # writes nothing; 181 specs across 13 families, 0 out of date
+_komand/check.sh                                 # THE check: everything below + schemas + unit tests + cargo test
+python3 _komand/generate_device_apis.py --check   # writes nothing; 181 specs across 13 families, 0 out of date;
+                                                 # also families.json, .gui = knownDevices.json, JSON Schemas
+python3 _komand/schema_check.py                  # every file against _komand/schemas/ (384 files)
 python3 _komand/sort_komands.py --check      # 0 tables out of order
 # the command-table tooling lives in the KOMAND binary:
 cd ../AUDIO.komand && cargo run -- check-tables      # 3 771 commands, 16 models
@@ -119,7 +124,10 @@ The two Python `--check`s run from the root as `./.apk.scripts/check.sh instrume
 ## Philosophy
 
 - **Data, not a container.** No `Docker/`; images copy the folder in (`NODE.BareMetal/Docker/Dockerfile`, `COPY ["PODS/POD.THICK/INSTRUMENTS", "./Instruments"]`).
-- **The prefix belongs to the directory.** `INSTRUMENT.DMM` is a folder; `DMM` is the family everywhere else, and every reader has one helper to translate (`_komand/generate_device_apis.py`, `family_name` / `family_directory`).
+- **The prefix belongs to the directory.** `INSTRUMENT.DMM` is a folder; `DMM` is the family everywhere else. The translation is DATA: `families.json` maps each family to its folder (and lists the legacy `INSTRUMENT:` spelling); readers look it up rather than re-implement the rule, and `--check` fails when it and the folders disagree.
+- **Every format has a schema.** `_komand/schemas/` holds JSON Schemas for `<Model>.gui`, `<Model>.komand`, `<Model>.api.json`, `manifest.json`, `families.json` and the baselines; `--check` validates every file (dependency-free validator `_komand/schema_check.py`).
+- **Data, not code.** Baseline command sets for table-less families and the primary donors are `_komand/baselines/<Family>.json` / `donors.json`, not Python literals.
+- **One catalogue truth.** `manufacturer`/`type`/`notes` in a `.gui` and in `knownDevices.json` must agree — `--check` names every disagreement; a `.gui` that does not parse stops the generator by name.
 - **One name per file.** `<Model>.api.json`, never `api.json`, so a path names its instrument; the generator removes stray bare names (`_komand/generate_device_apis.py`, module doc).
 - **Derive, don't store — and show the cost.** Ports are computed from the manifest `tab` and model order; `ports.json` is rewritten each run so a renumbering is a reviewable diff, and a full lane fails at generation (`_komand/generate_device_apis.py`, lines 80+).
 - **Reports are outputs.** `CommandList.csv`, `ports.json` and every `<Model>.api.json` are generated from the tables and the manifest — "change the allocator, not the JSON".

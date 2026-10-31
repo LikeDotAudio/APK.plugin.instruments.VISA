@@ -1,0 +1,23 @@
+{
+  "_note": "THE INSTRUMENT.<Family> RESOLVER AS DATA (audit 2026-10-30 #4). Family name -> its folder under INSTRUMENTS/. Readers (this repo's generator, the orchestrator's instruments/library.rs, Baremetal:Manager/node_paths.py, WEB.OsApi os_roots.py) look a family up here instead of re-implementing the prefix rule. `legacy_prefixes` are spellings an old tree may still use. generate_device_apis.py --check fails when this file and the folders disagree; schema: _komand/schemas/families.schema.json.",
+  "version": 1,
+  "prefix": "INSTRUMENT.",
+  "legacy_prefixes": [
+    "INSTRUMENT:"
+  ],
+  "families": {
+    "Counter": "INSTRUMENT.Counter",
+    "DAQ": "INSTRUMENT.DAQ",
+    "DMM": "INSTRUMENT.DMM",
+    "Distortion": "INSTRUMENT.Distortion",
+    "Generator": "INSTRUMENT.Generator",
+    "LCR": "INSTRUMENT.LCR",
+    "Load": "INSTRUMENT.Load",
+    "Oscilloscope": "INSTRUMENT.Oscilloscope",
+    "Power": "INSTRUMENT.Power",
+    "Router": "INSTRUMENT.Router",
+    "SMU": "INSTRUMENT.SMU",
+    "Spectrum": "INSTRUMENT.Spectrum",
+    "VNA": "INSTRUMENT.VNA"
+  }
+}

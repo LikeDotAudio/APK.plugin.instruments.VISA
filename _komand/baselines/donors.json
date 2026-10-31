@@ -1,0 +1,14 @@
+{
+  "_note": "PRIMARY DONOR per family: a model with no .komand table of its own inherits the table of this authored model (spec field inherited_from). Read by generate_device_apis.py (load_donors); every donor must be an authored model of its family \u2014 --check refuses one that is not.",
+  "donors": {
+    "DMM": "34401A",
+    "Generator": "33220A",
+    "Oscilloscope": "54641D",
+    "Power": "66101A",
+    "Load": "6060B",
+    "Spectrum": "N9340B",
+    "Router": "3235",
+    "Distortion": "Porta_one",
+    "LCR": "4263A"
+  }
+}

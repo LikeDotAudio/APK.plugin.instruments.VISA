@@ -1,0 +1,467 @@
+{
+  "_note": "Baseline command set for INSTRUMENT.Counter, a family with no authored .komand table. Read by generate_device_apis.py (load_baselines) for every model of the family; the result is that model's Counter_Baseline spec. Same shape as a .komand table's verb buckets. Validated by schemas/baseline.schema.json under --check.",
+  "set": {
+    "Set_Frequency_Arm_Start": {
+      "scpi": ":SENSe:FREQuency:ARM:STARt:SOURce <source>",
+      "scpi_fast": ":SENS:FREQ:ARM:STAR:SOUR <source>",
+      "description": "Set start arm source for frequency measurements",
+      "subsystem": "SENSe",
+      "group": "Arming and Triggering",
+      "args": [
+        "source"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "IMMediate",
+          "EXTernal"
+        ]
+      }
+    },
+    "Set_Gate_Time": {
+      "scpi": ":SENSe:FREQuency:ARM:STOP:TIMer <seconds>",
+      "scpi_fast": ":SENS:FREQ:ARM:STOP:TIM <seconds>",
+      "description": "Set gate time in seconds",
+      "subsystem": "SENSe",
+      "group": "Gate Control",
+      "args": [
+        "seconds"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "s",
+        "min": 0.001,
+        "max": 100.0
+      }
+    },
+    "Set_Input1_Coupling": {
+      "scpi": ":INPut1:COUPling <coupling>",
+      "scpi_fast": ":INP1:COUP <coupling>",
+      "description": "Set Channel 1 AC/DC input coupling",
+      "subsystem": "INPut",
+      "group": "Input Conditioning",
+      "args": [
+        "coupling"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "AC",
+          "DC"
+        ]
+      }
+    },
+    "Set_Input1_Impedance": {
+      "scpi": ":INPut1:IMPedance <ohms>",
+      "scpi_fast": ":INP1:IMP <ohms>",
+      "description": "Set Channel 1 input impedance (50 Ohm or 1 MOhm)",
+      "subsystem": "INPut",
+      "group": "Input Conditioning",
+      "args": [
+        "ohms"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "50",
+          "1M"
+        ]
+      }
+    },
+    "Set_Input1_Filter": {
+      "scpi": ":INPut1:FILTer:STATe <state>",
+      "scpi_fast": ":INP1:FILT:STAT <state>",
+      "description": "Enable or disable 100 kHz low-pass filter on Channel 1",
+      "subsystem": "INPut",
+      "group": "Input Conditioning",
+      "args": [
+        "state"
+      ],
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "OFF",
+          "ON"
+        ]
+      }
+    },
+    "Set_Input2_Coupling": {
+      "scpi": ":INPut2:COUPling <coupling>",
+      "scpi_fast": ":INP2:COUP <coupling>",
+      "description": "Set Channel 2 AC/DC input coupling",
+      "subsystem": "INPut",
+      "group": "Input Conditioning",
+      "args": [
+        "coupling"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "AC",
+          "DC"
+        ]
+      }
+    },
+    "Set_Input2_Impedance": {
+      "scpi": ":INPut2:IMPedance <ohms>",
+      "scpi_fast": ":INP2:IMP <ohms>",
+      "description": "Set Channel 2 input impedance (50 Ohm or 1 MOhm)",
+      "subsystem": "INPut",
+      "group": "Input Conditioning",
+      "args": [
+        "ohms"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "50",
+          "1M"
+        ]
+      }
+    },
+    "Set_Trigger_Level": {
+      "scpi": ":SENSe:EVENt1:LEVel <level>",
+      "scpi_fast": ":SENS:EVEN1:LEV <level>",
+      "description": "Set Channel 1 trigger threshold voltage",
+      "subsystem": "SENSe",
+      "group": "Trigger Setup",
+      "args": [
+        "level"
+      ],
+      "arg": {
+        "kind": "numeric",
+        "unit": "V"
+      }
+    },
+    "Set_Function": {
+      "scpi": ":SENSe:FUNCtion '<function>'",
+      "scpi_fast": ":SENS:FUNC '<function>'",
+      "description": "Set active measurement function",
+      "subsystem": "SENSe",
+      "group": "Measurement Setup",
+      "args": [
+        "function"
+      ],
+      "arg": {
+        "kind": "enum",
+        "values": [
+          "FREQuency 1",
+          "PERiod 1",
+          "TINTerval 1,2",
+          "PWIDth 1",
+          "NWIDth 1"
+        ]
+      }
+    }
+  },
+  "nab": {
+    "Read_Next": {
+      "scpi": ":READ?",
+      "scpi_fast": ":READ?",
+      "description": "Trigger counter and fetch next reading",
+      "subsystem": "SENSe",
+      "group": "Data Acquisition",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "separator": ";",
+        "fields": [
+          {
+            "name": "reading",
+            "unit": "Hz"
+          }
+        ],
+        "unit": "Hz"
+      }
+    },
+    "Fetch_Data": {
+      "scpi": ":FETCh?",
+      "scpi_fast": ":FETC?",
+      "description": "Fetch last calculated measurement",
+      "subsystem": "SENSe",
+      "group": "Data Acquisition",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "separator": ";",
+        "fields": [
+          {
+            "name": "reading",
+            "unit": "Hz"
+          }
+        ],
+        "unit": "Hz"
+      }
+    },
+    "Measure_Frequency": {
+      "scpi": ":MEASure:FREQuency?",
+      "scpi_fast": ":MEAS:FREQ?",
+      "description": "Measure frequency on channel 1",
+      "subsystem": "SENSe",
+      "group": "Direct Measurement",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "fields": [
+          {
+            "name": "frequency",
+            "unit": "Hz"
+          }
+        ],
+        "unit": "Hz"
+      }
+    },
+    "Measure_Period": {
+      "scpi": ":MEASure:PERiod?",
+      "scpi_fast": ":MEAS:PER?",
+      "description": "Measure signal period on channel 1",
+      "subsystem": "SENSe",
+      "group": "Direct Measurement",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "fields": [
+          {
+            "name": "period",
+            "unit": "s"
+          }
+        ],
+        "unit": "s"
+      }
+    },
+    "Measure_Time_Interval": {
+      "scpi": ":MEASure:TINTerval?",
+      "scpi_fast": ":MEAS:TINT?",
+      "description": "Measure time interval between channel 1 and channel 2",
+      "subsystem": "SENSe",
+      "group": "Direct Measurement",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "fields": [
+          {
+            "name": "interval",
+            "unit": "s"
+          }
+        ],
+        "unit": "s"
+      }
+    },
+    "Measure_Pulse_Width": {
+      "scpi": ":MEASure:PWIDth?",
+      "scpi_fast": ":MEAS:PWID?",
+      "description": "Measure positive pulse width",
+      "subsystem": "SENSe",
+      "group": "Direct Measurement",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "fields": [
+          {
+            "name": "width",
+            "unit": "s"
+          }
+        ],
+        "unit": "s"
+      }
+    },
+    "Read_IDN": {
+      "scpi": "*IDN?",
+      "scpi_fast": "*IDN?",
+      "description": "Read instrument identification string",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "manufacturer"
+          },
+          {
+            "name": "model"
+          },
+          {
+            "name": "serial"
+          },
+          {
+            "name": "firmware"
+          }
+        ]
+      }
+    },
+    "Query_Error": {
+      "scpi": ":SYSTem:ERRor?",
+      "scpi_fast": ":SYST:ERR?",
+      "description": "Query next error code and message from queue",
+      "subsystem": "SYSTem",
+      "group": "System Utilities",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "separator": ",",
+        "fields": [
+          {
+            "name": "code"
+          },
+          {
+            "name": "message"
+          }
+        ]
+      }
+    },
+    "Query_OPC": {
+      "scpi": "*OPC?",
+      "scpi_fast": "*OPC?",
+      "description": "Query operation complete state",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "fields": [
+          {
+            "name": "complete"
+          }
+        ]
+      }
+    },
+    "Read_STB": {
+      "scpi": "*STB?",
+      "scpi_fast": "*STB?",
+      "description": "Read status byte register",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": [],
+      "arg": {
+        "kind": "none"
+      },
+      "returns": {
+        "fields": [
+          {
+            "name": "status_byte"
+          }
+        ]
+      }
+    }
+  },
+  "do": {
+    "Reset": {
+      "scpi": "*RST",
+      "scpi_fast": "*RST",
+      "description": "Reset counter to factory default settings",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Clear_Status": {
+      "scpi": "*CLS",
+      "scpi_fast": "*CLS",
+      "description": "Clear status registers and error queue",
+      "subsystem": "Common",
+      "group": "IEEE 488.2 Common",
+      "args": []
+    },
+    "Initiate": {
+      "scpi": ":INITiate",
+      "scpi_fast": ":INIT",
+      "description": "Initiate measurement cycle",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    },
+    "Abort": {
+      "scpi": ":ABORt",
+      "scpi_fast": ":ABOR",
+      "description": "Abort active measurement",
+      "subsystem": "TRIGger",
+      "group": "Trigger System",
+      "args": []
+    },
+    "Auto_Trigger": {
+      "scpi": ":SENSe:EVENt1:LEVel:AUTO ON",
+      "scpi_fast": ":SENS:EVEN1:LEV:AUTO ON",
+      "description": "Automatically set trigger levels",
+      "subsystem": "SENSe",
+      "group": "Trigger Setup",
+      "args": []
+    }
+  },
+  "rig": {
+    "Configure_Frequency": {
+      "scpi": ":CONFigure:FREQuency <expected_freq>, <resolution>",
+      "scpi_fast": ":CONF:FREQ <expected_freq>, <resolution>",
+      "description": "Configure frequency measurement with expected frequency and target resolution",
+      "subsystem": "CONFigure",
+      "group": "Measurement Configuration",
+      "args": [
+        "expected_freq",
+        "resolution"
+      ],
+      "arg": {
+        "kind": "multi",
+        "parameters": {
+          "expected_freq": {
+            "kind": "numeric",
+            "unit": "Hz"
+          },
+          "resolution": {
+            "kind": "numeric",
+            "unit": "Hz"
+          }
+        }
+      }
+    },
+    "Configure_Period": {
+      "scpi": ":CONFigure:PERiod <expected_period>, <resolution>",
+      "scpi_fast": ":CONF:PER <expected_period>, <resolution>",
+      "description": "Configure period measurement with expected period and resolution",
+      "subsystem": "CONFigure",
+      "group": "Measurement Configuration",
+      "args": [
+        "expected_period",
+        "resolution"
+      ],
+      "arg": {
+        "kind": "multi",
+        "parameters": {
+          "expected_period": {
+            "kind": "numeric",
+            "unit": "s"
+          },
+          "resolution": {
+            "kind": "numeric",
+            "unit": "s"
+          }
+        }
+      }
+    },
+    "Configure_Time_Interval": {
+      "scpi": ":CONFigure:TINTerval",
+      "scpi_fast": ":CONF:TINT",
+      "description": "Configure time interval measurement between Channel 1 and 2",
+      "subsystem": "CONFigure",
+      "group": "Measurement Configuration",
+      "args": []
+    }
+  }
+}

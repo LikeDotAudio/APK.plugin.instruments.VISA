@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/command.schema.json",
+  "title": "One command in a .komand verb bucket (set/do/rig/nab) or a baseline",
+  "type": "object",
+  "required": ["scpi", "description"],
+  "additionalProperties": false,
+  "properties": {
+    "scpi": {"type": "string", "minLength": 1},
+    "scpiFast": {"type": "string"},
+    "scpi_fast": {"type": "string"},
+    "description": {"type": "string"},
+    "subsystem": {"type": "string"},
+    "group": {"type": "string"},
+    "notes": {"type": "string"},
+    "unverified": {"type": "boolean"},
+    "args": {"type": "array", "items": {"type": "string"}},
+    "arg": {"type": "object"},
+    "returns": {"type": "object"}
+  }
+}
