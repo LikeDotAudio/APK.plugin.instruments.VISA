@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**239 commands** — SET 82 · RIG 3 · NAB 101 · DO 53 · 187 unverified (78%)
+**256 commands** — SET 85 · RIG 3 · NAB 115 · DO 53 · 204 unverified (79%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -96,6 +96,28 @@ Several statements in one message, so they hang off no single branch. Every stat
   - **`MARKer<marker_number>`**
     - `STATe` — **SET** `Set_Marker_State` · `<state_bool>` · args: `state_bool` · bool: `OFF` | `ON` · per-instance: `marker_number`
     - `X` — **SET** `Set_Marker_X_position` · `<hz_value>` · args: `hz_value` · numeric · per-instance: `marker_number`<br>Set Marker Frequency
+- **`DEBug`**
+  - `FTP` — **SET** `Set_Debug_Ftp` · `<state>` · args: `state` · bool: `0` | `1` · †<br>Turn the instrument's FTP server on or off.
+  - `FTP?` — **NAB** `Get_Debug_Ftp` · → BOOL · †<br>Whether the instrument's FTP server is on.
+  - `REMote` — **NAB** `Get_Debug_Remote_Dmarker` · `DMARker` · → HOYI · †<br>Fast delta markers, in one binary frame.
+  - `REMote` — **NAB** `Get_Debug_Remote_File` · `FILe` · → HOYI · †<br>The instrument's file list, first part.
+  - `REMote` — **NAB** `Get_Debug_Remote_Next` · `NEXT` · → HOYI · †<br>The next part of the file list.
+  - `REMote` — **NAB** `Get_Debug_Remote_Pmarker` · `PMARker` · → HOYI · †<br>Fast markers: the six markers' on/delta/mode/trace flags and values.
+  - `REMote` — **NAB** `Get_Debug_Remote_Ptrace` · `PTRACe` · → HOYI · †<br>Fast trace settings: mode, detector and averaging of all four traces.
+  - `REMote` — **NAB** `Get_Debug_Remote_State` · `STATE` · → HOYI · †<br>Fast state: the whole measurement setup in one binary frame.
+  - `REMote` — **NAB** `Get_Debug_Remote_Trace` · `TRACe<trace_number>` · per-instance: `trace_number` · → HOYI · †<br>Fast trace: one trace (1-4), 461 frequency/amplitude points, in one binary frame.
+  - **`NFL`**
+    - `AVAilable?` — **NAB** `Get_Debug_Nfl_Available` · → CRD · †<br>NFL availability (meaning unknown; the vendor's upgrade dialog asks it).
+  - **`REMote`**
+    - **`CFILe`**
+      - `DelFile` — **SET** `Set_Debug_Remote_Cfile_Delfile` · `<file_name>` · args: `file_name` · string · †<br>Delete one file on the instrument.
+      - `WriteFile` — **SET** `Set_Debug_Remote_Cfile_Writefile` · `<file_name>` · args: `file_name` · string · †<br>Start writing one file onto the instrument.
+      - `Cancel` — **NAB** `Get_Debug_Remote_Cfile_Cancel` · → HOYI · †<br>Cancel a file transfer; the vendor sends it before every read, write and delete.
+      - `DelFile?` — **NAB** `Get_Debug_Remote_Cfile_Delfile_Status` · → HOYI · †<br>Status of the last delete.
+      - `ReadFILe` — **NAB** `Get_Debug_Remote_Cfile_Readfile` · `<file_name>` · args: `file_name` · string · → HOYI · †<br>Start reading one file off the instrument: its first part.
+      - `WriteFile?` — **NAB** `Get_Debug_Remote_Cfile_Writefile_Status` · → HOYI · †<br>Status of the file write in progress.
+      - **`ReadFILe`**
+        - `Next` — **NAB** `Get_Debug_Remote_Cfile_Readfile_Next` · → HOYI · †<br>The next part of the file being read.
 - **`DEMod`**
   - **`AM`**
     - `STATe` — **SET** `Set_Demod_Am_State` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>AM Demodulation

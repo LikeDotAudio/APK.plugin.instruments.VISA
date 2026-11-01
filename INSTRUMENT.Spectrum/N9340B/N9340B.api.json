@@ -110,10 +110,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 239,
-    "get_count": 87,
-    "set_count": 82,
-    "nab_count": 101,
+    "total_commands": 256,
+    "get_count": 101,
+    "set_count": 85,
+    "nab_count": 115,
     "rig_count": 3,
     "do_count": 53
   },
@@ -456,6 +456,377 @@
             "command": "Get_Calculate_Lline_State"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Calculate_Lline_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Ftp": {
+        "command": "Get_Debug_Ftp",
+        "verb": "get",
+        "description": "Whether the instrument's FTP server is on.",
+        "scpi": ":DEBug:FTP?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Ftp",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Ftp"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Ftp",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Nfl_Available": {
+        "command": "Get_Debug_Nfl_Available",
+        "verb": "get",
+        "description": "NFL availability (meaning unknown; the vendor's upgrade dialog asks it).",
+        "scpi": ":DEBug:NFL:AVAilable?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Nfl_Available",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Nfl_Available"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Nfl_Available",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Dmarker": {
+        "command": "Get_Debug_Remote_Dmarker",
+        "verb": "get",
+        "description": "Fast delta markers, in one binary frame.",
+        "scpi": ":DEBug:REMote DMARker",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 5
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Dmarker",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Dmarker"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Dmarker",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_File": {
+        "command": "Get_Debug_Remote_File",
+        "verb": "get",
+        "description": "The instrument's file list, first part.",
+        "scpi": ":DEBug:REMote FILe",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_File",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_File"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_File",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Next": {
+        "command": "Get_Debug_Remote_Next",
+        "verb": "get",
+        "description": "The next part of the file list.",
+        "scpi": ":DEBug:REMote NEXT",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Next"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Next",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Pmarker": {
+        "command": "Get_Debug_Remote_Pmarker",
+        "verb": "get",
+        "description": "Fast markers: the six markers' on/delta/mode/trace flags and values.",
+        "scpi": ":DEBug:REMote PMARker",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 5
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Pmarker",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Pmarker"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Pmarker",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Ptrace": {
+        "command": "Get_Debug_Remote_Ptrace",
+        "verb": "get",
+        "description": "Fast trace settings: mode, detector and averaging of all four traces.",
+        "scpi": ":DEBug:REMote PTRACe",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 2
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Ptrace",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Ptrace"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Ptrace",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_State": {
+        "command": "Get_Debug_Remote_State",
+        "verb": "get",
+        "description": "Fast state: the whole measurement setup in one binary frame.",
+        "scpi": ":DEBug:REMote STATE",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_State"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Trace": {
+        "command": "Get_Debug_Remote_Trace",
+        "verb": "get",
+        "description": "Fast trace: one trace (1-4), 461 frequency/amplitude points, in one binary frame.",
+        "scpi": ":DEBug:REMote TRACe<trace_number>",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 3
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Trace",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Trace"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Trace",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Cancel": {
+        "command": "Get_Debug_Remote_Cfile_Cancel",
+        "verb": "get",
+        "description": "Cancel a file transfer; the vendor sends it before every read, write and delete.",
+        "scpi": ":DEBug:REMote:CFILe:Cancel",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Cancel",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Cancel"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Cancel",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Delfile_Status": {
+        "command": "Get_Debug_Remote_Cfile_Delfile_Status",
+        "verb": "get",
+        "description": "Status of the last delete.",
+        "scpi": ":DEBug:REMote:CFILe:DelFile?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Delfile_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Delfile_Status"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Delfile_Status",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Readfile": {
+        "command": "Get_Debug_Remote_Cfile_Readfile",
+        "verb": "get",
+        "description": "Start reading one file off the instrument: its first part.",
+        "scpi": ":DEBug:REMote:CFILe:ReadFILe <file_name>",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [
+          "file_name"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Readfile",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Readfile"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Readfile",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Readfile_Next": {
+        "command": "Get_Debug_Remote_Cfile_Readfile_Next",
+        "verb": "get",
+        "description": "The next part of the file being read.",
+        "scpi": ":DEBug:REMote:CFILe:ReadFILe:Next",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Readfile_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Readfile_Next"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Readfile_Next",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Writefile_Status": {
+        "command": "Get_Debug_Remote_Cfile_Writefile_Status",
+        "verb": "get",
+        "description": "Status of the file write in progress.",
+        "scpi": ":DEBug:REMote:CFILe:WriteFile?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Writefile_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Writefile_Status"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Writefile_Status",
           "reading_direction": "out"
         },
         "unverified": true
@@ -2683,6 +3054,85 @@
           }
         },
         "unverified": false
+      },
+      "Set_Debug_Ftp": {
+        "command": "Set_Debug_Ftp",
+        "verb": "set",
+        "description": "Turn the instrument's FTP server on or off.",
+        "scpi": ":DEBug:FTP <state>",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [
+          "state"
+        ],
+        "arg": {
+          "kind": "bool",
+          "values": [
+            "0",
+            "1"
+          ]
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Set_Debug_Ftp",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Debug_Ftp",
+            "value": "<value>",
+            "input_name": "state"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Debug_Remote_Cfile_Delfile": {
+        "command": "Set_Debug_Remote_Cfile_Delfile",
+        "verb": "set",
+        "description": "Delete one file on the instrument.",
+        "scpi": ":DEBug:REMote:CFILe:DelFile <file_name>",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [
+          "file_name"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Set_Debug_Remote_Cfile_Delfile",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Debug_Remote_Cfile_Delfile",
+            "value": "<value>",
+            "input_name": "file_name"
+          }
+        },
+        "unverified": true
+      },
+      "Set_Debug_Remote_Cfile_Writefile": {
+        "command": "Set_Debug_Remote_Cfile_Writefile",
+        "verb": "set",
+        "description": "Start writing one file onto the instrument.",
+        "scpi": ":DEBug:REMote:CFILe:WriteFile <file_name>",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [
+          "file_name"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": null,
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Set_Debug_Remote_Cfile_Writefile",
+          "direction": "in",
+          "payload_format": {
+            "command": "Set_Debug_Remote_Cfile_Writefile",
+            "value": "<value>",
+            "input_name": "file_name"
+          }
+        },
+        "unverified": true
       },
       "Set_Demod_Am_State": {
         "command": "Set_Demod_Am_State",
@@ -5306,6 +5756,377 @@
           "reading_direction": "out"
         },
         "unverified": false
+      },
+      "Get_Debug_Ftp": {
+        "command": "Get_Debug_Ftp",
+        "verb": "nab",
+        "description": "Whether the instrument's FTP server is on.",
+        "scpi": ":DEBug:FTP?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "BOOL"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Ftp",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Ftp"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Ftp",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Nfl_Available": {
+        "command": "Get_Debug_Nfl_Available",
+        "verb": "nab",
+        "description": "NFL availability (meaning unknown; the vendor's upgrade dialog asks it).",
+        "scpi": ":DEBug:NFL:AVAilable?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "CRD"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Nfl_Available",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Nfl_Available"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Nfl_Available",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Dmarker": {
+        "command": "Get_Debug_Remote_Dmarker",
+        "verb": "nab",
+        "description": "Fast delta markers, in one binary frame.",
+        "scpi": ":DEBug:REMote DMARker",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 5
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Dmarker",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Dmarker"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Dmarker",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_File": {
+        "command": "Get_Debug_Remote_File",
+        "verb": "nab",
+        "description": "The instrument's file list, first part.",
+        "scpi": ":DEBug:REMote FILe",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_File",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_File"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_File",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Next": {
+        "command": "Get_Debug_Remote_Next",
+        "verb": "nab",
+        "description": "The next part of the file list.",
+        "scpi": ":DEBug:REMote NEXT",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Next"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Next",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Pmarker": {
+        "command": "Get_Debug_Remote_Pmarker",
+        "verb": "nab",
+        "description": "Fast markers: the six markers' on/delta/mode/trace flags and values.",
+        "scpi": ":DEBug:REMote PMARker",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 5
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Pmarker",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Pmarker"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Pmarker",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Ptrace": {
+        "command": "Get_Debug_Remote_Ptrace",
+        "verb": "nab",
+        "description": "Fast trace settings: mode, detector and averaging of all four traces.",
+        "scpi": ":DEBug:REMote PTRACe",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 2
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Ptrace",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Ptrace"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Ptrace",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_State": {
+        "command": "Get_Debug_Remote_State",
+        "verb": "nab",
+        "description": "Fast state: the whole measurement setup in one binary frame.",
+        "scpi": ":DEBug:REMote STATE",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 1
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_State",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_State"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_State",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Trace": {
+        "command": "Get_Debug_Remote_Trace",
+        "verb": "nab",
+        "description": "Fast trace: one trace (1-4), 461 frequency/amplitude points, in one binary frame.",
+        "scpi": ":DEBug:REMote TRACe<trace_number>",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI",
+          "function_code": 3
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Trace",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Trace"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Trace",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Cancel": {
+        "command": "Get_Debug_Remote_Cfile_Cancel",
+        "verb": "nab",
+        "description": "Cancel a file transfer; the vendor sends it before every read, write and delete.",
+        "scpi": ":DEBug:REMote:CFILe:Cancel",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Cancel",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Cancel"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Cancel",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Delfile_Status": {
+        "command": "Get_Debug_Remote_Cfile_Delfile_Status",
+        "verb": "nab",
+        "description": "Status of the last delete.",
+        "scpi": ":DEBug:REMote:CFILe:DelFile?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Delfile_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Delfile_Status"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Delfile_Status",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Readfile": {
+        "command": "Get_Debug_Remote_Cfile_Readfile",
+        "verb": "nab",
+        "description": "Start reading one file off the instrument: its first part.",
+        "scpi": ":DEBug:REMote:CFILe:ReadFILe <file_name>",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [
+          "file_name"
+        ],
+        "arg": {
+          "kind": "string"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Readfile",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Readfile"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Readfile",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Readfile_Next": {
+        "command": "Get_Debug_Remote_Cfile_Readfile_Next",
+        "verb": "nab",
+        "description": "The next part of the file being read.",
+        "scpi": ":DEBug:REMote:CFILe:ReadFILe:Next",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Readfile_Next",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Readfile_Next"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Readfile_Next",
+          "reading_direction": "out"
+        },
+        "unverified": true
+      },
+      "Get_Debug_Remote_Cfile_Writefile_Status": {
+        "command": "Get_Debug_Remote_Cfile_Writefile_Status",
+        "verb": "nab",
+        "description": "Status of the file write in progress.",
+        "scpi": ":DEBug:REMote:CFILe:WriteFile?",
+        "subsystem": "Debug",
+        "group": "Debug Remote",
+        "args": [],
+        "arg": {
+          "kind": "none"
+        },
+        "returns": {
+          "count": 1,
+          "type": "HOYI"
+        },
+        "mqtt": {
+          "topic": "APK.audio/Gui/Komands/Spectrum/Get_Debug_Remote_Cfile_Writefile_Status",
+          "direction": "in",
+          "payload_format": {
+            "command": "Get_Debug_Remote_Cfile_Writefile_Status"
+          },
+          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Debug_Remote_Cfile_Writefile_Status",
+          "reading_direction": "out"
+        },
+        "unverified": true
       },
       "Get_Demod_Am_State": {
         "command": "Get_Demod_Am_State",

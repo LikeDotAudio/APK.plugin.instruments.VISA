@@ -3543,6 +3543,20 @@ Spectrum,N9340B,NAB,Get_Bwidth_Video,Video Bandwidth,BWIDth:VIDeo?,BWID:VID?,,,,
 Spectrum,N9340B,NAB,Get_Bwidth_Video_Ratio,Video to Resolution Bandwidth Ratio,BWIDth:VIDeo:RATio?,BWID:VID:RAT?,,,,,,BWID,1,NR3,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,NAB,Get_Calculate_Lline_Buzzer_State,Turn on/off the Buzzer,:CALCulate:LLINe1:BUZZer:STATe?,:CALC:LLIN1:BUZZ:STAT?,,,,,,CALC,1,BOOL,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,NAB,Get_Calculate_Lline_State,Limit Line Testing,:CALCulate:LLINe1:STATe?,:CALC:LLIN1:STAT?,,,,,,CALC,1,BOOL,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Ftp,Whether the instrument's FTP server is on.,:DEBug:FTP?,,,,,,Debug Remote,Debug,1,BOOL,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Nfl_Available,NFL availability (meaning unknown; the vendor's upgrade dialog asks it).,:DEBug:NFL:AVAilable?,,,,,,Debug Remote,Debug,1,CRD,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Cfile_Cancel,"Cancel a file transfer; the vendor sends it before every read, write and delete.",:DEBug:REMote:CFILe:Cancel,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Cfile_Delfile_Status,Status of the last delete.,:DEBug:REMote:CFILe:DelFile?,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Cfile_Readfile,Start reading one file off the instrument: its first part.,:DEBug:REMote:CFILe:ReadFILe <file_name>,,file_name,string,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Cfile_Readfile_Next,The next part of the file being read.,:DEBug:REMote:CFILe:ReadFILe:Next,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Cfile_Writefile_Status,Status of the file write in progress.,:DEBug:REMote:CFILe:WriteFile?,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Dmarker,"Fast delta markers, in one binary frame.",:DEBug:REMote DMARker,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_File,"The instrument's file list, first part.",:DEBug:REMote FILe,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Next,The next part of the file list.,:DEBug:REMote NEXT,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Pmarker,Fast markers: the six markers' on/delta/mode/trace flags and values.,:DEBug:REMote PMARker,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Ptrace,"Fast trace settings: mode, detector and averaging of all four traces.",:DEBug:REMote PTRACe,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_State,Fast state: the whole measurement setup in one binary frame.,:DEBug:REMote STATE,,,,,,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,NAB,Get_Debug_Remote_Trace,"Fast trace: one trace (1-4), 461 frequency/amplitude points, in one binary frame.",:DEBug:REMote TRACe<trace_number>,,,,,trace_number,Debug Remote,Debug,1,HOYI,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,NAB,Get_Demod_Am_State,AM Demodulation,:DEMod:AM:STATe?,:DEM:AM:STAT?,,,,,,DEM,1,BOOL,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,NAB,Get_Demod_Fm_State,FM Demodulation,:DEMod:FM:STATe?,:DEM:FM:STAT?,,,,,,DEM,1,BOOL,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,NAB,Get_Display_Mode_Brightness,Brightness,:DISPlay:MODE:BRIGhtness?,:DISP:MODE:BRIG?,,,,,,DISP,1,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
@@ -3646,6 +3660,9 @@ Spectrum,N9340B,SET,Set_Bwidth_Video_Ratio,Video to Resolution Bandwidth Ratio,B
 Spectrum,N9340B,SET,Set_Calculate_Lline_State,Limit Line Testing,:CALCulate:LLINe1:STATe <value>,:CALC:LLIN1:STAT <value>,value,bool,OFF; ON,,,CALC,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Center_Freq_MHz,Set Center Freq MHz,:FREQuency:CENTer <hz_value>,:FREQ:CENT <hz_value>,hz_value,numeric,,,RIG Frequency commands,Frequency,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Continuous_Mode,Set Continuous Mode,:INITiate:CONTinuous <state_bool>,:INIT:CONT <state_bool>,state_bool,bool,OFF; ON,,Trace Command Sets,Trace,,,,,1,,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,SET,Set_Debug_Ftp,Turn the instrument's FTP server on or off.,:DEBug:FTP <state>,,state,bool,0; 1,,Debug Remote,Debug,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,SET,Set_Debug_Remote_Cfile_Delfile,Delete one file on the instrument.,:DEBug:REMote:CFILe:DelFile <file_name>,,file_name,string,,,Debug Remote,Debug,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
+Spectrum,N9340B,SET,Set_Debug_Remote_Cfile_Writefile,Start writing one file onto the instrument.,:DEBug:REMote:CFILe:WriteFile <file_name>,,file_name,string,,,Debug Remote,Debug,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Demod_Am_State,AM Demodulation,:DEMod:AM:STATe <value>,:DEM:AM:STAT <value>,value,bool,OFF; ON,,,DEM,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Demod_Fm_State,FM Demodulation,:DEMod:FM:STATe <value>,:DEM:FM:STAT <value>,value,bool,OFF; ON,,,DEM,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand
 Spectrum,N9340B,SET,Set_Display_Mode_Brightness,Brightness,:DISPlay:MODE:BRIGhtness <value>,:DISP:MODE:BRIG <value>,value,unknown,,,,DISP,,,,,1,yes,INSTRUMENT.Spectrum/N9340B/N9340B.komand

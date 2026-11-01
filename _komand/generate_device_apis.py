@@ -446,6 +446,11 @@ def generate_device_api(family, model, authored_komands, known_devices,
             # published in the spec; it stays in the table with its citation.
             if raw_cmd.get('retired'):
                 continue
+            # A model-only command (an undocumented back door of the donor's own
+            # firmware, e.g. the N9340B's :DEBug:REMote) is not a family command:
+            # a model that only BORROWS the donor's table does not get it.
+            if inherited_from and raw_cmd.get('model_only'):
+                continue
             item = build_endpoint_entry(family, cname, raw_cmd, verb)
             endpoints[verb][cname] = item
             # A single-value NAB is also exposed under GET for REST/query

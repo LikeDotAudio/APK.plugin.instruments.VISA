@@ -125,6 +125,55 @@
       ],
       "subsystem": "Markers"
     },
+    "Set_Debug_Ftp": {
+      "scpi": ":DEBug:FTP <state>",
+      "description": "Turn the instrument's FTP server on or off.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "args": [
+        "state"
+      ],
+      "arg": {
+        "kind": "bool",
+        "values": [
+          "0",
+          "1"
+        ]
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. The vendor sends 'DEBUG:FTP 1' and 'DEB:FTP 0'; no reply. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Set_Debug_Remote_Cfile_Delfile": {
+      "scpi": ":DEBug:REMote:CFILe:DelFile <file_name>",
+      "description": "Delete one file on the instrument.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "args": [
+        "file_name"
+      ],
+      "arg": {
+        "kind": "string"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Destructive. No reply; the status is Get_Debug_Remote_Cfile_Delfile_Status. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Set_Debug_Remote_Cfile_Writefile": {
+      "scpi": ":DEBug:REMote:CFILe:WriteFile <file_name>",
+      "description": "Start writing one file onto the instrument.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "args": [
+        "file_name"
+      ],
+      "arg": {
+        "kind": "string"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. No reply; the vendor then sends the file in framed chunks and asks Get_Debug_Remote_Cfile_Writefile_Status after each. Chunk framing not carried here. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
     "Set_Demod_Am_State": {
       "scpi": ":DEMod:AM:STATe <value>",
       "scpiFast": ":DEM:AM:STAT <value>",
@@ -1947,6 +1996,199 @@
       },
       "group": "NAB Marker Monitoring",
       "subsystem": "Markers"
+    },
+    "Get_Debug_Ftp": {
+      "scpi": ":DEBug:FTP?",
+      "description": "Whether the instrument's FTP server is on.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Text reply; the vendor's upgrade dialog sends it as 'DEBUG:FTP?'. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Nfl_Available": {
+      "scpi": ":DEBug:NFL:AVAilable?",
+      "description": "NFL availability (meaning unknown; the vendor's upgrade dialog asks it).",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "CRD"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Sent by the vendor as 'DEBUG:NFL:AVA?'; reply shape not known. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Dmarker": {
+      "scpi": ":DEBug:REMote DMARker",
+      "description": "Fast delta markers, in one binary frame.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI",
+        "function_code": 5
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data: the marker frame (code 5). Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_File": {
+      "scpi": ":DEBug:REMote FILe",
+      "description": "The instrument's file list, first part.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data: @29 u32 file count, then 'name,date,name,date,…' ASCII (length - 4 bytes). Frame state 0/2: send Get_Debug_Remote_Next for more; 1/3: last. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Next": {
+      "scpi": ":DEBug:REMote NEXT",
+      "description": "The next part of the file list.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data: as Get_Debug_Remote_File. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Pmarker": {
+      "scpi": ":DEBug:REMote PMARker",
+      "description": "Fast markers: the six markers' on/delta/mode/trace flags and values.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI",
+        "function_code": 5
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data (code 5): per marker n=0..5 at 29+4n: on, delta on, mode, trace; values follow. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Ptrace": {
+      "scpi": ":DEBug:REMote PTRACe",
+      "description": "Fast trace settings: mode, detector and averaging of all four traces.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI",
+        "function_code": 2
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data (code 2): @29 half flag, then per trace n=0..3 at 30+6n: mode, detector, detector flag, u16 video-avg value, average flag. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_State": {
+      "scpi": ":DEBug:REMote STATE",
+      "description": "Fast state: the whole measurement setup in one binary frame.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI",
+        "function_code": 1
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data (code 1): @29.. one-byte flags (atten, preamp, scale, scale type, atten value, RBW/VBW/BW auto, sweep time, sweep, fast sweep, average, AM, FM, ext in), then f64s: @44 ref level dBm, @52 ref offset, @60 centre, @68 centre step, @76 span, @84 start, @92 stop, @100 VBW, @108 RBW, @116 sweep time, @124 VBW/RBW; @132 uncal, @133 FFT, @134 Y log unit, @135 Y lin unit, @136 span-0 ext trigger, @137 span-0 mode, @138 u16 video-trigger x, @140 f64 video-trigger level, @148 overload, @149 PSD. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Trace": {
+      "scpi": ":DEBug:REMote TRACe<trace_number>",
+      "description": "Fast trace: one trace (1-4), 461 frequency/amplitude points, in one binary frame.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI",
+        "function_code": 3
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data (code 3): @29 half flag, @30 trace index 0-3, @31 mode, @32 detector, @33 detector flag, @34 u16 video-avg value, @36 u16 average count, @38 average flag, then 461 x {f64 frequency Hz, f32 amplitude in the current Y unit, u16 screen y} from @39 — 6494 bytes. This is the fast path the vendor's Spectrum Monitor polls; the slow path is trace_data. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Cfile_Cancel": {
+      "scpi": ":DEBug:REMote:CFILe:Cancel",
+      "description": "Cancel a file transfer; the vendor sends it before every read, write and delete.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. The vendor reads one frame back and ignores it. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Cfile_Delfile_Status": {
+      "scpi": ":DEBug:REMote:CFILe:DelFile?",
+      "description": "Status of the last delete.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Status @5 is '0' (48) on success. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Cfile_Readfile": {
+      "scpi": ":DEBug:REMote:CFILe:ReadFILe <file_name>",
+      "description": "Start reading one file off the instrument: its first part.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Status @5 is '0' (48) on success. Frame state 0/2: send Get_Debug_Remote_Cfile_Readfile_Next for more; 1/3: last. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true,
+      "args": [
+        "file_name"
+      ],
+      "arg": {
+        "kind": "string"
+      }
+    },
+    "Get_Debug_Remote_Cfile_Readfile_Next": {
+      "scpi": ":DEBug:REMote:CFILe:ReadFILe:Next",
+      "description": "The next part of the file being read.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Data: as Get_Debug_Remote_Cfile_Readfile. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
+    },
+    "Get_Debug_Remote_Cfile_Writefile_Status": {
+      "scpi": ":DEBug:REMote:CFILe:WriteFile?",
+      "description": "Status of the file write in progress.",
+      "subsystem": "Debug",
+      "group": "Debug Remote",
+      "returns": {
+        "count": 1,
+        "type": "HOYI"
+      },
+      "notes": "Undocumented — not in the Programmer's Guide N9340-90010. Read out of the vendor's N9340 PC Software (Agilent.N9340B.VISA.SCPI.DefSCPI / FILESCPI, decompiled 2026-10-31); its 'Def:'/'Std:' prefixes are internal and never sent. Answers with ONE binary HOYI frame and no '?': 'HOYI', function code @4, status @5, u16 LE data length @6, frame state @8, u32 LE frame counter @9, data from @29, then '\\n' — 29 + length + 1 bytes in all. The VISA plugin reads it because the header is in its config.ini reply_without_query, and frames it by the length (instrument::hoyi_len), never at a newline. Status @5 is '0' (48) on success. Never sent to the instrument yet.",
+      "unverified": true,
+      "model_only": true
     },
     "Get_Demod_Am_State": {
       "scpi": ":DEMod:AM:STATe?",
