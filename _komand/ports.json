@@ -15,6 +15,7 @@
     "Router": 15100,
     "SMU": 16100,
     "Spectrum": 15000,
+    "TestSet": 16300,
     "VNA": 16200
   },
   "instruments": {
@@ -882,6 +883,26 @@
       "port": 15027,
       "path": "/api/instrument/Spectrum/N9918A",
       "socket": "/ws/instrument/Spectrum/N9918A"
+    },
+    "TestSet/8960": {
+      "port": 16300,
+      "path": "/api/instrument/TestSet/8960",
+      "socket": "/ws/instrument/TestSet/8960"
+    },
+    "TestSet/E5515C": {
+      "port": 16301,
+      "path": "/api/instrument/TestSet/E5515C",
+      "socket": "/ws/instrument/TestSet/E5515C"
+    },
+    "TestSet/E5515E": {
+      "port": 16302,
+      "path": "/api/instrument/TestSet/E5515E",
+      "socket": "/ws/instrument/TestSet/E5515E"
+    },
+    "TestSet/Virtual_TestSet": {
+      "port": 16303,
+      "path": "/api/instrument/TestSet/Virtual_TestSet",
+      "socket": "/ws/instrument/TestSet/Virtual_TestSet"
     },
     "VNA/8720ES": {
       "port": 16200,

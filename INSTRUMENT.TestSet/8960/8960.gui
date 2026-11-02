@@ -1,0 +1,30 @@
+{
+  "model": "8960",
+  "manufacturer": "HP / Agilent / Keysight",
+  "type": "TestSet",
+  "notes": "8960 Series 10 Wireless Communications Test Set (292 MHz - 2.7 GHz)",
+  "vocabulary": "none",
+  "channels": 1,
+  "domains": {
+    "rf_freq": {
+      "units": "Hz",
+      "min": 292000000,
+      "max": 2700000000
+    },
+    "rf_power": {
+      "units": "dBm",
+      "min": -127,
+      "max": 30
+    },
+    "audio_freq": {
+      "units": "Hz",
+      "min": 20,
+      "max": 20000
+    },
+    "sinad": {
+      "units": "dB",
+      "min": 0,
+      "max": 100
+    }
+  }
+}

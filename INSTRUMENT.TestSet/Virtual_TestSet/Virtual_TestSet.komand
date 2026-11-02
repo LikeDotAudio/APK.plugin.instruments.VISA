@@ -1,0 +1,196 @@
+{
+  "model": "Virtual_TestSet",
+  "family": "TestSet",
+  "set": {
+    "Set_Audio_Freq": {
+      "scpi": "SOURce:AUDio:FREQuency <value>",
+      "scpi_fast": "SOUR:AUD:FREQ <value>",
+      "description": "Set audio generator frequency in Hertz",
+      "subsystem": "SOURce",
+      "args": [
+        "value"
+      ],
+      "unverified": false
+    },
+    "Set_Audio_Level": {
+      "scpi": "SOURce:AUDio:LEVel <value>",
+      "scpi_fast": "SOUR:AUD:LEV <value>",
+      "description": "Set audio generator output level in Volts RMS",
+      "subsystem": "SOURce",
+      "args": [
+        "value"
+      ],
+      "unverified": false
+    },
+    "Set_Rf_Power": {
+      "scpi": "SOURce:RF:POWer <value>",
+      "scpi_fast": "SOUR:RF:POW <value>",
+      "description": "Set output RF generator power level in dBm",
+      "subsystem": "SOURce",
+      "args": [
+        "value"
+      ],
+      "unverified": false
+    }
+  },
+  "do": {
+    "Clear_Status": {
+      "scpi": "*CLS",
+      "description": "Clear Status Command",
+      "subsystem": "Common",
+      "unverified": false
+    },
+    "Operation_Complete": {
+      "scpi": "*OPC",
+      "description": "Operation Complete Command",
+      "subsystem": "Common",
+      "unverified": false
+    },
+    "Reset": {
+      "scpi": "*RST",
+      "description": "Reset Command",
+      "subsystem": "Common",
+      "unverified": false
+    },
+    "Wait_To_Continue": {
+      "scpi": "*WAI",
+      "description": "Wait-to-Continue Command",
+      "subsystem": "Common",
+      "unverified": false
+    },
+    "End_Call": {
+      "scpi": "CALL:END",
+      "description": "Terminate active cellular call",
+      "subsystem": "CALL",
+      "unverified": false
+    },
+    "Connect_Call": {
+      "scpi": "CALL:PCONnection",
+      "scpi_fast": "CALL:PCON",
+      "description": "Establish cellular call connection",
+      "subsystem": "CALL",
+      "unverified": false
+    }
+  },
+  "rig": {
+    "Configure_Audio_Test": {
+      "scpi": "SOURce:AUDio:FREQuency <freq>;:SOURce:AUDio:LEVel <level>",
+      "scpi_fast": "SOUR:AUD:FREQ <freq>;:SOUR:AUD:LEV <level>",
+      "description": "Configure audio generator frequency and level together",
+      "subsystem": "SOURce",
+      "args": [
+        "freq",
+        "level"
+      ],
+      "unverified": false
+    }
+  },
+  "nab": {
+    "Get_Idn": {
+      "scpi": "*IDN?",
+      "description": "Identification Query",
+      "subsystem": "Common",
+      "returns": {
+        "count": 1,
+        "type": "CRD"
+      },
+      "unverified": false
+    },
+    "Get_Opc": {
+      "scpi": "*OPC?",
+      "description": "Operation Complete Query",
+      "subsystem": "Common",
+      "returns": {
+        "count": 1,
+        "type": "BOOL"
+      },
+      "unverified": false
+    },
+    "Get_Call_Status": {
+      "scpi": "CALL:STATUS?",
+      "scpi_fast": "CALL:STAT?",
+      "description": "Query cellular call connection status",
+      "subsystem": "CALL",
+      "returns": {
+        "count": 1,
+        "type": "CRD"
+      },
+      "unverified": false
+    },
+    "Get_Sinad": {
+      "scpi": "MEASure:AFANalyzer:SINAd?",
+      "scpi_fast": "MEAS:AFAN:SINA?",
+      "description": "Measure audio SINAD ratio in dB",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "unverified": false
+    },
+    "Get_Audio_Level": {
+      "scpi": "MEASure:AUDio:LEVel?",
+      "scpi_fast": "MEAS:AUD:LEV?",
+      "description": "Measure incoming audio voltage in Volts RMS",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "unverified": false
+    },
+    "Get_Thd": {
+      "scpi": "MEASure:AUDio:THD?",
+      "scpi_fast": "MEAS:AUD:THD?",
+      "description": "Measure audio Total Harmonic Distortion plus Noise in percentage",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "unverified": false
+    },
+    "Get_Ber": {
+      "scpi": "MEASure:BER?",
+      "description": "Measure Bit Error Rate percentage",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "unverified": false
+    },
+    "Get_Evm": {
+      "scpi": "MEASure:EVM?",
+      "description": "Measure Error Vector Magnitude percentage",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "unverified": false
+    },
+    "Get_Rf_Power": {
+      "scpi": "MEASure:RF:POWer?",
+      "scpi_fast": "MEAS:RF:POW?",
+      "description": "Measure received RF power in dBm",
+      "subsystem": "MEASure",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "unverified": false
+    },
+    "Get_Audio_Freq": {
+      "scpi": "SOURce:AUDio:FREQuency?",
+      "scpi_fast": "SOUR:AUD:FREQ?",
+      "description": "Query audio generator frequency",
+      "subsystem": "SOURce",
+      "returns": {
+        "count": 1,
+        "type": "NR3"
+      },
+      "unverified": false
+    }
+  }
+}

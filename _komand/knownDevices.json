@@ -400,6 +400,11 @@
     "type": "VNA",
     "notes": "RF VNA 3/6 GHz (Classic)"
   },
+  "8960": {
+    "manufacturer": "HP / Agilent / Keysight",
+    "type": "TestSet",
+    "notes": "8960 Series 10 Wireless Communications Test Set (292 MHz - 2.7 GHz)"
+  },
   "AFG1022": {
     "manufacturer": "Tektronix",
     "type": "Generator",
@@ -676,6 +681,17 @@
     "type": "SMU",
     "notes": "8-Slot Precision Measurement Mainframe"
   },
+  "E5515C": {
+    "manufacturer": "HP / Agilent / Keysight",
+    "type": "TestSet",
+    "notes": "8960 Series 10 Wireless Communications Test Set (E5515C Mainframe)",
+    "commands": "INSTRUMENT.TestSet/E5515C/E5515C.komand"
+  },
+  "E5515E": {
+    "manufacturer": "HP / Agilent / Keysight",
+    "type": "TestSet",
+    "notes": "8960 Series 10 Wireless Communications Test Set (E5515E Enhanced Mainframe)"
+  },
   "E8361C": {
     "manufacturer": "HP / Agilent / Keysight",
     "type": "VNA",
@@ -914,6 +930,12 @@
     "manufacturer": "HP / Agilent / Keysight",
     "type": "DMM",
     "notes": "Handheld 4.5 Digit, Water/Dust Resistant"
+  },
+  "Virtual_TestSet": {
+    "manufacturer": "APK.audio",
+    "type": "TestSet",
+    "notes": "APK.audio Virtual Test Set (Synthesized RF + Audio Multi-Function Emulator)",
+    "commands": "INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand"
   },
   "Z204": {
     "manufacturer": "HP / Agilent / Keysight",

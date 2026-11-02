@@ -18,6 +18,7 @@
     "Router": "INSTRUMENT.Router",
     "SMU": "INSTRUMENT.SMU",
     "Spectrum": "INSTRUMENT.Spectrum",
+    "TestSet": "INSTRUMENT.TestSet",
     "VNA": "INSTRUMENT.VNA"
   }
 }

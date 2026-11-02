@@ -110,5 +110,8 @@
   },
   "VNA": {
     "tab": "12_VNA"
+  },
+  "TestSet": {
+    "tab": "13_TestSet"
   }
 }

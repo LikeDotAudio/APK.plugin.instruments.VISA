@@ -1,0 +1,170 @@
+{
+  "TestSet_Instrument": {
+    "type": "OcaBin",
+    "id": "50.100.13.1",
+    "geometry": {
+      "anchor": "NSEW"
+    },
+    "behavior": {
+      "overflow_ns": "auto",
+      "overflow_ew": "auto",
+      "fluid_ew": true
+    },
+    "blocks": {
+      "TestSet_Control_Panel": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Wireless Communications Test Set Control Panel",
+          "Fr": "Panneau de contrôle du banc d'essai sans fil",
+          "De": "Bedienfeld für Funkkommunikationstestsatz",
+          "Es": "Panel de control del conjunto de pruebas de comunicaciones inalámbricas"
+        },
+        "fields": {
+          "Call_Control": {
+            "type": "OcaBlock",
+            "description": {
+              "En": "Call Processing & State Control",
+              "Fr": "Contrôle d'appel",
+              "De": "Anrufsteuerung",
+              "Es": "Control de llamadas"
+            },
+            "fields": {
+              "connect_call": {
+                "type": "_GuiActuator",
+                "label": {
+                  "inactive": {
+                    "text": {
+                      "En": "CONNECT CALL",
+                      "Fr": "CONNECTER",
+                      "De": "VERBINDEN",
+                      "Es": "CONECTAR"
+                    },
+                    "text_size": 12,
+                    "text_color": "#28A745"
+                  }
+                },
+                "komand_handler": {
+                  "enable": true,
+                  "komand_type": "do",
+                  "sub_path": "TestSet",
+                  "command": "Connect_Call"
+                }
+              },
+              "end_call": {
+                "type": "_GuiActuator",
+                "label": {
+                  "inactive": {
+                    "text": {
+                      "En": "END CALL",
+                      "Fr": "TERMINER",
+                      "De": "BEENDEN",
+                      "Es": "TERMINAR"
+                    },
+                    "text_size": 12,
+                    "text_color": "#DC3545"
+                  }
+                },
+                "komand_handler": {
+                  "enable": true,
+                  "komand_type": "do",
+                  "sub_path": "TestSet",
+                  "command": "End_Call"
+                }
+              }
+            }
+          },
+          "Audio_Distortion_Panel": {
+            "type": "OcaBlock",
+            "description": {
+              "En": "Audio & Distortion / SINAD Analysis",
+              "Fr": "Analyse audio et distorsion / SINAD",
+              "De": "Audio- und Verzerrungs-/SINAD-Analyse",
+              "Es": "Análisis de audio y distorsión / SINAD"
+            },
+            "fields": {
+              "speech_echo": {
+                "type": "_GuiSwitch",
+                "label": {
+                  "active": {
+                    "text": {
+                      "En": "ECHO ON",
+                      "Fr": "ÉCHO ON",
+                      "De": "ECHO AN",
+                      "Es": "ECO ON"
+                    },
+                    "text_size": 12,
+                    "text_color": "#00FF66"
+                  },
+                  "inactive": {
+                    "text": {
+                      "En": "ECHO OFF",
+                      "Fr": "ÉCHO OFF",
+                      "De": "ECHO AUS",
+                      "Es": "ECO DES"
+                    },
+                    "text_size": 12,
+                    "text_color": "#888888"
+                  }
+                },
+                "state_default": false,
+                "komand_handler": {
+                  "enable": true,
+                  "komand_type": "set",
+                  "sub_path": "TestSet",
+                  "command": "Set_Speech_Echo_State",
+                  "input_name": "value"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Setup": {
+    "type": "OcaBin",
+    "id": "50.100.13.9",
+    "geometry": {
+      "anchor": "NSEW"
+    },
+    "behavior": {
+      "overflow_ns": "auto",
+      "overflow_ew": "auto",
+      "fluid_ew": true
+    },
+    "blocks": {
+      "Instrument_Setup": {
+        "type": "OcaBlock",
+        "description": {
+          "En": "Reset and status",
+          "Fr": "Réinitialisation",
+          "De": "Zurücksetzen",
+          "Es": "Reinicio"
+        },
+        "fields": {
+          "Reset_Device": {
+            "type": "_GuiActuator",
+            "label": {
+              "inactive": {
+                "text": {
+                  "En": "RESET INSTRUMENT (*RST)",
+                  "Fr": "RÉINITIALISER (*RST)",
+                  "De": "ZURÜCKSETZEN (*RST)",
+                  "Es": "REINICIAR (*RST)"
+                },
+                "text_size": 12,
+                "text_color": "#FF6B6B"
+              }
+            },
+            "komand_handler": {
+              "enable": true,
+              "komand_type": "do",
+              "sub_path": "TestSet",
+              "command": "Reset"
+            }
+          }
+        }
+      }
+    }
+  }
+}

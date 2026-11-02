@@ -3764,3 +3764,59 @@ Spectrum,N9342CN,SET,Start_Freq_MHz,Start Freq MHz,:FREQuency:STARt <hz_value>,:
 Spectrum,N9342CN,SET,Stop_Freq_MHz,Stop Freq MHz,:FREQuency:STOP <hz_value>,:FREQ:STOP <hz_value>,hz_value,numeric,,,RIG Frequency commands,Frequency,,,,,1,,INSTRUMENT.Spectrum/N9342CN/N9342CN.komand
 Spectrum,N9342CN,SET,Sweep_Time,Sweep Time,:SENSe:SWEep:TIME <sweep_time_s>,:SENS:SWE:TIME <sweep_time_s>,sweep_time_s,numeric,,,RIG Bandwidth Commands,Bandwidth,,,,,1,,INSTRUMENT.Spectrum/N9342CN/N9342CN.komand
 Spectrum,N9342CN,SET,Video_Bandwidth,Video Bandwidth,:SENSe:BANDwidth:VIDeo <hz_value>,:SENS:BAND:VID <hz_value>,hz_value,numeric,,,RIG Bandwidth Commands,Bandwidth,,,,,1,,INSTRUMENT.Spectrum/N9342CN/N9342CN.komand
+TestSet,E5515C,DO,Clear_Status,Clear status registers and error queue,*CLS,,,,,,,Common,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,DO,Connect_Call,Establish cellular call connection,CALL:PCONnection,,,,,,,CALL,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,DO,End_Call,End active cellular call,CALL:END,,,,,,,CALL,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,DO,Reset,Reset instrument to factory defaults,*RST,,,,,,,Common,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,DO,Wait_To_Continue,Wait for pending operations to complete,*WAI,,,,,,,Common,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Audio_Ac_Voltage,Measure audio RMS AC voltage,MEASure:AFANalyzer:VOLTage:AC?,,,,,,,AFANalyzer,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Audio_Dc_Voltage,Measure audio DC voltage,MEASure:AFANalyzer:VOLTage:DC?,,,,,,,AFANalyzer,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Audio_Frequency,Measure audio tone frequency,MEASure:AFANalyzer:FREQuency?,,,,,,,AFANalyzer,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Ber,Measure Bit Error Rate,MEASure:BER?,,,,,,,RF,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Call_Band,Query operating band,CALL:BAND?,,,,,,,CALL,1,CRD,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Call_Channel,Query current ARFCN channel,CALL:CHANnel?,,,,,,,CALL,1,NR1,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Call_Status,Query call processing status,CALL:STATUS?,,,,,,,CALL,1,CRD,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Cell_Power,Query RF cell power level,CALL:POWer?,,,,,,,CALL,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Connection_State,Query packet data connection state,CALL:PCONnection:STATe?,,,,,,,CALL,1,CRD,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Display_Update,Query screen update state,SYSTem:DISPlay:UPDate?,,,,,,,SYSTem,1,BOOL,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Distortion,Measure audio THD / THD+N distortion,MEASure:AFANalyzer:DISTortion?,,,,,,,AFANalyzer,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Evm,Measure Error Vector Magnitude,MEASure:EVM?,,,,,,,RF,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Fer,Measure Frame Error Rate,MEASure:FER?,,,,,,,RF,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Frequency_Error,Measure carrier frequency error,MEASure:FERRor?,,,,,,,RF,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Idn,Identification query,*IDN?,,,,,,,Common,1,CRD,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Occupied_Bandwidth,Measure occupied bandwidth,MEASure:OBWidth?,,,,,,,RF,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Opc,Operation complete query,*OPC?,,,,,,,Common,1,BOOL,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Sinad,Measure audio SINAD in dB,MEASure:AFANalyzer:SINAd?,,,,,,,AFANalyzer,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Speech_Echo_State,Query speech loopback echo state,CALL:AUDio:SPEech:ECHO:STATe?,,,,,,,CALL,1,BOOL,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Status_Byte,Read status byte query,*STB?,,,,,,,Common,1,NR1,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_System_Error,Query system error queue,SYSTem:ERRor?,,,,,,,SYSTem,1,CRD,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,NAB,Get_Tx_Power,Measure transmitter RF power,MEASure:TXPower?,,,,,,,RF,1,NR3,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,RIG,Configure_Audio_Loopback,Configure speech echo loopback and delay,:CALL:AUDio:SPEech:ECHO:STATe <state>;:CALL:AUDio:SPEech:ECHO:DELay <delay>,,state; delay,,,,,CALL,,,,,2,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,RIG,Configure_Cell,"Configure cell band, channel, and RF power together",:CALL:BAND <band>;:CALL:CHANnel <channel>;:CALL:POWer <power>,,band; channel; power,,,,,CALL,,,,,3,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,SET,Set_Call_Band,Set cellular operating band,CALL:BAND <value>,,value,,,,,CALL,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,SET,Set_Call_Channel,Set cellular channel ARFCN,CALL:CHANnel <value>,,value,,,,,CALL,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,SET,Set_Cell_Power,Set RF cell power level in dBm,CALL:POWer <value>,,value,,,,,CALL,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,SET,Set_Display_Update,Set screen update / blanking state to maximize bus execution speed,SYSTem:DISPlay:UPDate <value>,,value,,,,,SYSTem,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,SET,Set_Ese,Set Standard Event Status Enable,*ESE <value>,,value,,,,,Common,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,SET,Set_Speech_Echo_State,Set speech loopback echo state,CALL:AUDio:SPEech:ECHO:STATe <value>,,value,,,,,CALL,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,E5515C,SET,Set_Sre,Set Service Request Enable,*SRE <value>,,value,,,,,Common,,,,,1,yes,INSTRUMENT.TestSet/E5515C/E5515C.komand
+TestSet,Virtual_TestSet,DO,Clear_Status,Clear Status Command,*CLS,,,,,,,Common,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,DO,Connect_Call,Establish cellular call connection,CALL:PCONnection,,,,,,,CALL,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,DO,End_Call,Terminate active cellular call,CALL:END,,,,,,,CALL,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,DO,Operation_Complete,Operation Complete Command,*OPC,,,,,,,Common,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,DO,Reset,Reset Command,*RST,,,,,,,Common,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,DO,Wait_To_Continue,Wait-to-Continue Command,*WAI,,,,,,,Common,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Audio_Freq,Query audio generator frequency,SOURce:AUDio:FREQuency?,,,,,,,SOURce,1,NR3,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Audio_Level,Measure incoming audio voltage in Volts RMS,MEASure:AUDio:LEVel?,,,,,,,MEASure,1,NR3,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Ber,Measure Bit Error Rate percentage,MEASure:BER?,,,,,,,MEASure,1,NR3,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Call_Status,Query cellular call connection status,CALL:STATUS?,,,,,,,CALL,1,CRD,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Evm,Measure Error Vector Magnitude percentage,MEASure:EVM?,,,,,,,MEASure,1,NR3,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Idn,Identification Query,*IDN?,,,,,,,Common,1,CRD,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Opc,Operation Complete Query,*OPC?,,,,,,,Common,1,BOOL,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Rf_Power,Measure received RF power in dBm,MEASure:RF:POWer?,,,,,,,MEASure,1,NR3,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Sinad,Measure audio SINAD ratio in dB,MEASure:AFANalyzer:SINAd?,,,,,,,MEASure,1,NR3,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,NAB,Get_Thd,Measure audio Total Harmonic Distortion plus Noise in percentage,MEASure:AUDio:THD?,,,,,,,MEASure,1,NR3,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,RIG,Configure_Audio_Test,Configure audio generator frequency and level together,SOURce:AUDio:FREQuency <freq>;:SOURce:AUDio:LEVel <level>,,freq; level,,,,,SOURce,,,,,2,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,SET,Set_Audio_Freq,Set audio generator frequency in Hertz,SOURce:AUDio:FREQuency <value>,,value,,,,,SOURce,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,SET,Set_Audio_Level,Set audio generator output level in Volts RMS,SOURce:AUDio:LEVel <value>,,value,,,,,SOURce,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand
+TestSet,Virtual_TestSet,SET,Set_Rf_Power,Set output RF generator power level in dBm,SOURce:RF:POWer <value>,,value,,,,,SOURce,,,,,1,,INSTRUMENT.TestSet/Virtual_TestSet/Virtual_TestSet.komand

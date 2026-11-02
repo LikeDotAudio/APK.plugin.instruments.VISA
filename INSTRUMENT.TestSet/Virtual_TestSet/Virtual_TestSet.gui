@@ -1,0 +1,35 @@
+{
+  "model": "Virtual_TestSet",
+  "manufacturer": "APK.audio",
+  "type": "TestSet",
+  "notes": "APK.audio Virtual Test Set (Synthesized RF + Audio Multi-Function Emulator)",
+  "vocabulary": "none",
+  "channels": 2,
+  "domains": {
+    "rf_freq": {
+      "units": "Hz",
+      "min": 100000000,
+      "max": 3000000000
+    },
+    "rf_power": {
+      "units": "dBm",
+      "min": -130,
+      "max": 30
+    },
+    "audio_freq": {
+      "units": "Hz",
+      "min": 10,
+      "max": 50000
+    },
+    "thd_n": {
+      "units": "%",
+      "min": 0.0001,
+      "max": 100.0
+    },
+    "sinad": {
+      "units": "dB",
+      "min": 0,
+      "max": 120
+    }
+  }
+}
