@@ -56,6 +56,26 @@ cargo run -- build-links                  # knownDevices.json → tables
 
 Inserting a model renumbers the later models' ports in its family; review the `ports.json` diff.
 
+### GRAB — every setting at once, from commands proven one by one
+
+```bash
+python3 _komand/compile_grab.py          # bench evidence → <Model>.qualified.json (WEB.OsApi /api/os/captures/qualified)
+python3 _komand/generate_device_apis.py  # → nab/GRAB (+ GRAB_1…n) in <Model>.api.json
+python3 _komand/qualify_grab.py          # run it on each unit; writes grab_qualified (expected vs answered)
+python3 _komand/family_sdk_docs.py <Family>   # the family's SDK pages list it
+```
+
+The evidence comes from WEB.OsApi's Nabber. It asks each library query alone, once
+per unit (`nab_known`). A query any unit answered is *qualified*; one a unit refused
+(`refused: …`) is listed and left out; a link failure is unknown. `compile_grab.py`
+maps each qualified query to the model's own `get`/`nab` endpoint (single, argument-free,
+not a block). `grab_endpoints` stacks them in the library's order, with `*IDN?` / `*OPT?`
+last, into `GRAB`. If that is longer than `GRAB_MAX_BYTES` (240), it is also split into
+`GRAB_1…n`, each within the limit. Each endpoint's `grab` block names the commands, in
+answer order, and the evidence. A reader sends `GRAB` (or each part) and gets
+`;`-separated answers in that order.
+
+
 ## Checks and data files (2026-10-30)
 
 | File | What |

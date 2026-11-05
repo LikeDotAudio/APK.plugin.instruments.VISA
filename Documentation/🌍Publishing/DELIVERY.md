@@ -29,6 +29,16 @@ cargo run -- build-list --check && cargo run -- build-trees --check && cargo run
 - Images are rebuilt by hand; nothing rebuilds them on a push here.
 - No live URL of its own; the library surfaces through the OsApi instrument page on the bench.
 
+## Delivered 2026-11-04: GRAB, compiled from single commands that worked
+
+- `compile_grab.py`, `grab_endpoints` in the generator, and `qualify_grab.py`. Evidence from
+  the bench's Nabber (266 `nab_known` rows) gave three models a GRAB: 34401A (13 queries),
+  33210A (41, in 3 parts) and 54641D (79, in 5 parts).
+- Qualified on every unit: 34401A ×2 13/13, 33210A 41/41, 54641D ×2 79/79. The first run
+  failed on the 34401A and 33210A with 2 answers: `*IDN?` second in the stack ends the reply
+  (IEEE 488.2 §8.7.3), so it goes last now. `test_instruments.Grab` holds that, the chunking,
+  the mapping and "GRAB iff evidence". The family SDK pages list it.
+
 ## Delivered 2026-10-31: portable file names (no `:` `|` or case twins)
 
 - The monorepo now checks out on Windows and macOS: no tracked name holds `<>:"|?*`, a trailing dot or space, a device name or a case-only twin. Colon folders became dot folders (the POD.x convention).

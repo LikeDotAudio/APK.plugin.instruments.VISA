@@ -334,6 +334,104 @@ def returns_one_thing(raw_cmd):
     return raw_cmd.get('scpi', '').count('?') <= 1
 
 
+# GRAB — every query a model answered ALONE on the bench, stacked (owner,
+# 2026-11-04). Compiled from `<Model>.qualified.json` (compile_grab.py, the
+# bench's evidence) and from nothing else: a query the table lists but no unit
+# has answered alone is not in it, because one unknown header spoils a stacked
+# answer. It is a NAB — by this library's rule anything that returns more than
+# one thing is — so every reader of `nab` (KOMAND, the orchestrator's pages)
+# has it without a new verb. One compound `GRAB`; when that is longer than an
+# instrument's input buffer can be trusted with, also `GRAB_1…n`, each at most
+# GRAB_MAX_BYTES, which together ask the same queries in the same order.
+GRAB_MAX_BYTES = 240
+
+# IEEE 488.2 §8.7.3: a query whose response is "arbitrary ASCII" (*IDN?, *OPT?)
+# must be the LAST in a program message — an instrument stops answering after
+# it. Measured 2026-11-04: the 34401A answered `+0;HEWLETT-PACKARD,34401A,0,11-5-3`
+# to a 13-query GRAB with *IDN? second, and nothing after it; the 33210A the
+# same. So these go last in the GRAB, and so in its last part.
+GRAB_LAST = ('*IDN?', '*OPT?')
+
+
+def load_qualified(family, model):
+    """The model's bench evidence (`<Model>.qualified.json`), or None."""
+    path = os.path.join(family_directory(family), model, f"{model}.qualified.json")
+    if not os.path.isfile(path):
+        return None
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            doc = json.load(f)
+    except (OSError, ValueError) as e:
+        raise BrokenGui(f"{os.path.relpath(path, INSTRUMENTS_ROOT)} does not read: {e}")
+    if not isinstance(doc, dict) or not isinstance(doc.get('commands'), list):
+        raise BrokenGui(f"{os.path.relpath(path, INSTRUMENTS_ROOT)} has no `commands` list")
+    return doc
+
+
+def grab_chunks(queries, limit=GRAB_MAX_BYTES):
+    """The queries packed, in order, into `;`-joined commands of at most `limit` bytes."""
+    chunks, current = [], []
+    for q in queries:
+        trial = ';'.join(current + [q])
+        if current and len(trial.encode()) > limit:
+            chunks.append(current)
+            current = [q]
+        else:
+            current.append(q)
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def grab_endpoints(family, qualified, endpoints):
+    """{'GRAB': entry, 'GRAB_1': …} compiled from the evidence; only commands still in the tables."""
+    known = set((endpoints.get('get') or {})) | set((endpoints.get('nab') or {}))
+    commands = [c for c in qualified['commands'] if c.get('endpoint') in known and c.get('query')]
+    if not commands:
+        return {}
+    commands.sort(key=lambda c: c['query'].strip().upper() in GRAB_LAST)
+    queries = [c['query'] for c in commands]
+    names = [c['endpoint'] for c in commands]
+    evidence = {
+        "compiled": qualified.get('compiled'),
+        "units": qualified.get('units', []),
+        "source": f"{qualified.get('model')}.qualified.json",
+    }
+    chunks = grab_chunks(queries)
+    out = {}
+    whole = build_endpoint_entry(family, "GRAB", {
+        "scpi": ';'.join(queries),
+        "description": (f"GRAB — all {len(queries)} queries this model answered alone on the bench, "
+                        f"stacked; the answers come back `;`-separated in the order of grab.commands"),
+        "subsystem": "GRAB",
+        "group": "GRAB",
+        "returns": {"count": len(queries), "type": "LIST"},
+    }, "nab")
+    whole["grab"] = {
+        "commands": names,
+        "queries": queries,
+        "chunks": [f"GRAB_{i + 1}" for i in range(len(chunks))] if len(chunks) > 1 else [],
+        "max_command_bytes": GRAB_MAX_BYTES,
+        "qualified": evidence,
+    }
+    out["GRAB"] = whole
+    if len(chunks) > 1:
+        at = 0
+        for i, chunk in enumerate(chunks):
+            part = build_endpoint_entry(family, f"GRAB_{i + 1}", {
+                "scpi": ';'.join(chunk),
+                "description": f"GRAB part {i + 1} of {len(chunks)} — {len(chunk)} of the qualified queries",
+                "subsystem": "GRAB",
+                "group": "GRAB",
+                "returns": {"count": len(chunk), "type": "LIST"},
+            }, "nab")
+            part["grab"] = {"part": i + 1, "of": len(chunks), "commands": names[at:at + len(chunk)],
+                            "queries": chunk, "qualified": evidence}
+            at += len(chunk)
+            out[f"GRAB_{i + 1}"] = part
+    return out
+
+
 def build_endpoint_entry(family, cmd_name, raw_cmd, verb):
     """Normalize a raw command dict into a clean API endpoint representation."""
     scpi = raw_cmd.get('scpi', '')
@@ -460,6 +558,11 @@ def generate_device_api(family, model, authored_komands, known_devices,
                 get_item = dict(item)
                 get_item["verb"] = "get"
                 endpoints["get"][cname] = get_item
+
+    # GRAB, compiled from the bench's evidence for THIS model (see grab_endpoints).
+    qualified = load_qualified(family, model)
+    if qualified is not None:
+        endpoints["nab"].update(grab_endpoints(family, qualified, endpoints))
 
     counts = {
         "total_commands": len(endpoints["set"]) + len(endpoints["nab"]) + len(endpoints["rig"]) + len(endpoints["do"]),
