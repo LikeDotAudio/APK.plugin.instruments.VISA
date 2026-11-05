@@ -5,20 +5,21 @@ What this repo should change to meet the standard, most valuable first. Source: 
 
 All audit items delivered — see 🌍Publishing/DELIVERY.md
 
-## Open: the 54641D's screen dump is not the command its file says (2026-11-04)
+## Delivered 2026-11-04: the 54641D's screen dump, measured
 
-`INSTRUMENT.Oscilloscope/54641D/54641D.api.json` declares `nab` / `get`
-`Get_Display_Data` as `:DISPlay:DATA?` (marked `unverified`). WEB.OsApi's capture
-recorder now asks every scope for its screen with that command (ROAD-3508,
-`capture_recorder.Shooter`). Measured on the bench, at both 54641Ds (`gpib7,6`
-and the second box): the bare query answers `-250,"Mass storage error"` /
-`-420,"Query UNTERMINATED"` (VISA read error 15), and `BMP, SCReen, GRAYscale` and
-`TIFF, SCReen, MONochrome` are refused with `-108,"Parameter not allowed"`. The
-recorder backs off to every 15 minutes, so nothing is hammered.
+The 54641D's screen is `:DISPlay:DATA? TIFF, SCReen`, measured on the bench. It
+returns a 24 KB baseline TIFF, 512×349 8-bit grey with PackBits compression.
+`TIFF, GRATicule` returns only the grid. The bare query its file declares answers
+`-250 "Mass storage error"`, and the BMP and palette arguments are refused with
+`-108`.
 
-**Do:** find the 54641D's real screen-image query in its programmer's guide (and
-whether it needs a hardcopy destination set first), test it once from the
-instrument page, and correct the file's `scpi`, dropping `unverified`. Until
-then a bench can set the command in WEB.OsApi `config.ini [captures]
-screen_devices`. **Done when:** `/api/os/captures/screens?device=visa/Oscilloscope/54641D/<box>`
-lists pictures and the Recording display shows the scope's screen.
+The fix is NOT in `54641D.komand`. The 54641D is the Oscilloscope family's donor
+(`_komand/baselines/donors.json`), so regenerating writes its table into all 32
+unauthored scopes' `.api.json`, the Rigols included, whose bare query is right,
+and marks it verified there. WEB.OsApi's capture recorder therefore carries
+measured per-model commands (`config.ini [captures] screen_models`). Recording
+shows the scope's screen, served as PNG.
+
+The underlying limit is that a donor table cannot carry one model's measured
+answer without carrying it to every unauthored model. Authoring a `.komand` for a
+model is what separates it from the donor.
