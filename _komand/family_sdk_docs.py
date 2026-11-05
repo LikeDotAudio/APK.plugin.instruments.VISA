@@ -93,7 +93,7 @@ def front_door(family, folder, thing, models, gui):
         '| | |',
         '|---|---|',
         '| **Is** | ' + ('<br>'.join(f'**{r}** — {ROLE_WHAT.get(r, "")}' for r in roles) or '—') + ' |',
-        f'| **Inputs** | {cell(thing.get("inputs", "—"))} |',
+        f'| **Inputs and outputs** | {cell(thing.get("io") or thing.get("inputs") or "—")} |',
         f'| **Recipe** | none — data, not a container: read in place by the stacks that bake `INSTRUMENTS` |',
         f'| **Source** | this repository ({cell(thing.get("repository", ""))}), a submodule of '
         f'[APK.plugin.instruments.VISA](https://github.com/LikeDotAudio/APK.plugin.instruments.VISA) at `{folder}/` |',
@@ -162,7 +162,170 @@ def sdk_index(family, folder, models):
     return '\n'.join(lines)
 
 
-def sdk_model(family, folder, m):
+# ---------------------------------------------------------------- inputs and outputs
+
+# The box's connectors live in ONE place, the BIM library (DATABASE.server.BIM,
+# one part per device type). This reads that checkout when it is beside this one
+# and writes the I/O section from it; a checkout without it (this repo cloned
+# alone) keeps the section already on the page, so --check agrees in both.
+BIM_LIBRARY = os.path.normpath(os.path.join(ROOT, '..', '..', 'POD.database', 'DATABASE.server.BIM', 'SRC', 'library'))
+IO_BLOCK = re.compile(r'<!-- sdk:io -->.*?<!-- /sdk:io -->', re.S)
+MAINS = re.compile(r'mains|\bac\b|line in|iec|power in|power inlet', re.I)
+SIDES = (('input', 'Inputs'), ('output', 'Outputs'), ('connection', 'Connections (control and network)'))
+
+
+def norm(model):
+    return re.sub(r'[^A-Z0-9]', '', str(model or '').upper())
+
+
+_BIM = None
+
+
+def bim_index():
+    """norm(model) -> [part] for every BIM part, read once; {} when the library is not here."""
+    global _BIM
+    if _BIM is None:
+        _BIM = {}
+        if os.path.isdir(BIM_LIBRARY):
+            for maker in sorted(os.listdir(BIM_LIBRARY)):
+                mdir = os.path.join(BIM_LIBRARY, maker)
+                if not os.path.isdir(mdir):
+                    continue
+                for name in sorted(os.listdir(mdir)):
+                    if not name.endswith('.bim.json'):
+                        continue
+                    try:
+                        with open(os.path.join(mdir, name), encoding='utf-8') as fh:
+                            part = json.load(fh)
+                    except (OSError, ValueError):
+                        continue
+                    # The model itself first, then its aliases: an exact model always
+                    # outranks another part's alias for it.
+                    for rank, key in enumerate([part.get('model')] + list(part.get('model_aka') or [])):
+                        if key:
+                            _BIM.setdefault(norm(key), []).append((min(rank, 1), part))
+    return _BIM
+
+
+def bim_part(family, model):
+    """The BIM part for a model folder: its name, or the name without a maker prefix
+    (`HP_8903B` -> 8903B); a part of this family first, then any Test & Measurement part."""
+    idx = bim_index()
+    keys = [norm(model)]
+    if '_' in model:
+        keys.append(norm(model.split('_', 1)[1]))
+    for key in keys:
+        parts = [p for _rank, p in sorted(idx.get(key) or [], key=lambda rp: rp[0])]
+        for want in (lambda p: str(p.get('class', '')).lower() == family.lower(),
+                     lambda p: p.get('category') == 'Test & Measurement',
+                     lambda p: True):
+            hit = [p for p in parts if want(p)]
+            if hit:
+                return hit[0]
+    return None
+
+
+def io_section(family, m):
+    part = bim_part(family, m['name'])
+    lines = ['<!-- sdk:io -->', '## Inputs and outputs — the box', '']
+    if not part:
+        lines += ['No part for this model in the BIM library yet (`DATABASE.server.BIM`), so its connectors are not '
+                  'stated here. Add the part there — the one place a device type is described — and regenerate.',
+                  '', '<!-- /sdk:io -->']
+        return '\n'.join(lines)
+    ports = part.get('ports') or []
+    lines += [f'From the BIM part [`{part.get("id", "")}`](/api/bim/parts?full=1&id={quote(str(part.get("id", "")))}) '
+              f'— {cell(part.get("note") or part.get("stage") or "")}', '']
+    # Mains is the box's own supply, said once at the foot; a DC load's or a
+    # supply's power terminals are its real inputs and outputs and stay in the tables.
+    def is_mains(p):
+        text = ' '.join(str(p.get(k, '')) for k in ('terminal', 'group', 'connector', 'signal'))
+        return p.get('domain') == 'power' and p.get('side') in ('input', 'supply') and bool(MAINS.search(text))
+    for side, title in SIDES:
+        rows = [p for p in ports if p.get('side') == side and not is_mains(p)]
+        if not rows:
+            continue
+        lines += [f'### {title}', '', '| Terminal | Connector | Domain | Count | Signal |', '|---|---|---|---:|---|']
+        for p in rows:
+            lines.append(f'| {cell(p.get("terminal") or p.get("group"))} | {cell(p.get("connector"))} | {cell(p.get("domain"))} '
+                         f'| {p.get("count", 1)} | {cell(p.get("signal"))} |')
+        lines.append('')
+    power = [p for p in ports if is_mains(p)]
+    if power:
+        lines.append('**Power:** ' + '; '.join(cell(p.get("terminal") or p.get("group")) + (f' ({cell(p["connector"])})' if p.get('connector') else '')
+                                           for p in power))
+        lines.append('')
+    lines.append('<!-- /sdk:io -->')
+    return '\n'.join(lines)
+
+
+def arg_text(ep):
+    """What a command takes: its arguments, their kind, range, choices and unit."""
+    args = ep.get('args') or []
+    if not args:
+        return '—'
+    arg = ep.get('arg') or {}
+    bits = []
+    vals = arg.get('values')
+    if isinstance(vals, list) and vals:
+        bits.append(' · '.join(f'`{v}`' for v in vals[:10]) + (' …' if len(vals) > 10 else ''))
+    elif arg.get('kind') and arg.get('kind') != 'none':
+        bits.append(str(arg['kind']))
+    rng = [str(arg[k]) for k in ('min', 'max') if k in arg]
+    if rng:
+        bits.append('…'.join(rng) if len(rng) == 2 else ('≥ ' if 'min' in arg else '≤ ') + rng[0])
+    if arg.get('limits'):
+        bits.append(f'limits: {arg["limits"]}')
+    if arg.get('unit'):
+        bits.append(str(arg['unit']))
+    names = ', '.join(f'`{a}`' for a in args)
+    return f'{names}: ' + ' '.join(bits) if bits else names
+
+
+def out_text(ep):
+    """What a command gives back, and where."""
+    ret = ep.get('returns')
+    if not ret:
+        return '—'
+    kind = ret.get('type', '') if isinstance(ret, dict) else str(ret)
+    count = ret.get('count') if isinstance(ret, dict) else None
+    reading = (ep.get('mqtt') or {}).get('reading_topic', '')
+    leaf = reading.split('/Reading/', 1)[1] if '/Reading/' in reading else ''
+    return f'{kind}{f" ×{count}" if count and count != 1 else ""}' + (f' → `…/Reading/{leaf}`' if leaf else '')
+
+
+def drive_section(family, name, api):
+    eps = api.get('endpoints') or {}
+    sample = None
+    for verb in ('set', 'do', 'nab', 'get', 'rig'):
+        if eps.get(verb):
+            sample = next(iter(eps[verb].values()))
+            break
+    path = (api.get('service') or {}).get('path', f'/api/instrument/{family}/{name}')
+    lines = ['## Driving it', '',
+             'Three doors, all on the bench\'s own services — none of them is a per-model process.', '',
+             '1. **The bus, through KOMAND** (what a panel and the touch pad do). Teach the topic its handler, then send the '
+             'value; never retained — KOMAND ignores a retained value on purpose. `target` is the box\'s Write topic '
+             '(`GET /api/instrument/status?protocol=visa&resource=…` → `write_topic`); a DO/NAB fires on a truthy value.', '']
+    if sample:
+        handler = {'enable': True, 'komand_type': sample.get('verb', 'set'), 'command': sample.get('command'),
+                   'model': name, 'input_name': (sample.get('args') or [''])[0], 'target': '<box>/Write'}
+        value = 'true' if sample.get('verb') in ('do', 'nab', 'get') else '<value>'
+        lines += ['```sh',
+                  f"T=APK.audio/Gui/MyPanel/{sample.get('command')}",
+                  f"mosquitto_pub -t \"$T/config\" -m '{json.dumps({'komand_handler': handler})}'",
+                  f"mosquitto_pub -t \"$T\" -m '{{\"value\": {value}}}'",
+                  '```', '']
+    lines += ['2. **Raw SCPI** — `POST /api/instrument/send` with `{"protocol": "visa", "resource": "<VISA resource>", '
+              '"command": "<SCPI>"}`; the answer comes back in the reply and on `<box>/Read`.', '',
+              f'3. **The spec, over HTTP** — `GET {path}` (this model\'s whole `api.json`), `GET {path}/<verb>/<command>` '
+              '(one command\'s entry), `GET …/health`. These describe; they do not send anything to the box.', '',
+              'A read\'s answer is published on `<box>/Reading/<command>` (the **Out** column below); `<box>` is '
+              '`APK.audio/System/Protocols/visa/Device/<Family>/<Model>/<Dev…>`.', '']
+    return lines
+
+
+def sdk_model(family, folder, m, old=''):
     api = m['api']
     name = m['name']
     lines = [f'# {name} — {family}', '', f'← [SDK]({link("../SDK.md")})', '']
@@ -170,47 +333,45 @@ def sdk_model(family, folder, m):
         lines += ['No `api.json` is generated for this model yet: it has no `.komand` table to build one from.', '']
         return '\n'.join(lines)
     svc = api.get('service') or {}
-    sock = svc.get('socket') or {}
-    lines += [
-        f'**{cell(api.get("manufacturer", ""))}** — {cell(api.get("notes", ""))}',
-        '',
-        '| | |',
-        '|---|---|',
-        f'| Channels | {api.get("channels", "")} |',
-        f'| HTTP | `:{svc.get("port", "")}{svc.get("path", "")}` |',
-    ]
-    for k, v in (svc.get('routes') or {}).items():
-        lines.append(f'| `{k}` | `{v}` |')
-    for k, v in sock.items():
-        lines.append(f'| socket `{k}` | `{v}` |')
+    lines += [f'**{cell(api.get("manufacturer", ""))}** — {cell(api.get("notes", ""))}', '',
+              '| | |', '|---|---|',
+              f'| Family | `{family}` |',
+              f'| Channels | {api.get("channels", "")} |',
+              f'| Spec | `GET {svc.get("path", "")}` |',
+              f'| Default transport | `{(api.get("transport") or {}).get("default", "")}` |']
     doms = api.get('domains') or {}
     if doms:
-        lines.append('| Domains | ' + '; '.join(f'`{k}` {v.get("min", "")}…{v.get("max", "")} {v.get("units", "")}'
-                                            for k, v in doms.items()) + ' |')
-    tree = 'commands_tree.md' in m['files']
-    sources = 'SOURCES.md' in m['files']
-    if tree or sources:
-        refs = []
-        if tree:
-            refs.append(f'[commands tree]({link(f"../../../{name}/commands_tree.md")})')
-        if sources:
-            refs.append(f'[sources]({link(f"../../../{name}/SOURCES.md")})')
+        lines.append('| Ranges | ' + '; '.join(f'`{k}` {v.get("min", "")}…{v.get("max", "")} {v.get("units", "")}'
+                                           for k, v in doms.items()) + ' |')
+    refs = []
+    if 'commands_tree.md' in m['files']:
+        refs.append(f'[commands tree]({link(f"../../../{name}/commands_tree.md")})')
+    if 'SOURCES.md' in m['files']:
+        refs.append(f'[sources]({link(f"../../../{name}/SOURCES.md")})')
+    if refs:
         lines.append('| Reference | ' + ' · '.join(refs) + ' |')
     lines.append('')
+    # Inputs and outputs of the box: from BIM when its checkout is here, else the page's own.
+    io = io_section(family, m) if bim_index() else None
+    if io is None:
+        kept = IO_BLOCK.search(old or '')
+        io = kept.group(0) if kept else '<!-- sdk:io -->\n## Inputs and outputs — the box\n\nThe BIM library was not beside this checkout when this page was written.\n\n<!-- /sdk:io -->'
+    lines += [io, '']
+    lines += drive_section(family, name, api)
+    total = sum(len((api.get('endpoints') or {}).get(v) or {}) for v in VERBS)
+    lines += [f'## Commands ({total}) — inputs and outputs of the API', '',
+              '**In** is what the command takes; **Out** is what it gives back and where. Every command arrives on '
+              f'`APK.audio/Gui/Komands/{family}/<Command>`.', '']
     for verb in VERBS:
         eps = (api.get('endpoints') or {}).get(verb) or {}
         if not eps:
             continue
-        lines += [f'## `{verb}` — {VERB_WHAT[verb]} ({len(eps)})', '',
-                  '| Command | SCPI | Argument | Group | |', '|---|---|---|---|---|']
+        lines += [f'### `{verb}` — {VERB_WHAT[verb]} ({len(eps)})', '',
+                  '| Command | SCPI | In | Out | Group | |', '|---|---|---|---|---|---|']
         for cmd, ep in eps.items():
-            arg = ep.get('arg') or {}
-            kind = arg.get('kind', '') if ep.get('args') else ''
-            vals = arg.get('values')
-            if isinstance(vals, list) and vals:
-                kind = ' · '.join(str(v) for v in vals[:8]) + (' …' if len(vals) > 8 else '')
             flag = 'unverified' if ep.get('unverified') else ''
-            lines.append(f'| `{cell(cmd)}` | `{cell(ep.get("scpi", ""))}` | {cell(kind)} | {cell(ep.get("group", ""))} | {flag} |')
+            lines.append(f'| `{cell(cmd)}` | `{cell(ep.get("scpi", ""))}` | {cell(arg_text(ep))} | {cell(out_text(ep))} '
+                         f'| {cell(ep.get("group", ""))} | {flag} |')
         lines.append('')
     return '\n'.join(lines)
 
@@ -237,7 +398,12 @@ def pages(family, folder):
     out = {readme: door,
            os.path.join(fdir, 'Documentation', MANUAL, 'SDK.md'): sdk_index(family, folder, models)}
     for m in models:
-        out[os.path.join(fdir, 'Documentation', MANUAL, 'SDK', f'{m["name"]}.md')] = sdk_model(family, folder, m)
+        page = os.path.join(fdir, 'Documentation', MANUAL, 'SDK', f'{m["name"]}.md')
+        prior = ''
+        if os.path.isfile(page):
+            with open(page, encoding='utf-8') as fh:
+                prior = fh.read()
+        out[page] = sdk_model(family, folder, m, prior)
     return out, os.path.join(fdir, 'Documentation', MANUAL, 'SDK')
 
 

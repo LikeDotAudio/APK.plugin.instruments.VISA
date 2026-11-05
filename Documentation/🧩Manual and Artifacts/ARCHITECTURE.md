@@ -25,7 +25,8 @@ _komand/
   ports.json                      generated port allocation
   CommandList.csv/.xlsx           generated flat list of every command
   generate_device_apis.py         writes every <Model>.api.json and ports.json (--check)
-  family_sdk_docs.py              writes every family's README and SDK pages from its api.json files (--check)
+  family_sdk_docs.py              writes every family's README and SDK pages (--check): API and bus I/O from
+                                  each <Model>.api.json, the box's connectors from its BIM part (DATABASE.server.BIM)
   sort_komands.py                 orders each table's verb buckets (--check)
   komands.cad.json, komands.dxf, monitor.json
 _datasets/                        Instrument functions.csv/.xlsx, spectrum_presets.json
