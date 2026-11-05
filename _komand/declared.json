@@ -1,0 +1,41 @@
+{
+  "$comment": [
+    "DECLARED — THE ROSETTA STONE OVERRIDE. knownDevices.json says what a MODEL is;",
+    "this file says what the instrument AT A PLACE is, when it cannot say so itself.",
+    "",
+    "Discovery asks *IDN? and believes the answer. A box that never answers (the HP 3235",
+    "switch matrix takes commands and replies to none) or answers with no serial (four",
+    "HP 34401A meters all say serial 0) cannot identify itself, so a PERSON identifies",
+    "it, here, hard-written and in git — never guessed by software, never by IP alone.",
+    "",
+    "Each key is a LOCATOR, the place the VISA plugin sees the instrument, most specific",
+    "first: a USB adapter's serial, a USB port path (1-6.2), a tty name (ttyUSB0), or the",
+    "VISA resource exactly (TCPIP::<gateway>::gpib7,10::INSTR; TCPIP0:: is the same board).",
+    "Each value:",
+    "  model         a key of knownDevices.json — what it IS (manufacturer, type, panel,",
+    "                commands and the hourly self-test follow from it). Optional when the",
+    "                instrument names itself and only lacks a serial: then only the tag.",
+    "  tag           its asset tag, filed as its serial when it has none of its own (the",
+    "                role config.ini [visa] asset_tags had; that key still layers on top",
+    "                for a bench that is not this checkout).",
+    "  declared_by / declared_at   who said so, and when (ISO 8601).",
+    "  note          why — what the person knows that the bus cannot.",
+    "  confirmed_by / confirmed_at  a person who looked and said 'OK, got it'.",
+    "",
+    "A declaration never overrules an instrument that DOES answer: if *IDN? names another",
+    "model, the instrument is believed and the disagreement is raised loudly (problem",
+    "declaration_mismatch). A declared box that does not answer is shown as DECLARED, never",
+    "as verified. The Discovery page writes here (Declare…, OK got it); a change it makes",
+    "is a working-tree edit and must be committed to count."
+  ],
+  "declarations": {
+    "TCPIP::44.44.44.222::gpib7,10::INSTR": {
+      "declared_at": "2026-11-05",
+      "declared_by": "Anthony Kuzub",
+      "model": "3235",
+      "note": "Owner, 2026-11-05: 'with 100% certainty this is 10 … the declaration of GPIB 10 is a switcher.' The HP 3235 switch matrix behind the E5810 at 44.44.44.222: it takes commands and answers none, *IDN? included, so no scan can name it.",
+      "tag": "BENCH-MATRIX-1"
+    }
+  },
+  "schemaVersion": 1
+}
