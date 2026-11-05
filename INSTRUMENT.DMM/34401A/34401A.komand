@@ -44,23 +44,6 @@
       "subsystem": "Common",
       "unverified": true
     },
-    "Set_Beeper_State": {
-      "scpi": ":BEEPer:STATe <value>",
-      "scpiFast": ":BEEP:STAT <value>",
-      "description": "System-Related Commands",
-      "arg": {
-        "kind": "bool",
-        "values": [
-          "OFF",
-          "ON"
-        ]
-      },
-      "args": [
-        "value"
-      ],
-      "subsystem": "BEEP",
-      "unverified": true
-    },
     "Set_dB_Ref": {
       "scpi": ":CALCulate:DB:REFerence <value>",
       "scpiFast": ":CALC:DB:REF <value>",
@@ -1137,17 +1120,6 @@
       "subsystem": "AVER",
       "unverified": true
     },
-    "Get_Beeper_State": {
-      "scpi": ":BEEPer:STATe?",
-      "scpiFast": ":BEEP:STAT?",
-      "description": "System-Related Commands",
-      "returns": {
-        "count": 1,
-        "type": "BOOL"
-      },
-      "subsystem": "BEEP",
-      "unverified": true
-    },
     "Query_Average": {
       "scpi": ":CALCulate:AVERage:AVERage?",
       "scpiFast": ":CALC:AVER:AVER?",
@@ -1826,8 +1798,7 @@
         "count": 1,
         "type": "BOOL"
       },
-      "subsystem": "SYST",
-      "unverified": true
+      "subsystem": "SYST"
     },
     "Read_Error": {
       "scpi": ":SYSTem:ERRor?",

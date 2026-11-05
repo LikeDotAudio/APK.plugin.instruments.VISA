@@ -85,10 +85,10 @@
     "do": "Zero-argument execution actions and trigger commands"
   },
   "summary": {
-    "total_commands": 157,
-    "get_count": 72,
-    "set_count": 43,
-    "nab_count": 74,
+    "total_commands": 155,
+    "get_count": 71,
+    "set_count": 42,
+    "nab_count": 73,
     "rig_count": 5,
     "do_count": 35
   },
@@ -352,33 +352,6 @@
             "command": "Get_Average_Count"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Average_Count",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Beeper_State": {
-        "command": "Get_Beeper_State",
-        "verb": "get",
-        "description": "System-Related Commands",
-        "scpi": ":BEEPer:STATe?",
-        "scpi_fast": ":BEEP:STAT?",
-        "subsystem": "BEEP",
-        "group": "BEEP",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "BOOL"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Get_Beeper_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Beeper_State"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Beeper_State",
           "reading_direction": "out"
         },
         "unverified": true
@@ -1866,7 +1839,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Beeper_State",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Read_Error": {
         "command": "Read_Error",
@@ -2108,36 +2081,6 @@
           "direction": "in",
           "payload_format": {
             "command": "Set_Sre",
-            "value": "<value>",
-            "input_name": "value"
-          }
-        },
-        "unverified": true
-      },
-      "Set_Beeper_State": {
-        "command": "Set_Beeper_State",
-        "verb": "set",
-        "description": "System-Related Commands",
-        "scpi": ":BEEPer:STATe <value>",
-        "scpi_fast": ":BEEP:STAT <value>",
-        "subsystem": "BEEP",
-        "group": "BEEP",
-        "args": [
-          "value"
-        ],
-        "arg": {
-          "kind": "bool",
-          "values": [
-            "OFF",
-            "ON"
-          ]
-        },
-        "returns": null,
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Set_Beeper_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Set_Beeper_State",
             "value": "<value>",
             "input_name": "value"
           }
@@ -3521,33 +3464,6 @@
             "command": "Get_Average_Count"
           },
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Average_Count",
-          "reading_direction": "out"
-        },
-        "unverified": true
-      },
-      "Get_Beeper_State": {
-        "command": "Get_Beeper_State",
-        "verb": "nab",
-        "description": "System-Related Commands",
-        "scpi": ":BEEPer:STATe?",
-        "scpi_fast": ":BEEP:STAT?",
-        "subsystem": "BEEP",
-        "group": "BEEP",
-        "args": [],
-        "arg": {
-          "kind": "none"
-        },
-        "returns": {
-          "count": 1,
-          "type": "BOOL"
-        },
-        "mqtt": {
-          "topic": "APK.audio/Gui/Komands/DMM/Get_Beeper_State",
-          "direction": "in",
-          "payload_format": {
-            "command": "Get_Beeper_State"
-          },
-          "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_Beeper_State",
           "reading_direction": "out"
         },
         "unverified": true
@@ -5111,7 +5027,7 @@
           "reading_topic": "APK.audio/System/Protocols/visa/Device/<type>/<model>/<dev>/Reading/Get_System_Beeper_State",
           "reading_direction": "out"
         },
-        "unverified": true
+        "unverified": false
       },
       "Read_Error": {
         "command": "Read_Error",

@@ -37,7 +37,6 @@ DMM,34401A,DO,Select_Resistance_4W,Select Resistance 4W,:CONFigure:FRESistance,:
 DMM,34401A,NAB,Fetch_Existing,Fetch Existing,:FETCh?,:FETC?,,,,,Fetch data after INITiate,MEASure,1,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Average_Average,Math Operation Commands,:AVERage:AVERage?,:AVER:AVER?,,,,,,AVER,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Average_Count,Math Operation Commands,:AVERage:COUNt?,:AVER:COUN?,,,,,,AVER,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,NAB,Get_Beeper_State,System-Related Commands,:BEEPer:STATe?,:BEEP:STAT?,,,,,,BEEP,1,BOOL,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Calculate_Average_Count,Math Operations,CALCulate:AVERage:COUNt?,CALC:AVER:COUN?,,,,,,CALC,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Calculate_Db_Reference,Get calculate db reference,CALCulate:DB:REFerence?,CALC:DB:REF?,,,,,,CALC,1,CRD,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Calculate_Function,Get calculate function,CALCulate:FUNCtion?,CALC:FUNC?,,,,,,CALC,1,CRD,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
@@ -86,7 +85,7 @@ DMM,34401A,NAB,Get_Sre,Get sre,*SRE?,,,,,,,Common,1,NR1,,,1,yes,INSTRUMENT.DMM/3
 DMM,34401A,NAB,Get_State_Questionable_Enable,The SCPI Status Model,STATus:QUEStionable:ENABle?,STAT:QUES:ENAB?,,,,,,STAT,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_State_Questionable_Event,Get state questionable event,STATus:QUEStionable:EVENt?,STAT:QUES:EVEN?,,,,,,STAT,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Stb,Get stb,*STB?,,,,,,,Common,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,NAB,Get_System_Beeper_State,System-Related Commands,SYSTem:BEEPer:STATe?,SYST:BEEP:STAT?,,,,,,SYST,1,BOOL,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
+DMM,34401A,NAB,Get_System_Beeper_State,System-Related Commands,SYSTem:BEEPer:STATe?,SYST:BEEP:STAT?,,,,,,SYST,1,BOOL,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_System_Version,SCPI Language Version Query,SYSTem:VERSion?,SYST:VERS?,,,,,,SYST,1,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Trigger_Count,Get trigger count,TRIGger:COUNt?,TRIG:COUN?,,,,,,TRIG,1,NR1,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,NAB,Get_Trigger_Delay,Get trigger delay,TRIGger:DELay?,TRIG:DEL?,,,,,,TRIG,1,NR3,s,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
@@ -117,7 +116,6 @@ DMM,34401A,SET,Display_Text,Display Text,:DISPlay:TEXT <string>,:DISP:TEXT <stri
 DMM,34401A,SET,Enable_Math,Enable Math,:CALCulate:STATe <state>,:CALC:STAT <state>,state,bool,OFF; ON,,Math and Limits Setup,CALCulate,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_AC_Bandwidth,Set AC Bandwidth,:SENSe:VOLTage:AC:BANDwidth <filter>,:SENS:VOLT:AC:BAND <filter>,filter,numeric,,,Measurement Parameters,SENSe,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Autorange,Set Autorange,:SENSe:VOLTage:DC:RANGe:AUTO <state>,:SENS:VOLT:DC:RANG:AUTO <state>,state,bool,OFF; ON,,"SCOPED TO DC VOLTS on purpose: the 34401A has no function-agnostic autorange command, so :SENSe:VOLTage:DC:RANGe:AUTO is what a panel AUTO RANGE control can address. Selecting another function turns its own autorange on by default, which is why this is adequate for a bench panel and would not be for a test sequence.",Panel,,,,,1,,INSTRUMENT.DMM/34401A/34401A.komand
-DMM,34401A,SET,Set_Beeper_State,System-Related Commands,:BEEPer:STATe <value>,:BEEP:STAT <value>,value,bool,OFF; ON,,,BEEP,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Calibration_Secure_State,Calibration Overview,CALibration:SECure:STATe <value>,CAL:SEC:STAT <value>,value,bool,OFF; ON,,,CAL,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Calibration_String,Calibration Message,CALibration:STRing <value>,CAL:STR <value>,value,unknown,,,,CAL,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand
 DMM,34401A,SET,Set_Calibration_Value,Calibration Commands,CALibration:VALue <value>,CAL:VAL <value>,value,numeric,,,,CAL,,,,,1,yes,INSTRUMENT.DMM/34401A/34401A.komand

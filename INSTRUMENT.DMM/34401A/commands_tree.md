@@ -4,7 +4,7 @@
 
 Generated from the `.komand` table by `apkaudio-komand build-trees`. Edit the table, not this file.
 
-**157 commands** — SET 43 · RIG 5 · NAB 74 · DO 35 · 105 unverified (66%)
+**155 commands** — SET 42 · RIG 5 · NAB 73 · DO 35 · 102 unverified (65%)
 
 `SET` one argument · `RIG` several applied together · `NAB` a query · `DO` a parameterless action. **†** marks a command swept out of a manual and never sent to the instrument.
 
@@ -32,9 +32,6 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `COUNt?` — **NAB** `Get_Average_Count` · → NR1 · †<br>Math Operation Commands
 - **`BACK`**
   - `GOTO` — **DO** `Do_Back_Goto` · †<br>Using the Status Registers
-- **`BEEPer`**
-  - `STATe` — **SET** `Set_Beeper_State` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>System-Related Commands
-  - `STATe?` — **NAB** `Get_Beeper_State` · → BOOL · †<br>System-Related Commands
 - **`CALCulate`**
   - `STATe` — **SET** `Enable_Math` · `<state>` · args: `state` · bool: `OFF` | `ON`
   - `FUNCtion` — **SET** `Set_Math_Function` · `<function>` · args: `function` · enum: `NULL` | `DB` | `DBM` | `AVER` | `LIM`
@@ -198,7 +195,7 @@ Several statements in one message, so they hang off no single branch. Every stat
   - `RWLock` — **DO** `Do_System_Rwlock` · †<br>RS-232 Interface Commands
   - **`BEEPer`**
     - `STATe` — **SET** `Set_System_Beeper_State` · `<value>` · args: `value` · bool: `OFF` | `ON` · †<br>System-Related Commands
-    - `STATe?` — **NAB** `Get_System_Beeper_State` · → BOOL · †<br>System-Related Commands
+    - `STATe?` — **NAB** `Get_System_Beeper_State` · → BOOL<br>System-Related Commands
 - **`TEXT`**
   - `CLEar` — **DO** `Do_Text_Clear` · †<br>System-Related Commands
 - **`TRIGger`**
