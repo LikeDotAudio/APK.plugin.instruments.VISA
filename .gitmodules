@@ -1,0 +1,42 @@
+[submodule "INSTRUMENT.Counter"]
+	path = INSTRUMENT.Counter
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Counter.git
+[submodule "INSTRUMENT.DAQ"]
+	path = INSTRUMENT.DAQ
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.DAQ.git
+[submodule "INSTRUMENT.Distortion"]
+	path = INSTRUMENT.Distortion
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Distortion.git
+[submodule "INSTRUMENT.DMM"]
+	path = INSTRUMENT.DMM
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.DMM.git
+[submodule "INSTRUMENT.Generator"]
+	path = INSTRUMENT.Generator
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Generator.git
+[submodule "INSTRUMENT.LCR"]
+	path = INSTRUMENT.LCR
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.LCR.git
+[submodule "INSTRUMENT.Load"]
+	path = INSTRUMENT.Load
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Load.git
+[submodule "INSTRUMENT.Oscilloscope"]
+	path = INSTRUMENT.Oscilloscope
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Oscilloscope.git
+[submodule "INSTRUMENT.Power"]
+	path = INSTRUMENT.Power
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Power.git
+[submodule "INSTRUMENT.Router"]
+	path = INSTRUMENT.Router
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Router.git
+[submodule "INSTRUMENT.SMU"]
+	path = INSTRUMENT.SMU
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.SMU.git
+[submodule "INSTRUMENT.Spectrum"]
+	path = INSTRUMENT.Spectrum
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.Spectrum.git
+[submodule "INSTRUMENT.TestSet"]
+	path = INSTRUMENT.TestSet
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.TestSet.git
+[submodule "INSTRUMENT.VNA"]
+	path = INSTRUMENT.VNA
+	url = https://github.com/LikeDotAudio/APK.plugin.instruments.VISA.VNA.git

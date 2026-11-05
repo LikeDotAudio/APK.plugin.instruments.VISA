@@ -569,9 +569,13 @@ def main():
 
     for family in classes:
         family_dir = family_directory(family)
+        # A MODEL IS A FOLDER THAT HOLDS ITS OWN <Model>.gui. Each family is its
+        # own repository now, so it also carries Documentation/ (its wiki and
+        # SDK) beside gui/; neither is a model, and counting one would mint a
+        # Documentation.api.json and shift every later model's port.
         devs = sorted([
             d for d in os.listdir(family_dir)
-            if os.path.isdir(os.path.join(family_dir, d)) and d != 'gui'
+            if os.path.isfile(os.path.join(family_dir, d, f"{d}.gui"))
         ])
         for model_index, model in enumerate(devs):
             model_dir = os.path.join(family_dir, model)
