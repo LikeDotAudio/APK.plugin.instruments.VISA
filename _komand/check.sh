@@ -9,10 +9,12 @@
 # 2. sort_komands.py --check          every .komand table in display order
 # 3. unit tests                       schemas, catalogue rule, data files
 # 4. cargo test                       the apkaudio-known-devices crate
+# 5. check_grab.py --check            every model's GRAB stated; bench evidence never left uncompiled
 set -euo pipefail
 cd "$(dirname "$0")"
 python3 generate_device_apis.py --check
 python3 sort_komands.py --check
 python3 -m unittest -q test_instruments
 cargo test --offline -q
+python3 check_grab.py --check
 echo "✅ INSTRUMENTS check passed"
