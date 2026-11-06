@@ -170,3 +170,13 @@ Plans for this repo live in the house roadmap, `Documentation/🛣Roadmap/roadma
 <!-- wiki:smoke -->
 **Smoke test** — ✅ PASS 1/1 since 2026-10-30 13:37 EDT — [results](Documentation/%F0%9F%A7%A9Manual%20and%20Artifacts/SMOKE.md)
 <!-- /wiki:smoke -->
+
+## Panels and commands come from BIM (ROAD-3565, 2026-11-05)
+
+Each model's panel (its family's `gui/<Family>.json` and `gui/<Family>_N.json` frames, plus its
+own `<Model>/<Model>.gui`), its `<Model>/<Model>.komand` command set and its family's roles are held by
+the model's part in DATABASE.server.BIM (`library/<maker>/<model>.bim.json`). The files here are
+**generated output**, the node's build-time copy: edit the part, then run
+`python3 PODS/POD.database/DATABASE.server.BIM/SRC/importers/generate_panels.py`.
+`… generate_panels.py --check` fails if any of them is stale or not from BIM. A model a family's
+`thing.json` lists under `no_box` has no part, so its files stay authored here.
