@@ -20,6 +20,8 @@
     "                for a bench that is not this checkout).",
     "  declared_by / declared_at   who said so, and when (ISO 8601).",
     "  note          why — what the person knows that the bus cannot.",
+    "  network       for a network locator (TCPIP::…), the CIDR its host sits inside —",
+    "                the rule bench.json holds every addressed row to (PLAN-815.01).",
     "  confirmed_by / confirmed_at  a person who looked and said 'OK, got it'.",
     "",
     "A declaration never overrules an instrument that DOES answer: if *IDN? names another",
@@ -33,6 +35,7 @@
       "declared_at": "2026-11-05",
       "declared_by": "Anthony Kuzub",
       "model": "3235",
+      "network": "44.44.0.0/16",
       "note": "Owner, 2026-11-05: 'with 100% certainty this is 10 … the declaration of GPIB 10 is a switcher.' The HP 3235 switch matrix behind the E5810 at 44.44.44.222: it takes commands and answers none, *IDN? included, so no scan can name it.",
       "tag": "BENCH-MATRIX-1"
     }
