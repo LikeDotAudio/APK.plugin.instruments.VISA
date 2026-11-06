@@ -207,7 +207,7 @@ def bim_index():
     return _BIM
 
 
-def bim_part(family, model):
+def bim_part(family, model, maker_text=''):
     """The BIM part for a model folder: its name, or the name without a maker prefix
     (`HP_8903B` -> 8903B); a part of this family first, then any Test & Measurement part."""
     idx = bim_index()
@@ -216,9 +216,12 @@ def bim_part(family, model):
         keys.append(norm(model.split('_', 1)[1]))
     for key in keys:
         parts = [p for _rank, p in sorted(idx.get(key) or [], key=lambda rp: rp[0])]
+        # never "any part with that number": a Keithley 2000 is not an Audio-Technica 2000;
+        # past the family and Test & Measurement, only the maker the model's SDK names
+        words = set(re.split(r'[^a-z0-9]+', str(maker_text or '').lower()))
         for want in (lambda p: str(p.get('class', '')).lower() == family.lower(),
                      lambda p: p.get('category') == 'Test & Measurement',
-                     lambda p: True):
+                     lambda p: bool(words) and str(p.get('maker') or '') in words):
             hit = [p for p in parts if want(p)]
             if hit:
                 return hit[0]
@@ -234,7 +237,7 @@ def io_section(family, m, thing=None):
         lines += [f'This model has no physical box, so it has no connectors: {cell(no_box)} '
                   'Its inputs and outputs are its commands and bus topics, below.', '', '<!-- /sdk:io -->']
         return '\n'.join(lines)
-    part = bim_part(family, m['name'])
+    part = bim_part(family, m['name'], (m.get('api') or {}).get('manufacturer'))
     if not part:
         lines += ['No part for this model in the BIM library yet (`DATABASE.server.BIM`), so its connectors are not '
                   'stated here. Add the part there — the one place a device type is described — and regenerate.',
