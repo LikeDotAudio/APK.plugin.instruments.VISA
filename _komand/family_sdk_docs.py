@@ -225,9 +225,16 @@ def bim_part(family, model):
     return None
 
 
-def io_section(family, m):
-    part = bim_part(family, m['name'])
+def io_section(family, m, thing=None):
     lines = ['<!-- sdk:io -->', '## Inputs and outputs — the box', '']
+    # A model the family's thing.json says has no box (a reference model, an
+    # emulator) has no connectors to state, and so no BIM part to look for.
+    no_box = ((thing or {}).get('no_box') or {}).get(m['name'])
+    if no_box:
+        lines += [f'This model has no physical box, so it has no connectors: {cell(no_box)} '
+                  'Its inputs and outputs are its commands and bus topics, below.', '', '<!-- /sdk:io -->']
+        return '\n'.join(lines)
+    part = bim_part(family, m['name'])
     if not part:
         lines += ['No part for this model in the BIM library yet (`DATABASE.server.BIM`), so its connectors are not '
                   'stated here. Add the part there — the one place a device type is described — and regenerate.',
@@ -325,7 +332,7 @@ def drive_section(family, name, api):
     return lines
 
 
-def sdk_model(family, folder, m, old=''):
+def sdk_model(family, folder, m, old='', thing=None):
     api = m['api']
     name = m['name']
     lines = [f'# {name} — {family}', '', f'← [SDK]({link("../SDK.md")})', '']
@@ -352,7 +359,7 @@ def sdk_model(family, folder, m, old=''):
         lines.append('| Reference | ' + ' · '.join(refs) + ' |')
     lines.append('')
     # Inputs and outputs of the box: from BIM when its checkout is here, else the page's own.
-    io = io_section(family, m) if bim_index() else None
+    io = io_section(family, m, thing) if bim_index() else None
     if io is None:
         kept = IO_BLOCK.search(old or '')
         io = kept.group(0) if kept else '<!-- sdk:io -->\n## Inputs and outputs — the box\n\nThe BIM library was not beside this checkout when this page was written.\n\n<!-- /sdk:io -->'
@@ -403,7 +410,7 @@ def pages(family, folder):
         if os.path.isfile(page):
             with open(page, encoding='utf-8') as fh:
                 prior = fh.read()
-        out[page] = sdk_model(family, folder, m, prior)
+        out[page] = sdk_model(family, folder, m, prior, thing)
     return out, os.path.join(fdir, 'Documentation', MANUAL, 'SDK')
 
 
