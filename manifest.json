@@ -19,10 +19,65 @@
         "id": "50.100.4.3",
         "description": "All meters"
       }
-    ]
+    ],
+    "bim": {
+      "models": {
+        "2000": "keithley/2000",
+        "34401a": "keysight/34401a",
+        "34410a": "keysight/34410a",
+        "34411a": "keysight/34411a",
+        "34420a": "keysight/34420a",
+        "34450a": "keysight/34450a",
+        "34460a": "keysight/34460a",
+        "34461a": "keysight/34461a",
+        "34465a": "keysight/34465a",
+        "34470a": "keysight/34470a",
+        "3458a": "keysight/3458a",
+        "dm3058": "rigol/dm3058",
+        "dm3068": "rigol/dm3068",
+        "dmm6500": "keithley/dmm6500",
+        "u1272a": "keysight/u1272a"
+      }
+    }
   },
   "Oscilloscope": {
-    "tab": "2_Oscilloscope"
+    "tab": "2_Oscilloscope",
+    "bim": {
+      "models": {
+        "54622d": "keysight/54622d",
+        "54641d": "keysight/54641d",
+        "dho804": "rigol/dho804",
+        "ds1054z": "rigol/ds1054z",
+        "ds1074z": "rigol/ds1074z",
+        "ds1104z": "rigol/ds1104z",
+        "ds1104zplus": "rigol/ds1104z-plus",
+        "ds7014": "rigol/ds7014",
+        "dso9064a": "keysight/dso9064a",
+        "dso9104a": "keysight/dso9104a",
+        "dsos054a": "keysight/dsos054a",
+        "dsos104a": "keysight/dsos104a",
+        "dsox1102g": "keysight/dsox1102g",
+        "dsox2002a": "keysight/dsox2002a",
+        "dsox4024a": "keysight/dsox4024a",
+        "hmo1002": "rohde-and-schwarz/hmo1002",
+        "mdo3014": "tektronix/mdo3014",
+        "mdo4000c": "tektronix/mdo4000c",
+        "mso24": "tektronix/mso24",
+        "mso44": "tektronix/mso44",
+        "mso5074": "rigol/mso5074",
+        "mso54": "tektronix/mso54",
+        "mso64": "tektronix/mso64",
+        "msox3014t": "keysight/msox3014t",
+        "mxo4": "rohde-and-schwarz/mxo4",
+        "rtb2002": "rohde-and-schwarz/rtb2002",
+        "rtb2004": "rohde-and-schwarz/rtb2004",
+        "rth1002": "rohde-and-schwarz/rth1002",
+        "rtm3004": "rohde-and-schwarz/rtm3004",
+        "tbs1052b": "tektronix/tbs1052b",
+        "tbs2000b": "tektronix/tbs2000b",
+        "tds2024c": "tektronix/tds2024c"
+      }
+    }
   },
   "Generator": {
     "tab": "3_Generator",
@@ -43,7 +98,45 @@
           "Es": "Generadores enlazados"
         }
       }
-    ]
+    ],
+    "bim": {
+      "models": {
+        "33120a": "keysight/33120a",
+        "33210a": "keysight/33210a",
+        "33220a": "keysight/33220a",
+        "33250a": "keysight/33250a",
+        "33509b": "keysight/33509b",
+        "33510b": "keysight/33510b",
+        "33511b": "keysight/33511b",
+        "33512b": "keysight/33512b",
+        "33519b": "keysight/33519b",
+        "33520b": "keysight/33520b",
+        "33521b": "keysight/33521b",
+        "33522b": "keysight/33522b",
+        "33611a": "keysight/33611a",
+        "33612a": "keysight/33612a",
+        "33619a": "keysight/33619a",
+        "33620a": "keysight/33620a",
+        "33621a": "keysight/33621a",
+        "33622a": "keysight/33622a",
+        "afg1022": "tektronix/afg1022",
+        "afg31000": "tektronix/afg31000",
+        "afg3102": "tektronix/afg3102",
+        "afg31021": "tektronix/afg31000",
+        "afg31022": "tektronix/afg31000",
+        "afg31051": "tektronix/afg31000",
+        "afg31052": "tektronix/afg31000",
+        "afg31101": "tektronix/afg31000",
+        "afg31102": "tektronix/afg31000",
+        "afg31151": "tektronix/afg31000",
+        "afg31152": "tektronix/afg31000",
+        "afg31251": "tektronix/afg31000",
+        "afg31252": "tektronix/afg31000",
+        "dg1022z": "rigol/dg1022z",
+        "dg4102": "rigol/dg4102",
+        "dg812": "rigol/dg812"
+      }
+    }
   },
   "Power": {
     "tab": "5_Power",
@@ -64,7 +157,50 @@
           "Es": "Fuentes enlazadas"
         }
       }
-    ]
+    ],
+    "bim": {
+      "models": {
+        "6032a": "keysight/6032a",
+        "66000a": "keysight/66000a",
+        "66101a": "keysight/66101a",
+        "66102a": "keysight/66102a",
+        "66103a": "keysight/66103a",
+        "66104a": "keysight/66104a",
+        "6632b": "keysight/6632b",
+        "dp711": "rigol/dp711",
+        "dp832": "rigol/dp832",
+        "dp832a": "rigol/dp832a",
+        "e3610a": "keysight/e3610a",
+        "e3615a": "keysight/e3615a",
+        "e3620a": "keysight/e3620a",
+        "e36300series": "keysight/e36300-series",
+        "e3630a": "keysight/e3630a",
+        "e36311a": "keysight/e36300-series",
+        "e36312a": "keysight/e36300-series",
+        "e36313a": "keysight/e36300-series",
+        "e3631a": "keysight/e3631a",
+        "e3632a": "keysight/e3632a",
+        "e3633a": "keysight/e3633a",
+        "e3634a": "keysight/e3634a",
+        "e3640a": "keysight/e3640a",
+        "e3641a": "keysight/e3641a",
+        "e3642a": "keysight/e3642a",
+        "e3643a": "keysight/e3643a",
+        "e3644a": "keysight/e3644a",
+        "e3645a": "keysight/e3645a",
+        "e3646a": "keysight/e3646a",
+        "e3647a": "keysight/e3647a",
+        "e3648a": "keysight/e3648a",
+        "e3649a": "keysight/e3649a",
+        "hmp2020": "rohde-and-schwarz/hmp2020",
+        "hmp4040": "rohde-and-schwarz/hmp4040",
+        "n6700c": "keysight/n6700c",
+        "n6701c": "keysight/n6701c",
+        "n6702c": "keysight/n6702c",
+        "ngl200": "rohde-and-schwarz/ngl200",
+        "ngm200": "rohde-and-schwarz/ngm200"
+      }
+    }
   },
   "Load": {
     "tab": "7_Load",
@@ -85,33 +221,155 @@
           "Es": "Todas las cargas"
         }
       }
-    ]
+    ],
+    "bim": {
+      "models": {
+        "6060b": "keysight/6060b",
+        "6063b": "keysight/6063b",
+        "el30000": "keysight/el30000",
+        "el33133a": "keysight/el30000",
+        "el34143a": "keysight/el30000",
+        "el34243a": "keysight/el30000",
+        "n3300a": "keysight/n3300a"
+      }
+    }
   },
   "Spectrum": {
-    "tab": "0_Spectrum"
+    "tab": "0_Spectrum",
+    "bim": {
+      "models": {
+        "8560a": "keysight/8560a",
+        "8560e": "keysight/8560e",
+        "8561e": "keysight/8561e",
+        "8562e": "keysight/8562e",
+        "8563e": "keysight/8563e",
+        "8564e": "keysight/8564e",
+        "8565e": "keysight/8565e",
+        "8566b": "keysight/8566b",
+        "8568b": "keysight/8568b",
+        "8590series": "keysight/8590-series",
+        "dsa815tg": "rigol/dsa815-tg",
+        "dsa832": "rigol/dsa832",
+        "e4401b": "keysight/e4401b",
+        "e4407b": "keysight/e4407b",
+        "e4411a": "keysight/e4411a",
+        "fpc1000": "rohde-and-schwarz/fpc1000",
+        "fpc1500": "rohde-and-schwarz/fpc1500",
+        "fsh4": "rohde-and-schwarz/fsh4",
+        "fsv3000": "rohde-and-schwarz/fsv3000",
+        "hpe4411a": "keysight/e4411a",
+        "n9000b": "keysight/n9000b",
+        "n9010b": "keysight/n9010b",
+        "n9020b": "keysight/n9020b",
+        "n9030b": "keysight/n9030b",
+        "n9040b": "keysight/n9040b",
+        "n9340b": "rigol/n9340b",
+        "n9342cn": "keysight/n9342cn",
+        "n9912a": "keysight/n9912a",
+        "n9918a": "keysight/n9918a"
+      }
+    }
   },
   "Router": {
-    "tab": "1_Router"
+    "tab": "1_Router",
+    "bim": {
+      "models": {
+        "3235": "keysight/3235",
+        "3235a": "keysight/3235"
+      }
+    }
   },
   "LCR": {
-    "tab": "8_LCR"
+    "tab": "8_LCR",
+    "bim": {
+      "models": {
+        "4263a": "keysight/4263a"
+      }
+    }
   },
   "Distortion": {
-    "tab": "9_Distortion"
+    "tab": "9_Distortion",
+    "bim": {
+      "models": {
+        "8903b": "keysight/8903b",
+        "portableonedualdomain": "audio-precision/portable-one-dual-domain",
+        "portaone": "audio-precision/portable-one-dual-domain"
+      }
+    }
   },
   "Counter": {
-    "tab": "6_Counter"
+    "tab": "6_Counter",
+    "bim": {
+      "models": {
+        "53131a": "keysight/53131a",
+        "53132a": "keysight/53132a",
+        "53181a": "keysight/53181a",
+        "53210a": "keysight/53210a",
+        "53220a": "keysight/53220a",
+        "53230a": "keysight/53230a"
+      }
+    }
   },
   "DAQ": {
-    "tab": "10_DAQ"
+    "tab": "10_DAQ",
+    "bim": {
+      "models": {
+        "34970a": "keysight/34970a",
+        "34972a": "keysight/34972a",
+        "34980a": "keysight/34980a",
+        "daq970a": "keysight/daq970a"
+      }
+    }
   },
   "SMU": {
-    "tab": "11_SMU"
+    "tab": "11_SMU",
+    "bim": {
+      "models": {
+        "2400": "keithley/2400",
+        "2410": "keithley/2410",
+        "2420": "keithley/2420",
+        "2425": "keithley/2425",
+        "2430": "keithley/2430",
+        "2450": "keithley/2450",
+        "2460": "keithley/2460",
+        "2461": "keithley/2461",
+        "2601b": "keithley/2601b",
+        "2602b": "keithley/2602b",
+        "2611b": "keithley/2611b",
+        "2612b": "keithley/2612b",
+        "2635b": "keithley/2635b",
+        "2636b": "keithley/2636b",
+        "b2901a": "keysight/b2901a",
+        "b2902a": "keysight/b2902a",
+        "b2912a": "keysight/b2912a",
+        "e5270b": "keysight/e5270b"
+      }
+    }
   },
   "VNA": {
-    "tab": "12_VNA"
+    "tab": "12_VNA",
+    "bim": {
+      "models": {
+        "8720es": "keysight/8720es",
+        "8753e": "keysight/8753e",
+        "e5061b": "keysight/e5061b",
+        "e5071c": "keysight/e5071c",
+        "e8361c": "keysight/e8361c",
+        "n5221b": "keysight/n5221b",
+        "n5222b": "keysight/n5222b",
+        "n5245b": "keysight/n5245b"
+      }
+    }
   },
   "TestSet": {
-    "tab": "13_TestSet"
+    "tab": "13_TestSet",
+    "bim": {
+      "models": {
+        "8960": "keysight/8960",
+        "8960series10": "keysight/8960",
+        "e5515c": "keysight/e5515c",
+        "e5515e": "keysight/e5515e"
+      }
+    }
   }
 }
