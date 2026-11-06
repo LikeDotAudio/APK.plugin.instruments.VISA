@@ -179,4 +179,5 @@ the model's part in DATABASE.server.BIM (`library/<maker>/<model>.bim.json`). Th
 **generated output**, the node's build-time copy: edit the part, then run
 `python3 PODS/POD.database/DATABASE.server.BIM/SRC/importers/generate_panels.py`.
 `… generate_panels.py --check` fails if any of them is stale or not from BIM. A model a family's
-`thing.json` lists under `no_box` has no part, so its files stay authored here.
+`thing.json` lists under `no_box` has no part, so its files stay authored here. Each family's `thing.json` `roles`, and each `manifest.json` family entry's `bim` key
+(the part a presented panel names), are generated from the parts the same way; the rest of both stays authored.
