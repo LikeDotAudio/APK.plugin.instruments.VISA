@@ -32,6 +32,8 @@
   ],
   "declarations": {
     "TCPIP::44.44.44.222::gpib7,10::INSTR": {
+      "confirmed_at": "2026-11-05T15:42:10.000Z",
+      "confirmed_by": "APK",
       "declared_at": "2026-11-05",
       "declared_by": "Anthony Kuzub",
       "model": "3235",
