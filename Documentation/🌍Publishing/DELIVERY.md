@@ -78,6 +78,7 @@ From this repository's own commits (the commit message is the record):
 - _komand/expand_selectors.py: every SET with options is a selector AND one SET per option (owner 2026-11-11); check.sh runs it --check; families bumped (`61c8332`)
 - bump Distortion + Oscilloscope: selector options from the manuals (54641D 39, Porta_one 1); CommandList regenerated (`189006c`)
 - bump INSTRUMENT.DMM: 15 min trend window for the log time axis (`36323e5`)
+- bump INSTRUMENT.DMM: AUTO seek on the DMM dial (owner 2026-11-12) (`41df541`)
 
 ## Releases
 - **Released `2.0.0`, tag `v2.0.0`** (2026-11-01, ROAD-3452, the owner's V2) — no SDK pin; every manifest says 2.0.0; GitHub release `v2.0.0`.
