@@ -79,6 +79,42 @@ EVIDENCE = {'family': 'DMM', 'units': ['visa/DMM/X/A', 'visa/DMM/X/B'],
             'refused': [{'command': ':CAL:SEC?', 'why': 'refused: -113'}]}
 
 
+class Utopia(unittest.TestCase):
+    """UTOPIA: the pinnacle of simultaneous capture — ask for a reading, read it, and every
+    qualified setting with it, in one message (owner, 2026-11-12)."""
+
+    DOC = {'model': 'X', 'compiled': 'now', 'units': ['u'], 'commands': [
+        {'endpoint': 'Read_IDN', 'query': '*IDN?'}, {'endpoint': 'Get_Func', 'query': ':SENS:FUNC?'},
+        {'endpoint': 'Fetch', 'query': ':FETC?'}, {'endpoint': 'Gone', 'query': ':GONE?'}]}
+
+    def eps(self, mark=True):
+        reading = {'scpi': ':TRIGger;*WAI;:FETCh?', 'returns': {'fields': [{'name': 'status'}, {'name': 'primary'}]}}
+        if mark:
+            reading['utopia'] = 'reading'
+        return {'get': {'Read_IDN': {}, 'Get_Func': {}, 'Fetch': {}}, 'nab': {'Measure_Reading': reading}}
+
+    def test_the_reading_first_then_every_qualified_setting_in_one_message(self):
+        u = g.utopia_endpoint('LCR', 'X', self.DOC, self.eps())['UTOPIA']
+        self.assertEqual(u['scpi'], ':TRIGger;*WAI;:FETCh?;:SENS:FUNC?;*IDN?',
+                         'ask then read first; a bare fetch is not asked twice; *IDN? last; gone commands out')
+        self.assertEqual(u['utopia']['commands'], ['Measure_Reading', 'Get_Func', 'Read_IDN'])
+        self.assertEqual(u['utopia']['ladder'], [10, 5, 3, 2, 1, 0])
+        self.assertEqual(u['returns']['count'], 3)
+        self.assertEqual(u['verb'], 'nab')
+
+    def test_no_mark_no_utopia(self):
+        self.assertEqual(g.utopia_endpoint('LCR', 'X', self.DOC, self.eps(mark=False)), {})
+
+    def test_it_never_outgrows_the_buffer_and_keeps_the_reading(self):
+        doc = {'model': 'X', 'commands': [{'endpoint': f'Q{i}', 'query': f':SENS{i}:FUNC?'} for i in range(60)]}
+        eps = self.eps()
+        eps['get'].update({f'Q{i}': {} for i in range(60)})
+        u = g.utopia_endpoint('LCR', 'X', doc, eps)['UTOPIA']
+        self.assertLessEqual(len(u['scpi'].encode()), g.GRAB_MAX_BYTES)
+        self.assertTrue(u['scpi'].startswith(':TRIGger;*WAI;:FETCh?;'))
+        self.assertTrue(u['utopia']['left_out'])
+
+
 class Grab(unittest.TestCase):
     """GRAB is compiled from single queries the bench answered alone (2026-11-04)."""
 

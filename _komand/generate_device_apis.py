@@ -432,6 +432,74 @@ def grab_endpoints(family, qualified, endpoints):
     return out
 
 
+# ── UTOPIA: the pinnacle of simultaneous capture (owner, 2026-11-12) ─────────
+# "a special nab that is the pinnacle of simultaneous capture … it should ask for
+# it, then read it … then ask again." One message per unit that ASKS for a fresh
+# measurement and READS it — the nab the model's table marks `"utopia": "reading"`
+# (the 4263A's :TRIGger;*WAI;:FETCh?) — and then every query the bench answered
+# ALONE (the GRAB's), so the reading and every setting it was taken under come
+# back from one instant. Built from the table's mark and the bench's evidence;
+# a model with neither gets none. Never longer than GRAB_MAX_BYTES: an input
+# buffer it overflows spoils the whole answer, so qualified queries that do not
+# fit are left out (`utopia.left_out`) — the reading never is.
+#
+# THE UNCHANGED RULE rides on it as data for whoever schedules it: the first
+# rounds find what matters; what came back unchanged is asked less and less —
+# 10, then 5, 3, 2, 1, then not at all until the hour, when every unit is reset
+# and does one UTOPIA read again (a match that still holds skips that hour).
+UTOPIA_LADDER = (10, 5, 3, 2, 1, 0)
+
+
+def utopia_endpoint(family, model, qualified, endpoints):
+    """{'UTOPIA': entry} — the model's marked reading, then its qualified queries — or {}."""
+    nabs = endpoints.get('nab') or {}
+    marked = sorted(n for n, ep in nabs.items() if (ep or {}).get('utopia') == 'reading')
+    if not marked:
+        return {}
+    if len(marked) > 1:
+        raise BrokenGui(f"{model}: {len(marked)} nabs marked utopia: reading ({', '.join(marked)}); one per model")
+    reading = nabs[marked[0]]
+    ask = str(reading.get('scpi') or '').strip()
+    if not ask or '<' in ask:
+        raise BrokenGui(f"{model}: {marked[0]} is marked utopia: reading but takes arguments or has no SCPI")
+    known = set((endpoints.get('get') or {})) | set(nabs)
+    asked = {''.join(p.split()).upper().lstrip(':') for p in ask.split(';')}
+    commands = [c for c in qualified['commands']
+                if c.get('endpoint') in known and c.get('query')
+                and ''.join(c['query'].split()).upper().lstrip(':') not in asked
+                and ''.join(c['query'].split()).upper().lstrip(':') not in ('FETC?', 'FETCH?')]
+    commands.sort(key=lambda c: c['query'].strip().upper() in GRAB_LAST)
+    taken, left_out = [], []
+    for c in commands:
+        trial = ';'.join([ask] + [x['query'] for x in taken] + [c['query']])
+        (taken if len(trial.encode()) <= GRAB_MAX_BYTES else left_out).append(c)
+    queries = [c['query'] for c in taken]
+    fields = ((reading.get('returns') or {}).get('fields')) or []
+    entry = build_endpoint_entry(family, "UTOPIA", {
+        "scpi": ';'.join([ask] + queries),
+        "description": (f"UTOPIA — the pinnacle of simultaneous capture: asks for a fresh reading and reads it "
+                        f"({marked[0]}), then reads all {len(queries)} settings this model answered alone, in one "
+                        f"message; the answers come back `;`-separated in the order of utopia.commands"),
+        "subsystem": "UTOPIA",
+        "group": "UTOPIA",
+        "returns": {"count": 1 + len(queries), "type": "LIST", "separator": ";",
+                    "first": {"command": marked[0], "fields": fields}},
+        "unverified": True,
+    }, "nab")
+    entry["utopia"] = {
+        "reading": marked[0],
+        "ask": ask,
+        "commands": [marked[0]] + [c['endpoint'] for c in taken],
+        "queries": [ask] + queries,
+        "left_out": [c['endpoint'] for c in left_out],
+        "ladder": list(UTOPIA_LADDER),
+        "max_command_bytes": GRAB_MAX_BYTES,
+        "qualified": {"compiled": qualified.get('compiled'), "units": qualified.get('units', []),
+                      "source": f"{qualified.get('model')}.qualified.json"},
+    }
+    return {"UTOPIA": entry}
+
+
 def build_endpoint_entry(family, cmd_name, raw_cmd, verb):
     """Normalize a raw command dict into a clean API endpoint representation."""
     scpi = raw_cmd.get('scpi', '')
@@ -485,6 +553,8 @@ def build_endpoint_entry(family, cmd_name, raw_cmd, verb):
     entry["returns"] = returns
     entry["mqtt"] = mqtt_info
     entry["unverified"] = unverified
+    if raw_cmd.get('utopia'):
+        entry["utopia"] = raw_cmd['utopia']
 
     return entry
 
@@ -563,6 +633,7 @@ def generate_device_api(family, model, authored_komands, known_devices,
     qualified = load_qualified(family, model)
     if qualified is not None:
         endpoints["nab"].update(grab_endpoints(family, qualified, endpoints))
+        endpoints["nab"].update(utopia_endpoint(family, model, qualified, endpoints))
 
     counts = {
         "total_commands": len(endpoints["set"]) + len(endpoints["nab"]) + len(endpoints["rig"]) + len(endpoints["do"]),
