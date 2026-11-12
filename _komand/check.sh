@@ -6,7 +6,8 @@
 # 1. generate_device_apis.py --check  specs + ports current, families.json and
 #    manifest agree with the folders, .gui = knownDevices.json, every file valid
 #    against _komand/schemas/, a broken .gui fails loudly
-# 2. sort_komands.py --check          every .komand table in display order
+# 2. expand_selectors.py --check      every SET with options = selector AND one SET per option (2026-11-11)
+#    sort_komands.py --check          every .komand table in display order
 # 3. unit tests                       schemas, catalogue rule, data files
 # 4. cargo test                       the apkaudio-known-devices crate
 # 5. check_grab.py --check            every model's GRAB stated; bench evidence never left uncompiled
@@ -15,8 +16,9 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 python3 generate_device_apis.py --check
+python3 expand_selectors.py --check
 python3 sort_komands.py --check
-python3 -m unittest -q test_instruments test_scpi_paths
+python3 -m unittest -q test_instruments test_scpi_paths test_expand_selectors
 cargo test --offline -q
 python3 check_grab.py --check
 python3 scpi_paths.py --check
