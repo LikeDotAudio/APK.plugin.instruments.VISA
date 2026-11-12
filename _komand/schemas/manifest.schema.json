@@ -10,6 +10,15 @@
     "additionalProperties": false,
     "properties": {
       "tab": {"type": "string", "pattern": "^[0-9]+_"},
+      "bim": {
+        "description": "BIM's key, written by DATABASE.server.BIM generate_panels.py (owner ruling 2026-11-05): the part a presented panel names — {part} for a plugin family, {models: {folded model: part id}} for an instrument family",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "part": {"type": "string", "minLength": 1},
+          "models": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+        }
+      },
       "groups": {
         "type": "array",
         "items": {
