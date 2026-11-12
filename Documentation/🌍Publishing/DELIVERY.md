@@ -80,6 +80,8 @@ From this repository's own commits (the commit message is the record):
 - bump INSTRUMENT.DMM: 15 min trend window for the log time axis (`36323e5`)
 - bump INSTRUMENT.DMM: AUTO seek on the DMM dial (owner 2026-11-12) (`41df541`)
 - bump INSTRUMENT.LCR: 4263A Fetch_Existing retired, panel FETCH READING → Measure_Reading (`bded505`)
+- UTOPIA nab: the pinnacle of simultaneous capture, compiled per model: the nab the table marks "utopia": "reading" (ask for a fresh reading, read it), then every query the bench qualified alone, in one message within GRAB_MAX_BYTES; utopia.ladder = the owner's unchanged rule (10, 5, 3, 2, 1, 0). First model: 4263A. Schema: command.utopia. Tests: Utopia (3). (`009f3fd`)
+- UTOPIA = the data a unit measures: every nab marked utopia: reading, asked fresh and read, stacked in one message; no setting readbacks (owner, 2026-11-12). Tests: Utopia (3). (`b06d885`)
 
 ## Releases
 - **Released `2.0.0`, tag `v2.0.0`** (2026-11-01, ROAD-3452, the owner's V2) — no SDK pin; every manifest says 2.0.0; GitHub release `v2.0.0`.
