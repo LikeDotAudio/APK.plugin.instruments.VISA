@@ -80,38 +80,35 @@ EVIDENCE = {'family': 'DMM', 'units': ['visa/DMM/X/A', 'visa/DMM/X/B'],
 
 
 class Utopia(unittest.TestCase):
-    """UTOPIA: the pinnacle of simultaneous capture — ask for a reading, read it, and every
-    qualified setting with it, in one message (owner, 2026-11-12)."""
+    """UTOPIA: the pinnacle of simultaneous capture — the DATA the unit measures, every marked
+    reading asked for fresh and read, in one message; never its settings (owner, 2026-11-12)."""
 
-    DOC = {'model': 'X', 'compiled': 'now', 'units': ['u'], 'commands': [
-        {'endpoint': 'Read_IDN', 'query': '*IDN?'}, {'endpoint': 'Get_Func', 'query': ':SENS:FUNC?'},
-        {'endpoint': 'Fetch', 'query': ':FETC?'}, {'endpoint': 'Gone', 'query': ':GONE?'}]}
+    def eps(self, *marks):
+        nab = {'Measure_Reading': {'scpi': ':TRIGger;*WAI;:FETCh?', 'returns': {'fields': [{'name': 'primary'}]}},
+               'Get_Func': {'scpi': ':SENS:FUNC?'},
+               'Read_Volt': {'scpi': 'MEAS:VOLT?'}}
+        for m in marks:
+            nab[m]['utopia'] = 'reading'
+        return {'get': {}, 'nab': nab}
 
-    def eps(self, mark=True):
-        reading = {'scpi': ':TRIGger;*WAI;:FETCh?', 'returns': {'fields': [{'name': 'status'}, {'name': 'primary'}]}}
-        if mark:
-            reading['utopia'] = 'reading'
-        return {'get': {'Read_IDN': {}, 'Get_Func': {}, 'Fetch': {}}, 'nab': {'Measure_Reading': reading}}
-
-    def test_the_reading_first_then_every_qualified_setting_in_one_message(self):
-        u = g.utopia_endpoint('LCR', 'X', self.DOC, self.eps())['UTOPIA']
-        self.assertEqual(u['scpi'], ':TRIGger;*WAI;:FETCh?;:SENS:FUNC?;*IDN?',
-                         'ask then read first; a bare fetch is not asked twice; *IDN? last; gone commands out')
-        self.assertEqual(u['utopia']['commands'], ['Measure_Reading', 'Get_Func', 'Read_IDN'])
+    def test_every_marked_reading_in_one_message_and_no_setting(self):
+        u = g.utopia_endpoint('LCR', 'X', self.eps('Measure_Reading', 'Read_Volt'))['UTOPIA']
+        self.assertEqual(u['scpi'], ':TRIGger;*WAI;:FETCh?;MEAS:VOLT?')
+        self.assertNotIn('FUNC', u['scpi'], 'a setting readback is not measured data')
+        self.assertEqual(u['utopia']['readings'], ['Measure_Reading', 'Read_Volt'])
         self.assertEqual(u['utopia']['ladder'], [10, 5, 3, 2, 1, 0])
-        self.assertEqual(u['returns']['count'], 3)
-        self.assertEqual(u['verb'], 'nab')
+        self.assertEqual((u['verb'], u['returns']['count']), ('nab', 2))
 
     def test_no_mark_no_utopia(self):
-        self.assertEqual(g.utopia_endpoint('LCR', 'X', self.DOC, self.eps(mark=False)), {})
+        self.assertEqual(g.utopia_endpoint('LCR', 'X', self.eps()), {})
 
-    def test_it_never_outgrows_the_buffer_and_keeps_the_reading(self):
-        doc = {'model': 'X', 'commands': [{'endpoint': f'Q{i}', 'query': f':SENS{i}:FUNC?'} for i in range(60)]}
-        eps = self.eps()
-        eps['get'].update({f'Q{i}': {} for i in range(60)})
-        u = g.utopia_endpoint('LCR', 'X', doc, eps)['UTOPIA']
+    def test_it_never_outgrows_the_buffer(self):
+        eps = self.eps('Measure_Reading')
+        for i in range(40):
+            eps['nab'][f'R{i}'] = {'scpi': f':MEAS{i}:VOLT:DC?', 'utopia': 'reading'}
+        u = g.utopia_endpoint('LCR', 'X', eps)['UTOPIA']
         self.assertLessEqual(len(u['scpi'].encode()), g.GRAB_MAX_BYTES)
-        self.assertTrue(u['scpi'].startswith(':TRIGger;*WAI;:FETCh?;'))
+        self.assertTrue(u['scpi'].startswith(':TRIGger;*WAI;:FETCh?'))
         self.assertTrue(u['utopia']['left_out'])
 
 

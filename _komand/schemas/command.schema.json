@@ -21,6 +21,6 @@
     "retired": {"type": "boolean"},
     "model_only": {"type": "boolean", "description": "Not passed on to models that inherit this table as their family donor (generate_device_apis.py)."},
     "retired_because": {"type": "string", "minLength": 1},
-    "utopia": {"enum": ["reading"], "description": "this nab is the model's fresh reading: it ASKS for a measurement and READS it; it opens the generated UTOPIA nab (the reading, then every query qualified alone, in one message). One per model."}
+    "utopia": {"enum": ["reading"], "description": "this nab is measured data: it ASKS for a fresh measurement and READS it; every nab so marked is stacked into the generated UTOPIA nab (the data the unit measures, in one message; never a setting)."}
   }
 }

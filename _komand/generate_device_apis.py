@@ -434,14 +434,14 @@ def grab_endpoints(family, qualified, endpoints):
 
 # ── UTOPIA: the pinnacle of simultaneous capture (owner, 2026-11-12) ─────────
 # "a special nab that is the pinnacle of simultaneous capture … it should ask for
-# it, then read it … then ask again." One message per unit that ASKS for a fresh
-# measurement and READS it — the nab the model's table marks `"utopia": "reading"`
-# (the 4263A's :TRIGger;*WAI;:FETCh?) — and then every query the bench answered
-# ALONE (the GRAB's), so the reading and every setting it was taken under come
-# back from one instant. Built from the table's mark and the bench's evidence;
-# a model with neither gets none. Never longer than GRAB_MAX_BYTES: an input
-# buffer it overflows spoils the whole answer, so qualified queries that do not
-# fit are left out (`utopia.left_out`) — the reading never is.
+# it, then read it … it should not be about its settings, it should be about the
+# data the device is measuring." So UTOPIA is every MEASUREMENT the model's table
+# marks `"utopia": "reading"` — each one asks for fresh data and reads it (the
+# 4263A's :TRIGger;*WAI;:FETCh?) — stacked into one message, so all of it comes
+# from one instant. No setting readback is in it: settings are the GRAB's. A model
+# with no mark gets none. Never longer than GRAB_MAX_BYTES (an overflowed input
+# buffer spoils the whole answer): a reading that does not fit is left out and
+# named (`utopia.left_out`), in the table's order.
 #
 # THE UNCHANGED RULE rides on it as data for whoever schedules it: the first
 # rounds find what matters; what came back unchanged is asked less and less —
@@ -450,52 +450,38 @@ def grab_endpoints(family, qualified, endpoints):
 UTOPIA_LADDER = (10, 5, 3, 2, 1, 0)
 
 
-def utopia_endpoint(family, model, qualified, endpoints):
-    """{'UTOPIA': entry} — the model's marked reading, then its qualified queries — or {}."""
+def utopia_endpoint(family, model, endpoints):
+    """{'UTOPIA': entry} — every reading the table marks, asked and read in one message — or {}."""
     nabs = endpoints.get('nab') or {}
-    marked = sorted(n for n, ep in nabs.items() if (ep or {}).get('utopia') == 'reading')
+    marked = [n for n, ep in nabs.items() if (ep or {}).get('utopia') == 'reading']
     if not marked:
         return {}
-    if len(marked) > 1:
-        raise BrokenGui(f"{model}: {len(marked)} nabs marked utopia: reading ({', '.join(marked)}); one per model")
-    reading = nabs[marked[0]]
-    ask = str(reading.get('scpi') or '').strip()
-    if not ask or '<' in ask:
-        raise BrokenGui(f"{model}: {marked[0]} is marked utopia: reading but takes arguments or has no SCPI")
-    known = set((endpoints.get('get') or {})) | set(nabs)
-    asked = {''.join(p.split()).upper().lstrip(':') for p in ask.split(';')}
-    commands = [c for c in qualified['commands']
-                if c.get('endpoint') in known and c.get('query')
-                and ''.join(c['query'].split()).upper().lstrip(':') not in asked
-                and ''.join(c['query'].split()).upper().lstrip(':') not in ('FETC?', 'FETCH?')]
-    commands.sort(key=lambda c: c['query'].strip().upper() in GRAB_LAST)
-    taken, left_out = [], []
-    for c in commands:
-        trial = ';'.join([ask] + [x['query'] for x in taken] + [c['query']])
-        (taken if len(trial.encode()) <= GRAB_MAX_BYTES else left_out).append(c)
-    queries = [c['query'] for c in taken]
-    fields = ((reading.get('returns') or {}).get('fields')) or []
+    taken, left_out, asks = [], [], []
+    for name in marked:
+        ask = str(nabs[name].get('scpi') or '').strip()
+        if not ask or '<' in ask:
+            raise BrokenGui(f"{model}: {name} is marked utopia: reading but takes arguments or has no SCPI")
+        if len(';'.join(asks + [ask]).encode()) <= GRAB_MAX_BYTES:
+            taken.append(name)
+            asks.append(ask)
+        else:
+            left_out.append(name)
+    fields = [{"command": n, "fields": ((nabs[n].get('returns') or {}).get('fields')) or []} for n in taken]
     entry = build_endpoint_entry(family, "UTOPIA", {
-        "scpi": ';'.join([ask] + queries),
-        "description": (f"UTOPIA — the pinnacle of simultaneous capture: asks for a fresh reading and reads it "
-                        f"({marked[0]}), then reads all {len(queries)} settings this model answered alone, in one "
-                        f"message; the answers come back `;`-separated in the order of utopia.commands"),
+        "scpi": ';'.join(asks),
+        "description": (f"UTOPIA — the pinnacle of simultaneous capture: the data this unit measures, "
+                        f"{len(taken)} reading(s) ({', '.join(taken)}), each asked for fresh and read, in one message"),
         "subsystem": "UTOPIA",
         "group": "UTOPIA",
-        "returns": {"count": 1 + len(queries), "type": "LIST", "separator": ";",
-                    "first": {"command": marked[0], "fields": fields}},
+        "returns": {"count": len(taken), "type": "LIST", "separator": ";", "readings": fields},
         "unverified": True,
     }, "nab")
     entry["utopia"] = {
-        "reading": marked[0],
-        "ask": ask,
-        "commands": [marked[0]] + [c['endpoint'] for c in taken],
-        "queries": [ask] + queries,
-        "left_out": [c['endpoint'] for c in left_out],
+        "readings": taken,
+        "asks": asks,
+        "left_out": left_out,
         "ladder": list(UTOPIA_LADDER),
         "max_command_bytes": GRAB_MAX_BYTES,
-        "qualified": {"compiled": qualified.get('compiled'), "units": qualified.get('units', []),
-                      "source": f"{qualified.get('model')}.qualified.json"},
     }
     return {"UTOPIA": entry}
 
@@ -633,7 +619,8 @@ def generate_device_api(family, model, authored_komands, known_devices,
     qualified = load_qualified(family, model)
     if qualified is not None:
         endpoints["nab"].update(grab_endpoints(family, qualified, endpoints))
-        endpoints["nab"].update(utopia_endpoint(family, model, qualified, endpoints))
+    # UTOPIA, from the table's own marks: the data the unit measures (see utopia_endpoint).
+    endpoints["nab"].update(utopia_endpoint(family, model, endpoints))
 
     counts = {
         "total_commands": len(endpoints["set"]) + len(endpoints["nab"]) + len(endpoints["rig"]) + len(endpoints["do"]),
