@@ -5575,7 +5575,35 @@ Power,66104A,SET,Set_Voltage_Trigger,Set voltage trigger,VOLT:TRIG <value>,,valu
 Router,3235,DO,Card_Reset,Card Reset,CRESET <slot>,CRES <slot>,,,,slot,System Reset & Control,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
 Router,3235,DO,Clear_State,Clear State,CLR,,,,,,System Reset & Control,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
 Router,3235,DO,Close_All,Close every relay in the frame — everything connected to everything.,CLOSE 000-999,,,,,,System Reset & Control,Root,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Close_Card_0,Coax Left: close every relay on slot 0,CLOSE 000-099,,,,,,Close Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Close_Card_1,Coax Right: close every relay on slot 1,CLOSE 100-199,,,,,,Close Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Close_Card_6,EDAC 1: close every relay on slot 6,CLOSE 600-699,,,,,,Close Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Close_Card_7,EDAC 2: close every relay on slot 7,CLOSE 700-799,,,,,,Close Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Close_Card_8,EDAC 3: close every relay on slot 8,CLOSE 800-899,,,,,,Close Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Close_Card_9,Aux: close every relay on slot 9,CLOSE 900-999,,,,,,Close Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_6_AB0,EDAC 1: connect bank 0 outputs to AB0 (LEFT SEND),CLOSE 690,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_6_AB1,EDAC 1: connect bank 1 inputs to AB1 (LEFT RETURN),CLOSE 691,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_6_AB2,EDAC 1: connect bank 2 outputs to AB2 (RIGHT SEND),CLOSE 692,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_6_AB3,EDAC 1: connect bank 3 inputs to AB3 (RIGHT RETURN),CLOSE 693,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_7_AB0,EDAC 2: connect bank 0 outputs to AB0 (LEFT SEND),CLOSE 790,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_7_AB1,EDAC 2: connect bank 1 inputs to AB1 (LEFT RETURN),CLOSE 791,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_7_AB2,EDAC 2: connect bank 2 outputs to AB2 (RIGHT SEND),CLOSE 792,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_7_AB3,EDAC 2: connect bank 3 inputs to AB3 (RIGHT RETURN),CLOSE 793,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_8_AB0,EDAC 3: connect bank 0 outputs to AB0 (LEFT SEND),CLOSE 890,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_8_AB1,EDAC 3: connect bank 1 inputs to AB1 (LEFT RETURN),CLOSE 891,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_8_AB2,EDAC 3: connect bank 2 outputs to AB2 (RIGHT SEND),CLOSE 892,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_8_AB3,EDAC 3: connect bank 3 inputs to AB3 (RIGHT RETURN),CLOSE 893,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_9_AB0,Aux: connect bank 0 outputs to AB0 (LEFT SEND),CLOSE 990,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_9_AB1,Aux: connect bank 1 inputs to AB1 (LEFT RETURN),CLOSE 991,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_9_AB2,Aux: connect bank 2 outputs to AB2 (RIGHT SEND),CLOSE 992,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Connect_Card_9_AB3,Aux: connect bank 3 inputs to AB3 (RIGHT RETURN),CLOSE 993,,,,,,Backplane Buses,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
 Router,3235,DO,Open_All,Open every relay in the frame — nothing connected to anything.,OPEN 000-999,,,,,,System Reset & Control,Root,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Open_Card_0,Coax Left: open every relay on slot 0,OPEN 000-099,,,,,,Open Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Open_Card_1,Coax Right: open every relay on slot 1,OPEN 100-199,,,,,,Open Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Open_Card_6,EDAC 1: open every relay on slot 6,OPEN 600-699,,,,,,Open Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Open_Card_7,EDAC 2: open every relay on slot 7,OPEN 700-799,,,,,,Open Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Open_Card_8,EDAC 3: open every relay on slot 8,OPEN 800-899,,,,,,Open Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
+Router,3235,DO,Open_Card_9,Aux: open every relay on slot 9,OPEN 900-999,,,,,,Open Relays,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
 Router,3235,DO,Reset_Device,Reset System,RESET,RES,,,,,System Reset & Control,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
 Router,3235,DO,Select_Channel,Select Channel,SELECT <chan>,SEL <chan>,,,,chan,Break-Before-Make,,,,,,1,,INSTRUMENT.Router/3235/3235.komand
 Router,3235,NAB,Query_Channel_State,Query Channel State,CLOSE? <chan>,CLOS? <chan>,,,,chan,Query specific relay state,,1,,,,1,yes,INSTRUMENT.Router/3235/3235.komand
