@@ -79,6 +79,7 @@ From this repository's own commits (the commit message is the record):
 - bump Distortion + Oscilloscope: selector options from the manuals (54641D 39, Porta_one 1); CommandList regenerated (`189006c`)
 - bump INSTRUMENT.DMM: 15 min trend window for the log time axis (`36323e5`)
 - bump INSTRUMENT.DMM: AUTO seek on the DMM dial (owner 2026-11-12) (`41df541`)
+- bump INSTRUMENT.LCR: 4263A Fetch_Existing retired, panel FETCH READING → Measure_Reading (`bded505`)
 
 ## Releases
 - **Released `2.0.0`, tag `v2.0.0`** (2026-11-01, ROAD-3452, the owner's V2) — no SDK pin; every manifest says 2.0.0; GitHub release `v2.0.0`.
