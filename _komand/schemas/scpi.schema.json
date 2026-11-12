@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apk.audio/schemas/instruments/scpi.schema.json",
+  "title": "<Model>.scpi.json — the model's own SCPI tree, read off its manual (scpi_paths.py)",
+  "type": "object",
+  "required": ["model", "manual", "roots", "optional", "unresolved"],
+  "additionalProperties": false,
+  "properties": {
+    "model": {"type": "string", "minLength": 1},
+    "manual": {"type": "string", "minLength": 1, "description": "the manual (and chapter/pages) the roots were read from"},
+    "native": {"type": "boolean", "description": "not SCPI's tree (HP 3235, Portable One): only the roots are checked"},
+    "roots": {"type": "array", "items": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]*$"}},
+    "optional": {"type": "array", "items": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]*$"}},
+    "spellings": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+    "bench": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1},
+              "description": "a root the manual does not give but the unit or the vendor's own software proves, with the evidence"},
+    "unresolved": {"type": "object", "patternProperties": {"^(set|do|rig|nab)/": {"type": "string", "minLength": 1}},
+                   "additionalProperties": false}
+  }
+}

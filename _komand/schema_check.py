@@ -125,6 +125,7 @@ TARGETS = [
     ('INSTRUMENT.*/*/*.gui', 'gui.schema.json'),
     ('INSTRUMENT.*/*/*.komand', 'komand.schema.json'),
     ('INSTRUMENT.*/*/*.api.json', 'api.schema.json'),
+    ('INSTRUMENT.*/*/*.scpi.json', 'scpi.schema.json'),
     ('_komand/baselines/[!d]*.json', 'baseline.schema.json'),
 ]
 
