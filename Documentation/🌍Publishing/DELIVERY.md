@@ -59,5 +59,25 @@ Verified: `_komand/check.sh` (exit 0); `../AUDIO.komand/check.sh` still passes a
 - **Command tables corrected from vendor manuals** (owner-approved research, 2026-10-31; AUDIO.komand `check-tables --strict` 254 → 82). Every change is cited beside its table in `INSTRUMENT.<F>/<Model>/SOURCES.md` (manual title, URL, page/section); a finding no manual confirmed is listed there with what was searched and left as is. 43 duplicate entries are declared `"alias_of"` (new optional field, `_komand/schemas/command.schema.json`; the generator ignores it, so specs are unchanged). Fixed: DS1104Z, 66101A–66104A, 6060B, N9340B, 34401A, 33210A, 33220A, 54641D (short forms). Unconfirmed (manual not obtainable): 54641D enums, Porta_one, 4263A. Verified after each batch: `_komand/check.sh` and `../AUDIO.komand/check.sh` (both green; derived `.api.json`, `commands_tree.md`, `CommandList.csv/.xlsx` regenerated).
 - **23 commands retired, not deleted** (owner decision, 2026-10-31): `"retired": true` + `retired_because` (the manual citation) in 66101A–66104A, 34401A, 6060B and 4263A tables, listed under *Retired* in each `SOURCES.md`. New optional schema fields (`_komand/schemas/command.schema.json`); the generator leaves retired entries out of `<Model>.api.json`; the commands floor still counts them. Verified: `_komand/check.sh` and `../AUDIO.komand/check.sh` (strict default) pass.
 
+## Delivered 2026-11-11 – 2026-11-12
+
+From this repository's own commits (the commit message is the record):
+
+- bump INSTRUMENT.Power, INSTRUMENT.Load, INSTRUMENT.Generator: a point count carries no unit and a current reads A (ROAD-3660) (`8430c17`)
+- ROAD-3667: komands.cad.json on the 3235's frame slots; bump INSTRUMENT.Router (EDAC 2 in Cards.json, Router.cad.json renamed) (`c695475`)
+- scpi_paths.py: every SCPI header a path in its model's own tree; bump 10 families (`f10a5dc`)
+- ROAD-3683: every INSTRUMENTS check passes — manifest.json's bim key in its schema; SDK pages current (`85454a9`)
+- bump INSTRUMENT.Generator: 33220A Get_Secure_State uses the spelling the unit accepts (`010c187`)
+- bump INSTRUMENT.LCR: the owner's expected 4263A commands, all unverified; MEAS:IMP? retired (`dd8865d`)
+- bump INSTRUMENT.LCR: 4263A bench-checked, GRAB qualified 9/9 (`631b2f9`)
+- bump INSTRUMENT.LCR: 4263A :READ? retired, Certify results in the table (`1e5043a`)
+- bump INSTRUMENT.LCR: 4263A retired commands removed (`cb97979`)
+- bump INSTRUMENT.LCR: 4263A All L/C/R rigs and nabs (`6fdf960`)
+- bump INSTRUMENT.LCR: 4263A paths from the 4263B Operation Manual ch. 5 + *LRN?; electronic-load block and commands out of the LCR family (`4ed3cad`)
+- bump INSTRUMENT.LCR: 4263A All Z/G/S (`cb5a32f`)
+- _komand/expand_selectors.py: every SET with options is a selector AND one SET per option (owner 2026-11-11); check.sh runs it --check; families bumped (`61c8332`)
+- bump Distortion + Oscilloscope: selector options from the manuals (54641D 39, Porta_one 1); CommandList regenerated (`189006c`)
+- bump INSTRUMENT.DMM: 15 min trend window for the log time axis (`36323e5`)
+
 ## Releases
 - **Released `2.0.0`, tag `v2.0.0`** (2026-11-01, ROAD-3452, the owner's V2) — no SDK pin; every manifest says 2.0.0; GitHub release `v2.0.0`.
