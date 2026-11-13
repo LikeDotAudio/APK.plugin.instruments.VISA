@@ -620,7 +620,11 @@ def generate_device_api(family, model, authored_komands, known_devices,
     if qualified is not None:
         endpoints["nab"].update(grab_endpoints(family, qualified, endpoints))
     # UTOPIA, from the table's own marks: the data the unit measures (see utopia_endpoint).
-    endpoints["nab"].update(utopia_endpoint(family, model, endpoints))
+    # ITS OWN TABLE ONLY: a model that borrows the donor's table does not get the donor's
+    # UTOPIA — the 54641D's channel sweep (`:MEASure:SOURce CHANnel1;…`) is not a Rigol's
+    # spelling, and UTOPIA is asked unattended, every round.
+    if not inherited_from:
+        endpoints["nab"].update(utopia_endpoint(family, model, endpoints))
 
     counts = {
         "total_commands": len(endpoints["set"]) + len(endpoints["nab"]) + len(endpoints["rig"]) + len(endpoints["do"]),
